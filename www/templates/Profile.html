@@ -1,0 +1,29 @@
+<ion-view title="Profil">
+    <ion-nav-buttons side="right">
+      <button class="button button-clear" ui-sref="start">
+          <i class="ion-log-out"></i>
+      </button>
+    </ion-nav-buttons>
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
+        <div style="line-height: 250px; border: 1px solid rgb(238, 238, 238); border-radius: 3px; text-align: center; background-color: rgb(255, 255, 255);">
+            <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
+        </div>
+        <ion-list></ion-list>
+        <div>
+            <h2>John D'eau</h2>
+
+            <a ui-sref="tabs.editprofile">Modifier le compte</a>
+
+            <p>Adresse</p>
+
+            <p>Email</p>
+
+            <p>Téléphone</p>
+
+            <p>[...]</p>
+        </div>
+        <form class="list">
+            <ion-toggle toggle-class="toggle-positive">Masquer mon numéro de téléphone</ion-toggle>
+        </form>
+    </ion-content>
+</ion-view>
