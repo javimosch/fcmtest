@@ -1,7 +1,7 @@
 angular.module('shopmycourse.controllers')
 
-.controller('DeliveriesEndCtrl', function($scope, $state, $ionicViewSwitcher, $ionicHistory) {
-  $scope.endDeliveries = function () {
+.controller('EndOrderCtrl', function($scope, $state, $ionicViewSwitcher, $ionicHistory) {
+  $scope.endOrder = function () {
     $ionicViewSwitcher.nextDirection('back');
     $ionicHistory.nextViewOptions({
       disableAnimate: false,

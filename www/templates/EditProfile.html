@@ -1,5 +1,47 @@
-<ion-view title="Profil">
-    <ion-content overflow-scroll="true" padding="true" class="has-header">
-        <h1>PROFILE EDIT</h1>
+<ion-view id="edit-profile" title="Édition de profil">
+    <ion-nav-buttons side="right">
+      <button class="button button-clear" ng-click="endEdit()">
+          <i class="icon ion-edit"></i>
+      </button>
+    </ion-nav-buttons>
+    <ion-content overflow-scroll="true" padding="false" class="has-header">
+      <div class="list">
+        <div class="item">
+          <div style="line-height: 150px; border: 1px solid rgb(238, 238, 238); border-radius: 3px; text-align: center; background-color: rgb(255, 255, 255);">
+              <i class="icon ion-image avatar" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
+          </div>
+        </div>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Prénom</span>
+          <input type="text" placeholder="Prénom">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Nom</span>
+          <input type="text" placeholder="Nom">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Email</span>
+          <input type="text" placeholder="Email">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Address</span>
+          <input type="text" placeholder="Address">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Ville</span>
+          <input type="text" placeholder="Ville">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Code postal</span>
+          <input type="text" placeholder="Code postal">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Téléphone</span>
+          <input type="text" placeholder="Téléphone">
+        </label>
+        <div class="item" id="profile-phone">
+          <ion-toggle toggle-class="toggle-positive">Masquer mon numéro de téléphone</ion-toggle>
+        </div>
+      </div>
     </ion-content>
 </ion-view>

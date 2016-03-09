@@ -1,5 +1,19 @@
-<ion-view title="Commandes">
-    <ion-content overflow-scroll="true" padding="true" class="has-header">
-      <h1>Orders</h1>
+<ion-view id="orders" title="Liste des commandes">
+    <ion-content overflow-scroll="true" padding="false" class="has-header">
+      <div class="bar bar-header">
+        <div class="button-bar">
+          <a class="button button-positive">En cours</a>
+          <a class="button">Archivé</a>
+        </div>
+      </div>
+        <ion-list class="content has-header">
+            <ion-item class="item item-icon-left item-icon-right" ui-sref="tabs.order">
+                <i class="icon ion-checkmark"></i>
+                <div class="recipient"><i class="ion-ios-person"></i> John D'eau</div>
+                <div class="shop"><i class="ion-ios-location"></i> Carrefour St. Just</div>
+                <div class="timetable"><i class="ion-ios-calendar-outline"></i>16h - 18h</div>
+                <i class="icon ion-chevron-right"></i>
+            </ion-item>
+        </ion-list>
     </ion-content>
 </ion-view>

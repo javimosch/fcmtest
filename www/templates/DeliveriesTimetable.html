@@ -1,19 +1,27 @@
-<ion-view title="CAROTTE">
-    <ion-content overflow-scroll="true" padding="false" class="has-header">
+<ion-view id="deliveries-timetable" title="Sélectionner plages horaires">
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
         <ion-list>
           <div class="item item-divider">
             Lundi 08 Mars
           </div>
-          <ion-item ui-sref="tabs.deliveriesend">
-              <span class="timetable">08h - 10h</span>
-              <span class="timetable">10h - 12h</span>
-              <span class="timetable">12h - 14h</span><br/>
-              <span class="timetable">14h - 16h</span>
-              <span class="timetable">16h - 18h</span>
-              <span class="timetable">18h - 20h</span><br/>
-              <span class="timetable">20h - 22h</span>
+          <ion-item>
+            <span class="row">
+              <span class="col timetable">08h - 10h</span>
+              <span class="col timetable selected">10h - 12h</span>
+              <span class="col timetable">12h - 14h</span>
+            </span>
+            <span class="row">
+              <span class="col timetable selected">14h - 16h</span>
+              <span class="col timetable selected">16h - 18h</span>
+              <span class="col timetable">18h - 20h</span>
+            </span>
+            <span class="row">
+              <span class="col timetable">20h - 22h</span>
+              <span class="col"></span>
+              <span class="col"></span>
+            </span>
           </ion-item>
         </ion-list>
-        <button class="button button-stable button-block" ui-sref="tabs.deliveriesend">Valider</button>
+        <button class="button button-stable button-block" ui-sref="tabs.enddeliveries">Valider</button>
     </ion-content>
 </ion-view>

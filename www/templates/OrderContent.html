@@ -1,0 +1,67 @@
+<ion-view id="order-content" title="Liste de course">
+    <ion-nav-buttons side="right">
+      <button class="button button-clear" ng-click="openCartModal()">
+          <i class="icon ion-ios-cart-outline"></i>
+      </button>
+    </ion-nav-buttons>
+    <ion-content overflow-scroll="true" padding="false" class="has-header">
+      <ion-list>
+          <div class="item item-divider">
+            <label class="item item-input">
+              <i class="icon ion-search placeholder-icon"></i>
+              <input type="text" placeholder="Rechercher un produit">
+            </label>
+          </div>
+          <ion-item class="item item-icon-left item-icon-right product">
+              <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
+              <div class="name">Blanc de poulet</div>
+              <div class="detail">La barquette de 2x100g</div>
+              <div class="price">6.10€</div>
+              <i class="icon ion-ios-cart-outline"></i>
+          </ion-item>
+      </ion-list>
+    </ion-content>
+</ion-view>
+
+
+<script id="Cart.html" type="text/ng-template">
+  <ion-modal-view id="cart-modal" ng-controller="CartCtrl">
+    <ion-header-bar>
+      <span class="title center">Panier</span>
+      <button class="button button-icon button-clear icon ion-close-round" ng-click="closeCartModal()"></button>
+    </ion-header-bar>
+    <ion-content overflow-scroll="true" padding="false" class="has-header">
+      <ion-list>
+          <div class="item item-divider">
+            Liste des produits
+          </div>
+          <ion-item class="item item-icon-left item-icon-right product">
+              <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
+              <div class="name">Blanc de poulet</div>
+              <div class="detail">La barquette de 2x100g</div>
+              <div class="price">6.10€</div>
+              <div class="button-bar">
+                <a class="button">-</a>
+                <span class="button">2</span>
+                <a class="button">+</a>
+              </div>
+          </ion-item>
+      </ion-list>
+      <div class="bar bar-footer">
+        <div class="row">
+          <div class="price-box col">
+            <span class="price">35.59€</span>
+            <span class="title">Prix total</span>
+          </div>
+          <div class="price-box col">
+            <span class="price">3.50€</span>
+            <span class="title">Commission</span>
+          </div>
+        </div>
+        <div class="row">
+          <button class="button button-positive">Confirmer la commande</button>
+        </div>
+      </div>
+    </ion-content>
+  </ion-model-view>
+</script>

@@ -1,12 +1,12 @@
 angular.module('shopmycourse.controllers')
 
-.controller('DeliveriesEndCtrl', function($scope, $state, $ionicViewSwitcher, $ionicHistory) {
-  $scope.endDeliveries = function () {
+.controller('EditCreditCardCtrl', function($scope, $state, $ionicHistory, $ionicViewSwitcher) {
+  $scope.endEdit = function () {
     $ionicViewSwitcher.nextDirection('back');
     $ionicHistory.nextViewOptions({
       disableAnimate: false,
       disableBack: true
     });
-    $state.go('tabs.home');
+    $state.go('tabs.profile');
   }
 })
