@@ -1,12 +1,12 @@
 angular.module('shopmycourse.controllers')
 
 .controller('OrdersScheduleCtrl', function($scope, $state) {
-  $scope.timetables = [];
+  $scope.schedules = [];
   $scope.selected = {};
 
   for (var i = 0; i < 7; i++) {
     var date = new Date(new Date().getTime() + i * 24 * 60 * 60 * 1000);
-    $scope.timetables.push({
+    $scope.schedules.push({
       date: date,
       times: ['08h - 10h', '10h - 12h', '12h - 14h', '14h - 16h', '16h - 18h', '18h - 20h', '20h - 22h']
     })

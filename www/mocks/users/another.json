@@ -1,0 +1,14 @@
+{
+  "id": 2,
+  "firstname": "Jane",
+  "lastname": "D'eau",
+  "email": "jane@deau.com",
+  "phone": "+336123456789",
+  "share_phone": true,
+  "address": {
+    "address": "30 Quai St Vincent",
+    "city": "Lyon",
+    "zip": "69001"
+  },
+  "avatar": "http://localhost:8100/img/no_image_user.png"
+}

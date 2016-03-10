@@ -4,8 +4,8 @@ angular.module('shopmycourse.services')
 
     var resource = API(Configuration.apiEndpoint + 'deliveries', { idDelivery: '@idDelivery' },
     {
-        'mines': { method: 'GET', url: Configuration.apiEndpoint + 'deliveries/mines.json', cache: false, isArray: true },
-        'getOne': { method: 'GET', url: Configuration.apiEndpoint + 'deliveries/:idDelivery.json', cache: false }
+        'deliveries': { method: 'GET', url: Configuration.apiEndpoint + 'deliveries/deliveries.json', cache: false, isArray: true },
+        'orders': { method: 'GET', url: Configuration.apiEndpoint + 'deliveries/orders.json', cache: false, isArray: true }
     });
 
     return resource;

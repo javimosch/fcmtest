@@ -1,13 +1,11 @@
 angular.module('shopmycourse.controllers')
 
-.controller('DeliveriesShowCtrl', function($scope, $stateParams, $ionicModal, DeliveryAPI) {
+.controller('DeliveriesShowCtrl', function($scope, $stateParams, $ionicModal, DeliveryStore) {
 
   $scope.delivery = {};
 
-  DeliveryAPI.getOne({idDelivery: $stateParams.idDelivery}, function (delivery) {
-    $scope.delivery = delivery;
-  }, function (err) {
-    console.error(err);
+  DeliveryStore.get({id: parseInt($stateParams.idDelivery)}, function (err, delivery) {
+    $scope.delivery = delivery[0];
   })
 
   $ionicModal.fromTemplateUrl('templates/Deliveries/Modals/Finish.html', {

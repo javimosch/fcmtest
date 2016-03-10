@@ -1,10 +1,11 @@
 angular.module('shopmycourse.controllers')
 
-.controller('DeliveriesListCtrl', function($scope, $state, DeliveryAPI) {
+.controller('DeliveriesListCtrl', function($scope, $state, DeliveryStore) {
+
   $scope.deliveries = [];
   $scope.status = 'pending';
 
-  DeliveryAPI.mines({}, function (deliveries) {
+  DeliveryStore.get({}, function (err, deliveries) {
     $scope.deliveries = deliveries;
   }, function (err) {
     console.error(err);

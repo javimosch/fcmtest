@@ -70,13 +70,13 @@
   }
 }
 
-#deliveries-timetable, #new-order {
-  .col-timetable  {
+#deliveries-schedule, #new-order {
+  .col-schedule  {
     width: 30%;
     float: left;
     cursor: pointer;
   }
-  .timetable {
+  .schedule {
     border-radius: 50px;
     border: 1px solid $dark;
     margin: 3px;
@@ -93,7 +93,7 @@
 }
 
 #new-order {
-  .timetable {
+  .schedule {
     border-radius: 50px;
     border: 1px solid $dark;
     margin: 3px;
@@ -225,6 +225,11 @@
     font-size: 95%;
     font-weight: bold;
   }
+  img {
+    height: 80px;
+    max-width: 80px;
+    float: left;
+  }
 }
 
 .avatar {
@@ -235,4 +240,14 @@
 
 .address {
   overflow: hidden;
+}
+
+.error-message {
+  padding-left: 5px;
+  font-weight: bold;
+  font-size: 90%;
+  color: #c0392b;
+  span, i.icon {
+    color: #c0392b;
+  }
 }

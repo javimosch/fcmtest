@@ -5,24 +5,23 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title>Shop My Course</title>
 
-
     <!-- compiled css output -->
     <link href="css/ionic.app.css" rel="stylesheet">
-    <link href="lib/angular-toastr/dist/angular-toastr.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
 
-    <!-- Lib -->
+    <!-- Lib:CSS -->
+    <link href="lib/angular-toastr/dist/angular-toastr.css" rel="stylesheet">
+    <!-- Lib:JS -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script src="lib/ionic/js/angular/angular-resource.js"></script>
     <script src="lib/angular-toastr/dist/angular-toastr.js"></script>
     <script src="lib/moment/moment.js"></script>
     <script src="lib/moment/locale/fr.js"></script>
     <script src="lib/angular-moment/angular-moment.js"></script>
-
-    <!-- cordova script (this will be a 404 during development) -->
+    <script src="lib/ng-lodash/build/ng-lodash.js"></script>
     <script src="cordova.js"></script>
-
     <script src="js/app.js"></script>
+
     <!-- Controllers -->
     <script src="js/controllers.js"></script>
     <!-- Controllers::Base -->
@@ -53,18 +52,27 @@
     <script src="js/controllers/Profile/ShowCtrl.js"></script>
     <script src="js/controllers/Profile/SignInCtrl.js"></script>
     <script src="js/controllers/Profile/SignUpCtrl.js"></script>
+
     <!-- Routes -->
     <script src="js/routes.js"></script>
+
     <!-- Services -->
     <script src="js/services.js"></script>
     <script src="js/services/Configuration.js"></script>
     <script src="js/services/LocalStorage.js"></script>
     <script src="js/services/CurrentUser.js"></script>
     <script src="js/services/Authentication.js"></script>
+    <script src="js/services/Validation.js"></script>
+    <!-- Services::Stores -->
+    <script src="js/services/Stores/Store.js"></script>
+    <script src="js/services/Stores/DeliveryStore.js"></script>
+    <script src="js/services/Stores/OrderStore.js"></script>
+    <!-- Services::API -->
     <script src="js/services/API/API.js"></script>
     <script src="js/services/API/UserAPI.js"></script>
     <script src="js/services/API/ShopAPI.js"></script>
     <script src="js/services/API/DeliveryAPI.js"></script>
+
     <!-- Directives -->
     <script src="js/directives.js"></script>
 

@@ -1,12 +1,15 @@
 angular.module('shopmycourse.controllers')
 
-.controller('ProfileSignUpCtrl', function ($scope, $state, Authentication) {
+.controller('ProfileSignUpCtrl', function ($scope, $state, Authentication, Validation) {
+
+  $scope.validation = Validation;
+
   $scope.user = {
     firstname: 'John',
     lastname: 'D\'eau',
     email: 'john@deau.com',
     password: 'password',
-    phone: '+336012345678',
+    phone: '0601234567',
   };
 
   $scope.signUp = function () {

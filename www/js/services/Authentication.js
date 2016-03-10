@@ -33,7 +33,7 @@ angular.module('shopmycourse.services')
             CurrentUser.setLogged(false);
             CurrentUser.set(null);
             $window.localStorage.clear();
-            setTimeout(next, 100);
+            setTimeout(next, 500);
         }
     };
 });

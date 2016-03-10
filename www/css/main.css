@@ -43,29 +43,29 @@
     font-weight: bold;
     font-size: 120%; }
 
-#deliveries-timetable .col-timetable, #new-order .col-timetable {
+#deliveries-schedule .col-schedule, #new-order .col-schedule {
   width: 30%;
   float: left;
   cursor: pointer; }
 
-#deliveries-timetable .timetable, #new-order .timetable {
+#deliveries-schedule .schedule, #new-order .schedule {
   border-radius: 50px;
   border: 1px solid #444;
   margin: 3px;
   text-align: center;
   padding: 5px; }
-  #deliveries-timetable .timetable.selected, #new-order .timetable.selected {
+  #deliveries-schedule .schedule.selected, #new-order .schedule.selected {
     background-color: #444;
     color: #f8f8f8; }
-  #deliveries-timetable .timetable .item-divider:first-letter, #new-order .timetable .item-divider:first-letter {
+  #deliveries-schedule .schedule .item-divider:first-letter, #new-order .schedule .item-divider:first-letter {
     text-transform: uppercase; }
 
-#new-order .timetable {
+#new-order .schedule {
   border-radius: 50px;
   border: 1px solid #444;
   margin: 3px;
   text-align: center; }
-  #new-order .timetable.selected {
+  #new-order .schedule.selected {
     background-color: #444;
     color: #f8f8f8; }
 
@@ -157,6 +157,11 @@
   font-size: 95%;
   font-weight: bold; }
 
+.product img {
+  height: 80px;
+  max-width: 80px;
+  float: left; }
+
 .avatar {
   height: 100px;
   border-radius: 50%;
@@ -164,3 +169,11 @@
 
 .address {
   overflow: hidden; }
+
+.error-message {
+  padding-left: 5px;
+  font-weight: bold;
+  font-size: 90%;
+  color: #c0392b; }
+  .error-message span, .error-message i.icon {
+    color: #c0392b; }

@@ -1,6 +1,8 @@
 angular.module('shopmycourse.controllers')
 
-.controller('ProfileSignInCtrl', function($scope, $state, Authentication) {
+.controller('ProfileSignInCtrl', function($scope, $state, Authentication, Validation) {
+
+  $scope.validation = Validation;
 
   $scope.user = {
     email: 'john@deau.com',

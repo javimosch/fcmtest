@@ -5,7 +5,7 @@
             <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
         </div>
         <div class="name">{{delivery.delivery_request.recipient.firstname}} {{delivery.delivery_request.recipient.lastname}}</div>
-        <div class="address"><i class="ion-ios-location-outline"></i> 29 Quai St Vincent, 69001 Lyon</div>
+        <div class="address"><i class="ion-ios-location-outline"></i> {{delivery.delivery_request.address.address}}, {{delivery.delivery_request.address.zip}} {{delivery.delivery_request.address.city}}</div>
         <div class="actions">
           <button class="button button-stable" ng-click="openFinishDeliveryModal()">Finaliser la commande</button>
           <button class="button button-stable">Contacter par SMS</button>
@@ -13,23 +13,23 @@
       </div>
       <div id="delivery-prices" class="row">
         <div class="price-box col">
-          <span class="price">35.59€</span>
+          <span class="price">{{delivery.total}}€</span>
           <span class="title">Prix total</span>
         </div>
         <div class="price-box col">
           <span class="price">3.50€</span>
-          <span class="title">Commission</span>
+          <span class="title">Frais de livraison</span>
         </div>
       </div>
       <ion-list>
           <div class="item item-divider">
             Liste des produits
           </div>
-          <ion-item class="item item-icon-left product">
-              <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
-              <div class="name">Blanc de poulet</div>
-              <div class="detail">La barquette de 2x100g</div>
-              <div class="price">6.10€</div>
+          <ion-item class="item product" ng-repeat="delivery_content in delivery.delivery_content">
+              <img ng-src="{{delivery_content.product.image}}" alt="{{delivery_content.product.name}}">
+              <div class="name">{{delivery_content.product.name}}</div>
+              <div class="detail">{{delivery_content.product.detail}}</div>
+              <div class="price">{{delivery_content.unit_price*delivery_content.quantity}}€ ({{delivery_content.quantity}})</div>
           </ion-item>
       </ion-list>
     </ion-content>

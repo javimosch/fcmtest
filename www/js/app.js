@@ -3,6 +3,7 @@
 angular.module('shopmycourse', [
   'ionic',
   'toastr',
+  'ngLodash',
   'angularMoment',
   'shopmycourse.controllers',
   'shopmycourse.routes',
