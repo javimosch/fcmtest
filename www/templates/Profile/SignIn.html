@@ -1,0 +1,17 @@
+<ion-view id="signin" title="Connexion">
+    <ion-content overflow-scroll="true" padding="true" scroll="false" class="has-header">
+        <form class="list">
+            <ion-list>
+                <label class="item item-input">
+                    <span class="input-label">Email</span>
+                    <input type="text" ng-model="user.email" placeholder="">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Mot de passe</span>
+                    <input type="password" ng-model="user.password" placeholder="">
+                </label>
+            </ion-list>
+        </form>
+        <a ng-click="signIn()" class="button button-stable button-block ">Connexion</a>
+    </ion-content>
+</ion-view>

@@ -1,9 +1,1 @@
-angular.module('shopmycourse.services', [])
-
-.factory('BlankFactory', [function(){
-
-}])
-
-.service('BlankService', [function(){
-
-}]);
+angular.module('shopmycourse.services', ['ngResource'])

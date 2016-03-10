@@ -29,6 +29,9 @@
   text-align: center;
   font-size: 120%; }
 
+#edit-profile .avatar-item {
+  text-align: center; }
+
 #deliveries-end {
   text-align: center; }
   #deliveries-end .title {
@@ -40,14 +43,22 @@
     font-weight: bold;
     font-size: 120%; }
 
-#deliveries-timetable .timetable {
+#deliveries-timetable .col-timetable, #new-order .col-timetable {
+  width: 30%;
+  float: left;
+  cursor: pointer; }
+
+#deliveries-timetable .timetable, #new-order .timetable {
   border-radius: 50px;
   border: 1px solid #444;
   margin: 3px;
-  text-align: center; }
-  #deliveries-timetable .timetable.selected {
+  text-align: center;
+  padding: 5px; }
+  #deliveries-timetable .timetable.selected, #new-order .timetable.selected {
     background-color: #444;
     color: #f8f8f8; }
+  #deliveries-timetable .timetable .item-divider:first-letter, #new-order .timetable .item-divider:first-letter {
+    text-transform: uppercase; }
 
 #new-order .timetable {
   border-radius: 50px;
@@ -64,7 +75,8 @@
     font-weight: bold;
     font-size: 120%; }
   #delivery #delivery-header .address, #order #delivery-header .address {
-    padding: 10px 0px; }
+    padding: 10px 0px;
+    overflow: hidden; }
   #delivery #delivery-header .actions .button, #order #delivery-header .actions .button {
     margin: 10px; }
 
@@ -79,29 +91,29 @@
       font-weight: bold;
       font-size: 120%; }
 
-#confirmation-modal {
+#finish-order-modal, #finish-delivery-modal {
   text-align: center; }
-  #confirmation-modal .detail {
+  #finish-order-modal .detail, #finish-delivery-modal .detail {
     margin: 20px 10px; }
-  #confirmation-modal input {
+  #finish-order-modal input, #finish-delivery-modal input {
     border: 1px solid #444;
     margin: auto;
     margin-top: 20px; }
-  #confirmation-modal hr {
+  #finish-order-modal hr, #finish-delivery-modal hr {
     margin: 10px 40%; }
-  #confirmation-modal .delivery {
+  #finish-order-modal .delivery, #finish-delivery-modal .delivery {
     font-weight: bold; }
-  #confirmation-modal .instructions {
+  #finish-order-modal .instructions, #finish-delivery-modal .instructions {
     margin: 10px 0px; }
-  #confirmation-modal .stars {
+  #finish-order-modal .stars, #finish-delivery-modal .stars {
     font-size: 300%;
     margin: 40px 0px; }
-  #confirmation-modal ion-slide-page {
+  #finish-order-modal ion-slide-page, #finish-delivery-modal ion-slide-page {
     width: 100%; }
-  #confirmation-modal .title {
+  #finish-order-modal .title, #finish-delivery-modal .title {
     font-weight: bold;
     font-size: 120%; }
-  #confirmation-modal .code {
+  #finish-order-modal .code, #finish-delivery-modal .code {
     margin: 10px;
     padding: 5px;
     color: #f8f8f8;
@@ -144,3 +156,11 @@
 .product .price {
   font-size: 95%;
   font-weight: bold; }
+
+.avatar {
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 20px; }
+
+.address {
+  overflow: hidden; }

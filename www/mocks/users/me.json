@@ -1,0 +1,19 @@
+{
+  "id": 1,
+  "firstname": "John",
+  "lastname": "D'eau",
+  "email": "john@deau.com",
+  "phone": "+336012345678",
+  "share_phone": true,
+  "wallet": {
+    "id": 1,
+    "credit_card_display": "xxxx-xxxx-xxxx-x901"
+  },
+  "address": {
+    "address": "29 Quai St Vincent",
+    "city": "Lyon",
+    "zip": "69001"
+  },
+  "avatar": "http://localhost:8100/img/no_image_user.png",
+  "token": "awesomeprivatetoken"
+}

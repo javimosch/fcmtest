@@ -8,9 +8,16 @@
 
     <!-- compiled css output -->
     <link href="css/ionic.app.css" rel="stylesheet">
+    <link href="lib/angular-toastr/dist/angular-toastr.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
 
+    <!-- Lib -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/ionic/js/angular/angular-resource.js"></script>
+    <script src="lib/angular-toastr/dist/angular-toastr.js"></script>
+    <script src="lib/moment/moment.js"></script>
+    <script src="lib/moment/locale/fr.js"></script>
+    <script src="lib/angular-moment/angular-moment.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
@@ -18,31 +25,46 @@
     <script src="js/app.js"></script>
     <!-- Controllers -->
     <script src="js/controllers.js"></script>
-    <script src="js/controllers/DeliveriesCtrl.js"></script>
-    <script src="js/controllers/NewDeliveriesCtrl.js"></script>
-    <script src="js/controllers/DeliveriesTimetableCtrl.js"></script>
-    <script src="js/controllers/DeliveriesEndCtrl.js"></script>
-    <script src="js/controllers/DeliveryCtrl.js"></script>
-    <script src="js/controllers/ConfirmDeliveryCtrl.js"></script>
-    <script src="js/controllers/OrdersCtrl.js"></script>
-    <script src="js/controllers/OrderCtrl.js"></script>
-    <script src="js/controllers/OrderContentCtrl.js"></script>
-    <script src="js/controllers/CartCtrl.js"></script>
-    <script src="js/controllers/ShopOrderCtrl.js"></script>
-    <script src="js/controllers/NewOrderCtrl.js"></script>
-    <script src="js/controllers/EndOrderCtrl.js"></script>
-    <script src="js/controllers/ProfileCtrl.js"></script>
-    <script src="js/controllers/EditProfileCtrl.js"></script>
-    <script src="js/controllers/EditCreditCardCtrl.js"></script>
-    <script src="js/controllers/SignInCtrl.js"></script>
-    <script src="js/controllers/SignUpCtrl.js"></script>
+    <!-- Controllers::Base -->
     <script src="js/controllers/StartCtrl.js"></script>
     <script src="js/controllers/HomeCtrl.js"></script>
     <script src="js/controllers/NotificationsCtrl.js"></script>
+    <!-- Controllers::Deliveries -->
+    <script src="js/controllers/Deliveries/ConfirmCtrl.js"></script>
+    <script src="js/controllers/Deliveries/ListCtrl.js"></script>
+    <script src="js/controllers/Deliveries/ScheduleCtrl.js"></script>
+    <script src="js/controllers/Deliveries/ShopCtrl.js"></script>
+    <script src="js/controllers/Deliveries/ShowCtrl.js"></script>
+    <!-- Controllers::Deliveries::Modals -->
+    <script src="js/controllers/Deliveries/Modals/FinishCtrl.js"></script>
+    <!-- Controllers::Orders -->
+    <script src="js/controllers/Orders/ContentCtrl.js"></script>
+    <script src="js/controllers/Orders/ConfirmCtrl.js"></script>
+    <script src="js/controllers/Orders/ListCtrl.js"></script>
+    <script src="js/controllers/Orders/ScheduleCtrl.js"></script>
+    <script src="js/controllers/Orders/ShopCtrl.js"></script>
+    <script src="js/controllers/Orders/ShowCtrl.js"></script>
+    <!-- Controllers::Orders::Modals -->
+    <script src="js/controllers/Orders/Modals/CartCtrl.js"></script>
+    <script src="js/controllers/Orders/Modals/FinishCtrl.js"></script>
+    <!-- Controllers::Profile -->
+    <script src="js/controllers/Profile/EditCreditCardCtrl.js"></script>
+    <script src="js/controllers/Profile/EditCtrl.js"></script>
+    <script src="js/controllers/Profile/ShowCtrl.js"></script>
+    <script src="js/controllers/Profile/SignInCtrl.js"></script>
+    <script src="js/controllers/Profile/SignUpCtrl.js"></script>
     <!-- Routes -->
     <script src="js/routes.js"></script>
     <!-- Services -->
     <script src="js/services.js"></script>
+    <script src="js/services/Configuration.js"></script>
+    <script src="js/services/LocalStorage.js"></script>
+    <script src="js/services/CurrentUser.js"></script>
+    <script src="js/services/Authentication.js"></script>
+    <script src="js/services/API/API.js"></script>
+    <script src="js/services/API/UserAPI.js"></script>
+    <script src="js/services/API/ShopAPI.js"></script>
+    <script src="js/services/API/DeliveryAPI.js"></script>
     <!-- Directives -->
     <script src="js/directives.js"></script>
 

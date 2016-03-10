@@ -1,0 +1,37 @@
+<ion-view id="order" title="Détail">
+    <ion-content overflow-scroll="true" padding="false" class="has-header">
+      <div id="delivery-header">
+        <div style="line-height: 100px; border: 1px solid rgb(238, 238, 238); border-radius: 3px; text-align: center; background-color: rgb(255, 255, 255);">
+            <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
+        </div>
+        <div class="name">John D'eau</div>
+        <div class="address"><i class="ion-ios-location-outline"></i> 29 Quai St Vincent, 69001 Lyon</div>
+        <div class="actions">
+          <button class="button button-stable" ng-click="openFinishOrderModal()">Finaliser la commande</button>
+          <button class="button button-stable" ui-sref="tabs.ordercontent">Modifier le panier</button>
+          <button class="button button-stable">Contacter par SMS</button>
+        </div>
+      </div>
+      <div id="delivery-prices" class="row">
+        <div class="price-box col">
+          <span class="price">35.59€</span>
+          <span class="title">Prix total</span>
+        </div>
+        <div class="price-box col">
+          <span class="price">3.50€</span>
+          <span class="title">Commission</span>
+        </div>
+      </div>
+      <ion-list>
+          <div class="item item-divider">
+            Liste des produits
+          </div>
+          <ion-item class="item item-icon-left product">
+              <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
+              <div class="name">Blanc de poulet</div>
+              <div class="detail">La barquette de 2x100g</div>
+              <div class="price">6.10€</div>
+          </ion-item>
+      </ion-list>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,15 @@
+<ion-view id="new-deliveries" title="Sélection du magasin">
+    <ion-content overflow-scroll="true" padding="false" class="has-header">
+        <ion-list>
+            <div class="item item-divider">
+              Magasins les plus proches
+            </div>
+            <ion-item class="item-icon-right" ng-click="setShop(shop.id)" ng-repeat="shop in shops">
+                <div class="title">{{shop.name}}</div>
+                <div class="distance"><i class="ion-model-s"></i> {{shop.distance | number: 2}} km</div>
+                <div class="address"><i class="ion-ios-flag"></i> {{shop.address}}</div>
+                <i class="icon ion-chevron-right"></i>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

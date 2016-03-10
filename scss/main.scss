@@ -50,6 +50,11 @@
 
 }
 
+#edit-profile {
+  .avatar-item {
+    text-align: center;
+  }
+}
 #deliveries-end {
   text-align: center;
   .title {
@@ -65,15 +70,24 @@
   }
 }
 
-#deliveries-timetable {
+#deliveries-timetable, #new-order {
+  .col-timetable  {
+    width: 30%;
+    float: left;
+    cursor: pointer;
+  }
   .timetable {
     border-radius: 50px;
     border: 1px solid $dark;
     margin: 3px;
     text-align: center;
+    padding: 5px;
     &.selected {
       background-color: $dark;
       color: $stable;
+    }
+    .item-divider:first-letter {
+      text-transform: uppercase;
     }
   }
 }
@@ -100,6 +114,7 @@
     }
     .address {
       padding: 10px 0px;
+      overflow: hidden;
     }
     .actions {
       .button {
@@ -123,7 +138,7 @@
   }
 }
 
-#confirmation-modal {
+#finish-order-modal, #finish-delivery-modal {
   text-align: center;
   .detail {
     margin: 20px 10px;
@@ -210,4 +225,14 @@
     font-size: 95%;
     font-weight: bold;
   }
+}
+
+.avatar {
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.address {
+  overflow: hidden;
 }

@@ -1,0 +1,27 @@
+<ion-view id="edit-creditcard" title="Carte de crédit">
+    <ion-nav-buttons side="right">
+      <button class="button button-clear" ng-click="endEdit()">
+          <i class="icon ion-edit"></i>
+      </button>
+    </ion-nav-buttons>
+    <ion-content overflow-scroll="true" padding="false" class="has-header">
+      <div class="list">
+        <div class="item">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus distinctio sint harum consequuntur placeat ad, ipsa ipsam modi voluptatum ut fugiat labore suscipit esse, ex, dolore. Est dolores dignissimos voluptatibus?</p>
+        </div>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Numéro de carte</span>
+          <input type="text" placeholder="Numéro de carte">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Expiration</span>
+          <input type="text" placeholder="Expiration">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">CVC/CVV</span>
+          <input type="text" placeholder="CVC/CVV">
+        </label>
+        <button class="button button-stable button-block" ng-click="endEdit()">OK</button>
+      </div>
+    </ion-content>
+</ion-view>

@@ -24,48 +24,48 @@ angular.module('shopmycourse.routes', [])
     url: '/deliveries',
     views: {
       'deliveries-tab': {
-        templateUrl: 'templates/Deliveries.html',
-        controller: 'DeliveriesCtrl'
+        templateUrl: 'templates/Deliveries/List.html',
+        controller: 'DeliveriesListCtrl'
       }
     }
   })
 
-  .state('tabs.newdeliveries', {
-    url: '/newdeliveries',
+  .state('tabs.shopdelivery', {
+    url: '/delivery/create/shop',
     views: {
       'home-tab': {
-        templateUrl: 'templates/NewDeliveries.html',
-        controller: 'NewDeliveriesCtrl'
+        templateUrl: 'templates/Deliveries/Shop.html',
+        controller: 'DeliveriesShopCtrl'
       }
     }
   })
 
-  .state('tabs.timetabledeliveries', {
-    url: '/timetabledeliveries',
+  .state('tabs.scheduledelivery', {
+    url: '/delivery/create/schedule',
     views: {
       'home-tab': {
-        templateUrl: 'templates/DeliveriesTimetable.html',
-        controller: 'DeliveriesTimetableCtrl'
+        templateUrl: 'templates/Deliveries/Schedule.html',
+        controller: 'DeliveriesScheduleCtrl'
       }
     }
   })
 
-  .state('tabs.enddeliveries', {
-    url: '/enddeliveries',
+  .state('tabs.confirmdelivery', {
+    url: '/delivery/create/confirm',
     views: {
       'home-tab': {
-        templateUrl: 'templates/DeliveriesEnd.html',
-        controller: 'DeliveriesEndCtrl'
+        templateUrl: 'templates/Deliveries/Confirm.html',
+        controller: 'DeliveriesConfirmCtrl'
       }
     }
   })
 
   .state('tabs.delivery', {
-    url: '/delivery',
+    url: '/delivery/:idDelivery',
     views: {
       'deliveries-tab': {
-        templateUrl: 'templates/Delivery.html',
-        controller: 'DeliveryCtrl'
+        templateUrl: 'templates/Deliveries/Show.html',
+        controller: 'DeliveriesShowCtrl'
       }
     }
   })
@@ -74,28 +74,28 @@ angular.module('shopmycourse.routes', [])
     url: '/orders',
     views: {
       'orders-tab': {
-        templateUrl: 'templates/Orders.html',
-        controller: 'OrdersCtrl'
+        templateUrl: 'templates/Orders/List.html',
+        controller: 'OrdersListCtrl'
       }
     }
   })
 
   .state('tabs.order', {
-    url: '/order',
+    url: '/order/:idOrder',
     views: {
       'orders-tab': {
-        templateUrl: 'templates/Order.html',
-        controller: 'OrderCtrl'
+        templateUrl: 'templates/Orders/Show.html',
+        controller: 'OrdersShowCtrl'
       }
     }
   })
 
   .state('tabs.ordercontent', {
-    url: '/ordercontent',
+    url: '/order/:idOrder/content',
     views: {
       'orders-tab': {
-        templateUrl: 'templates/OrderContent.html',
-        controller: 'OrderContentCtrl'
+        templateUrl: 'templates/Orders/Content.html',
+        controller: 'OrdersContentCtrl'
       }
     }
   })
@@ -104,28 +104,28 @@ angular.module('shopmycourse.routes', [])
     url: '/profile',
     views: {
       'profile-tab': {
-        templateUrl: 'templates/Profile.html',
-        controller: 'ProfileCtrl'
+        templateUrl: 'templates/Profile/Show.html',
+        controller: 'ProfileShowCtrl'
       }
     }
   })
 
   .state('tabs.editprofile', {
-    url: '/editprofile',
+    url: '/profile/edit',
     views: {
       'profile-tab': {
-        templateUrl: 'templates/EditProfile.html',
-        controller: 'EditProfileCtrl'
+        templateUrl: 'templates/Profile/Edit.html',
+        controller: 'ProfileEditCtrl'
       }
     }
   })
 
   .state('tabs.editcreditcard', {
-    url: '/editcreditcard',
+    url: '/profile/creditcard/edit',
     views: {
       'profile-tab': {
-        templateUrl: 'templates/EditCreditCard.html',
-        controller: 'EditCreditCardCtrl'
+        templateUrl: 'templates/Profile/EditCreditCard.html',
+        controller: 'ProfileEditCreditCardCtrl'
       }
     }
   })
@@ -137,43 +137,43 @@ angular.module('shopmycourse.routes', [])
   })
 
   .state('signin', {
-    url: '/signin',
-    templateUrl: 'templates/SignIn.html',
-    controller: 'SignInCtrl'
+    url: '/profile/signin',
+    templateUrl: 'templates/Profile/SignIn.html',
+    controller: 'ProfileSignInCtrl'
   })
 
   .state('signup', {
-    url: '/signup',
-    templateUrl: 'templates/SignUp.html',
-    controller: 'SignUpCtrl'
+    url: '/profile/signup',
+    templateUrl: 'templates/Profile/SignUp.html',
+    controller: 'ProfileSignUpCtrl'
   })
 
-  .state('tabs.neworder', {
-    url: '/neworder',
+  .state('tabs.scheduleorder', {
+    url: '/order/create/schedule',
     views: {
       'home-tab': {
-        templateUrl: 'templates/NewOrder.html',
-        controller: 'NewOrderCtrl'
+        templateUrl: 'templates/Orders/Schedule.html',
+        controller: 'OrdersScheduleCtrl'
       }
     }
   })
 
   .state('tabs.shoporder', {
-    url: '/shoporder',
+    url: '/order/create/shop',
     views: {
       'home-tab': {
-        templateUrl: 'templates/ShopOrder.html',
-        controller: 'ShopOrderCtrl'
+        templateUrl: 'templates/Orders/Shop.html',
+        controller: 'OrdersShopCtrl'
       }
     }
   })
 
-  .state('tabs.endorder', {
-    url: '/endorder',
+  .state('tabs.confirmorder', {
+    url: '/order/create/confirm',
     views: {
       'home-tab': {
-        templateUrl: 'templates/EndOrder.html',
-        controller: 'EndOrderCtrl'
+        templateUrl: 'templates/Orders/Confirm.html',
+        controller: 'OrdersConfirmCtrl'
       }
     }
   })

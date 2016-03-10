@@ -1,0 +1,15 @@
+<ion-view id="new-order" title="Selection du créneau">
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
+      <ion-list>
+        <div ng-repeat="timetable in timetables">
+          <div class="item item-divider">
+            {{timetable.date | amDateFormat:'dddd Do MMMM'}}
+          </div>
+          <ion-item>
+            <div ng-repeat="(timeKey, time) in timetable.times" class="col-timetable timetable" ng-class="{'selected': isSelected(timetable.date, time)}" ng-click="selectTime(timetable.date, time)">{{time}}</div>
+          </ion-item>
+        </div>
+      </ion-list>
+      <button class="button button-stable button-block" ng-click="validate()">Valider</button>
+    </ion-content>
+</ion-view>

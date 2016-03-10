@@ -1,7 +1,12 @@
 angular.module('shopmycourse.controllers')
 
-.controller('HomeCtrl', function($scope, $ionicModal) {
+.controller('HomeCtrl', function($scope, $state, $ionicModal, CurrentUser) {
 
+  this.test = "BORDEL";
+  
+  if (!CurrentUser.isLogged) {
+    $state.go('start');
+  }
   $ionicModal.fromTemplateUrl('NotificationsModal.html', {
       scope: $scope,
       animation: 'slide-in-up'

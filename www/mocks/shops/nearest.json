@@ -1,0 +1,18 @@
+[{
+    "distance": 0.773714543,
+    "name": "Carrefour Market Clamart",
+    "chain_id": 11,
+    "longitude": 2.256,
+    "address": "310 Avenue Du Général De Gaulle - CLAMART",
+    "latitude": 48.7872,
+    "id": 2434
+  },
+  {
+    "distance": 1.254814557,
+    "name": "Carrefour Market De Bourg-La-Reine",
+    "chain_id": 11,
+    "longitude": 2.31519,
+    "address": "50-56 Boulevard Maréchal Joffre - BOURG-LA-REINE",
+    "latitude": 48.7831,
+    "id": 2462
+}]

@@ -1,6 +1,14 @@
 // Ionic Shop My Course App
 
-angular.module('shopmycourse', ['ionic', 'shopmycourse.controllers', 'shopmycourse.routes', 'shopmycourse.services', 'shopmycourse.directives'])
+angular.module('shopmycourse', [
+  'ionic',
+  'toastr',
+  'angularMoment',
+  'shopmycourse.controllers',
+  'shopmycourse.routes',
+  'shopmycourse.services',
+  'shopmycourse.directives'
+])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
