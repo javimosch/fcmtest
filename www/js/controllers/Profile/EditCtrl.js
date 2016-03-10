@@ -18,8 +18,4 @@ angular.module('shopmycourse.controllers')
 
     });
   };
-  console.log($scope.edit)
-  $scope.$watch('edit.$valid', function(newVal, oldVal){
-    console.log('changed', newVal, oldVal);
-  }, true);
 })
