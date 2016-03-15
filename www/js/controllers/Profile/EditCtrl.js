@@ -3,19 +3,19 @@ angular.module('shopmycourse.controllers')
 .controller('ProfileEditCtrl', function($scope, $state, $ionicHistory, $ionicViewSwitcher, Validation, CurrentUser, UserAPI) {
 
   $scope.validation = Validation;
-  $scope.user = CurrentUser.get();
+  $scope.user = CurrentUser.get().user;
+
+  console.log($scope.user);
 
   $scope.endEdit = function () {
-    UserAPI.update($scope.user, function (user) {
-      CurrentUser.set(user);
-      $ionicViewSwitcher.nextDirection('back');
-      $ionicHistory.nextViewOptions({
-        disableAnimate: false,
-        disableBack: true
-      });
-      $state.go('tabs.profile');
-    }, function (err) {
-
+    UserAPI.update($scope.user, function (correct, errorCode) {
+      if (correct) {
+        console.log(correct);
+        CurrentUser.set($scope.user);
+        $state.go('tabs.home');
+      } else {
+        console.log(errorCode);
+      }
     });
   };
 })

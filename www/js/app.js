@@ -24,3 +24,15 @@ angular.module('shopmycourse', [
     }
   });
 })
+
+.config(function ($httpProvider) {
+  $httpProvider.interceptors.push('HTTPInterceptor');
+})
+
+.filter('replaceHttp', function () {
+  return function (url) {
+    if(url) {
+      return url.replace(/http:/g, 'https:');
+    }
+  };
+});

@@ -4,12 +4,14 @@ angular.module('shopmycourse.services')
     return {
         login: function (user, next) {
             UserAPI.login({email: user.email, password: user.password, auth_token: user.auth_token, auth_method: user.auth_method}, function (data) {
+
+                console.log(data);
                 CurrentUser.setLogged(true);
                 CurrentUser.set(data);
                 CurrentUser.setToken(data.token);
                 return next(true);
             }, function(error) {
-                //toastr.error("Problème d'authentification, vérifiez votre email et votre mot de passe.", 'Authentification');
+                toastr.error("Problème d'authentification, vérifiez votre email et votre mot de passe.", 'Authentification');
             });
         },
         signup: function (user, next) {

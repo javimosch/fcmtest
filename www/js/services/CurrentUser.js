@@ -21,6 +21,14 @@ angular.module('shopmycourse.services')
         setLogged: function(value) {
             isLogger = value;
         },
+        getAvatar: function() {
+            window.currentUser = currentUser;
+            if((Object.keys(currentUser).length == 0) || !currentUser.avatar || !currentUser.avatar.url) {
+                return 'img/no_image_user.png'
+            } else {
+                return (currentUser.avatar.thumb.url ? currentUser.avatar.thumb.url.replace(/http:/g, 'https:') : currentUser.avatar.thumb.replace(/http:/g, 'https:'))
+            }
+        },
         reloadUser: function() {
             UserAPI.get({}, function(user) {
                 currentUser= user;
