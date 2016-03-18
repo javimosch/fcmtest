@@ -42,6 +42,7 @@ angular.module('shopmycourse.routes', [])
 
   .state('tabs.scheduledelivery', {
     url: '/delivery/create/schedule',
+    cache: false,
     views: {
       'home-tab': {
         templateUrl: 'templates/Deliveries/Schedule.html',
