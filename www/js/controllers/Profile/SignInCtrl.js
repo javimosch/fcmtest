@@ -18,8 +18,8 @@ angular.module('shopmycourse.controllers')
       if (correct) {
         console.log('SignIn : Logged');
         $rootScope.avatarBackground = {"background-image": "url('" + CurrentUser.getAvatar() + "')"};
-        $state.go('tabs.home');
         $scope.init();
+        $state.go('tabs.home');
       } else {
         console.error('SignIn error : ' + errorMessage);
       }
