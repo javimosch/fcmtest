@@ -251,3 +251,19 @@
     color: #c0392b;
   }
 }
+
+#toast-container {
+  width: 100%;
+  top: 12px;
+  right: auto;
+  .toast {
+    width: 95%;
+    margin: auto;
+    .toast-title {
+      color: white;
+    }
+    .toast-message {
+      color: white;
+    }
+  }
+}
