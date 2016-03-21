@@ -5,6 +5,7 @@ angular.module('shopmycourse', [
   'toastr',
   'ngLodash',
   'angularMoment',
+  'LocalForageModule',
   'shopmycourse.controllers',
   'shopmycourse.routes',
   'shopmycourse.services',
@@ -28,6 +29,16 @@ angular.module('shopmycourse', [
 .config(function ($httpProvider) {
   $httpProvider.interceptors.push('HTTPInterceptor');
 })
+
+.config(['$localForageProvider', function($localForageProvider){
+    $localForageProvider.config({
+      driver      : 'localStorageWrapper',
+      name        : 'ShopMyCourse',
+      version     : 1.0,
+      storeName   : 'main',
+      description : 'Main local database for ShopMyCourse mobile app'
+    });
+}])
 
 .filter('replaceHttp', function () {
   return function (url) {

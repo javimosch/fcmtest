@@ -17,6 +17,12 @@ angular.module('shopmycourse.routes', [])
         templateUrl: 'templates/Home.html',
         controller: 'HomeCtrl'
       }
+    },
+    resolve: {
+      currentUser: function (CurrentUser) {
+        var promise = CurrentUser.init(function() {});
+        return promise;
+      }
     }
   })
 
@@ -134,7 +140,14 @@ angular.module('shopmycourse.routes', [])
   .state('start', {
     url: '/start',
     templateUrl: 'templates/Start.html',
-    controller: 'StartCtrl'
+    controller: 'StartCtrl',
+    resolve: {
+      CurrentUserLoading: function (CurrentUser) {
+        var promise = CurrentUser.init(function() {});
+        console.debug(promise);
+        return promise;
+      }
+    }
   })
 
   .state('signin', {

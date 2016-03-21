@@ -2,9 +2,7 @@ angular.module('shopmycourse.controllers')
 
 .controller('HomeCtrl', function($scope, $state, $ionicModal, CurrentUser) {
 
-  this.test = "BORDEL";
-  
-  if (!CurrentUser.isLogged) {
+  if (!CurrentUser.isLogged()) {
     $state.go('start');
   }
   $ionicModal.fromTemplateUrl('NotificationsModal.html', {

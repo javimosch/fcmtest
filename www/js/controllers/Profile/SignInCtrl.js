@@ -16,8 +16,6 @@ angular.module('shopmycourse.controllers')
   $scope.signIn = function () {
     Authentication.login($scope.user, function (correct, errorMessage) {
       if (correct) {
-        console.log('SignIn : Logged');
-        $rootScope.avatarBackground = {"background-image": "url('" + CurrentUser.getAvatar() + "')"};
         $scope.init();
         $state.go('tabs.home');
       } else {

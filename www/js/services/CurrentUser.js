@@ -1,40 +1,47 @@
 angular.module('shopmycourse.services')
 
-.service('CurrentUser', function ($rootScope, $localstorage, UserAPI) {
-    var currentUser = $localstorage.getObject('current_user') || {};
-    var isLogged = (Object.keys(currentUser).length > 0);
-    $rootScope.currentUser = currentUser;
+.service('CurrentUser', function ($rootScope, DataStorage, UserAPI, HTTPInterceptor) {
+    var currentUser = {};
 
     return {
-        get: function () {
-            return currentUser;
-        },
-        set: function(user) {
-            currentUser = user;
-            $localstorage.setObject('current_user', currentUser);
+        init: function (next) {
+          return DataStorage.get('current_user').then(function (currentUserFromStorage) {
+            currentUser = currentUserFromStorage || {};
+            isLogged = (Object.keys(currentUser).length > 0);
             $rootScope.currentUser = currentUser;
+            next();
+            // return DataStorage.get('token').then(function (tokenFromStorage) {
+            //   HTTPInterceptor.setToken(tokenFromStorage);
+            //   next()
+            // });
+          });
         },
-        setToken: function(token) {
-            $localstorage.set('token', token);
+        get: function (next) {
+          return next(currentUser);
         },
-        isLogged: isLogged,
-        setLogged: function(value) {
-            isLogger = value;
+        set: function (user, next) {
+          currentUser = user;
+          return DataStorage.set('current_user', currentUser).then(function () {
+            $rootScope.currentUser = currentUser;
+            return next(currentUser);
+          });
         },
-        getAvatar: function() {
-            window.currentUser = currentUser;
-            if((Object.keys(currentUser).length == 0) || !currentUser.avatar || !currentUser.avatar.url) {
-                return 'img/no_image_user.png'
-            } else {
-                return (currentUser.avatar.thumb.url ? currentUser.avatar.thumb.url.replace(/http:/g, 'https:') : currentUser.avatar.thumb.replace(/http:/g, 'https:'))
-            }
+        setToken: function (token, next) {
+          HTTPInterceptor.setToken(token);
+          return DataStorage.set('token', token).then(next);
         },
-        reloadUser: function() {
-            UserAPI.get({}, function(user) {
-                currentUser= user;
-                $localstorage.setObject('current_user', currentUser);
-                $rootScope.currentUser = currentUser;
-            })
+        getToken: function (next) {
+          return DataStorage.set('token').then(next);
+        },
+        isLogged: function () {
+          return (currentUser && Object.keys(currentUser).length > 0)
+        },
+        getAvatar: function (next) {
+          if((Object.keys(currentUser).length == 0) || !currentUser.avatar || !currentUser.avatar.url) {
+            return next('img/no_image_user.png')
+          } else {
+            return next(currentUser.avatar.thumb.url ? currentUser.avatar.thumb.url.replace(/http:/g, 'https:') : currentUser.avatar.thumb.replace(/http:/g, 'https:'))
+          }
         }
     };
 });
