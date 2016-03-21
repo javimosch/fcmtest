@@ -1,7 +1,7 @@
 angular.module('shopmycourse.services')
 
-.service('CurrentDelivery', function ($rootScope, $localstorage) {
-    var currentDelivery = $localstorage.getObject('current_delivery') || {};
+.service('CurrentDelivery', function ($rootScope, DataStorage) {
+    var currentDelivery = DataStorage.get('current_delivery') || {};
     $rootScope.currentDelivery = currentDelivery;
 
     return {
@@ -10,12 +10,12 @@ angular.module('shopmycourse.services')
         },
         set: function(delivery) {
             currentDelivery = delivery;
-            $localstorage.setObject('current_delivery', currentDelivery);
+            DataStorage.set('current_delivery', currentDelivery);
             $rootScope.currentDelivery = currentDelivery;
         },
         clean: function(key) {
         	currentDelivery = {};
-            $localstorage.remove('current_delivery');
+            DataStorage.remove('current_delivery');
         }
     };
 }); 

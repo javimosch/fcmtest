@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('OrdersScheduleCtrl', function($scope, $state) {
+.controller('OrdersScheduleCtrl', function($scope, $state, CurrentDelivery) {
   $scope.schedules = [];
   $scope.selected = {};
 
@@ -21,9 +21,11 @@ angular.module('shopmycourse.controllers')
     }
     // Si la case n'est pas selectionnées
     else {
-      if (!$scope.selected[date] || $scope.selected[date].length <= 0) {
-        $scope.selected[date] = []
-      }
+      // if (!$scope.selected[date] || $scope.selected[date].length <= 0) {
+      //   $scope.selected[date] = []
+      // }
+      $scope.selected = {};
+      $scope.selected[date] = [];
       $scope.selected[date].push(time);
     }
   };
@@ -36,6 +38,7 @@ angular.module('shopmycourse.controllers')
   };
 
   $scope.validate = function () {
+    CurrentDelivery.set({schedule: $scope.selected});
     $state.go('tabs.shoporder');
   };
 })

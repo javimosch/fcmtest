@@ -177,3 +177,15 @@
   color: #c0392b; }
   .error-message span, .error-message i.icon {
     color: #c0392b; }
+
+#toast-container {
+  width: 100%;
+  top: 12px;
+  right: auto; }
+  #toast-container .toast {
+    width: 95%;
+    margin: auto; }
+    #toast-container .toast .toast-title {
+      color: white; }
+    #toast-container .toast .toast-message {
+      color: white; }

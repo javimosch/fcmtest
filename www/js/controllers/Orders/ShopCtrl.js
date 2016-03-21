@@ -4,7 +4,7 @@ angular.module('shopmycourse.controllers')
   $scope.shops = [];
   $scope.minimumStar = 0;
 
-  ShopAPI.nearest({lat: 42, lon: 5}, function (shops) {
+  ShopAPI.nearest({lat: 45.768491, lon: 4.823542, stars: 4}, function (shops) {
     $scope.shops = shops;
   }, function (err) {
     console.error(err);
