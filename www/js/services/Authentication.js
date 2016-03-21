@@ -5,7 +5,7 @@ angular.module('shopmycourse.services')
         login: function (user, next) {
             UserAPI.login({email: user.email, password: user.password, auth_token: user.auth_token, auth_method: user.auth_method}, function (data) {
                 CurrentUser.setLogged(true);
-                CurrentUser.set(data);
+                CurrentUser.set(data.user);
                 CurrentUser.setToken(data.token);
                 return next(true);
             }, function(error) {
