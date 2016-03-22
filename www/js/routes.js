@@ -144,7 +144,6 @@ angular.module('shopmycourse.routes', [])
     resolve: {
       CurrentUserLoading: function (CurrentUser) {
         var promise = CurrentUser.init(function() {});
-        console.debug(promise);
         return promise;
       }
     }
