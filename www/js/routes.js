@@ -7,7 +7,13 @@ angular.module('shopmycourse.routes', [])
   .state('tabs', {
     url: '/tabs',
     templateUrl: 'templates/TabBar.html',
-    abstract: true
+    abstract: true,
+    resolve: {
+      currentUser: function (CurrentUser) {
+        var promise = CurrentUser.init(function() {});
+        return promise;
+      }
+    }
   })
 
   .state('tabs.home', {
@@ -16,12 +22,6 @@ angular.module('shopmycourse.routes', [])
       'home-tab': {
         templateUrl: 'templates/Home.html',
         controller: 'HomeCtrl'
-      }
-    },
-    resolve: {
-      currentUser: function (CurrentUser) {
-        var promise = CurrentUser.init(function() {});
-        return promise;
       }
     }
   })

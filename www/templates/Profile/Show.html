@@ -13,7 +13,7 @@
             <div class="edit"><a ui-sref="tabs.editprofile">Modifier le compte</a></div>
         </div>
         <div class="item" id="profile-information">
-            <div class="address"><i class="ion-ios-location-outline"></i> {{user.address.address}}, {{user.address.zip}} {{user.address.city}}</div>
+            <div class="address" ng-if="user.address"><i class="ion-ios-location-outline"></i> {{user.address.address}}, {{user.address.zip}} {{user.address.city}}</div>
             <div class="email"><i class="ion-ios-email-outline"></i> {{user.email}}</div>
             <div class="phone"><i class="ion-ios-telephone-outline"></i> {{user.phone}}</div>
         </div>

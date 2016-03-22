@@ -18,7 +18,11 @@ angular.module('shopmycourse.controllers')
     UserAPI.update($scope.user, function (correct, errorCode) {
       if (correct) {
         CurrentUser.set($scope.user, function () {
-          $state.go('tabs.home');
+          $ionicHistory.nextViewOptions({
+            disableAnimate: false,
+            disableBack: true
+          });
+          $state.go('tabs.profile');
         });
       } else {
         console.log(errorCode);
