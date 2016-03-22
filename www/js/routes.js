@@ -12,6 +12,10 @@ angular.module('shopmycourse.routes', [])
       currentUser: function (CurrentUser) {
         var promise = CurrentUser.init(function() {});
         return promise;
+      },
+      currentDelivery: function (CurrentDelivery) {
+        var promise = CurrentDelivery.init(function() {});
+        return promise;
       }
     }
   })

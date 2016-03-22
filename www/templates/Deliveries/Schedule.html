@@ -1,4 +1,9 @@
 <ion-view id="deliveries-schedule" title="Sélectionner plages horaires">
+  <ion-nav-buttons side="right">
+    <button class="button button-clear" ng-click="validate()">
+        <i class="icon ion-checkmark"></i>
+    </button>
+  </ion-nav-buttons>
     <ion-content overflow-scroll="true" padding="true" class="has-header">
         <ion-list>
           <div ng-repeat="schedule in schedules">

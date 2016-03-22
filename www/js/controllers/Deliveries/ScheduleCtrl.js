@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('DeliveriesScheduleCtrl', function($scope, $state, CurrentUser, CurrentDelivery, AvailabilityAPI) {
+.controller('DeliveriesScheduleCtrl', function($scope, $rootScope, $state, CurrentUser, CurrentDelivery, AvailabilityAPI) {
   $scope.schedules = [];
   $scope.selected = {};
 
@@ -36,7 +36,7 @@ angular.module('shopmycourse.controllers')
   };
 
   $scope.validate = function () {
-    AvailabilityAPI.create({deliveryman_id: CurrentUser.get().user.id, shop_id: CurrentDelivery.get().id, schedules: $scope.selected}, function (correct, msg) {
+    AvailabilityAPI.create({deliveryman_id: $rootScope.currentUser.id, shop_id: $rootScope.currentDelivery.id, schedules: $scope.selected}, function (correct, msg) {
       if (correct) {
         console.log('Availabilities created !');
       } else {

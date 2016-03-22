@@ -11,7 +11,12 @@
         <div>
             <span class="baseline">An awesome baseline</p>
         </div>
-        <button class="button button-stable button-block" ui-sref="tabs.shopdelivery">Proposer une livraison</button>
+        <button class="button button-stable button-block" ui-sref="tabs.shopdelivery" ng-if="(currentAvailability.length <= 0)">Proposer une disponibilité</button>
+        <span ng-if="(currentAvailability.length > 0)">
+          Vous avez une disponibilité prévue {{date}} dans le
+          <span class="shop">{{currentAvailability[0].shop.name}}</span>
+        </span>
+        <button class="button button-stable button-block" ng-click="cancelAvailability()" ng-if="(currentAvailability.length > 0)">Annuler cette disponibilité</button>
         <button class="button button-stable button-block" ui-sref="tabs.scheduleorder">Demander une livraison</button>
     </ion-content>
 </ion-view>

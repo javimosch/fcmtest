@@ -9,8 +9,9 @@ angular.module('shopmycourse.controllers')
   });
 
   $scope.setShop = function (shop) {
-    CurrentDelivery.set(shop);
-    $state.go('tabs.scheduledelivery');
+    CurrentDelivery.setShop(shop, function () {
+      $state.go('tabs.scheduledelivery');
+    });
   };
 
 })

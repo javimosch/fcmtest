@@ -7,7 +7,8 @@ angular.module('shopmycourse.controllers')
       disableAnimate: false,
       disableBack: true
     });
-    CurrentDelivery.clean();
-    $state.go('tabs.home');
+    CurrentDelivery.clear(function() {
+      $state.go('tabs.home');
+    });
   }
 })

@@ -1,8 +1,8 @@
 angular.module('shopmycourse.controllers')
 
-.controller('OrdersScheduleCtrl', function($scope, $state, CurrentDelivery) {
+.controller('OrdersScheduleCtrl', function($scope, $rootScope, $state, CurrentDelivery) {
   $scope.schedules = [];
-  $scope.selected = {};
+  $scope.selected = $rootScope.currentDelivery;
 
   for (var i = 0; i < 7; i++) {
     var date = new Date(new Date().getTime() + i * 24 * 60 * 60 * 1000);
@@ -38,7 +38,8 @@ angular.module('shopmycourse.controllers')
   };
 
   $scope.validate = function () {
-    CurrentDelivery.set({schedule: $scope.selected});
-    $state.go('tabs.shoporder');
+    CurrentDelivery.setSchedule($scope.selected, function () {
+      $state.go('tabs.shoporder');
+    });
   };
 })

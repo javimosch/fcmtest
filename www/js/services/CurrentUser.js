@@ -12,7 +12,6 @@ angular.module('shopmycourse.services')
             next();
             return DataStorage.get('token').then(function (tokenFromStorage) {
                HTTPInterceptor.setToken(tokenFromStorage);
-               next()
             });
           });
         },
