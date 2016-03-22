@@ -32,7 +32,7 @@ angular.module('shopmycourse', [
 
 .config(['$localForageProvider', function($localForageProvider){
     $localForageProvider.config({
-      //driver      : 'localStorageWrapper',
+      driver      : 'localStorageWrapper',
       name        : 'ShopMyCourse',
       version     : 1.0,
       storeName   : 'main',
