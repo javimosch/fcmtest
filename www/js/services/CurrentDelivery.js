@@ -3,7 +3,7 @@ angular.module('shopmycourse.services')
 .service('CurrentDelivery', function ($rootScope, DataStorage) {
 
     var currentDelivery = {
-      schedules: {},
+      schedule: {},
       shop: {}
     };
 
@@ -18,8 +18,9 @@ angular.module('shopmycourse.services')
         get: function (next) {
           return next(currentDelivery);
         },
-        setSchedule: function (schedules, next) {
-          currentDelivery.schedules = schedules;
+        setSchedule: function (schedule, next) {
+          currentDelivery.schedule = schedule;
+          debugger;
           return DataStorage.set('current_delivery', currentDelivery).then(function () {
             $rootScope.currentDelivery = currentDelivery;
             return next(currentDelivery);
