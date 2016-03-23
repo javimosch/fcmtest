@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('DeliveriesShopCtrl', function($scope, $state, ShopAPI, CurrentDelivery) {
+.controller('DeliveriesShopCtrl', function($scope, $state, ShopAPI, CurrentAvailability) {
   $scope.shops = [];
   ShopAPI.nearest({lat: 45.768491, lon: 4.823542}, function (shops) {
     $scope.shops = shops;
@@ -9,7 +9,7 @@ angular.module('shopmycourse.controllers')
   });
 
   $scope.setShop = function (shop) {
-    CurrentDelivery.setShop(shop, function () {
+    CurrentAvailability.setShop(shop, function () {
       $state.go('tabs.scheduledelivery');
     });
   };

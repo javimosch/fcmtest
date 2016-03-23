@@ -2,7 +2,11 @@ angular.module('shopmycourse.services')
 
 .service('CurrentAvailability', function ($rootScope, AvailabilityAPI, DataStorage) {
 
-    var currentAvailability = [];
+    var currentAvailability = {
+      schedules: [],
+      shop_id: null,
+      deliveryman_id: $rootScope.currentUser.id
+    };
 
     return {
         load: function (next) {
@@ -16,14 +20,42 @@ angular.module('shopmycourse.services')
         get: function (next) {
           return next(currentAvailability);
         },
-        set: function (availability, next) {
-          currentAvailability = availability;
+        setSchedules: function (schedules, next) {
+          if (currentAvailability.constructor === Array) {
+            currentAvailability = {
+              schedules: [],
+              shop_id: null,
+              deliveryman_id: $rootScope.currentUser.id
+            };
+          }
+          currentAvailability.schedules = schedules;
           return DataStorage.set('current_availability', currentAvailability).then(function () {
             $rootScope.currentAvailability = currentAvailability;
             return next(currentAvailability);
           });
         },
+        setShop: function (shop, next) {
+          if (currentAvailability.constructor === Array) {
+            currentAvailability = {
+              schedules: [],
+              shop_id: null,
+              deliveryman_id: $rootScope.currentUser.id
+            };
+          }
+          currentAvailability.shop_id = shop.id;
+          return DataStorage.set('current_availability', currentAvailability).then(function () {
+            $rootScope.currentAvailability = currentAvailability;
+            console.log($rootScope.currentAvailability)
+            return next(currentAvailability);
+          });
+        },
         clear: function (next) {
+          currentAvailability = {
+            schedules: [],
+            shop_id: null,
+            deliveryman_id: $rootScope.currentUser.id
+          };
+          $rootScope.currentAvailability = currentAvailability;
           DataStorage.remove('current_availability').then(next);
         },
         cancel: function (next) {
