@@ -10,7 +10,7 @@ angular.module('shopmycourse.services')
           });
         });
       }, function(error) {
-        toastr.error("Problème d'authentification, vérifiez votre email et votre mot de passe.", 'Authentification');
+        toastr.warning("Problème d'authentification, vérifiez votre email et votre mot de passe.", 'Authentification');
         next(false);
         });
     },
