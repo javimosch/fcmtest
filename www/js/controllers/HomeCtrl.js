@@ -5,11 +5,16 @@ angular.module('shopmycourse.controllers')
   CurrentAvailability.load(function(currentAvailability) {
     $scope.currentAvailability = currentAvailability;
     // Aggregate date
-    var date = [];
+    var dates = [];
     for (var i = 0; i < currentAvailability.length; i++) {
-      date.push(moment(currentAvailability[i].schedule.date).toNow());
+      // Today
+      if (moment(currentAvailability[i].schedule.date).diff(moment(), 'days', true) >= -1 && moment(currentAvailability[i].schedule.date).diff(moment(), 'days', true) < 0) {
+        dates.push('aujourd\'hui entre ' + currentAvailability[i].schedule.schedule.replace(' - ', ' et '));
+      } else if (moment(currentAvailability[i].schedule.date).diff(moment(), 'days', true) >= 0) {
+        dates.push(moment(currentAvailability[i].schedule.date).format('dddd') + ' entre ' + currentAvailability[i].schedule.schedule.replace(' - ', ' et '));
+      }
     }
-    $scope.date = lodash.uniq(date).join(', ').replace(/,\ /, ' et ')
+    $scope.date = lodash.uniq(dates).join(', ');
   });
 
   if (!CurrentUser.isLogged()) {

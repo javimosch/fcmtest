@@ -4,10 +4,13 @@ angular.module('shopmycourse.controllers')
 
 	$scope.notifications = [];
 	CurrentUser.get(function (user) {
-		NotificationAPI.get({user_id: user.id}, function (notifications) {
+		NotificationAPI.get({}, function (notifications) {
 			$scope.notifications = notifications;
+			if (notifications.length > 0) {
+				$scope.openNotificationsModal();
+			}
 		}, function (err) {
-			console.error('Notifications error : ' + err);
+			console.error('Notifications error : ', err);
 		});
 	});
 

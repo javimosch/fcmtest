@@ -1,6 +1,6 @@
 angular.module('shopmycourse.services')
 
-.factory('HTTPInterceptor', function ($q, $injector) {
+.factory('HTTPInterceptor', function ($q, $injector, Configuration) {
   var token = 'Fetching...';
   // CurrentUser = $injector.get('CurrentUser');
   // CurrentUser.getToken(function (tokenFromStorage) {
@@ -25,8 +25,13 @@ angular.module('shopmycourse.services')
       return response;
     },
     responseError: function (response) {
-      if (response && response.data && response.data.error_message) {
-        //  $injector.get('toastr').error(response.data.error_message);
+      if (response && response.data && response.data.notice) {
+        if (Configuration.errors[response.data.notice]) {
+          $injector.get('toastr').error(Configuration.errors[response.data.notice]);
+        } else {
+          $injector.get('toastr').error('Une erreur inconnue est survenue');
+        }
+
       } else {
         switch (response.status) {
           case 401:

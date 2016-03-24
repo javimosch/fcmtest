@@ -4,7 +4,7 @@ angular.module('shopmycourse.services')
 
     var currentDelivery = {
       schedule: {},
-      shop: {}
+      shop_id: null
     };
 
     return {
@@ -26,7 +26,7 @@ angular.module('shopmycourse.services')
           });
         },
         setShop: function (shop, next) {
-          currentDelivery.shop = shop;
+          currentDelivery.shop_id = shop.id;
           return DataStorage.set('current_delivery', currentDelivery).then(function () {
             $rootScope.currentDelivery = currentDelivery;
             return next(currentDelivery);

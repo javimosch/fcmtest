@@ -14,7 +14,7 @@
           <div class="item item-divider">
             Magasins les plus proches
           </div>
-          <ion-item class="item-icon-right" ng-click="setShop(shop.id)" ng-repeat="shop in shops">
+          <ion-item class="item-icon-right" ng-click="setShop(shop)" ng-repeat="shop in shops">
               <div class="title">{{shop.name}}</div>
               <div class="distance"><i class="ion-model-s"></i> {{shop.distance / 1000 | number: 2}} km</div>
               <div class="address"><i class="ion-ios-flag"></i> {{shop.address}}</div>
