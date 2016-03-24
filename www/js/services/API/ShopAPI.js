@@ -4,7 +4,7 @@ angular.module('shopmycourse.services')
 
     var resource = API(Configuration.apiEndpoint + 'shops', { user_id: '@_user_id' },
     {
-        'nearest': { method: 'GET', url: Configuration.apiEndpoint + 'shops', cache: false, isArray: true }
+        'nearest': { method: 'GET', url: Configuration.apiEndpoint + 'shops', headers: { 'Authorization': 'Bearer' }, cache: false, isArray: true }
     });
 
     return resource;

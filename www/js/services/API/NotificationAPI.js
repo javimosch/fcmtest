@@ -4,7 +4,7 @@ angular.module('shopmycourse.services')
 
     var resource = API(Configuration.apiEndpoint + 'notifications', { user_id: '@_user_id' },
     {
-        'get': { method: 'GET', url: Configuration.apiEndpoint + 'notifications', cache: false, isArray: true }
+        'get': { method: 'GET', url: Configuration.apiEndpoint + 'notifications', headers: { 'Authorization': 'Bearer' }, cache: false, isArray: true }
     });
 
     return resource;
