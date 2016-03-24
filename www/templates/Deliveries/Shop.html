@@ -10,6 +10,10 @@
                 <div class="address"><i class="ion-ios-flag"></i> {{shop.address}}</div>
                 <i class="icon ion-chevron-right"></i>
             </ion-item>
+
+            <ion-item class="item" ng-if="(shops.length === 0)">
+              Aucun magasin n'a été trouvé à proximité.
+            </ion-item>
         </ion-list>
     </ion-content>
 </ion-view>

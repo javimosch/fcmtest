@@ -20,7 +20,6 @@ angular.module('shopmycourse.services')
         },
         setSchedule: function (schedule, next) {
           currentDelivery.schedule = schedule;
-          debugger;
           return DataStorage.set('current_delivery', currentDelivery).then(function () {
             $rootScope.currentDelivery = currentDelivery;
             return next(currentDelivery);

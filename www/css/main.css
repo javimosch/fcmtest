@@ -189,3 +189,6 @@
       color: white; }
     #toast-container .toast .toast-message {
       color: white; }
+
+.loading span {
+  color: white; }

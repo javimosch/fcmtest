@@ -4,6 +4,7 @@ angular.module('shopmycourse', [
   'ionic',
   'toastr',
   'ngLodash',
+  'ngCordova',
   'angularMoment',
   'LocalForageModule',
   'shopmycourse.controllers',

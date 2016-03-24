@@ -11,7 +11,8 @@
     "ng-lodash": "^0.4.0",
     "angular-localforage": "^1.2.5",
     "localforage": "^1.4.0",
-    "async": "^1.5.2"
+    "async": "^1.5.2",
+    "ngCordova": "^0.1.24-alpha"
   },
   "resolutions": {
     "moment": ">=2.8.0 <2.11.0"

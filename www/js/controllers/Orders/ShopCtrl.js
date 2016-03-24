@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('OrdersShopCtrl', function($rootScope, $scope, $state, ShopAPI) {
+.controller('OrdersShopCtrl', function($rootScope, $scope, $cordovaGeolocation, toastr, $state, ShopAPI) {
   $scope.shops = [];
   $scope.minimumStar = 0;
 

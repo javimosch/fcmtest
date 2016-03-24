@@ -5,7 +5,7 @@ angular.module('shopmycourse.services')
     var resource = API(Configuration.apiEndpoint + 'deliveries', { idDelivery: '@idDelivery' },
     {
         'deliveries': { method: 'GET', url: Configuration.apiEndpoint + 'deliveries', cache: false, isArray: true },
-        'orders': { method: 'GET', url: Configuration.apiEndpoint + 'deliveries/orders.json', cache: false, isArray: true }
+        'orders': { method: 'GET', url: Configuration.apiEndpoint + 'orders', cache: false, isArray: true }
     });
 
     return resource;
