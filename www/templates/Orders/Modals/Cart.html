@@ -8,22 +8,22 @@
         <div class="item item-divider">
           Liste des produits
         </div>
-        <ion-item class="item item-icon-left item-icon-right product">
-            <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
-            <div class="name">Blanc de poulet</div>
-            <div class="detail">La barquette de 2x100g</div>
-            <div class="price">6.10€</div>
-            <div class="button-bar">
-              <a class="button">-</a>
-              <span class="button">2</span>
-              <a class="button">+</a>
-            </div>
+        <ion-item class="item item-icon-right product" ng-repeat="product in currentCart">
+          <img ng-src="{{product.image_url}}" alt="{{product.name}}">
+          <div class="name">{{product.name}}</div>
+          <div class="detail">{{product.package_content}}</div>
+          <div class="price">{{product.price}}€</div>
+          <div class="button-bar">
+            <a class="button" ng-click="removeProduct(product)">-</a>
+            <span class="button">{{product.quantity}}</span>
+            <a class="button" ng-click="addProduct(product)">+</a>
+          </div>
         </ion-item>
     </ion-list>
     <div class="bar bar-footer">
       <div class="row">
         <div class="price-box col">
-          <span class="price">35.59€</span>
+          <span class="price">{{currentCartObject.total() | number:2}}€</span>
           <span class="title">Prix total</span>
         </div>
         <div class="price-box col">
@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="row">
-        <button class="button button-positive">Confirmer la commande</button>
+        <button class="button button-positive" ng-click="saveCart()">Confirmer la commande</button>
       </div>
     </div>
   </ion-content>

@@ -9,4 +9,17 @@ angular.module('shopmycourse.controllers')
   }, function (err) {
     console.error(err);
   });
+
+  $scope.byStatus = function (status) {
+    var statuses = ['done'];
+    if (status === 'pending') {
+      statuses = ['pending', 'accepted', 'completed']
+    }
+    return function (delivery) {
+      if (statuses.indexOf(delivery.status) > -1) {
+        return true;
+      }
+      return false
+    }
+  };
 })

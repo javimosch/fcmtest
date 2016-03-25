@@ -108,6 +108,12 @@ angular.module('shopmycourse.routes', [])
         templateUrl: 'templates/Orders/Content.html',
         controller: 'OrdersContentCtrl'
       }
+    },
+    resolve: {
+      currentCart: function (CurrentCart) {
+        var promise = CurrentCart.init();
+        return promise;
+      }
     }
   })
 

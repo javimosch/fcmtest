@@ -4,16 +4,16 @@
         <div style="line-height: 100px; border: 1px solid rgb(238, 238, 238); border-radius: 3px; text-align: center; background-color: rgb(255, 255, 255);">
             <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
         </div>
-        <div class="name">{{delivery.delivery_request.recipient.firstname}} {{delivery.delivery_request.recipient.lastname}}</div>
-        <div class="address"><i class="ion-ios-location-outline"></i> {{delivery.delivery_request.address.address}}, {{delivery.delivery_request.address.zip}} {{delivery.delivery_request.address.city}}</div>
+        <div class="name">{{delivery.buyer.firstname}} {{delivery.buyer.lastname}}</div>
+        <div class="address"><i class="ion-ios-location-outline"></i> {{delivery.address.address}}, {{delivery.address.zip}} {{delivery.address.city}}</div>
         <div class="actions">
-          <button class="button button-stable" ng-click="openFinishDeliveryModal()">Finaliser la commande</button>
+          <button class="button button-stable" ng-click="openFinishDeliveryModal()" ng-if="delivery.status === 'completed'">Finaliser la commande</button>
           <button class="button button-stable">Contacter par SMS</button>
         </div>
       </div>
       <div id="delivery-prices" class="row">
         <div class="price-box col">
-          <span class="price">{{delivery.total}}€</span>
+          <span class="price">{{delivery.total || 0}}€</span>
           <span class="title">Prix total</span>
         </div>
         <div class="price-box col">
