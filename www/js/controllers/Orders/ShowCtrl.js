@@ -1,12 +1,11 @@
 angular.module('shopmycourse.controllers')
 
-.controller('OrdersShowCtrl', function($scope, $stateParams, $ionicModal, OrderStore) {
+.controller('OrdersShowCtrl', function($scope, $rootScope, $stateParams, CurrentCart, $ionicModal, OrderStore, $interval) {
 
   $scope.order = {};
 
   OrderStore.get({id: parseInt($stateParams.idOrder)}, function (err, order) {
     $scope.order = order[0];
-    console.log(order);
   })
 
   $ionicModal.fromTemplateUrl('templates/Orders/Modals/Finish.html', {
@@ -15,6 +14,10 @@ angular.module('shopmycourse.controllers')
   }).then(function (modal) {
     $scope.finishOrderModal = modal
   });
+
+  $rootScope.setOrder = function (order) {
+    $scope.order = order;
+  };
 
   $scope.openFinishOrderModal = function () {
     $scope.finishOrderModal.show();

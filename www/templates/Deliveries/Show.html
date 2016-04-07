@@ -25,8 +25,8 @@
           <div class="item item-divider">
             Liste des produits
           </div>
-          <ion-item class="item product" ng-repeat="delivery_content in delivery.delivery_content">
-              <img ng-src="{{delivery_content.product.image}}" alt="{{delivery_content.product.name}}">
+          <ion-item class="item product" ng-repeat="delivery_content in delivery.delivery_contents">
+              <img ng-src="{{delivery_content.product.image_url}}" alt="{{delivery_content.product.name}}">
               <div class="name">{{delivery_content.product.name}}</div>
               <div class="detail">{{delivery_content.product.detail}}</div>
               <div class="price">{{delivery_content.unit_price*delivery_content.quantity}}€ ({{delivery_content.quantity}})</div>

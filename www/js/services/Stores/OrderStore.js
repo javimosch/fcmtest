@@ -6,5 +6,10 @@ angular.module('shopmycourse.services')
     pullRouteName: 'orders'
   });
 
+  orderStore.update = function (attributes, next) {
+    attributes.idDelivery = attributes.id;
+    this._customAction('update', attributes, next);
+  }
+
   return orderStore;
 });

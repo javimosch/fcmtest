@@ -16,7 +16,7 @@
           Vous avez <span ng-if='currentAvailability.length > 1'>des</span><span ng-if='currentAvailability.length <= 1'>une</span> disponibilité<span ng-if='currentAvailability.length > 1'>s</span> prévue<span ng-if='currentAvailability.length > 1'>s</span> {{date}} dans le
           <span class="shop">{{currentAvailability[0].shop.name}}</span>
         </span>
-        <button class="button button-stable button-block" ng-click="cancelAvailability()" ng-if="(currentAvailability.length > 0)">Annuler <span ng-if='currentAvailability.length <= 1'>cette</span><span ng-if='currentAvailability.length > 1'>ces</soan> disponibilité<span ng-if='currentAvailability.length > 1'>s</soan></button>
+        <button class="button button-stable button-block" ng-click="cancelAvailability()" ng-if="(currentAvailability.length > 0)">Annuler <span ng-if='currentAvailability.length <= 1'>cette</span><span ng-if='currentAvailability.length > 1'>ces</span> disponibilité<span ng-if='currentAvailability.length > 1'>s</soan></button>
         <button class="button button-stable button-block" ui-sref="tabs.scheduleorder">Demander une livraison</button>
     </ion-content>
 </ion-view>

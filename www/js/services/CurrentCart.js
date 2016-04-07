@@ -24,6 +24,22 @@ angular.module('shopmycourse.services')
 
     return {
         init: init,
+        initFromOrder: function (order) {
+          currentCart = {};
+          lodash.each(order.delivery_contents, function (p) {
+            var item = {
+              id: p.product.id,
+              name: p.product.name,
+              quantity: p.quantity,
+              image_url: p.product.image_url,
+              package_content: p.product.package_content,
+              price: p.product.price
+            };
+            currentCart[p.product.id] = item;
+          });
+          $rootScope.currentCart = currentCart;
+          return currentCart;
+        },
         addProduct: function (product) {
           var product_id = product.id;
           // Product already there

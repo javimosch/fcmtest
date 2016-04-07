@@ -9,9 +9,9 @@ angular.module('shopmycourse.services')
             currentUser = currentUserFromStorage || {};
             isLogged = (Object.keys(currentUser).length > 0);
             $rootScope.currentUser = currentUser;
-            next();
             return DataStorage.get('token').then(function (tokenFromStorage) {
-               HTTPInterceptor.setToken(tokenFromStorage);
+              next();
+              HTTPInterceptor.setToken(tokenFromStorage);
             });
           });
         },

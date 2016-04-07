@@ -1,9 +1,37 @@
 angular.module('shopmycourse.controllers')
 
-.controller('OrdersCartCtrl', function($scope, $ionicModal, CurrentCart) {
+.controller('OrdersCartCtrl', function($rootScope, $scope, $timeout, $state, $stateParams, OrderStore, $ionicModal, CurrentCart, lodash, $interval) {
+
+  $scope.order = {};
+
+  OrderStore.get({id: parseInt($stateParams.idOrder)}, function (err, order) {
+    $scope.order = order[0];
+    CurrentCart.initFromOrder($scope.order);
+  })
 
   $scope.saveCart = function () {
-
+    var order = lodash.cloneDeep($scope.order);
+    order.delivery_contents = [];
+    order.total = 0;
+    lodash.each($rootScope.currentCart, function (p) {
+      var item = {
+        id_product: p.id,
+        quantity: p.quantity,
+        unit_price: p.price
+      };
+      order.total += item.quantity + item.unit_price;
+      order.delivery_contents.push(item);
+    });
+    OrderStore.update(order, function (err, order) {
+      if (err) {
+        console.debug(err);
+        return;
+      }
+      $rootScope.setOrder(order);
+      $scope.order = order;
+      $state.go('tabs.order', {idOrder: parseInt($stateParams.idOrder)});
+      $scope.closeCartModal();
+    })
   };
 
 })

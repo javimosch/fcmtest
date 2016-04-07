@@ -8,17 +8,17 @@
         <div class="address"><i class="ion-ios-location-outline"></i> {{order.address.address}}, {{order.address.zip}} {{order.address.city}}</div>
         <div class="actions">
           <button class="button button-stable" ng-if="order.status === 'completed'" ng-click="openFinishOrderModal()">Finaliser la commande</button>
-          <button class="button button-stable" ng-if="order.status === 'accepted'" ui-sref="tabs.ordercontent({idOrder: order.id})">Modifier le panier</button>
+          <button class="button button-stable" ng-if="order.status !== 'completed' || true" ui-sref="tabs.ordercontent({idOrder: order.id})">Modifier le panier</button>
           <button class="button button-stable">Contacter par SMS</button>
         </div>
       </div>
       <div id="delivery-prices" class="row">
         <div class="price-box col">
-          <span class="price">{{order.total || 0}}€</span>
+          <span class="price">{{order.total | number: 2 || 0}}€</span>
           <span class="title">Prix total</span>
         </div>
         <div class="price-box col">
-          <span class="price">3.50€</span>
+          <span class="price">{{order.commission | number: 2 || 0}}€</span>
           <span class="title">Frais de livraison</span>
         </div>
       </div>
@@ -26,8 +26,8 @@
           <div class="item item-divider">
             Liste des produits
           </div>
-          <ion-item class="item product" ng-repeat="delivery_content in order.delivery_content">
-              <img ng-src="{{delivery_content.product.image}}" alt="{{delivery_content.product.name}}">
+          <ion-item class="item product" ng-repeat="delivery_content in order.delivery_contents">
+              <img ng-src="{{delivery_content.product.image_url}}" alt="{{delivery_content.product.name}}">
               <div class="name">{{delivery_content.product.name}}</div>
               <div class="detail">{{delivery_content.product.detail}}</div>
               <div class="price">{{delivery_content.unit_price*delivery_content.quantity}}€ ({{delivery_content.quantity}})</div>
