@@ -15,10 +15,6 @@ angular.module('shopmycourse.controllers')
     $scope.finishOrderModal = modal
   });
 
-  $rootScope.setOrder = function (order) {
-    $scope.order = order;
-  };
-
   $scope.openFinishOrderModal = function () {
     $scope.finishOrderModal.show();
   };

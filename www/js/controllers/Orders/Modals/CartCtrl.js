@@ -27,10 +27,10 @@ angular.module('shopmycourse.controllers')
         console.debug(err);
         return;
       }
-      $rootScope.setOrder(order);
-      $scope.order = order;
-      $state.go('tabs.order', {idOrder: parseInt($stateParams.idOrder)});
-      $scope.closeCartModal();
+      OrderStore.pull(function (orders) {
+        $state.go('tabs.order', {idOrder: parseInt($stateParams.idOrder)});
+        $scope.closeCartModal();
+      });
     })
   };
 
