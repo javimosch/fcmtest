@@ -29,7 +29,7 @@ angular.module('shopmycourse.services')
         if (Configuration.errors[response.data.notice]) {
           $injector.get('toastr').error(Configuration.errors[response.data.notice]);
         } else {
-          $injector.get('toastr').error('Une erreur inconnue est survenue');
+          $injector.get('toastr').error(response.data.notice || 'Une erreur inconnue est survenue');
         }
 
       } else {
