@@ -13,7 +13,7 @@ angular.module('shopmycourse.controllers')
   }
 
   $scope.finalizeDelivery = function(order) {
-	DeliveryAPI.finalize({'idDelivery': order.id, 'validation_code': order.validation_code, 'rating': $scope.ratingStar}, function() {
+	DeliveryAPI.finalize({'idDelivery': order.id, 'rating': $scope.ratingStar}, function() {
 		$ionicSlideBoxDelegate.next();
 	}, function (err) {
 		console.error(err);
