@@ -33,6 +33,14 @@ angular.module('shopmycourse.services')
     password: {
       pattern: ".{8,}",
       message: "Votre mot de passe doit avoir au moins 8 caractères"
+    },
+    number: {
+      pattern: "[0-9]{1,}",
+      "message": "Entrez un numéro valide"
+    },
+    cvv: {
+      pattern: "[0-9]{1,3}",
+      "message": "Entrez un cvv valide"
     }
   };
 });

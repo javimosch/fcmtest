@@ -52,7 +52,7 @@
             <span><i class="icon ion-close-circled"></i> {{validation.cvv.message}}</span>
           </div>
 
-          <button class="button button-stable button-block" ng-click="endEdit($event)" ng-disabled="cardForm.$invalid">OK</button>
+          <button ng-if="user.card" class="button button-stable button-block" ng-click="endEdit($event)" ng-disabled="cardForm.$invalid">OK</button>
         </form>
 
       </div>

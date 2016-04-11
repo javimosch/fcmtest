@@ -1,12 +1,17 @@
 angular.module('shopmycourse.controllers')
 
-.controller('OrdersCartCtrl', function($rootScope, $scope, $timeout, $state, $stateParams, OrderStore, $ionicModal, CurrentCart, lodash, $interval) {
+.controller('OrdersCartCtrl', function($rootScope, $scope, $timeout, $state, $stateParams, OrderStore, $ionicModal, CurrentCart, lodash, $interval, CurrentUser) {
 
   $scope.order = {};
+  $scope.user = {};
 
   OrderStore.get({id: parseInt($stateParams.idOrder)}, function (err, order) {
     $scope.order = order[0];
     CurrentCart.initFromOrder($scope.order);
+  })
+
+  CurrentUser.get(function(user) {
+    $scope.user = user;
   })
 
   $scope.saveCart = function () {
@@ -28,7 +33,13 @@ angular.module('shopmycourse.controllers')
         return;
       }
       OrderStore.pull(function (orders) {
-        $state.go('tabs.order', {idOrder: parseInt($stateParams.idOrder)});
+        if ($scope.user.wallet.lemonway_card_id) {
+            $state.go('tabs.order', {idOrder: parseInt($stateParams.idOrder)});
+        }
+        else {
+            $state.go('tabs.editcreditcard');
+        }
+
         $scope.closeCartModal();
       });
     })
