@@ -20,7 +20,7 @@
         <div class="item" id="profile-phone">
             <ion-toggle toggle-class="toggle-positive" ng-model="user.share_phone">Masquer mon numéro de téléphone</ion-toggle>
         </div>
-        <div class="item" id="profile-creditcard" ui-sref="tabs.editcreditcard" ng-if="user.wallet">
+        <div class="item" id="profile-creditcard" ui-sref="tabs.editcreditcard">
             <div class="creditcard"><i class="ion-card"></i> {{user.wallet.credit_card_display}} <i class="ion-chevron-right"></i></div>
         </div>
     </ion-content>
