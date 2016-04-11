@@ -15,7 +15,6 @@ angular.module('shopmycourse.controllers')
 						n.meta.deliveryman.average_rating = n.meta.deliveryman.average_rating || 0;
 						break;
 				}
-				console.log(n);
 				return n;
 			});
 			if (notifications.length > 0) {

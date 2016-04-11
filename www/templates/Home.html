@@ -1,23 +1,23 @@
 <ion-view id="home" title="Accueil">
   <ion-nav-buttons side="right">
     <button class="button button-clear" ng-click="openNotificationsModal()">
-        <i class="icon ion-android-notifications-none"></i>
+        <i class="icon" ng-class="{'ion-android-notifications-none': !(notifications.length > 0), 'ion-android-notifications': (notifications.length > 0)}"></i>
     </button>
   </ion-nav-buttons>
     <ion-content overflow-scroll="true" padding="true" class="has-header">
         <div style="line-height: 150px; border: 1px solid rgb(238, 238, 238); border-radius: 3px; text-align: center; background-color: rgb(255, 255, 255);">
-            <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
+            <img src="img/logo.png" style="width: 256px; margin-top: 20px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
         </div>
-        <div>
+        <!-- <div>
             <span class="baseline">Vos courses livrées, avec Shop My Courses</p>
-        </div>
-        <button class="button button-stable button-block" ui-sref="tabs.shopdelivery" ng-if="(currentAvailability.length <= 0)">Proposer une disponibilité</button>
+        </div> -->
+        <button class="button button-stable button-block" ui-sref="tabs.shopdelivery" ng-if="(currentAvailability.length <= 0)">Proposer une livraison</button>
         <span ng-if="(currentAvailability.length > 0)">
           Vous avez <span ng-if='currentAvailability.length > 1'>des</span><span ng-if='currentAvailability.length <= 1'>une</span> disponibilité<span ng-if='currentAvailability.length > 1'>s</span> prévue<span ng-if='currentAvailability.length > 1'>s</span> {{date}} dans le
           <span class="shop">{{currentAvailability[0].shop.name}}</span>
         </span>
         <button class="button button-stable button-block" ng-click="cancelAvailability()" ng-if="(currentAvailability.length > 0)">Annuler <span ng-if='currentAvailability.length <= 1'>cette</span><span ng-if='currentAvailability.length > 1'>ces</span> disponibilité<span ng-if='currentAvailability.length > 1'>s</soan></button>
-        <button class="button button-stable button-block" ui-sref="tabs.scheduleorder">Demander une livraison</button>
+        <button class="button button-stable button-block" ui-sref="tabs.scheduleorder">Commander mes courses</button>
     </ion-content>
 </ion-view>
 
@@ -78,6 +78,9 @@
               </div>
             </ion-item>
           </div>
+          <ion-item class="secondary" ng-if="notifications.length == 0">
+            Vous n'avez aucune notification
+          </ion-item>
         </ion-list>
     </ion-content>
   </ion-model-view>

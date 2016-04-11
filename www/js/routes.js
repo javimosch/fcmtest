@@ -22,6 +22,7 @@ angular.module('shopmycourse.routes', [])
 
   .state('tabs.home', {
     url: '/home',
+    cache: false,
     views: {
       'home-tab': {
         templateUrl: 'templates/Home.html',
