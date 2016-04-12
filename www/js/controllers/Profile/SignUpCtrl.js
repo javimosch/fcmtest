@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('ProfileSignUpCtrl', function ($scope, $rootScope, $ionicModal, $ionicLoading, $state, Authentication, Validation, CurrentUser) {
+.controller('ProfileSignUpCtrl', function ($scope, $rootScope, $ionicModal, $ionicLoading, $state, toastr, Authentication, Validation, CurrentUser) {
 
   $scope.validation = Validation;
 
@@ -24,6 +24,7 @@ angular.module('shopmycourse.controllers')
         console.log('SignUp : Logged');
         $state.go('tabs.home');
       } else {
+        toastr.warning(errorMessage, 'Authentification');
         console.log('SignUp error : ' + errorMessage);
       }
     });

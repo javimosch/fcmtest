@@ -24,6 +24,7 @@ angular.module('shopmycourse.controllers')
         $scope.init();
         $state.go('tabs.home');
       } else {
+        toastr.warning(errorMessage, 'Authentification');
         console.error('SignIn error : ' + errorMessage);
       }
     });
