@@ -14,11 +14,17 @@ angular.module('shopmycourse.controllers')
   $scope.init();
 
   $scope.signIn = function () {
+    $ionicLoading.show({
+      template: 'Nous vérifions vos identifiants...'
+    });
     Authentication.login($scope.user, function (correct, errorMessage) {
+      $ionicLoading.hide();
+
       if (correct) {
         $scope.init();
         $state.go('tabs.home');
       } else {
+        toastr.warning(errorMessage, 'Authentification');
         console.error('SignIn error : ' + errorMessage);
       }
     });
@@ -29,7 +35,9 @@ angular.module('shopmycourse.controllers')
       toastr.warning('Veuillez rentrer une adresse email valide', 'Mot de passe oublié');
       return;
     }
-    $ionicLoading.show({template: 'Envoi du mot de passe...'});
+    $ionicLoading.show({
+      template: 'Envoi du mot de passe...'
+    });
     UserAPI.forgotPassword({ user: {email: $scope.user.email} }, function (data) {
       toastr.info('Votre mot de passe a été envoyé par email', 'Mot de passe oublié');
       $ionicLoading.hide();

@@ -78,15 +78,15 @@
               </div>
             </ion-item>
 
-            <!-- accepted_accepted -->
-            <ion-item class="secondary" ng-if="notification.mode === 'accepted_accepted'">
+            <!-- outdated_delivery -->
+            <ion-item class="secondary" ng-if="notification.mode ===  outdated_delivery'">
               <div class="shop">{{notification.meta.shop.name}}</div>
               <div class="schedule"><i class="ion-ios-calendar-outline"></i> {{notification.meta.schedule.schedule}}</div>
               <div class="address"><i class="ion-ios-location"></i> {{notification.meta.address.address}}, {{notification.meta.address.city}}</div>
               <div class="recipient"><i class="ion-ios-person"></i> {{notification.meta.deliveryman.firstname}} {{notification.meta.deliveryman.lastname}}</div>
               <div class="response row">
                 <div class="col">
-                  <p>Un autre livreur a accepté cette demande avant vous</p>
+                  <div class="title">{{notification.content}}</div>
                   <button class="button button-stable button-block" ng-click="declineDelivery(notification)">D'accord</button>
                 </div>
               </div>

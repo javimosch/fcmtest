@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('OrdersFinishCtrl', function($scope, $ionicSlideBoxDelegate, DeliveryAPI) {
+.controller('OrdersFinishCtrl', function($scope, $ionicLoading, $ionicSlideBoxDelegate, DeliveryAPI) {
 	$scope.ratingStar = 0;
 
 
@@ -13,14 +13,19 @@ angular.module('shopmycourse.controllers')
   }
 
   $scope.finalizeDelivery = function(order) {
-	DeliveryAPI.finalize({'idDelivery': order.id, 'rating': $scope.ratingStar}, function() {
-		$ionicSlideBoxDelegate.next();
-	}, function (err) {
-		console.error(err);
-	});
-  }
+		$ionicLoading.show({
+	    template: 'Nous enregistrons votre avis...'
+	  });
+		DeliveryAPI.finalize({'idDelivery': order.id, 'rating': $scope.ratingStar}, function() {
+			$ionicLoading.hide();
+			$ionicSlideBoxDelegate.next();
+		}, function (err) {
+			console.error(err);
+			$ionicLoading.hide();
+		});
+  };
 
   $scope.setRatingStar = function(newRating) {
-	$scope.ratingStar = newRating;
-  }
+		$scope.ratingStar = newRating;
+  };
 })

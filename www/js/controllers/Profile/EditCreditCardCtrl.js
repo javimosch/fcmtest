@@ -1,13 +1,18 @@
 angular.module('shopmycourse.controllers')
 
-.controller('ProfileEditCreditCardCtrl', function($scope, $state, $ionicHistory, $ionicViewSwitcher, Validation, CardAPI, CurrentUser) {
+.controller('ProfileEditCreditCardCtrl', function($scope, $state, $ionicLoading, $ionicHistory, $ionicViewSwitcher, Validation, CardAPI, CurrentUser) {
     $scope.validation = Validation;
     $scope.card = {};
     $scope.expirations = []
     $scope.user = {};
 
+    $ionicLoading.show({
+      template: 'Nous récupérons votre profil...'
+    });
+
     CurrentUser.get(function (user) {
         $scope.user = user;
+        $ionicLoading.hide();
     })
 
     var today = moment();
@@ -32,6 +37,9 @@ angular.module('shopmycourse.controllers')
 
   $scope.endEdit = function ($event) {
     $event.preventDefault();
+    $ionicLoading.show({
+      template: 'Nous modifions votre moyen de paiement...'
+    });
     var card = {
         number: $scope.card.number,
         type: 0,
@@ -41,6 +49,7 @@ angular.module('shopmycourse.controllers')
 
     CardAPI.update({idUser: $scope.user.id, card: card}, function() {
         $state.go('tabs.home');
+        $ionicLoading.hide();
     });
   }
 })

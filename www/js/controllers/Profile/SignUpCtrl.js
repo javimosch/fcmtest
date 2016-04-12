@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('ProfileSignUpCtrl', function ($scope, $rootScope, $state, Authentication, Validation, CurrentUser) {
+.controller('ProfileSignUpCtrl', function ($scope, $rootScope, $ionicModal, $ionicLoading, $state, toastr, Authentication, Validation, CurrentUser) {
 
   $scope.validation = Validation;
 
@@ -15,13 +15,33 @@ angular.module('shopmycourse.controllers')
   };
 
   $scope.signUp = function () {
+    $ionicLoading.show({
+      template: 'Nous créons votre compte...'
+    });
     Authentication.signup($scope.user, function (correct, errorMessage) {
+      $ionicLoading.hide();
       if (correct) {
         console.log('SignUp : Logged');
         $state.go('tabs.home');
       } else {
+        toastr.warning(errorMessage, 'Authentification');
         console.log('SignUp error : ' + errorMessage);
       }
     });
+  };
+
+  $ionicModal.fromTemplateUrl('templates/CGU.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modal = modal;
+  });
+
+  $scope.openCGU = function () {
+    $scope.modal.show();
+  };
+
+  $scope.closeCGU = function () {
+    $scope.modal.hide();
   };
 })
