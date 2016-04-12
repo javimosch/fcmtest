@@ -18,6 +18,8 @@ angular.module('shopmycourse.controllers')
       template: 'Nous vérifions vos identifiants...'
     });
     Authentication.login($scope.user, function (correct, errorMessage) {
+      $ionicLoading.hide();
+
       if (correct) {
         $scope.init();
         $state.go('tabs.home');
