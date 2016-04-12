@@ -23,4 +23,8 @@ angular.module('shopmycourse.controllers')
   $scope.closeFinishDeliveryModal = function () {
     $scope.finishDeliveryModal.hide();
   };
+
+  $scope.sendSMS = function () {
+    // TODO
+  };
 })
