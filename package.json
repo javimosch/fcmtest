@@ -22,7 +22,14 @@
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
     "cordova-plugin-geolocation",
-    "cordova-sms-plugin"
+    "cordova-sms-plugin",
+    {
+      "variables": {
+        "URL_SCHEME": "shopmycourses"
+      },
+      "locator": "https://github.com/EddyVerbruggen/LaunchMyApp-PhoneGap-Plugin.git",
+      "id": "cordova-plugin-customurlscheme"
+    }
   ],
   "cordovaPlatforms": []
 }
