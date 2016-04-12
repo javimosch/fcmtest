@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('OrdersCartCtrl', function($rootScope, $scope, $timeout, $state, $stateParams, OrderStore, $ionicModal, CurrentCart, lodash, $interval, CurrentUser) {
+.controller('OrdersCartCtrl', function($rootScope, $ionicLoading, $scope, $timeout, $state, $stateParams, OrderStore, $ionicModal, CurrentCart, lodash, $interval, CurrentUser) {
 
   $scope.order = {};
   $scope.user = {};
@@ -15,6 +15,9 @@ angular.module('shopmycourse.controllers')
   })
 
   $scope.saveCart = function () {
+    $ionicLoading.show({
+      template: 'Nous enregistrons votre panier...'
+    });
     var order = lodash.cloneDeep($scope.order);
     order.delivery_contents = [];
     order.total = 0;
@@ -39,7 +42,7 @@ angular.module('shopmycourse.controllers')
         else {
             $state.go('tabs.editcreditcard');
         }
-
+        $ionicLoading.hide();
         $scope.closeCartModal();
       });
     })

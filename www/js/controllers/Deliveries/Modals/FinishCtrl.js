@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('DeliveriesFinishCtrl', function($scope, $ionicSlideBoxDelegate, DeliveryAPI) {
+.controller('DeliveriesFinishCtrl', function($scope, $ionicLoading, $ionicSlideBoxDelegate, DeliveryAPI) {
 	$scope.ratingStar = 0;
 
   $scope.disableSwipe = function() {
@@ -16,10 +16,15 @@ angular.module('shopmycourse.controllers')
   }
 
   $scope.finalizeDelivery = function(delivery, validation_code) {
-	DeliveryAPI.finalize({'idDelivery': delivery.id, 'validation_code': validation_code, 'rating': $scope.ratingStar}, function() {
-		$scope.nextSlide();
-	}, function (err) {
-		console.error(err);
-	});
+		$ionicLoading.show({
+      template: 'Nous enregistrons votre avis...'
+    });
+		DeliveryAPI.finalize({'idDelivery': delivery.id, 'validation_code': validation_code, 'rating': $scope.ratingStar}, function() {
+			$scope.nextSlide();
+			$ionicLoading.hide();
+		}, function (err) {
+			console.error(err);
+			$ionicLoading.hide();
+		});
   }
 })

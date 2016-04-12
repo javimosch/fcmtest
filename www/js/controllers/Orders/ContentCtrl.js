@@ -38,7 +38,7 @@ angular.module('shopmycourse.controllers')
         $scope.products = products;
         $ionicLoading.hide();
       });
-    }, 1300);
+    }, 700);
   };
 
   $scope.addProduct = CurrentCart.addProduct;

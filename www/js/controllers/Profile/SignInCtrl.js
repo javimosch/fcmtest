@@ -14,6 +14,9 @@ angular.module('shopmycourse.controllers')
   $scope.init();
 
   $scope.signIn = function () {
+    $ionicLoading.show({
+      template: 'Nous vérifions vos identifiants...'
+    });
     Authentication.login($scope.user, function (correct, errorMessage) {
       if (correct) {
         $scope.init();
@@ -29,7 +32,9 @@ angular.module('shopmycourse.controllers')
       toastr.warning('Veuillez rentrer une adresse email valide', 'Mot de passe oublié');
       return;
     }
-    $ionicLoading.show({template: 'Envoi du mot de passe...'});
+    $ionicLoading.show({
+      template: 'Envoi du mot de passe...'
+    });
     UserAPI.forgotPassword({ user: {email: $scope.user.email} }, function (data) {
       toastr.info('Votre mot de passe a été envoyé par email', 'Mot de passe oublié');
       $ionicLoading.hide();
