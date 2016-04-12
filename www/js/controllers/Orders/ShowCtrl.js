@@ -25,7 +25,11 @@ angular.module('shopmycourse.controllers')
 
   $scope.sendSMS = function () {
     var number = $scope.order.deliveryman.phone;
-    $cordovaSms.send(number, '', {}).then(function () {
+    $cordovaSms.send(number, '', {
+              android: {
+                intent: 'INTENT'// send SMS with the native android SMS messaging
+            }
+          }).then(function () {
       console.log('Succesfully send SMS');
     }, function (err) {
       console.log(err);
