@@ -18,7 +18,7 @@
             <div class="phone"><i class="ion-ios-telephone-outline"></i> {{user.phone}}</div>
         </div>
         <div class="item" id="profile-phone">
-            <ion-toggle toggle-class="toggle-positive" ng-change="togglePhone()" ng-true-value="true" ng-false-value="false" ng-model="user.share_phone">Masquer mon numéro de téléphone</ion-toggle>
+            <ion-toggle toggle-class="toggle-positive" ng-change="togglePhone()" ng-true-value="true" ng-false-value="false" ng-model="user.share_phone">Partager mon numéro de téléphone</ion-toggle>
         </div>
         <div class="item" id="profile-creditcard" ui-sref="tabs.editcreditcard" ng-if="user.wallet">
             <div class="creditcard"><i class="ion-card"></i> {{user.wallet.credit_card_display}} <i class="ion-chevron-right"></i></div>

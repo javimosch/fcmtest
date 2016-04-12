@@ -13,14 +13,14 @@ angular.module('shopmycourse.controllers')
   });
 
   $scope.togglePhone = function () {
-    if (!$scope.user.share_phone) {
+    if ($scope.user.share_phone) {
       var confirmPopup = $ionicPopup.confirm({
         title: 'Afficher son numéro de téléphone',
         template: 'Êtes-vous sûr de vouloir afficher votre numéro de téléphone?'
       });
 
       confirmPopup.then(function (res) {
-        $scope.user.share_phone = !res;
+        $scope.user.share_phone = res;
         UserAPI.update($scope.user, function (user) {
           CurrentUser.set(user, function() {});
           $scope.user = user;
