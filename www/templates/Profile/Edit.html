@@ -46,7 +46,7 @@
               <div class="error-message" ng-show="edit.phone.$error.pattern">
                 <span><i class="icon ion-close-circled"></i> {{validation.phone.message}}</span>
               </div>
-              <ion-toggle ng-model="user.share_phone" toggle-class="toggle-positive">Masquer mon numéro de téléphone</ion-toggle>
+              <ion-toggle ng-model="user.share_phone" ng-change="togglePhone()" toggle-class="toggle-positive">Masquer mon numéro de téléphone</ion-toggle>
           </ion-list>
       </form>
       <a ng-click="endEdit()" class="button button-stable button-block" ng-disabled="edit.$invalid">Sauvegarder</a>
