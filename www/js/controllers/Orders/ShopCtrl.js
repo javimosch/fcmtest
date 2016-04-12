@@ -6,9 +6,17 @@ angular.module('shopmycourse.controllers')
   $scope.address = "";
   var timer = null;
 
-  function refreshShopList() {
-    $ionicLoading.show({
-      template: 'Chargement des magasins...'
+  $ionicLoading.show({
+    template: 'Nous recherchons les magasins correspondants...'
+  });
+
+  function refreshShopList () {
+    ShopAPI.nearest({lat: 45.768491, lon: 4.823542, stars: $scope.minimumStar, schedule: $rootScope.currentDelivery.schedule}, function (shops) {
+      $scope.shops = shops;
+      $ionicLoading.hide();
+    }, function (err) {
+      $ionicLoading.hide();
+      console.error(err);
     });
 
     if (timer) {
@@ -49,13 +57,19 @@ angular.module('shopmycourse.controllers')
     var currentDelivery = $rootScope.currentDelivery;
     currentDelivery.buyer_id = $rootScope.currentUser.id;
     currentDelivery.address_attributes = address;
-      DeliveryRequestAPI.create(currentDelivery, function (data) {
-        console.log(data);
-        $scope.addressModal.hide();
-        $state.go('tabs.confirmdelivery');
-      }, function (err) {
-        console.error(err);
-      })
+
+    $ionicLoading.show({
+      template: 'Nous créons votre demande...'
+    });
+    DeliveryRequestAPI.create(currentDelivery, function (data) {
+      console.log(data);
+      $scope.addressModal.hide();
+      $ionicLoading.hide();
+      $state.go('tabs.confirmdelivery');
+    }, function (err) {
+      $ionicLoading.hide();
+      console.error(err);
+    })
   };
 
   $scope.setMinimumStar = function (newValue) {
