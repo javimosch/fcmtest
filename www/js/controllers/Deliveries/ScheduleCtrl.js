@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('DeliveriesScheduleCtrl', function($scope, $rootScope, $state, CurrentUser, CurrentAvailability, AvailabilityAPI) {
+.controller('DeliveriesScheduleCtrl', function($scope, $rootScope, $ionicLoading, $state, CurrentUser, CurrentAvailability, AvailabilityAPI) {
   $scope.schedules = [];
   $scope.selected = {};
 
@@ -36,6 +36,9 @@ angular.module('shopmycourse.controllers')
   };
 
   $scope.validate = function () {
+    $ionicLoading.show({
+      template: 'Nous enregistrons votre disponibilité...'
+    });
     CurrentAvailability.setSchedules($scope.selected, function (currentAvailability) {
       AvailabilityAPI.create(currentAvailability, function (correct, msg) {
         if (correct) {
@@ -43,6 +46,7 @@ angular.module('shopmycourse.controllers')
         } else {
           console.log('Erreur');
         }
+        $ionicLoading.hide();
       });
       $state.go('tabs.confirmdelivery');
     });
