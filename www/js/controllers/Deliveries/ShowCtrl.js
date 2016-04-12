@@ -25,7 +25,7 @@ angular.module('shopmycourse.controllers')
   };
 
   $scope.sendSMS = function () {
-    var number = $scope.order.buyer.phone;
+    var number = $scope.delivery.buyer.phone;
     $cordovaSms.send(number, '', {}).then(function () {
       console.log('Succesfully send SMS');
     }, function (err) {
