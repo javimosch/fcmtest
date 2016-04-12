@@ -35,9 +35,9 @@ angular.module('shopmycourse.services')
       } else {
         switch (response.status) {
           case 401:
-            if ($injector.get('$state').current.name !== 'signin') {
+            if ($injector.get('$state').current.name !== 'start') {
               $injector.get('toastr').error("Un problème d'authentification est survenu, essayez de vous reconnecter");
-              $injector.get('$state').go('signin');
+              $injector.get('$state').go('start');
               $injector.get("Authentication").logout();
               $injector.get("$ionicLoading").hide();
             }
