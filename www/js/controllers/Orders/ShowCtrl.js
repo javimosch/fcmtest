@@ -1,11 +1,16 @@
 angular.module('shopmycourse.controllers')
 
-.controller('OrdersShowCtrl', function($scope, $rootScope, $stateParams, CurrentCart, $ionicModal, OrderStore, $interval, $cordovaSms) {
+.controller('OrdersShowCtrl', function($scope, $ionicLoading, $rootScope, $stateParams, CurrentCart, $ionicModal, OrderStore, $interval, $cordovaSms) {
 
   $scope.order = {};
 
+  $ionicLoading.show({
+    template: 'Nous recherchons votre commande...'
+  });
+
   OrderStore.get({id: parseInt($stateParams.idOrder)}, function (err, order) {
     $scope.order = order[0];
+    $ionicLoading.hide();
   })
 
   $ionicModal.fromTemplateUrl('templates/Orders/Modals/Finish.html', {
