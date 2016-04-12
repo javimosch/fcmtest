@@ -36,11 +36,24 @@ angular.module('shopmycourse.controllers')
       }, function (err) {
         console.error(err);
       })
-  }
+  };
 
   $scope.setMinimumStar = function (newValue) {
     $scope.minimumStar = newValue;
     refreshShopList();
-  }
+  };
+
+  $scope.openMap = function (shop) {
+    var address = shop.address;
+    var url='';
+    if (ionic.Platform.isIOS()) {
+    	url = "http://maps.apple.com/maps?q=" + encodeURIComponent(address);
+    } else if (ionic.Platform.isAndroid()) {
+    	url = "geo:?q=" + encodeURIComponent(address);
+    } else {
+    	url = "http://maps.google.com?q=" + encodeURIComponent(address);
+    }
+    window.open(url, "_system", 'location=no');
+  };
 
 })
