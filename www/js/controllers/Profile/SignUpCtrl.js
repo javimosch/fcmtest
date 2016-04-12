@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('ProfileSignUpCtrl', function ($scope, $rootScope, $ionicLoading, $state, Authentication, Validation, CurrentUser) {
+.controller('ProfileSignUpCtrl', function ($scope, $rootScope, $ionicModal, $ionicLoading, $state, Authentication, Validation, CurrentUser) {
 
   $scope.validation = Validation;
 
@@ -27,5 +27,20 @@ angular.module('shopmycourse.controllers')
         console.log('SignUp error : ' + errorMessage);
       }
     });
+  };
+
+  $ionicModal.fromTemplateUrl('templates/CGU.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modal = modal;
+  });
+
+  $scope.openCGU = function () {
+    $scope.modal.show();
+  };
+
+  $scope.closeCGU = function () {
+    $scope.modal.hide();
   };
 })
