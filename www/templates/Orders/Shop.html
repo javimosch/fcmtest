@@ -14,6 +14,12 @@
           <div class="item item-divider">
             Magasins les plus proches
           </div>
+          <div class="item item-divider">
+            <label class="item item-input">
+              <i class="icon ion-search placeholder-icon"></i>
+              <input type="text" ng-model="query" placeholder="Rechercher une adresse" ng-change="search(query)">
+            </label>
+          </div>
           <ion-item class="item-icon-right item-icon-left" ng-repeat="shop in shops">
               <i class="icon ion-map" ng-click="openMap(shop)"></i>
               <div ng-click="setShop(shop)">

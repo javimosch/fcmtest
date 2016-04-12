@@ -1,16 +1,36 @@
 angular.module('shopmycourse.controllers')
 
-.controller('OrdersShopCtrl', function($rootScope, $scope, $cordovaGeolocation, toastr, $state, $ionicModal, CurrentDelivery, ShopAPI, DeliveryRequestAPI, DeliveryRequestAPI) {
+.controller('OrdersShopCtrl', function($rootScope, $scope, $cordovaGeolocation, toastr, $state, $ionicModal, $ionicLoading, CurrentDelivery, ShopAPI, DeliveryRequestAPI, DeliveryRequestAPI, $timeout) {
   $scope.shops = [];
   $scope.minimumStar = 0;
+  $scope.address = "";
+  var timer = null;
 
-  function refreshShopList () {
-    ShopAPI.nearest({lat: 45.768491, lon: 4.823542, stars: $scope.minimumStar, schedule: $rootScope.currentDelivery.schedule}, function (shops) {
-      $scope.shops = shops;
-    }, function (err) {
-      console.error(err);
+  function refreshShopList() {
+    $ionicLoading.show({
+      template: 'Chargement des magasins...'
     });
+
+    if (timer) {
+      $timeout.cancel(timer);
+    }
+    timer = $timeout(function getProduct() {
+
+      ShopAPI.search({
+        lat: 45.768491,
+        lon: 4.823542,
+        stars: $scope.minimumStar,
+        schedule: $rootScope.currentDelivery.schedule,
+        address: $scope.address
+      }, function(shops) {
+        $scope.shops = shops;
+        $ionicLoading.hide();
+      }, function(err) {
+        console.log(err);
+      });
+    }, 1300);
   }
+
   refreshShopList();
   $ionicModal.fromTemplateUrl('templates/Orders/Modals/Address.html', {
       scope: $scope,
@@ -56,4 +76,8 @@ angular.module('shopmycourse.controllers')
     window.open(url, "_system", 'location=no');
   };
 
+  $scope.search = function(query) {
+    $scope.address = query;
+    refreshShopList();
+  };
 })
