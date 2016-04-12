@@ -33,7 +33,7 @@ angular.module('shopmycourse.controllers')
         return;
       }
       OrderStore.pull(function (orders) {
-        if ($scope.user.wallet.lemonway_card_id) {
+        if ($scope.user.wallet && $scope.user.wallet.lemonway_card_id) {
             $state.go('tabs.order', {idOrder: parseInt($stateParams.idOrder)});
         }
         else {
