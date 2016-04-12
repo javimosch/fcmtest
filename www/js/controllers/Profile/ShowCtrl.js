@@ -1,10 +1,14 @@
 angular.module('shopmycourse.controllers')
 
-.controller('ProfileShowCtrl', function($scope, $state, $ionicPopup, Authentication, CurrentUser, UserAPI) {
+.controller('ProfileShowCtrl', function($scope, $ionicLoading, $state, $ionicPopup, Authentication, CurrentUser, UserAPI) {
 
   $scope.user = {};
+  $ionicLoading.show({
+    template: 'Nous récupérons votre profil...'
+  });
   CurrentUser.get(function (user) {
       $scope.user = user;
+      $ionicLoading.hide();
   })
 
   $scope.avatar = null;
@@ -21,13 +25,21 @@ angular.module('shopmycourse.controllers')
 
       confirmPopup.then(function (res) {
         $scope.user.share_phone = res;
+        $ionicLoading.show({
+          template: 'Nous sauvegardons vos préférences...'
+        });
         UserAPI.update($scope.user, function (user) {
+          $ionicLoading.hide();
           CurrentUser.set(user, function() {});
           $scope.user = user;
         });
       });
     } else {
+      $ionicLoading.show({
+        template: 'Nous sauvegardons vos préférences...'
+      });
       UserAPI.update($scope.user, function (user) {
+        $ionicLoading.hide();
         CurrentUser.set(user, function() {});
         $scope.user = user;
       });
