@@ -32,6 +32,7 @@ angular.module('shopmycourse.controllers')
     });
     OrderStore.update(order, function (err, order) {
       if (err) {
+        $ionicLoading.hide();
         console.debug(err);
         return;
       }
