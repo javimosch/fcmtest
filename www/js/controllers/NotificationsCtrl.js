@@ -85,4 +85,15 @@ angular.module('shopmycourse.controllers')
 		});
 	};
 
+	$scope.goDelivery = function (notification) {
+		NotificationAPI.update({idNotification: notification.id, read: true}, function () {
+			console.log(1);
+			$scope.closeNotificationsModal();
+			$ionicLoading.hide();
+			console.log(notification.meta.delivery.id);
+			console.log(notification.meta);
+			$state.go('tabs.ordercontent', {idOrder: notification.meta.delivery.id});
+		});
+	};
+
 })
