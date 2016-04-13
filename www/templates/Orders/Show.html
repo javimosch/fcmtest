@@ -7,7 +7,7 @@
         <div class="name">{{order.deliveryman.firstname}} {{order.deliveryman.lastname}}</div>
         <div class="address"><i class="ion-ios-location-outline"></i> {{order.address.address}}, {{order.address.zip}} {{order.address.city}}</div>
         <div class="actions">
-          <button class="button button-stable" ng-if="order.status === 'completed'" ng-click="openFinishOrderModal()">Finaliser la commande</button>
+          <button class="button button-stable" ng-if="order.status === 'completed' && !order.buyer_rating" ng-click="openFinishOrderModal()">Finaliser la commande</button>
           <button class="button button-stable" ng-if="order.status !== 'completed' && order.status !== 'accepted'" ui-sref="tabs.ordercontent({idOrder: order.id})">Modifier le panier</button>
           <button class="button button-stable" ng-if="order.deliveryman.share_phone" ng-click="sendSMS()">Contacter par SMS</button>
           <div ng-if="!order.deliveryman.share_phone">
