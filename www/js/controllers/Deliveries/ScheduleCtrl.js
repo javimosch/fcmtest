@@ -40,12 +40,12 @@ angular.module('shopmycourse.controllers')
       template: 'Nous enregistrons votre disponibilité...'
     });
     CurrentAvailability.setSchedules($scope.selected, function (currentAvailability) {
-      AvailabilityAPI.create(currentAvailability, function (correct, msg) {
-        if (correct) {
-          console.log('Availabilities created !');
-        } else {
-          console.log('Erreur');
-        }
+      AvailabilityAPI.create(currentAvailability, function() {
+        console.log('Availabilities created !');
+        $ionicLoading.hide();
+      }, function(err) {
+        console.log('Erreur');
+        console.log(err);
         $ionicLoading.hide();
       });
       $state.go('tabs.confirmdelivery');
