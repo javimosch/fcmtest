@@ -13,7 +13,7 @@ angular.module('shopmycourse.services')
     },
     success: {
       ORDER_DONE: 'La commande a été effectuée',
-      RATING_DONE: 'Votre avis a bienété pris en compte'
+      RATING_DONE: 'Votre avis a bien été pris en compte'
     }
   };
 });
