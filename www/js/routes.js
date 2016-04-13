@@ -33,6 +33,7 @@ angular.module('shopmycourse.routes', [])
 
   .state('tabs.deliveries', {
     url: '/deliveries',
+    cache: false,
     views: {
       'deliveries-tab': {
         templateUrl: 'templates/Deliveries/List.html',
@@ -84,6 +85,7 @@ angular.module('shopmycourse.routes', [])
 
   .state('tabs.orders', {
     url: '/orders',
+    cache: false,
     views: {
       'orders-tab': {
         templateUrl: 'templates/Orders/List.html',

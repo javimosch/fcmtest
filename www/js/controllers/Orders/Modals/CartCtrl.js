@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('OrdersCartCtrl', function($rootScope, $ionicLoading, $scope, $timeout, $state, $stateParams, OrderStore, $ionicModal, CurrentCart, lodash, $interval, CurrentUser) {
+.controller('OrdersCartCtrl', function($rootScope, $ionicPopup, $ionicLoading, $scope, $timeout, $state, $stateParams, OrderStore, $ionicModal, CurrentCart, lodash, $interval, CurrentUser) {
 
   $scope.order = {};
   $scope.user = {};
@@ -14,7 +14,23 @@ angular.module('shopmycourse.controllers')
     $scope.user = user;
   })
 
-  $scope.saveCart = function () {
+  $scope.saveCart = function() {
+    var confirmPopup = $ionicPopup.confirm({
+      title: 'Valider le panier?',
+      template: 'Si vous validez votre panier, vous ne pourrez plus le modifier.',
+      cancelText: 'Non',
+      okText: 'Oui'
+    });
+
+    confirmPopup.then(function(res) {
+      if(!res) {
+        return;
+      }
+      return definitlySaveTheCart();
+    });
+  };
+
+  function definitlySaveTheCart () {
     $ionicLoading.show({
       template: 'Nous enregistrons votre panier...'
     });
