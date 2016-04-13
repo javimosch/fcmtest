@@ -33,7 +33,7 @@
               <img ng-src="{{delivery_content.product.image_url}}" alt="{{delivery_content.product.name}}">
               <div class="name">{{delivery_content.product.name}}</div>
               <div class="detail">{{delivery_content.product.detail}}</div>
-              <div class="price">{{delivery_content.unit_price*delivery_content.quantity}}€ ({{delivery_content.quantity}})</div>
+              <div class="price">{{delivery_content.unit_price*delivery_content.quantity | number: 2 || 0 }}€ ({{delivery_content.quantity}})</div>
           </ion-item>
       </ion-list>
     </ion-content>
