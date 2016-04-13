@@ -22,6 +22,9 @@ angular.module('shopmycourse.services')
       return $q.reject(rejection);
     },
     response: function (response) {
+      if (response && response.data && response.data.notice) {
+        $injector.get('toastr').success(Configuration.success[response.data.notice]);
+      }
       return response;
     },
     responseError: function (response) {

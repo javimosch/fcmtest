@@ -7,11 +7,13 @@ angular.module('shopmycourse.services')
     errors: {
       SCHEDULE_ALREADY_EXIST: 'Vous avez déjà déposé une disponibilité',
       VALIDATION_CODE_ERROR: 'Votre code de validation est incorrect',
-      ORDER_DONE: 'La commande a été effectuée',
       LEMONWAY_SERVER_ERROR: 'Une erreur liée à votre paiement est survenue',
       WALLET_ERROR: 'Une erreur liée à votre paiement est survenue',
-      RATING_DONE: 'Votre avis a été pris en compte',
       VALIDATION_CODE_ERROR: 'Une erreur est survenue lors de la validation'
+    },
+    success: {
+      ORDER_DONE: 'La commande a été effectuée',
+      RATING_DONE: 'Votre avis a bienété pris en compte'
     }
   };
 });
