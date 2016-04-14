@@ -38,6 +38,8 @@ angular.module('shopmycourse.controllers')
 						$scope.notifications.push(notification);
 					}
 				}
+
+				$ionicLoading.hide();
 				var alertPopup = $ionicPopup.alert({
 					title: 'Votre réponse à été prise en compte',
 					template: 'L\'acheteur va recevoir une notification l\'invitant à remplir son panier. Vous serez averti à ce moment là.'
@@ -47,7 +49,6 @@ angular.module('shopmycourse.controllers')
 					if ($scope.notifications.length === 0) {
 						$scope.closeNotificationsModal();
 					}
-					$ionicLoading.hide();
 				});
 			}, function (err) {
 				$ionicLoading.hide();
