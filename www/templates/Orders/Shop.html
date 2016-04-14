@@ -21,7 +21,6 @@
             </label>
           </div>
           <ion-item class="item-icon-right item-icon-left" ng-repeat="shop in shops">
-              <i class="icon ion-map" ng-click="openMap(shop)"></i>
               <div ng-click="setShop(shop)">
                 <div class="title">{{shop.name}}</div>
                 <div class="distance"><i class="icon-smc-truck-checked"></i> {{shop.count}} livreur<span ng-if="shop.count > 1">s</span> disponible<span ng-if="shop.count > 1">s</span></div>

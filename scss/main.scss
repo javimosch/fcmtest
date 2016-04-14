@@ -82,7 +82,8 @@
 ion-header-bar, ion-nav-bar {
   &.bar-positive {
     border: none !important;
-    background-image: linear-gradient(0deg, $positive, $positive 50%, transparent 50%) !important;
+    background-color: $positive-light !important;
+    text-align: center;
   }
   color: white !important;
   background-color: transparent;
@@ -326,19 +327,6 @@ ion-header-bar, ion-nav-bar {
   }
 }
 
-#new-order {
-  .schedule {
-    border-radius: 50px;
-    border: 1px solid $dark;
-    margin: 3px;
-    text-align: center;
-    &.selected {
-      background-color: $dark;
-      color: $stable;
-    }
-  }
-}
-
 #delivery, #order {
   #delivery-header {
     text-align: center;
@@ -369,6 +357,55 @@ ion-header-bar, ion-nav-bar {
         font-size: 120%;
       }
     }
+  }
+}
+
+#address-modal {
+  background-color: $positive;
+  form {
+    background-color: $positive;
+  }
+
+  .item {
+    border: none;
+    padding: 6px 16px 5px 16px;
+    input {
+      border-bottom: 2px solid white;
+      padding: 0px;
+    }
+    input, label, .input-label {
+      color: white;
+      text-align: center;
+    }
+    .input-label {
+      width: 100%;
+      max-width: none;
+      text-align: center;
+    }
+    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      color: white;
+    }
+    ::-moz-placeholder { /* Firefox 19+ */
+      color: white;
+    }
+    :-ms-input-placeholder { /* IE 10+ */
+      color: white;
+    }
+    :-moz-placeholder { /* Firefox 18- */
+      color: white;
+    }
+  }
+
+  .button.button-stable {
+    border-radius: 30px;
+    width: 70%;
+    margin: 20px auto;
+    font-weight: bold;
+    color: $positive;
+    background-color: $light;
+    border: none;
+    line-height: 45px;
+    margin-top: 30%;
   }
 }
 
