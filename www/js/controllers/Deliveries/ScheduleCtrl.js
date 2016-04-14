@@ -17,6 +17,9 @@ angular.module('shopmycourse.controllers')
     if ($scope.isSelected(date, time)) {
       var index = $scope.selected[date].indexOf(time);
       $scope.selected[date].splice(index, 1);
+      if ($scope.selected[date].length == 0) {
+        delete $scope.selected[date];
+      }
       return;
     }
     // Si la case n'est pas selectionnées

@@ -1,6 +1,27 @@
 * {
   color: #444; }
 
+#start {
+  background-color: #69a7ff; }
+  #start .buttons-block {
+    position: absolute;
+    bottom: 10%;
+    width: 100%; }
+  #start .button {
+    border-radius: 30px;
+    width: 70%;
+    margin: 20px auto;
+    font-weight: bold;
+    color: #69a7ff;
+    border: none; }
+  #start .logo {
+    width: 50%;
+    color: #888888;
+    vertical-align: middle;
+    border-radius: 50%;
+    margin: 30% auto auto auto;
+    display: block; }
+
 #home {
   text-align: center; }
   #home .baseline {
