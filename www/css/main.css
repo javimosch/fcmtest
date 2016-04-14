@@ -150,9 +150,28 @@ ion-header-bar, ion-nav-bar {
   text-align: center; }
 
 #deliveries-end {
-  text-align: center; }
+  text-align: center;
+  background-color: #69a7ff; }
   #deliveries-end .title {
-    font-size: 120%; }
+    font-size: 120%;
+    color: #FDCC5A;
+    font-weight: bold; }
+  #deliveries-end ion-content {
+    margin-top: 50%; }
+  #deliveries-end p {
+    color: #fff;
+    padding-top: 12px;
+    font-weight: bold; }
+  #deliveries-end .button.button-stable {
+    border-radius: 30px;
+    width: 70%;
+    margin: 20px auto;
+    font-weight: bold;
+    color: #69a7ff;
+    background-color: #fff;
+    border: none;
+    line-height: 45px;
+    margin-top: 30%; }
 
 #notifications {
   text-align: center; }
@@ -165,17 +184,57 @@ ion-header-bar, ion-nav-bar {
   float: left;
   cursor: pointer; }
 
+#deliveries-schedule .item, #new-order .item {
+  border: none; }
+
+#deliveries-schedule .item-divider, #new-order .item-divider {
+  background: white;
+  color: #8C8C8C;
+  text-align: right;
+  font-weight: bold; }
+  #deliveries-schedule .item-divider hr, #new-order .item-divider hr {
+    background-color: #e0e0e0;
+    height: 2px;
+    border: none; }
+
 #deliveries-schedule .schedule, #new-order .schedule {
-  border-radius: 50px;
   border: 1px solid #444;
+  border-radius: 50px;
+  border-color: white;
   margin: 3px;
   text-align: center;
   padding: 5px; }
   #deliveries-schedule .schedule.selected, #new-order .schedule.selected {
-    background-color: #444;
-    color: #f8f8f8; }
+    background-color: gold;
+    color: #fff;
+    font-weight: bold; }
   #deliveries-schedule .schedule .item-divider:first-letter, #new-order .schedule .item-divider:first-letter {
     text-transform: uppercase; }
+
+#deliveries-schedule .button.button-stable, #new-order .button.button-stable {
+  border-radius: 30px;
+  width: 70%;
+  margin: 20px auto;
+  font-weight: bold;
+  background-color: #69a7ff;
+  color: #fff;
+  border: none;
+  line-height: 45px; }
+
+#new-deliveries .info {
+  color: #ABABAB;
+  text-align: center; }
+
+#new-deliveries .item-icon-left {
+  padding-left: 32px; }
+  #new-deliveries .item-icon-left .ion-chevron-right {
+    color: #69a7ff;
+    font-size: 1.2em; }
+  #new-deliveries .item-icon-left .title {
+    color: #8C8C8C;
+    font-weight: bold; }
+  #new-deliveries .item-icon-left .distance, #new-deliveries .item-icon-left .address {
+    color: #8C8C8C; }
 
 #new-order .schedule {
   border-radius: 50px;

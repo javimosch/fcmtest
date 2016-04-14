@@ -200,8 +200,34 @@ ion-header-bar, ion-nav-bar {
 }
 #deliveries-end {
   text-align: center;
+  background-color:$positive;
+
   .title {
     font-size: 120%;
+    color: $gold;
+    font-weight: bold;
+  }
+
+  ion-content {
+    margin-top: 50%;
+  }
+
+  p {
+    color: $light;
+    padding-top: 12px;
+    font-weight: bold;
+  }
+
+  .button.button-stable {
+    border-radius: 30px;
+    width: 70%;
+    margin: 20px auto;
+    font-weight: bold;
+    color: $positive;
+    background-color: $light;
+    border: none;
+    line-height: 45px;
+    margin-top: 30%;
   }
 }
 
@@ -219,19 +245,77 @@ ion-header-bar, ion-nav-bar {
     float: left;
     cursor: pointer;
   }
+
+  .item {
+    border: none;
+  }
+
+  .item-divider {
+    background: white;
+    color: $grey;
+    text-align: right;
+    font-weight: bold;
+
+    hr {
+      background-color: #e0e0e0;
+      height: 2px;
+      border: none;
+    }
+  }
+
   .schedule {
-    border-radius: 50px;
     border: 1px solid $dark;
+    border-radius: 50px;
+    border-color: white;
+
+    &.selected {
+      background-color: gold;
+      color: $light;
+      font-weight: bold;
+    }
+
     margin: 3px;
     text-align: center;
     padding: 5px;
-    &.selected {
-      background-color: $dark;
-      color: $stable;
-    }
     .item-divider:first-letter {
       text-transform: uppercase;
     }
+  }
+
+  .button.button-stable {
+    border-radius: 30px;
+    width: 70%;
+    margin: 20px auto;
+    font-weight: bold;
+    background-color: $positive;
+    color: $light;
+    border: none;
+    line-height: 45px;
+  }
+}
+
+#new-deliveries {
+  .info {
+    color: $grey-light;
+    text-align: center;
+  }
+
+  .item-icon-left {
+    .ion-chevron-right {
+      color: $positive;
+      font-size: 1.2em;
+    }
+
+    .title {
+      color: $grey;
+      font-weight: bold;
+    }
+
+    .distance, .address {
+      color: $grey;
+    }
+
+    padding-left: 32px;
   }
 }
 
