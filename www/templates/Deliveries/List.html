@@ -11,7 +11,7 @@
                 <i class="icon {{ deliveryStatus[delivery.status].icon }}" style="color: {{ deliveryStatus[delivery.status].color }}"></i>
                 <div class="recipient" ng-if="delivery.buyer"><i class="ion-ios-person"></i> {{delivery.buyer.firstname}} {{delivery.buyer.lastname}}</div>
                 <div class="shop"><i class="ion-ios-location"></i> {{delivery.shop.name}}</div>
-                <div class="schedule"><i class="ion-ios-calendar-outline"></i>&nbsp;{{delivery.schedule.schedule}}</div>
+                <div class="schedule"><i class="ion-ios-calendar-outline"></i>&nbsp;{{delivery.schedule.date | date : 'EEEE' }} {{delivery.schedule.schedule}}</div>
                 <i class="icon ion-chevron-right"></i>
             </ion-item>
             <ion-item class="item" ng-if="(deliveries|filter:byStatus(status)).length === 0">
