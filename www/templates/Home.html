@@ -31,8 +31,10 @@
         <ion-list>
           <div ng-repeat="notification in notifications">
             <ion-item class="item-icon-left main">
-              <i class="icon ion-android-notifications-none"></i>
-                <div class="title">{{notification.content}}</div>
+                <div class="title">
+                  <i class="icon ion-android-notifications-none"></i>
+                  {{notification.content}}
+                </div>
             </ion-item>
 
             <!-- delivery_request -->
@@ -50,10 +52,10 @@
               </div>
               <div class="response row">
                 <div class="col">
-                  <button class="button button-stable button-block" ng-click="acceptDelivery(notification)">Accepter</button>
+                  <button class="button button-stable button-block accept" ng-click="acceptDelivery(notification)">Accepter</button>
                 </div>
                 <div class="col">
-                  <button class="button button-stable button-block" ng-click="declineDelivery(notification)">Décliner</button>
+                  <button class="button button-stable button-block decline" ng-click="declineDelivery(notification)">Décliner</button>
                 </div>
               </div>
             </ion-item>
@@ -73,7 +75,8 @@
               </div>
               <div class="response row">
                 <div class="col">
-                  <button class="button button-stable button-block" ng-click="editCart(notification)">Remplir le panier</button>
+                  <button class="button button-stable button-block accept" ng-click="editCart(notification)">Parfait, je créé ma liste</button>
+                  <button class="button button-stable button-block decline" ng-click="declineDelivery(notification)">Annuler la demande</button>
                 </div>
               </div>
             </ion-item>
