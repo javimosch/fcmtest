@@ -11,6 +11,11 @@ angular.module('shopmycourse.controllers')
     enableHighAccuracy: true
   };
 
+
+  $ionicLoading.show({
+    template: 'Nous recherchons les magasins correspondants...'
+  });
+
   $cordovaGeolocation
     .getCurrentPosition(posOptions)
     .then(function(position) {
