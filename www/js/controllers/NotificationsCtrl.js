@@ -96,7 +96,7 @@ angular.module('shopmycourse.controllers')
 		NotificationAPI.update({idNotification: notification.id, read: true}, function () {
 			$scope.closeNotificationsModal();
 			$ionicLoading.hide();
-			$state.go('tabs.ordercontent', {idOrder: notification.meta.delivery.id});
+			$state.go('tabs.delivery', {idDelivery: notification.meta.delivery.id});
 		});
 	};
 
