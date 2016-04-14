@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('NotificationsCtrl', function($scope, $ionicLoading, toastr, $state, NotificationAPI, DeliveryAPI, CurrentUser, lodash) {
+.controller('NotificationsCtrl', function($scope, $ionicPopup, $ionicLoading, toastr, $state, NotificationAPI, DeliveryAPI, CurrentUser, lodash) {
 
 	$scope.notifications = [];
 	CurrentUser.get(function (user) {
@@ -38,10 +38,18 @@ angular.module('shopmycourse.controllers')
 						$scope.notifications.push(notification);
 					}
 				}
-				if ($scope.notifications.length === 0) {
-					$scope.closeNotificationsModal();
-				}
+
 				$ionicLoading.hide();
+				var alertPopup = $ionicPopup.alert({
+					title: 'Votre réponse à été prise en compte',
+					template: 'L\'acheteur va recevoir une notification l\'invitant à remplir son panier. Vous serez averti à ce moment là.'
+				});
+
+				alertPopup.then(function(res) {
+					if ($scope.notifications.length === 0) {
+						$scope.closeNotificationsModal();
+					}
+				});
 			}, function (err) {
 				$ionicLoading.hide();
 				console.error(err);
@@ -82,6 +90,14 @@ angular.module('shopmycourse.controllers')
 			$scope.closeNotificationsModal();
 			$ionicLoading.hide();
 			$state.go('tabs.ordercontent', {idOrder: notification.meta.delivery.id});
+		});
+	};
+
+	$scope.goDelivery = function (notification) {
+		NotificationAPI.update({idNotification: notification.id, read: true}, function () {
+			$scope.closeNotificationsModal();
+			$ionicLoading.hide();
+			$state.go('tabs.delivery', {idDelivery: notification.meta.delivery.id});
 		});
 	};
 

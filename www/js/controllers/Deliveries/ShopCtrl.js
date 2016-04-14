@@ -16,7 +16,7 @@ angular.module('shopmycourse.controllers')
   $cordovaGeolocation
     .getCurrentPosition(posOptions)
     .then(function (position) {
-      ShopAPI.nearest({lat: position.coords.latitude, lon: position.coords.longitude}, function (shops) {
+      ShopAPI.search({lat: position.coords.latitude, lon: position.coords.longitude}, function (shops) {
         $scope.shops = shops;
         $ionicLoading.hide();
       }, function (err) {

@@ -31,6 +31,12 @@ angular.module('shopmycourse', [
   $httpProvider.interceptors.push('HTTPInterceptor');
 })
 
+.config(function(toastrConfig) {
+  angular.extend(toastrConfig, {
+    maxOpened: 1
+  });
+})
+
 .config(['$localForageProvider', function($localForageProvider){
     $localForageProvider.config({
       driver      : 'localStorageWrapper',

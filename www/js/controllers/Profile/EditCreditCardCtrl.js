@@ -50,6 +50,9 @@ angular.module('shopmycourse.controllers')
     CardAPI.update({idUser: $scope.user.id, card: card}, function() {
         $state.go('tabs.home');
         $ionicLoading.hide();
+    }, function(err) {
+        $ionicLoading.hide();
+        console.log(err);
     });
   }
 })
