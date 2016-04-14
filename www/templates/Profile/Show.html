@@ -6,22 +6,22 @@
     </ion-nav-buttons>
     <ion-content overflow-scroll="true" padding="false" class="has-header">
         <div class="item" id="profile-header">
-            <img ng-src="{{avatar}}" alt="User avatar" class="avatar">
+            <i class="profil-pic icon-smc-profile" style="font-size:700%;"></i>
 
             <div class="name">{{user.firstname}} {{user.lastname}}</div>
 
             <div class="edit"><a ui-sref="tabs.editprofile">Modifier le compte</a></div>
         </div>
         <div class="item" id="profile-information">
-            <div class="address" ng-if="user.address"><i class="ion-ios-location-outline"></i> {{user.address.address}}, {{user.address.zip}} {{user.address.city}}</div>
-            <div class="email"><i class="ion-ios-email-outline"></i> {{user.email}}</div>
-            <div class="phone"><i class="ion-ios-telephone-outline"></i> {{user.phone}}</div>
+            <div class="address" ng-if="user.address"><i class="icon-smc-marker"></i> {{user.address.address}}, {{user.address.zip}} {{user.address.city}}</div>
+            <div class="email"><i class="icon-smc-envelop"></i> {{user.email}}</div>
+            <div class="phone"><i class="icon-smc-phone"></i> {{user.phone}}</div>
         </div>
         <div class="item" id="profile-phone">
             <ion-toggle toggle-class="toggle-positive" ng-change="togglePhone()" ng-true-value="true" ng-false-value="false" ng-model="user.share_phone">Partager mon numéro de téléphone</ion-toggle>
         </div>
         <div class="item" id="profile-creditcard" ui-sref="tabs.editcreditcard" ng-if="user.wallet">
-            <div class="creditcard"><i class="ion-card"></i> {{user.wallet.credit_card_display}} <i class="ion-chevron-right"></i></div>
+            <div class="creditcard"><i class="icon-smc-card"></i> {{user.wallet.credit_card_display}} <i class="ion-chevron-right"></i></div>
         </div>
     </ion-content>
 </ion-view>

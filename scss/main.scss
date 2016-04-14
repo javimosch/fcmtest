@@ -29,22 +29,55 @@
     display: block;
   }
 }
-
+#profile {
+  .profil-pic {
+    color: $positive;
+  }
+  .name {
+    color: $positive;
+  }
+  .edit {
+    font-size: 90%;
+  }
+  #profile-information, #profile-creditcard {
+    i {
+      color: $assertive;
+    }
+  }
+}
+.tab-nav.tabs {
+  i {
+    color: $positive;
+  }
+  .tab-item-active i {
+    font-weight: bold;
+    color: $positive;
+  }
+}
 #home {
-  text-align: center;
-  .baseline {
-    font-style: italic;
-    font-size: 120%;
+  .button {
+    border-radius: 30px;
+    width: 70%;
+    margin: 20px auto;
+    font-weight: bold;
+    background-color: $positive;
+    color: white;
+    border: none;
+    line-height: 45px;
   }
 }
 
-ion-header-bar.bar {
+.button.icon-right {
+  font-family: 'Helvetica Neue', Roboto, 'Segoe UI', sans-serif !important;
+}
+
+ion-header-bar, ion-nav-bar {
   &.bar-positive {
     border: none !important;
-    background-image: linear-gradient(0deg, $positive, $positive 50%, transparent 50%);
+    background-image: linear-gradient(0deg, $positive, $positive 50%, transparent 50%) !important;
   }
   color: white !important;
-  background-color: $positive;
+  background-color: transparent;
   i {
     color: white;
   }
