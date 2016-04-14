@@ -35,7 +35,7 @@
 #profile #profile-information i, #profile #profile-creditcard i {
   color: #ef473a; }
 
-#new-deliveries i {
+#new-deliveries i, #new-order i {
   color: #ef473a; }
 
 .tab-nav.tabs i {
@@ -51,9 +51,11 @@
   margin: 20px auto;
   font-weight: bold;
   background-color: #69a7ff;
-  color: white;
+  color: white !important;
   border: none;
   line-height: 45px; }
+  #home .button span {
+    color: white !important; }
 
 .button.icon-right {
   font-family: 'Helvetica Neue', Roboto, 'Segoe UI', sans-serif !important; }
@@ -224,20 +226,20 @@ ion-header-bar, ion-nav-bar {
   border: none;
   line-height: 45px; }
 
-#new-deliveries .info {
+#new-deliveries .info, #shop-order .info {
   color: #ABABAB;
   text-align: center; }
 
-#new-deliveries .item-icon-left {
-  padding-left: 32px; }
-  #new-deliveries .item-icon-left .ion-chevron-right {
-    color: #69a7ff;
-    font-size: 1.2em; }
-  #new-deliveries .item-icon-left .title {
-    color: #8C8C8C;
-    font-weight: bold; }
-  #new-deliveries .item-icon-left .distance, #new-deliveries .item-icon-left .address {
-    color: #8C8C8C; }
+#new-deliveries .item-icon-left .ion-chevron-right, #shop-order .item-icon-left .ion-chevron-right {
+  color: #69a7ff;
+  font-size: 1.2em; }
+
+#new-deliveries .item-icon-left .title, #shop-order .item-icon-left .title {
+  color: #8C8C8C;
+  font-weight: bold; }
+
+#new-deliveries .item-icon-left .distance, #new-deliveries .item-icon-left .address, #shop-order .item-icon-left .distance, #shop-order .item-icon-left .address {
+  color: #8C8C8C; }
 
 #new-order .schedule {
   border-radius: 50px;
