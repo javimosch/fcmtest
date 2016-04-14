@@ -21,7 +21,7 @@
           <span class="title">Prix total</span>
         </div>
         <div class="price-box col">
-          <span class="price">{{order.commission | number: 2 || 0}}€</span>
+          <span class="price">{{order.commission + order.shipping_total | number: 2 || 0}}€</span>
           <span class="title">Frais de livraison</span>
         </div>
       </div>
