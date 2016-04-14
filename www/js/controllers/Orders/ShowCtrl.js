@@ -40,4 +40,17 @@ angular.module('shopmycourse.controllers')
       console.log(err);
     });
   };
+
+  $scope.deliveryStarted = function(schedule, date) {
+    if (!schedule || !date)
+      return;
+
+    var hours = schedule.replace('h', '').split('-');
+    var from_ = hours[0];
+    var now = moment()
+    var date = moment(date);
+
+    date.hours(from_);
+    return now.unix() > date.unix();
+  }
 })
