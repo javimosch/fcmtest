@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('DeliveriesListCtrl', function($scope, $ionicLoading, $state, DeliveryStore) {
+.controller('DeliveriesListCtrl', function($scope, $ionicLoading, $state, DeliveryStore, DeliveryStatus) {
 
   $scope.deliveries = [];
   $scope.status = 'pending';
@@ -29,4 +29,6 @@ angular.module('shopmycourse.controllers')
       return false
     }
   };
+
+  $scope.deliveryStatus = DeliveryStatus;
 })
