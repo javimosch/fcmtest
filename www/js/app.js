@@ -31,6 +31,10 @@ angular.module('shopmycourse', [
   $httpProvider.interceptors.push('HTTPInterceptor');
 })
 
+.config(function($ionicConfigProvider) {
+  $ionicConfigProvider.backButton.previousTitleText(false).text(' ');
+})
+
 .config(function(toastrConfig) {
   angular.extend(toastrConfig, {
     maxOpened: 1

@@ -13,7 +13,8 @@
     margin: 20px auto;
     font-weight: bold;
     color: #69a7ff;
-    border: none; }
+    border: none;
+    line-height: 45px; }
   #start .logo {
     width: 50%;
     color: #888888;
@@ -27,6 +28,75 @@
   #home .baseline {
     font-style: italic;
     font-size: 120%; }
+
+ion-header-bar.bar {
+  color: white !important;
+  background-color: #69a7ff; }
+  ion-header-bar.bar.bar-positive {
+    border: none !important;
+    background-image: linear-gradient(0deg, #69a7ff, #69a7ff 50%, transparent 50%); }
+  ion-header-bar.bar i {
+    color: white; }
+
+#signin, #signup {
+  background-color: #69a7ff; }
+  #signin .logo, #signup .logo {
+    width: 30%;
+    color: #888888;
+    vertical-align: middle;
+    border-radius: 50%;
+    margin: 5% auto auto auto;
+    display: block; }
+  #signin .error-message, #signup .error-message {
+    width: 100%;
+    text-align: center; }
+  #signin .button.button-stable, #signup .button.button-stable {
+    border-radius: 30px;
+    width: 70%;
+    margin: 20px auto;
+    font-weight: bold;
+    color: #69a7ff;
+    border: none;
+    line-height: 45px; }
+  #signin .forgot-pwd, #signup .forgot-pwd {
+    width: 100%;
+    text-align: center;
+    text-decoration: underline;
+    color: white;
+    display: inline-block; }
+  #signin .cgu, #signup .cgu {
+    width: 100%;
+    text-align: center;
+    color: white;
+    display: inline-block; }
+    #signin .cgu a, #signup .cgu a {
+      color: white;
+      text-decoration: underline; }
+  #signin .item, #signup .item {
+    border: none;
+    padding: 6px 16px 5px 16px; }
+    #signin .item input, #signup .item input {
+      border-bottom: 2px solid white;
+      padding: 0px; }
+    #signin .item input, #signin .item label, #signin .item .input-label, #signup .item input, #signup .item label, #signup .item .input-label {
+      color: white;
+      text-align: center; }
+    #signin .item .input-label, #signup .item .input-label {
+      width: 100%;
+      max-width: none;
+      text-align: center; }
+    #signin .item ::-webkit-input-placeholder, #signup .item ::-webkit-input-placeholder {
+      /* Chrome/Opera/Safari */
+      color: white; }
+    #signin .item ::-moz-placeholder, #signup .item ::-moz-placeholder {
+      /* Firefox 19+ */
+      color: white; }
+    #signin .item :-ms-input-placeholder, #signup .item :-ms-input-placeholder {
+      /* IE 10+ */
+      color: white; }
+    #signin .item :-moz-placeholder, #signup .item :-moz-placeholder {
+      /* Firefox 18- */
+      color: white; }
 
 #profile #profile-header {
   text-align: center; }

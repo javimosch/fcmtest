@@ -1,26 +1,30 @@
-<ion-view id="signin" title="Connexion">
-    <ion-content overflow-scroll="true" padding="true" scroll="false" class="has-header">
-        <form class="list" name="signin">
-            <ion-list>
-              <!-- Email -->
-              <label class="item item-input">
-                  <span class="input-label">Email</span>
-                  <input type="email" name="email" ng-model="user.email" placeholder="Saisissez votre email" ng-pattern="validation.email.pattern" required="required">
-              </label>
-              <div class="error-message" ng-show="signin.email.$error.pattern">
-                <span><i class="icon ion-close-circled"></i> {{validation.email.message}}</span>
-              </div>
-              <!-- Mot de passe -->
-              <label class="item item-input">
-                  <span class="input-label">Mot de passe</span>
-                  <input type="password" name="password" ng-model="user.password" placeholder="Saisissez votre mot de passe" ng-pattern="validation.password.pattern" required="required">
-              </label>
-              <div class="error-message" ng-show="signin.password.$error.pattern">
-                <span><i class="icon ion-close-circled"></i> {{validation.password.message}}</span>
-              </div>
-            </ion-list>
-        </form>
-        <a ng-click="signIn()" class="button button-stable button-block" ng-disabled="signin.$invalid">Connexion</a>
-        <a ng-click="forgotPassword()" class="button button-light button-block ">Mot de passe oublié ?</a>
-    </ion-content>
+<ion-view id="signin">
+  <ion-nav-bar align-title="center" class="bar-positive">
+    <ion-nav-back-button></ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content overflow-scroll="true" padding="true" scroll="false" class="has-header">
+    <img src="img/logo.png" class="logo"></i>
+    <form class="list" name="signin">
+      <ion-list>
+        <!-- Email -->
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Email</span>
+          <input type="email" name="email" ng-model="user.email" placeholder="Email" ng-pattern="validation.email.pattern" required="required" autocomplete="off">
+        </label>
+        <div class="error-message" ng-show="signin.email.$error.pattern">
+          <span><i class="icon ion-close-circled"></i> {{validation.email.message}}</span>
+        </div>
+        <!-- Mot de passe -->
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Mot de passe</span>
+          <input type="password" name="password" ng-model="user.password" placeholder="Mot de passe" ng-pattern="validation.password.pattern" required="required" autocomplete="off">
+        </label>
+        <div class="error-message" ng-show="signin.password.$error.pattern">
+          <span><i class="icon ion-close-circled"></i> {{validation.password.message}}</span>
+        </div>
+      </ion-list>
+    </form>
+    <a ng-click="signIn()" class="button button-stable button-block" ng-disabled="signin.$invalid">Connexion</a>
+    <a ng-click="forgotPassword()" class="forgot-pwd">Mot de passe oublié ?</a>
+  </ion-content>
 </ion-view>
