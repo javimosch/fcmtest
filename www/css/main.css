@@ -7,14 +7,6 @@
     position: absolute;
     bottom: 10%;
     width: 100%; }
-  #start .button {
-    border-radius: 30px;
-    width: 70%;
-    margin: 20px auto;
-    font-weight: bold;
-    color: #69a7ff;
-    border: none;
-    line-height: 45px; }
   #start .logo {
     width: 50%;
     color: #888888;
@@ -45,18 +37,6 @@
   font-weight: bold;
   color: #69a7ff; }
 
-#home .button {
-  border-radius: 30px;
-  width: 70%;
-  margin: 20px auto;
-  font-weight: bold;
-  background-color: #69a7ff;
-  color: white !important;
-  border: none;
-  line-height: 45px; }
-  #home .button span {
-    color: white !important; }
-
 .button.icon-right {
   font-family: 'Helvetica Neue', Roboto, 'Segoe UI', sans-serif !important; }
 
@@ -65,9 +45,36 @@ ion-header-bar, ion-nav-bar {
   background-color: transparent; }
   ion-header-bar.bar-positive, ion-nav-bar.bar-positive {
     border: none !important;
-    background-image: linear-gradient(0deg, #69a7ff, #69a7ff 50%, transparent 50%) !important; }
+    background-color: #8EBAFF !important;
+    text-align: center; }
   ion-header-bar i, ion-nav-bar i {
     color: white; }
+  ion-header-bar span, ion-nav-bar span {
+    text-align: center !important; }
+
+.button:not(.button-icon):not(.back-button) {
+  border-radius: 30px;
+  width: 90%;
+  margin: 20px auto;
+  font-weight: bold;
+  border: none;
+  line-height: 40px !important; }
+  .button:not(.button-icon):not(.back-button).button-stable {
+    color: #69a7ff;
+    background-color: #fff; }
+    .button:not(.button-icon):not(.back-button).button-stable.bordered {
+      border: 1px solid #69a7ff; }
+  .button:not(.button-icon):not(.back-button).button-positive {
+    color: #fff;
+    background-color: #69a7ff; }
+    .button:not(.button-icon):not(.back-button).button-positive.bordered {
+      border: 1px solid #fff; }
+
+#home .logo-centered {
+  width: 80%;
+  margin: auto; }
+  #home .logo-centered img {
+    width: 100%; }
 
 #signin, #signup {
   background-color: #69a7ff; }
@@ -81,14 +88,6 @@ ion-header-bar, ion-nav-bar {
   #signin .error-message, #signup .error-message {
     width: 100%;
     text-align: center; }
-  #signin .button.button-stable, #signup .button.button-stable {
-    border-radius: 30px;
-    width: 70%;
-    margin: 20px auto;
-    font-weight: bold;
-    color: #69a7ff;
-    border: none;
-    line-height: 45px; }
   #signin .forgot-pwd, #signup .forgot-pwd {
     width: 100%;
     text-align: center;
@@ -154,6 +153,10 @@ ion-header-bar, ion-nav-bar {
 #edit-profile .avatar-item {
   text-align: center; }
 
+#edit-creditcard .title {
+  color: #69a7ff;
+  font-size: 1.2em; }
+
 #deliveries-end {
   text-align: center;
   background-color: #69a7ff; }
@@ -168,21 +171,28 @@ ion-header-bar, ion-nav-bar {
     padding-top: 12px;
     font-weight: bold; }
   #deliveries-end .button.button-stable {
-    border-radius: 30px;
-    width: 70%;
-    margin: 20px auto;
-    font-weight: bold;
-    color: #69a7ff;
-    background-color: #fff;
-    border: none;
-    line-height: 45px;
     margin-top: 30%; }
 
 #notifications {
   text-align: center; }
+  #notifications .secondary {
+    border-bottom: none; }
+  #notifications .item-icon-left {
+    padding-top: 25px;
+    padding-bottom: 25px; }
+    #notifications .item-icon-left .ion-android-notifications-none {
+      color: #FDCC5A;
+      font-size: 3em; }
   #notifications .shop {
     font-weight: bold;
-    font-size: 120%; }
+    font-size: 120%;
+    color: #69a7ff;
+    margin: 25px 0 28px 0; }
+  #notifications .stars {
+    font-size: 2em;
+    margin-top: 5px; }
+  #notifications .ion-ios-calendar-outline, #notifications .ion-ios-location, #notifications .ion-ios-person {
+    color: #8EBAFF; }
 
 #deliveries-schedule .col-schedule, #new-order .col-schedule {
   width: 30%;
@@ -216,16 +226,6 @@ ion-header-bar, ion-nav-bar {
   #deliveries-schedule .schedule .item-divider:first-letter, #new-order .schedule .item-divider:first-letter {
     text-transform: uppercase; }
 
-#deliveries-schedule .button.button-stable, #new-order .button.button-stable {
-  border-radius: 30px;
-  width: 70%;
-  margin: 20px auto;
-  font-weight: bold;
-  background-color: #69a7ff;
-  color: #fff;
-  border: none;
-  line-height: 45px; }
-
 #new-deliveries .info, #shop-order .info {
   color: #ABABAB;
   text-align: center; }
@@ -240,15 +240,6 @@ ion-header-bar, ion-nav-bar {
 
 #new-deliveries .item-icon-left .distance, #new-deliveries .item-icon-left .address, #shop-order .item-icon-left .distance, #shop-order .item-icon-left .address {
   color: #8C8C8C; }
-
-#new-order .schedule {
-  border-radius: 50px;
-  border: 1px solid #444;
-  margin: 3px;
-  text-align: center; }
-  #new-order .schedule.selected {
-    background-color: #444;
-    color: #f8f8f8; }
 
 #delivery #delivery-header, #order #delivery-header {
   text-align: center; }
@@ -272,28 +263,68 @@ ion-header-bar, ion-nav-bar {
       font-weight: bold;
       font-size: 120%; }
 
+#address-modal {
+  background-color: #69a7ff; }
+  #address-modal form {
+    background-color: #69a7ff; }
+  #address-modal .item {
+    border: none;
+    padding: 6px 16px 5px 16px; }
+    #address-modal .item input {
+      border-bottom: 2px solid white;
+      padding: 0px; }
+    #address-modal .item input, #address-modal .item label, #address-modal .item .input-label {
+      color: white;
+      text-align: center; }
+    #address-modal .item .input-label {
+      width: 100%;
+      max-width: none;
+      text-align: center; }
+    #address-modal .item ::-webkit-input-placeholder {
+      /* Chrome/Opera/Safari */
+      color: white; }
+    #address-modal .item ::-moz-placeholder {
+      /* Firefox 19+ */
+      color: white; }
+    #address-modal .item :-ms-input-placeholder {
+      /* IE 10+ */
+      color: white; }
+    #address-modal .item :-moz-placeholder {
+      /* Firefox 18- */
+      color: white; }
+
+.ion-ios-star {
+  color: #FDCC5A; }
+
+.ion-ios-star-outline {
+  color: #ABABAB; }
+
 #finish-order-modal, #finish-delivery-modal {
   text-align: center; }
   #finish-order-modal .detail, #finish-delivery-modal .detail {
-    margin: 20px 10px; }
+    margin: 20px 10px;
+    color: #ABABAB; }
   #finish-order-modal input, #finish-delivery-modal input {
     border: 1px solid #444;
     margin: auto;
     margin-top: 20px; }
   #finish-order-modal hr, #finish-delivery-modal hr {
-    margin: 10px 40%; }
-  #finish-order-modal .delivery, #finish-delivery-modal .delivery {
-    font-weight: bold; }
+    margin: 40px 40%; }
+  #finish-order-modal .delivery, #finish-order-modal .delivery i, #finish-delivery-modal .delivery, #finish-delivery-modal .delivery i {
+    font-weight: bold;
+    color: #69a7ff !important;
+    font-size: 1.2em; }
   #finish-order-modal .instructions, #finish-delivery-modal .instructions {
     margin: 10px 0px; }
   #finish-order-modal .stars, #finish-delivery-modal .stars {
     font-size: 300%;
-    margin: 40px 0px; }
+    margin: 20px 0px; }
   #finish-order-modal ion-slide-page, #finish-delivery-modal ion-slide-page {
     width: 100%; }
   #finish-order-modal .title, #finish-delivery-modal .title {
     font-weight: bold;
-    font-size: 120%; }
+    font-size: 120%;
+    color: #69a7ff; }
   #finish-order-modal .code, #finish-delivery-modal .code {
     margin: 10px;
     padding: 5px;

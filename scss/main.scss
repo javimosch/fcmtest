@@ -76,11 +76,11 @@ ion-header-bar, ion-nav-bar {
 
 .button:not(.button-icon):not(.back-button) {
   border-radius: 30px;
-  width: 70%;
+  width: 90%;
   margin: 20px auto;
   font-weight: bold;
   border: none;
-  line-height: 45px !important;
+  line-height: 40px !important;
 
   &.button-stable {
     color: $positive;
@@ -100,6 +100,16 @@ ion-header-bar, ion-nav-bar {
   }
 }
 
+#home {
+  .logo-centered {
+    width: 80%;
+    margin: auto;
+
+    img {
+      width: 100%;
+    }
+  }
+}
 
 #signin, #signup {
   background-color: $positive;
