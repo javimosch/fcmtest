@@ -1,13 +1,13 @@
 <ion-view id="edit-profile" title="Édition du profil">
-    <ion-content overflow-scroll="true" padding="false" class="has-header">
+    <ion-content overflow-scroll="true" padding="true" class="has-header default-form">
       <form class="list" name="edit">
           <ion-list>
-            <!-- Avatar -->
-              <div class="item avatar-item">
-                <img ng-src="{{avatar}}" alt="User avatar" class="avatar">
+              <!-- Avatar -->
+              <div class="item avatar-item" id="profile-header">
+                  <i class="profil-pic icon-smc-profile" style="font-size:700%;"></i>
               </div>
               <!-- Nom -->
-              <label class="item item-input">
+              <label class="item item-input item-stacked-label">
                   <span class="input-label">Nom</span>
                   <input type="text" name="lastname" ng-model="user.lastname" placeholder="Saisissez votre nom" ng-pattern="validation.name.pattern" required="required">
               </label>
@@ -15,7 +15,7 @@
                 <span><i class="icon ion-close-circled"></i> {{validation.name.message}}</span>
               </div>
               <!-- Prénom -->
-              <label class="item item-input">
+              <label class="item item-input item-stacked-label">
                   <span class="input-label">Prénom</span>
                   <input type="text" name="firstname" ng-model="user.firstname" placeholder="Saisissez votre prénom" ng-pattern="validation.name.pattern" required="required">
               </label>
@@ -23,7 +23,7 @@
                 <span><i class="icon ion-close-circled"></i> {{validation.name.message}}</span>
               </div>
               <!-- Email -->
-              <label class="item item-input">
+              <label class="item item-input item-stacked-label">
                   <span class="input-label">Email</span>
                   <input type="email" name="email" ng-model="user.email" placeholder="Saisissez votre email" ng-pattern="validation.email.pattern" required="required">
               </label>
@@ -31,24 +31,23 @@
                 <span><i class="icon ion-close-circled"></i> {{validation.email.message}}</span>
               </div>
               <!-- Mot de passe -->
-              <label class="item item-input">
+              <label class="item item-input item-stacked-label">
                   <span class="input-label">Mot de passe</span>
-                  <input type="password" name="password" ng-model="user.password" placeholder="Saisissez votre mot de passe" ng-pattern="validation.password.pattern" required="required">
+                  <input type="password" name="password" ng-model="user.password" placeholder="Saisissez votre mot de passe" ng-pattern="validation.password.pattern">
               </label>
               <div class="error-message" ng-show="edit.password.$error.pattern">
                 <span><i class="icon ion-close-circled"></i> {{validation.password.message}}</span>
               </div>
               <!-- N° de téléphone -->
-              <label class="item item-input">
+              <label class="item item-input item-stacked-label">
                   <span class="input-label">N° de mobile</span>
                   <input type="tel" name="phone" ng-model="user.phone" placeholder="Saisissez votre téléphone" ng-pattern="validation.phone.pattern" required="required">
               </label>
               <div class="error-message" ng-show="edit.phone.$error.pattern">
                 <span><i class="icon ion-close-circled"></i> {{validation.phone.message}}</span>
               </div>
-              <ion-toggle ng-model="user.share_phone" ng-change="togglePhone()" toggle-class="toggle-positive">Partager mon numéro de téléphone</ion-toggle>
           </ion-list>
       </form>
-      <a ng-click="endEdit()" class="button button-stable button-block" ng-disabled="edit.$invalid">Sauvegarder</a>
+      <button ng-click="endEdit()" class="button button-positive button-block" ng-disabled="edit.$invalid">Sauvegarder</a>
     </ion-content>
 </ion-view>

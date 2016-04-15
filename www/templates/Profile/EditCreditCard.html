@@ -4,7 +4,7 @@
           <i class="icon ion-edit"></i>
       </button>
     </ion-nav-buttons>
-    <ion-content overflow-scroll="true" padding="false" class="has-header">
+    <ion-content overflow-scroll="true" padding="true" class="has-header default-form">
       <div class="list">
         <div class="item">
           <p class="title">Veuillez renseigner vos coordonnées bancaires</p>
@@ -47,8 +47,16 @@
 
 
           <label class="item item-input item-stacked-label">
-            <span class="input-label">CVC/CVV</span>
-            <input type="text" name="cvv" placeholder="CVC/CVV" ng-model="card.cvv" required ng-pattern="validation.cvv.pattern">
+            <div class="row">
+              <div class="col-50">
+                <span class="input-label">CVC/CVV</span>
+                <input type="text" name="cvv" placeholder="CVC/CVV" ng-model="card.cvv" required ng-pattern="validation.cvv.pattern">
+              </div>
+              <div class="col-50">
+                <span class="info">3 chiffres au dos de votre carte</span>
+              </div>
+            </div>
+
           </label>
           <div class="error-message" ng-show="cardForm.cvv.$error.pattern">
             <span><i class="icon ion-close-circled"></i> {{validation.cvv.message}}</span>

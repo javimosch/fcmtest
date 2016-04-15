@@ -6,14 +6,14 @@
     <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">
     <title>Shop My Course</title>
 
+    <!-- Lib:CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="lib/angular-toastr/dist/angular-toastr.css" rel="stylesheet">
 
     <!-- compiled css output -->
     <link href="css/ionic.app.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
 
-    <!-- Lib:CSS -->
-    <link href="css/style.css" rel="stylesheet">
-    <link href="lib/angular-toastr/dist/angular-toastr.css" rel="stylesheet">
     <!-- Lib:JS -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script src="lib/ionic/js/angular/angular-resource.js"></script>
@@ -103,14 +103,10 @@
     -->
 
   </head>
-  <body ng-app="shopmycourse" animation="slide-left-right-ios7">
-    <div>
-      <div>
-          <ion-nav-bar class="bar-positive">
-              <ion-nav-back-button></ion-nav-back-button>
-          </ion-nav-bar>
-          <ion-nav-view></ion-nav-view>
-        </div>
-    </div>
+  <body ng-app="shopmycourse" animation="slide-left-right-ios7" ng-controller="AppCtrl" class="{{state}}">
+    <ion-nav-bar class="bar-positive">
+        <ion-nav-back-button></ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-nav-view></ion-nav-view>
   </body>
 </html>
