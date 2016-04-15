@@ -6,20 +6,13 @@
 
 #start {
   background-color: $positive;
+
   .buttons-block {
     position: absolute;
     bottom: 10%;
     width: 100%;
   }
-  .button {
-    border-radius: 30px;
-    width: 70%;
-    margin: 20px auto;
-    font-weight: bold;
-    color: $positive;
-    border: none;
-    line-height: 45px;
-  }
+
   .logo {
     width: 50%;
     color: rgb(136, 136, 136);
@@ -59,21 +52,6 @@
     color: $positive;
   }
 }
-#home {
-  .button {
-    border-radius: 30px;
-    width: 70%;
-    margin: 20px auto;
-    font-weight: bold;
-    background-color: $positive;
-    color: white !important;
-    span {
-      color: white !important;
-    }
-    border: none;
-    line-height: 45px;
-  }
-}
 
 .button.icon-right {
   font-family: 'Helvetica Neue', Roboto, 'Segoe UI', sans-serif !important;
@@ -96,6 +74,24 @@ ion-header-bar, ion-nav-bar {
   }
 }
 
+.button {
+  border-radius: 30px;
+  width: 70%;
+  margin: 20px auto;
+  font-weight: bold;
+  border: none;
+  line-height: 45px !important;
+
+  &.button-stable {
+    color: $positive;
+    background-color: $light;
+  }
+  &.button-positive {
+    color: $light;
+    background-color: $positive;
+  }
+}
+
 #signin, #signup {
   background-color: $positive;
 
@@ -111,15 +107,7 @@ ion-header-bar, ion-nav-bar {
     width: 100%;
     text-align: center;
   }
-  .button.button-stable {
-    border-radius: 30px;
-    width: 70%;
-    margin: 20px auto;
-    font-weight: bold;
-    color: $positive;
-    border: none;
-    line-height: 45px;
-  }
+
   .forgot-pwd {
     width: 100%;
     text-align: center;
@@ -232,14 +220,6 @@ ion-header-bar, ion-nav-bar {
   }
 
   .button.button-stable {
-    border-radius: 30px;
-    width: 70%;
-    margin: 20px auto;
-    font-weight: bold;
-    color: $positive;
-    background-color: $light;
-    border: none;
-    line-height: 45px;
     margin-top: 30%;
   }
 }
@@ -275,29 +255,6 @@ ion-header-bar, ion-nav-bar {
 
   .ion-ios-calendar-outline, .ion-ios-location, .ion-ios-person {
     color: $positive-light;
-  }
-
-  .button.button-stable.accept {
-    border-radius: 30px;
-    width: 70%;
-    margin: 20px auto;
-    font-weight: bold;
-    background-color: $positive;
-    color: $light;
-    border: none;
-    line-height: 45px;
-  }
-
-  .button.button-stable.decline {
-    border-radius: 30px;
-    border: 1px solid $positive !important;
-    width: 70%;
-    margin: 20px auto;
-    font-weight: bold;
-    background-color: $light;
-    color: $positive;
-    border: none;
-    line-height: 45px;
   }
 }
 
@@ -342,17 +299,6 @@ ion-header-bar, ion-nav-bar {
     .item-divider:first-letter {
       text-transform: uppercase;
     }
-  }
-
-  .button.button-stable {
-    border-radius: 30px;
-    width: 70%;
-    margin: 20px auto;
-    font-weight: bold;
-    background-color: $positive;
-    color: $light;
-    border: none;
-    line-height: 45px;
   }
 }
 
@@ -447,18 +393,6 @@ ion-header-bar, ion-nav-bar {
     :-moz-placeholder { /* Firefox 18- */
       color: white;
     }
-  }
-
-  .button.button-stable {
-    border-radius: 30px;
-    width: 70%;
-    margin: 20px auto;
-    font-weight: bold;
-    color: $positive;
-    background-color: $light;
-    border: none;
-    line-height: 45px;
-    margin-top: 30%;
   }
 }
 
