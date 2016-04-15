@@ -289,35 +289,40 @@ ion-header-bar, ion-nav-bar {
 }
 
 #deliveries, #orders {
-  .color-status {
-    position: absolute;
-    left: 0;
-    padding-left: 3px;
+  .item-content {
+    padding-left: 85px;
 
-    .icon {
-      height: auto;
-      border: 1px solid;
-      border-radius: 100px;
-      padding: 7px;
+    .color-status {
+      position: absolute;
+      left: 0;
+      margin-left: 15px;
+
+      .icon {
+        height: auto;
+        border: 1px solid;
+        border-radius: 100px;
+        padding: 7px;
+      }
+    }
+
+    i {
+      color: $positive;
+    }
+
+    .recipient {
+      color: $grey;
+      font-weight: bold;
+    }
+
+    .shop, .schedule {
+      color: $grey;
+    }
+
+    .ion-chevron-right {
+      font-size: 1em;
     }
   }
 
-  i {
-    color: $positive;
-  }
-
-  .recipient {
-    color: $grey;
-    font-weight: bold;
-  }
-
-  .shop, .schedule {
-    color: $grey;
-  }
-
-  .ion-chevron-right {
-    font-size: 1em;
-  }
 }
 
 #deliveries-schedule, #new-order {
