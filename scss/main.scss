@@ -23,10 +23,21 @@
   }
 }
 
+.item-avatar .profil-pic {
+    position: absolute;
+    top: 15px;
+    left: 25%;
+    font-size: 36px;
+    max-width: 40px;
+    max-height: 40px;
+    width: 100%;
+    border-radius: 4px; }
+
+.profil-pic {
+  color: $positive;
+}
+
 #profile {
-  .profil-pic {
-    color: $positive;
-  }
   .name {
     color: $positive;
   }
@@ -397,6 +408,43 @@ ion-header-bar, ion-nav-bar {
   }
 }
 
+#deliveries, #orders {
+  .item-content {
+    padding-left: 85px;
+
+    .color-status {
+      position: absolute;
+      left: 0;
+      margin-left: 15px;
+
+      .icon {
+        height: auto;
+        border: 1px solid;
+        border-radius: 100px;
+        padding: 7px;
+      }
+    }
+
+    i {
+      color: $positive;
+    }
+
+    .recipient {
+      color: $grey;
+      font-weight: bold;
+    }
+
+    .shop, .schedule {
+      color: $grey;
+    }
+
+    .ion-chevron-right {
+      font-size: 1em;
+    }
+  }
+
+}
+
 #deliveries-schedule, #new-order {
   .col-schedule  {
     width: 30%;
@@ -511,10 +559,16 @@ ion-header-bar, ion-nav-bar {
     .name {
       font-weight: bold;
       font-size: 120%;
+      color: $positive;
     }
     .address {
       padding: 10px 0px;
       overflow: hidden;
+      font-size: 1.1em;
+
+      i {
+        color: $assertive;
+      }
     }
     .actions {
       .button {
@@ -526,6 +580,12 @@ ion-header-bar, ion-nav-bar {
     text-align: center;
     &.row {
       padding: 0px;
+    }
+  }
+
+  .list {
+    .title {
+      text-align: center;
     }
   }
 }
@@ -684,7 +744,7 @@ ion-header-bar, ion-nav-bar {
       margin: auto;
       color: $light;
       font-size: 1.2em;
-      padding: 20px;
+      padding: 10px;
     }
   }
 }
@@ -707,6 +767,10 @@ ion-header-bar, ion-nav-bar {
     height: 80px;
     max-width: 80px;
     float: left;
+  }
+
+  .cart-down {
+    color: $energized;
   }
 }
 

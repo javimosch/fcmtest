@@ -3,11 +3,11 @@ angular.module('shopmycourse.services')
 .factory('DeliveryStatus', function () {
   return {
     accepted: {
-      color: "yellow",
+      color: "#ffc900", //energized
       icon: "icon-smc-cart"
     },
     completed: {
-      color: "yellow",
+      color: "#ffc900", //energized
       icon: "icon-smc-cart-down"
     },
     done: {

@@ -9,13 +9,13 @@ angular.module('shopmycourse.controllers')
 				n.meta = JSON.parse(n.meta);
 				switch (n.mode) {
 					case 'delivery_request':
-						n.meta.buyer.average_rating = n.meta.buyer.average_rating || 0;
+						n.meta.buyer.rating_average = n.meta.buyer.rating_average || 0;
 						break;
 					case 'accepted_delivery':
-						n.meta.deliveryman.average_rating = n.meta.deliveryman.average_rating || 0;
+						n.meta.deliveryman.rating_average = n.meta.deliveryman.rating_average || 0;
 						break;
 					case 'cart_filled':
-						n.meta.buyer.average_rating = n.meta.buyer.average_rating || 0;
+						n.meta.buyer.rating_average = n.meta.buyer.rating_average || 0;
 						break;
 				}
 				return n;
@@ -28,19 +28,27 @@ angular.module('shopmycourse.controllers')
 		});
 	});
 
+	function removeNotification(id) {
+		var notifications = $scope.notifications;
+		$scope.notifications = [];
+		for (var i = 0; i < notifications.length; i++) {
+			if(notifications[i].id !== id) {
+				$scope.notifications.push(notifications[i]);
+			}
+		}
+
+		if ($scope.notifications.length === 0) {
+			$scope.closeNotificationsModal();
+		}
+	}
+
 	$scope.acceptDelivery = function (notification) {
 		$ionicLoading.show({
 			template: 'Nous envoyons votre réponse...'
 		});
 		NotificationAPI.update({idNotification: notification.id, read: true}, function () {
 			DeliveryAPI.create({availability_id: notification.meta.availability.id, delivery_request_id: notification.meta.delivery_request.id, status: 'accepted'}, function (delivery) {
-				var notifications = $scope.notifications;
-				$scope.notifications = [];
-				for (var i = 0; i < notifications.length; i++) {
-					if(notifications[i].id !== notification.id) {
-						$scope.notifications.push(notification);
-					}
-				}
+				removeNotification(notification.id);
 
 				$ionicLoading.hide();
 				var alertPopup = $ionicPopup.alert({
@@ -68,16 +76,7 @@ angular.module('shopmycourse.controllers')
 			template: 'Nous envoyons votre réponse...'
 		});
 		NotificationAPI.update({idNotification: notification.id, read: true}, function () {
-			var notifications = $scope.notifications;
-			$scope.notifications = [];
-			for (var i = 0; i < notifications.length; i++) {
-				if(notifications[i].id !== notification.id) {
-					$scope.notifications.push(notification);
-				}
-			}
-			if ($scope.notifications.length === 0) {
-				$scope.closeNotificationsModal();
-			}
+			removeNotification(notification.id);
 			$ionicLoading.hide();
 		}, function (err) {
 			console.error(err);
