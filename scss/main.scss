@@ -624,7 +624,7 @@ ion-header-bar, ion-nav-bar {
       margin: auto;
       color: $light;
       font-size: 1.2em;
-      padding: 20px;
+      padding: 10px;
     }
   }
 }
@@ -647,6 +647,10 @@ ion-header-bar, ion-nav-bar {
     height: 80px;
     max-width: 80px;
     float: left;
+  }
+
+  .cart-down {
+    color: $energized;
   }
 }
 
