@@ -304,15 +304,15 @@ ion-header-bar, ion-nav-bar {
   color: #ABABAB;
   text-align: center; }
 
-#new-deliveries .item-icon-left .ion-chevron-right, #shop-order .item-icon-left .ion-chevron-right {
+#new-deliveries .item-icon-right .ion-chevron-right, #shop-order .item-icon-right .ion-chevron-right {
   color: #69a7ff;
   font-size: 1.2em; }
 
-#new-deliveries .item-icon-left .title, #shop-order .item-icon-left .title {
+#new-deliveries .item-icon-right .title, #shop-order .item-icon-right .title {
   color: #8C8C8C;
   font-weight: bold; }
 
-#new-deliveries .item-icon-left .distance, #new-deliveries .item-icon-left .address, #shop-order .item-icon-left .distance, #shop-order .item-icon-left .address {
+#new-deliveries .item-icon-right .distance, #new-deliveries .item-icon-right .address, #shop-order .item-icon-right .distance, #shop-order .item-icon-right .address {
   color: #8C8C8C; }
 
 .price-box.total {
