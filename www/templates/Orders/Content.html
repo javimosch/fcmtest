@@ -1,22 +1,25 @@
 <ion-view id="order-content" title="Liste de course">
     <ion-nav-buttons side="right">
-      <button class="button button-clear button-icon ion-ios-cart-outline" ng-click="openCartModal()"></button>
+      <button class="button button-clear button-icon icon-smc-cart" ng-click="openCartModal()"></button>
       <span class="badge badge-positive">{{currentCartObject.quantity()}}</span>
     </ion-nav-buttons>
     <ion-content overflow-scroll="true" padding="false" class="has-header">
       <ion-list>
-          <div class="item item-divider">
+          <div class="item item-divider search">
             <label class="item item-input">
-              <i class="icon ion-search placeholder-icon"></i>
+              <i class="icon icon-smc-wen placeholder-icon"></i>
               <input type="text" ng-model="query" placeholder="Rechercher un produit" ng-change="search(query)">
             </label>
+          </div>
+          <div class="row results-title">
+            <p>Résultats de la recherche</p>
           </div>
           <ion-item class="item item-icon-right product" ng-repeat="product in products" ng-if="product.price">
               <img ng-src="{{product.image_url}}" alt="{{product.name}}">
               <div class="name">{{product.name}}</div>
               <div class="detail">{{product.package_content}}</div>
               <div class="price">{{product.price}}€</div>
-              <i class="icon ion-ios-cart-outline" ng-click="addProduct(product)"></i>
+              <i class="icon icon-smc-cart-down" ng-click="addProduct(product)"></i>
           </ion-item>
       </ion-list>
     </ion-content>
