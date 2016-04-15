@@ -11,8 +11,7 @@
         </div>
         <span class="code">{{ order.validation_code }}</span>
         <hr/>
-        <span class="delivery"><i class="ion-android-car"></i> John D'eau</span>
-        <div class="instructions">Notez votre livreur</div>
+        <span class="delivery"><i class="ion-android-truck-checked"></i> John D'eau</span>
         <div class="stars">
             <i ng-class="{'ion-ios-star-outline': ratingStar < 1, 'ion-ios-star': ratingStar >= 1}" ng-click="setRatingStar(1)"></i>
             <i ng-class="{'ion-ios-star-outline': ratingStar < 2, 'ion-ios-star': ratingStar >= 2}" ng-click="setRatingStar(2)"></i>
@@ -20,15 +19,16 @@
             <i ng-class="{'ion-ios-star-outline': ratingStar < 4, 'ion-ios-star': ratingStar >= 4}" ng-click="setRatingStar(4)"></i>
             <i ng-class="{'ion-ios-star-outline': ratingStar < 5, 'ion-ios-star': ratingStar >= 5}" ng-click="setRatingStar(5)"></i>
         </div>
-        <button class="button button-stable" ng-click="finalizeDelivery(order)">Valider la livraison</button>
+        <div class="instructions">Notez votre livreur</div>
+        <button class="button button-positive" ng-click="finalizeDelivery(order)">Valider la livraison</button>
       </ion-slide>
       <ion-slide>
-        <div style="line-height: 250px; border: 1px solid rgb(238, 238, 238); border-radius: 3px; text-align: center; background-color: rgb(255, 255, 255);">
-            <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
+        <div style="line-height: 250px; border-radius: 3px; text-align: center; background-color: rgb(255, 255, 255);">
+            <i class="icon ion-image" style="font-size: 64px; color: rgba(136, 136, 136, 0); vertical-align: middle;"></i>
         </div>
         <div class="title">Fin de livraison</div>
         <div class="detail">Merci d'avoir fait vos courses avec Shop My Course</div>
-        <button class="button button-stable" ng-click="closeFinishOrderModal()">Ok</button>
+        <button class="button button-positive" ng-click="closeFinishOrderModal()">Ok</button>
       </ion-slide>
     </ion-slide-box>
   </ion-content>
