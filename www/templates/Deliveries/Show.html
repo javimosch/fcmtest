@@ -7,8 +7,8 @@
         <div class="name">{{delivery.buyer.firstname}} {{delivery.buyer.lastname}}</div>
         <div class="address"><i class="ion-ios-location-outline"></i> {{delivery.address.address}}, {{delivery.address.zip}} {{delivery.address.city}}</div>
         <div class="actions">
-          <button class="button button-stable" ng-click="openFinishDeliveryModal()" ng-if="delivery.status === 'completed'">Finaliser la commande</button>
-          <button class="button button-stable" ng-if="delivery.buyer.share_phone" ng-click="sendSMS()">Contacter par SMS</button>
+          <button class="button button-positive" ng-click="openFinishDeliveryModal()" ng-if="delivery.status === 'completed'">Finaliser la commande</button>
+          <button class="button button-stable bordered" ng-if="delivery.buyer.share_phone" ng-click="sendSMS()">Contacter par SMS</button>
           <div ng-if="!delivery.buyer.share_phone">
             L'acheteur ne souhaite pas être contacté.
           </div>

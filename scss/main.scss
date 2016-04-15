@@ -85,10 +85,18 @@ ion-header-bar, ion-nav-bar {
   &.button-stable {
     color: $positive;
     background-color: $light;
+
+    &.bordered {
+      border: 1px solid $positive;
+    }
   }
   &.button-positive {
     color: $light;
     background-color: $positive;
+
+    &.bordered {
+      border: 1px solid $light;
+    }
   }
 }
 
