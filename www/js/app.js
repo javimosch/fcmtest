@@ -32,7 +32,7 @@ angular.module('shopmycourse', [
 })
 
 .config(function($ionicConfigProvider) {
-  $ionicConfigProvider.backButton.previousTitleText(false).text(' ');
+  $ionicConfigProvider.backButton.previousTitleText(false).text(' ').icon('icon-smc-back');
 })
 
 .config(function(toastrConfig) {
