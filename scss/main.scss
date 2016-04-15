@@ -74,7 +74,7 @@ ion-header-bar, ion-nav-bar {
   }
 }
 
-.button:not(.button-icon) {
+.button:not(.button-icon):not(.back-button) {
   border-radius: 30px;
   width: 70%;
   margin: 20px auto;
