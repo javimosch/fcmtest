@@ -70,10 +70,16 @@ angular.module('shopmycourse.services')
       });
     }
 
+    // Clean the store
+    function cleanStoreAction () {
+      _cache.data = [];
+    }
+
     return {
       get: getStoreAction,
       _customAction: customStoreAction,
-      pull: pullStoreAction
+      pull: pullStoreAction,
+      clean: cleanStoreAction
     };
 
   };

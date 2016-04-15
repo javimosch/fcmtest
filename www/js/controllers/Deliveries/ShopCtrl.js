@@ -16,7 +16,7 @@ angular.module('shopmycourse.controllers')
   $cordovaGeolocation
     .getCurrentPosition(posOptions)
     .then(function (position) {
-      ShopAPI.nearest({lat: position.coords.latitude, lon: position.coords.longitude}, function (shops) {
+      ShopAPI.search({lat: position.coords.latitude, lon: position.coords.longitude}, function (shops) {
         $scope.shops = shops;
         $ionicLoading.hide();
       }, function (err) {
@@ -32,6 +32,19 @@ angular.module('shopmycourse.controllers')
     CurrentAvailability.setShop(shop, function () {
       $state.go('tabs.scheduledelivery');
     });
+  };
+
+  $scope.openMap = function (shop) {
+    var address = shop.address;
+    var url='';
+    if (ionic.Platform.isIOS()) {
+    	url = "http://maps.apple.com/maps?q=" + encodeURIComponent(address);
+    } else if (ionic.Platform.isAndroid()) {
+    	url = "geo:?q=" + encodeURIComponent(address);
+    } else {
+    	url = "http://maps.google.com?q=" + encodeURIComponent(address);
+    }
+    window.open(url, "_system", 'location=no');
   };
 
 })

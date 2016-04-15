@@ -8,17 +8,20 @@
         <div class="address"><i class="ion-ios-location-outline"></i> {{delivery.address.address}}, {{delivery.address.zip}} {{delivery.address.city}}</div>
         <div class="actions">
           <button class="button button-stable" ng-click="openFinishDeliveryModal()" ng-if="delivery.status === 'completed'">Finaliser la commande</button>
-          <button class="button button-stable">Contacter par SMS</button>
+          <button class="button button-stable" ng-if="delivery.buyer.share_phone" ng-click="sendSMS()">Contacter par SMS</button>
+          <div ng-if="!delivery.buyer.share_phone">
+            L'acheteur ne souhaite pas être contacté.
+          </div>
         </div>
       </div>
       <div id="delivery-prices" class="row">
         <div class="price-box col">
-          <span class="price">{{delivery.total || 0}}€</span>
+          <span class="price">{{delivery.total | number: 2 || 0}}€</span>
           <span class="title">Prix total</span>
         </div>
         <div class="price-box col">
-          <span class="price">3.50€</span>
-          <span class="title">Frais de livraison</span>
+          <span class="price">{{delivery.shipping_total | number: 2 || 0}}€</span>
+          <span class="title">Commission</span>
         </div>
       </div>
       <ion-list>
@@ -29,7 +32,7 @@
               <img ng-src="{{delivery_content.product.image_url}}" alt="{{delivery_content.product.name}}">
               <div class="name">{{delivery_content.product.name}}</div>
               <div class="detail">{{delivery_content.product.detail}}</div>
-              <div class="price">{{delivery_content.unit_price*delivery_content.quantity}}€ ({{delivery_content.quantity}})</div>
+              <div class="price">{{delivery_content.unit_price*delivery_content.quantity | number: 2 || 0}}€ ({{delivery_content.quantity}})</div>
           </ion-item>
       </ion-list>
     </ion-content>

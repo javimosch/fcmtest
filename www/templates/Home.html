@@ -1,23 +1,23 @@
 <ion-view id="home" title="Accueil">
   <ion-nav-buttons side="right">
     <button class="button button-clear" ng-click="openNotificationsModal()">
-        <i class="icon ion-android-notifications-none"></i>
+        <i class="icon" ng-class="{'ion-android-notifications-none': !(notifications.length > 0), 'ion-android-notifications': (notifications.length > 0)}"></i>
     </button>
   </ion-nav-buttons>
     <ion-content overflow-scroll="true" padding="true" class="has-header">
         <div style="line-height: 150px; border: 1px solid rgb(238, 238, 238); border-radius: 3px; text-align: center; background-color: rgb(255, 255, 255);">
-            <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
+            <img src="img/logo.png" style="width: 256px; margin-top: 20px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
         </div>
-        <div>
+        <!-- <div>
             <span class="baseline">Vos courses livrées, avec Shop My Courses</p>
-        </div>
-        <button class="button button-stable button-block" ui-sref="tabs.shopdelivery" ng-if="(currentAvailability.length <= 0)">Proposer une disponibilité</button>
+        </div> -->
+        <button class="button button-stable button-block" ui-sref="tabs.shopdelivery" ng-if="(currentAvailability.length <= 0)">Proposer une livraison</button>
         <span ng-if="(currentAvailability.length > 0)">
           Vous avez <span ng-if='currentAvailability.length > 1'>des</span><span ng-if='currentAvailability.length <= 1'>une</span> disponibilité<span ng-if='currentAvailability.length > 1'>s</span> prévue<span ng-if='currentAvailability.length > 1'>s</span> {{date}} dans le
           <span class="shop">{{currentAvailability[0].shop.name}}</span>
         </span>
         <button class="button button-stable button-block" ng-click="cancelAvailability()" ng-if="(currentAvailability.length > 0)">Annuler <span ng-if='currentAvailability.length <= 1'>cette</span><span ng-if='currentAvailability.length > 1'>ces</span> disponibilité<span ng-if='currentAvailability.length > 1'>s</soan></button>
-        <button class="button button-stable button-block" ui-sref="tabs.scheduleorder">Demander une livraison</button>
+        <button class="button button-stable button-block" ui-sref="tabs.scheduleorder">Commander mes courses</button>
     </ion-content>
 </ion-view>
 
@@ -77,7 +77,44 @@
                 </div>
               </div>
             </ion-item>
+
+            <!-- cart_filled -->
+            <ion-item class="secondary" ng-if="notification.mode === 'cart_filled'">
+              <div class="shop">{{notification.meta.shop.name}}</div>
+              <div class="schedule"><i class="ion-ios-calendar-outline"></i> {{notification.meta.schedule.schedule}}</div>
+              <div class="address"><i class="ion-ios-location"></i> {{notification.meta.address.address}}, {{notification.meta.address.city}}</div>
+              <div class="recipient"><i class="ion-ios-person"></i> {{notification.meta.buyer.firstname}} {{notification.meta.buyer.lastname}}</div>
+              <div class="stars">
+                <i ng-class="{'ion-ios-star': notification.meta.buyer.average_rating >= 1, 'ion-ios-star-outline': notification.meta.buyer.average_rating < 1}"></i>
+                <i ng-class="{'ion-ios-star': notification.meta.buyer.average_rating >= 2, 'ion-ios-star-outline': notification.meta.buyer.average_rating < 2}"></i>
+                <i ng-class="{'ion-ios-star': notification.meta.buyer.average_rating >= 3, 'ion-ios-star-outline': notification.meta.buyer.average_rating < 3}"></i>
+                <i ng-class="{'ion-ios-star': notification.meta.buyer.average_rating >= 4, 'ion-ios-star-outline': notification.meta.buyer.average_rating < 4}"></i>
+                <i ng-class="{'ion-ios-star': notification.meta.buyer.average_rating >= 5, 'ion-ios-star-outline': notification.meta.buyer.average_rating < 5}"></i>
+              </div>
+              <div class="response row">
+                <div class="col">
+                  <button class="button button-stable button-block" ng-click="goDelivery(notification)">Consulter la commande</button>
+                </div>
+              </div>
+            </ion-item>
+
+            <!-- outdated_delivery -->
+            <ion-item class="secondary" ng-if="notification.mode === 'outdated_delivery'">
+              <div class="shop">{{notification.meta.shop.name}}</div>
+              <div class="schedule"><i class="ion-ios-calendar-outline"></i> {{notification.meta.schedule.schedule}}</div>
+              <div class="address"><i class="ion-ios-location"></i> {{notification.meta.address.address}}, {{notification.meta.address.city}}</div>
+              <div class="recipient"><i class="ion-ios-person"></i> {{notification.meta.deliveryman.firstname}} {{notification.meta.deliveryman.lastname}}</div>
+              <div class="response row">
+                <div class="col">
+                  <div class="title">{{notification.content}}</div>
+                  <button class="button button-stable button-block" ng-click="declineDelivery(notification)">D'accord</button>
+                </div>
+              </div>
+            </ion-item>
           </div>
+          <ion-item class="secondary" ng-if="notifications.length == 0">
+            Vous n'avez aucune notification
+          </ion-item>
         </ion-list>
     </ion-content>
   </ion-model-view>

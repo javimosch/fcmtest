@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('ProfileSignInCtrl', function($scope, $rootScope, $state, $ionicLoading, Authentication, Validation, CurrentUser, UserAPI) {
+.controller('ProfileSignInCtrl', function($scope, $rootScope, $state, toastr, $ionicLoading, Authentication, Validation, CurrentUser, UserAPI) {
 
   $scope.validation = Validation;
 
@@ -14,26 +14,35 @@ angular.module('shopmycourse.controllers')
   $scope.init();
 
   $scope.signIn = function () {
+    $ionicLoading.show({
+      template: 'Nous vérifions vos identifiants...'
+    });
     Authentication.login($scope.user, function (correct, errorMessage) {
+      $ionicLoading.hide();
+
       if (correct) {
         $scope.init();
         $state.go('tabs.home');
       } else {
+        toastr.warning(errorMessage, 'Authentification');
         console.error('SignIn error : ' + errorMessage);
       }
     });
   };
 
   $scope.forgotPassword = function () {
-    if ($scope.user.email.length <= 0) {
-      console.log('Mot de passe oublié : Veuillez rentrer une adresse email valide');
-      //toastr.info('Veuillez rentrer une adresse email valide', 'Mot de passe oublié');
+    if (!$scope.user.email || $scope.user.email.length <= 0) {
+      toastr.warning('Veuillez rentrer une adresse email valide', 'Mot de passe oublié');
       return;
     }
-    $ionicLoading.show({template: 'Envoi du mot de passe...'});
+    $ionicLoading.show({
+      template: 'Envoi du mot de passe...'
+    });
     UserAPI.forgotPassword({ user: {email: $scope.user.email} }, function (data) {
-      console.log('Mot de passe oublié : Votre mot de passe a été envoyé par email');
-      //toastr.info('Votre mot de passe a été envoyé par email', 'Mot de passe oublié');
+      toastr.info('Votre mot de passe a été envoyé par email', 'Mot de passe oublié');
+      $ionicLoading.hide();
+    }, function (err) {
+      toastr.warning('Cettre adresse email n\'est pas enregistrée', 'Mot de passe oublié');
       $ionicLoading.hide();
     });
   };

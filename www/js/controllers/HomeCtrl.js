@@ -1,6 +1,11 @@
 angular.module('shopmycourse.controllers')
 
-.controller('HomeCtrl', function($scope, $state, $ionicModal, $ionicPopup, CurrentUser, CurrentAvailability, moment, lodash) {
+.controller('HomeCtrl', function($scope, $ionicLoading, $state, $ionicModal, $ionicPopup, CurrentUser, CurrentAvailability, moment, lodash) {
+
+  $ionicLoading.show({
+    template: 'Nous recherchons les dernières informations...'
+  });
+
   $scope.currentAvailability = [];
   CurrentAvailability.load(function(currentAvailability) {
     $scope.currentAvailability = currentAvailability;
@@ -15,6 +20,7 @@ angular.module('shopmycourse.controllers')
       }
     }
     $scope.date = lodash.uniq(dates).join(', ');
+    $ionicLoading.hide();
   });
 
   if (!CurrentUser.isLogged()) {
@@ -47,8 +53,12 @@ angular.module('shopmycourse.controllers')
       if(!res) {
         return;
       }
+      $ionicLoading.show({
+        template: 'Nous annulons votre disponibilité...'
+      });
       CurrentAvailability.cancel(function() {
         $scope.currentAvailability = [];
+        $ionicLoading.hide();
       });
     });
   };
