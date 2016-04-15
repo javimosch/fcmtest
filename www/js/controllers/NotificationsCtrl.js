@@ -14,6 +14,9 @@ angular.module('shopmycourse.controllers')
 					case 'accepted_delivery':
 						n.meta.deliveryman.average_rating = n.meta.deliveryman.average_rating || 0;
 						break;
+					case 'cart_filled':
+						n.meta.buyer.average_rating = n.meta.buyer.average_rating || 0;
+						break;
 				}
 				return n;
 			});
