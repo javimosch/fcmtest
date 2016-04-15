@@ -9,13 +9,13 @@ angular.module('shopmycourse.controllers')
 				n.meta = JSON.parse(n.meta);
 				switch (n.mode) {
 					case 'delivery_request':
-						n.meta.buyer.average_rating = n.meta.buyer.average_rating || 0;
+						n.meta.buyer.rating_average = n.meta.buyer.rating_average || 0;
 						break;
 					case 'accepted_delivery':
-						n.meta.deliveryman.average_rating = n.meta.deliveryman.average_rating || 0;
+						n.meta.deliveryman.rating_average = n.meta.deliveryman.rating_average || 0;
 						break;
 					case 'cart_filled':
-						n.meta.buyer.average_rating = n.meta.buyer.average_rating || 0;
+						n.meta.buyer.rating_average = n.meta.buyer.rating_average || 0;
 						break;
 				}
 				return n;

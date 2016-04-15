@@ -22,10 +22,22 @@
     display: block;
   }
 }
+
+.item-avatar .profil-pic {
+    position: absolute;
+    top: 15px;
+    left: 25%;
+    font-size: 36px;
+    max-width: 40px;
+    max-height: 40px;
+    width: 100%;
+    border-radius: 4px; }
+
+.profil-pic {
+  color: $positive;
+}
+
 #profile {
-  .profil-pic {
-    color: $positive;
-  }
   .name {
     color: $positive;
   }
@@ -390,10 +402,16 @@ ion-header-bar, ion-nav-bar {
     .name {
       font-weight: bold;
       font-size: 120%;
+      color: $positive;
     }
     .address {
       padding: 10px 0px;
       overflow: hidden;
+      font-size: 1.1em;
+
+      i {
+        color: $assertive;
+      }
     }
     .actions {
       .button {
@@ -405,6 +423,12 @@ ion-header-bar, ion-nav-bar {
     text-align: center;
     &.row {
       padding: 0px;
+    }
+  }
+
+  .list {
+    .title {
+      text-align: center;
     }
   }
 }
