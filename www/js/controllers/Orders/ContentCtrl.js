@@ -35,6 +35,7 @@ angular.module('shopmycourse.controllers')
         template: 'Nous recherchons les produits correspondants à votre recherche...'
       });
       ProductAPI.search({q: query, shop_id: $scope.order.shop.id}, function (products) {
+        document.getElementsByClassName('results-title')[0].style.display = 'block';
         $scope.products = products;
         $ionicLoading.hide();
       });

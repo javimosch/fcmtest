@@ -16,11 +16,11 @@
         </div>
       </div>
       <div id="delivery-prices" class="row">
-        <div class="price-box col">
+        <div class="price-box total col">
           <span class="price">{{order.total | number: 2 || 0}}€</span>
           <span class="title">Prix total</span>
         </div>
-        <div class="price-box col">
+        <div class="price-box commission col">
           <span class="price">{{order.commission + order.shipping_total | number: 2 || 0}}€</span>
           <span class="title">Frais de livraison</span>
         </div>

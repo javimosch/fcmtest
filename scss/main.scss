@@ -65,8 +65,8 @@ ion-header-bar, ion-nav-bar {
   }
   color: white !important;
   background-color: transparent;
-  i {
-    color: white;
+  i, button {
+    color: $positive-dark !important;
   }
 
   span {
@@ -74,7 +74,7 @@ ion-header-bar, ion-nav-bar {
   }
 }
 
-.button:not(.button-icon):not(.back-button) {
+.button:not(.button-icon):not(.back-button):not(.quantity):not(.logout):not(.status) {
   border-radius: 30px;
   width: 90%;
   margin: 20px auto;
@@ -354,6 +354,46 @@ ion-header-bar, ion-nav-bar {
   }
 }
 
+.price-box {
+  &.total {
+    background-color: $positive;
+
+    span {
+      color: $light;
+    }
+  }
+
+  &.commission {
+    background-color: $stable;
+
+    span {
+      color: $grey;
+    }
+  }
+
+  .price {
+    display: block;
+    font-weight: bold;
+    font-size: 120%;
+  }
+}
+
+#cart-modal {
+  .bar {
+    display: block;
+    text-align: center;
+    padding: 0;
+  }
+
+  .row {
+    padding: 0;
+  }
+
+  span.quantity {
+    color: $light;
+  }
+}
+
 #delivery, #order {
   #delivery-header {
     text-align: center;
@@ -375,14 +415,6 @@ ion-header-bar, ion-nav-bar {
     text-align: center;
     &.row {
       padding: 0px;
-    }
-    .price-box {
-      border: 1px solid $dark;
-      .price {
-        display: block;
-        font-weight: bold;
-        font-size: 120%;
-      }
     }
   }
 }
@@ -498,6 +530,16 @@ ion-header-bar, ion-nav-bar {
       line-height: normal;
       padding: 0px;
     }
+
+    a {
+      border-color: $gold;
+      color: $positive;
+    }
+
+    span {
+      background-color: $gold;
+      width: 10px;
+    }
   }
   .bar-footer {
     height: 150px;
@@ -507,6 +549,32 @@ ion-header-bar, ion-nav-bar {
 #order-content, #cart-modal, #delivery-prices {
   .item-icon-left {
     padding-left: 80px;
+  }
+
+  .search {
+    background-color: $light;
+
+    label {
+      border: none;
+
+      .icon-smc-wen {
+        color: $positive-dark;
+        font-size: 1.5em;
+      }
+    }
+  }
+
+  .results-title {
+    background-color: $positive-light;
+    text-align: center;
+    display: none;
+
+    p {
+      margin: auto;
+      color: $light;
+      font-size: 1.2em;
+      padding: 20px;
+    }
   }
 }
 
@@ -522,6 +590,7 @@ ion-header-bar, ion-nav-bar {
   .price {
     font-size: 95%;
     font-weight: bold;
+    color: $positive;
   }
   img {
     height: 80px;
