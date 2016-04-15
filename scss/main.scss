@@ -208,6 +208,15 @@ ion-header-bar, ion-nav-bar {
     text-align: center;
   }
 }
+
+
+#edit-creditcard {
+  .title {
+    color: $positive;
+    font-size: 1.2em;
+  }
+}
+
 #deliveries-end {
   text-align: center;
   background-color:$positive;
