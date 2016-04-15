@@ -74,7 +74,7 @@ ion-header-bar, ion-nav-bar {
   }
 }
 
-.button {
+.button:not(.button-icon) {
   border-radius: 30px;
   width: 70%;
   margin: 20px auto;
@@ -91,6 +91,7 @@ ion-header-bar, ion-nav-bar {
     background-color: $positive;
   }
 }
+
 
 #signin, #signup {
   background-color: $positive;
