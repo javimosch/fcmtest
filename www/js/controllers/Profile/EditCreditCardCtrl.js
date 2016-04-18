@@ -48,7 +48,7 @@ angular.module('shopmycourse.controllers')
     }
 
     CardAPI.update({idUser: $scope.user.id, card: card}, function() {
-        $state.go('tabs.home');
+        $state.go('tabs.sendOrder');
         $ionicLoading.hide();
     }, function(err) {
         $ionicLoading.hide();
