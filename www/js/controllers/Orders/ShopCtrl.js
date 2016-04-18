@@ -3,7 +3,6 @@ angular.module('shopmycourse.controllers')
 .controller('OrdersShopCtrl', function($rootScope, $scope, $cordovaGeolocation, toastr, $state, $ionicModal, $ionicLoading, CurrentDelivery, ShopAPI, DeliveryRequestAPI, DeliveryRequestAPI, $timeout) {
   $scope.shops = [];
   $scope.minimumStar = 0;
-  $scope.address = "";
   var timer = null;
 
   var posOptions = {
@@ -40,8 +39,7 @@ angular.module('shopmycourse.controllers')
         lat: $scope.position.coords.latitude,
         lon: $scope.position.coords.longitude,
         stars: $scope.minimumStar,
-        schedule: $rootScope.currentDelivery.schedule,
-        address: $scope.address
+        schedule: $rootScope.currentDelivery.schedule
       }, function(shops) {
         $scope.shops = shops;
         $ionicLoading.hide();
@@ -51,10 +49,10 @@ angular.module('shopmycourse.controllers')
     }, 1300);
   }
 
-  $scope.sendDeliveryRequest = function() {
+  $scope.sendDeliveryRequest = function(shop) {
     var currentDelivery = $rootScope.currentDelivery;
     currentDelivery.buyer_id = $rootScope.currentUser.id;
-
+    currentDelivery.shop_id = shop.id;
 
     $ionicLoading.show({
       template: 'Nous créons votre demande...'
@@ -85,10 +83,5 @@ angular.module('shopmycourse.controllers')
       url = "http://maps.google.com?q=" + encodeURIComponent(address);
     }
     window.open(url, "_system", 'location=no');
-  };
-
-  $scope.search = function(query) {
-    $scope.address = query;
-    refreshShopList();
   };
 })

@@ -21,5 +21,8 @@
         <div class="item" id="profile-creditcard" ui-sref="tabs.editcreditcard">
             <div class="creditcard"><i class="icon-smc-card"></i> {{user.wallet ? user.wallet.credit_card_display : 'Enregistrer ma carte'}} <i class="ion-chevron-right"></i></div>
         </div>
+        <div class="item" id="profile-creditcard" ui-sref="tabs.editcreditcard" ng-if="!user.wallet.credit_card_display">
+            <div class="creditcard"><i class="icon-smc-card"></i> Ajouter une carte <i class="ion-chevron-right"></i></div>
+        </div>
     </ion-content>
 </ion-view>

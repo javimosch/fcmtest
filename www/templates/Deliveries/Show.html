@@ -25,11 +25,11 @@
       </div>
       <div id="delivery-prices" class="row">
         <div class="price-box total col">
-          <span class="price">{{delivery.total | number: 2 || 0}}€</span>
+          <span class="price">{{delivery.total || 0 | number: 2}}€</span>
           <span class="title">Prix total</span>
         </div>
         <div class="price-box commission col">
-          <span class="price">{{delivery.shipping_total | number: 2 || 0}}€</span>
+          <span class="price">{{delivery.shipping_total || 0 | number: 2}}€</span>
           <span class="title">Commission</span>
         </div>
       </div>
@@ -37,7 +37,8 @@
           <div class="item title item-divider item-divider-default">
             Liste des produits
           </div>
-          <ion-item class="item product" ng-repeat="delivery_content in delivery.delivery_contents">
+          <div ng-if="delivery.delivery_contents.length == 0 || delivery.status === 'accepted'" style="text-align: center;">L'acheteur n'a pas encore rempli son panier</div>
+          <ion-item class="item product" ng-repeat="delivery_content in delivery.delivery_contents" ng-if="delivery.status != 'accepted'">
               <img ng-src="{{delivery_content.product.image_url}}" alt="{{delivery_content.product.name}}">
               <div class="name">{{delivery_content.product.name}}</div>
               <div class="detail">{{delivery_content.product.detail}}</div>

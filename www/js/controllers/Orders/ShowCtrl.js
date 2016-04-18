@@ -1,12 +1,18 @@
 angular.module('shopmycourse.controllers')
 
-.controller('OrdersShowCtrl', function($scope, $ionicLoading, $rootScope, $stateParams, CurrentCart, $ionicModal, OrderStore, $interval, $cordovaSms) {
+.controller('OrdersShowCtrl', function($scope, $ionicLoading, $rootScope, $stateParams, CurrentCart, $ionicModal, OrderStore, $interval, $cordovaSms, DeliveryAPI, CurrentUser, $state) {
 
   $scope.order = {};
+  $scope.user = {};
 
   $ionicLoading.show({
     template: 'Nous recherchons votre commande...'
   });
+
+  CurrentUser.get(function(user) {
+    $scope.user = user;
+  })
+
 
   OrderStore.get({id: parseInt($stateParams.idOrder)}, function (err, order) {
     $scope.order = order[0];
@@ -53,5 +59,24 @@ angular.module('shopmycourse.controllers')
 
     date.hours(from_);
     return now.unix() > date.unix();
+  }
+
+  $scope.confirmDelivery = function() {
+    DeliveryAPI.confirm({
+      'idDelivery': $scope.order.id
+    }, function() {
+      OrderStore.pull(function(orders) {
+        if ($scope.user.wallet && $scope.user.wallet.lemonway_card_id) {
+          $state.go('tabs.sendOrder', {
+            idOrder: parseInt($stateParams.idOrder)
+          });
+        } else {
+          $state.go('tabs.orderpayment', {
+            idOrder: parseInt($stateParams.idOrder)
+          });
+        }
+
+      });
+    })
   }
 })
