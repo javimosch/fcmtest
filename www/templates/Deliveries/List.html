@@ -17,7 +17,9 @@
                 <i class="icon ion-chevron-right"></i>
             </ion-item>
             <ion-item class="item" ng-if="(deliveries|filter:byStatus(status)).length === 0">
-              Vous n'avez aucune commande <span ng-if="status === 'pending'">en attente</span><span ng-if="status !== 'pending'">archivée</span>.
+              <p>
+                Vous n'avez aucune commande <span ng-if="status === 'pending'">en attente</span><span ng-if="status !== 'pending'">archivée</span>.
+              </p>
             </ion-item>
         </ion-list>
     </ion-content>

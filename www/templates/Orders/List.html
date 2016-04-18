@@ -7,17 +7,19 @@
         </div>
       </div>
         <ion-list class="content has-header">
-            <ion-item class="item item-icon-left item-icon-right" ng-repeat="order in orders | filter: byStatus(status)" ui-sref="tabs.order({idOrder: order.id})">
+            <ion-item class="item item-icon-left item-icon-right" ng-repeat="order in orders | filter: byStatus(status)" ui-sref="{{order.deliveryman ? 'tabs.order({idOrder: order.id})' : '#'}}">
                 <div class="color-status">
                   <i class="icon {{ deliveryStatus[order.status].icon }}"></i>
                 </div>
-                <div class="recipient" ng-if="order.deliveryman"><i class="icon-smc-truck-checked"></i> {{order.deliveryman.firstname}} {{order.deliveryman.lastname}}</div>
+                <div class="recipient"><i class="icon-smc-truck-checked"></i> {{order.deliveryman ? order.deliveryman.firstname : 'En attente'}} {{order.deliveryman ? order.deliveryman.lastname : ""}}</div>
                 <div class="shop"><i class="icon-smc-shop"></i> {{order.shop.name}}</div>
                 <div class="schedule"><i class="ion-ios-calendar-outline"></i> {{order.schedule.date | date : 'EEEE' }} {{order.schedule.schedule}}</div>
                 <i class="icon ion-chevron-right"></i>
             </ion-item>
             <ion-item class="item" ng-if="(orders|filter:byStatus(status)).length === 0">
-              Vous n'avez aucune commande <span ng-if="status === 'pending'">en attente</span><span ng-if="status !== 'pending'">archivée</span>.
+              <p>
+                Vous n'avez aucune commande <span ng-if="status === 'pending'">en attente</span><span ng-if="status !== 'pending'">archivée</span>.
+              </p>
             </ion-item>
         </ion-list>
     </ion-content>

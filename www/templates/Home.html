@@ -13,8 +13,10 @@
         </div> -->
         <button class="button button-positive button-block icon-right ion-chevron-right" ui-sref="tabs.shopdelivery" ng-if="(currentAvailability.length <= 0)">Proposer une livraison</button>
         <span ng-if="(currentAvailability.length > 0)">
-          Vous avez <span ng-if='currentAvailability.length > 1'>des</span><span ng-if='currentAvailability.length <= 1'>une</span> disponibilité<span ng-if='currentAvailability.length > 1'>s</span> prévue<span ng-if='currentAvailability.length > 1'>s</span> {{date}} dans le
-          <span class="shop">{{currentAvailability[0].shop.name}}</span>
+          <p>
+            Vous avez <span ng-if='currentAvailability.length > 1'>des</span><span ng-if='currentAvailability.length <= 1'>une</span> disponibilité<span ng-if='currentAvailability.length > 1'>s</span> prévue<span ng-if='currentAvailability.length > 1'>s</span> {{date}} dans le
+            <span class="shop">{{currentAvailability[0].shop.name}}</span>
+          </p>
         </span>
         <button class="button button-positive button-block icon-right ion-chevron-right" ng-click="cancelAvailability()" ng-if="(currentAvailability.length > 0)">Annuler <span ng-if='currentAvailability.length <= 1'>cette</span><span ng-if='currentAvailability.length > 1'>ces</span> disponibilité<span ng-if='currentAvailability.length > 1'>s</soan></button>
         <button class="button button-positive button-block icon-right ion-chevron-right" ui-sref="tabs.scheduleorder">Demander une livraison</button>
@@ -121,4 +123,14 @@
         </ion-list>
     </ion-content>
   </ion-model-view>
+</script>
+
+<script id="default-modal.html" type="text/ng-template">
+  <ion-modal-view class="default-modal">
+      <ion-content scroll="false" padding="true">
+          <span class="title">{{modalTitle}}</span>
+          <p>{{modalMessage}}</p>
+          <button class="button button-stable button-block" ng-click="modalClose()">Ok</button>
+      </ion-content>
+  </ion-modal-view>
 </script>

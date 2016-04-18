@@ -15,18 +15,43 @@
     margin: 30% auto auto auto;
     display: block; }
 
-.item-avatar .profil-pic {
-  position: absolute;
-  top: 15px;
-  left: 25%;
-  font-size: 36px;
-  max-width: 40px;
-  max-height: 40px;
-  width: 100%;
-  border-radius: 4px; }
-
-.profil-pic {
-  color: #69a7ff; }
+#profile-header {
+  text-align: center;
+  border: none;
+  margin-top: 25px; }
+  #profile-header .avatar {
+    border-radius: 50%; }
+  #profile-header .name {
+    font-weight: bold;
+    font-size: 100%;
+    color: #69a7ff; }
+  #profile-header .edit a {
+    text-decoration: underline;
+    color: #444; }
+  #profile-header .profil-pic {
+    color: #69a7ff;
+    font-size: 50px;
+    background: #f8f8f8;
+    border-radius: 50px;
+    padding: 5px;
+    margin-bottom: 10px;
+    display: inline-block; }
+  #profile-header.alt {
+    padding-left: 50px;
+    padding-right: 50px; }
+    #profile-header.alt .profil-pic {
+      float: left; }
+    #profile-header.alt .name, #profile-header.alt .stars {
+      float: left;
+      margin-left: 10px;
+      margin-top: 4px; }
+    #profile-header.alt .stars i {
+      font-size: 22px; }
+    #profile-header.alt .stars i.yellow {
+      color: #FDCC5A; }
+    #profile-header.alt hr {
+      clear: both;
+      border: solid 1px #ddd; }
 
 #profile .name {
   color: #69a7ff; }
@@ -76,10 +101,11 @@
   font-weight: bold; }
 
 .default-form input {
-  border: solid 1px #ABABAB;
-  border-radius: 2px;
+  border: none;
+  border-bottom: solid 2px #ddd;
+  border-radius: 0;
   margin: 4px 0 10px 0;
-  padding: 5px;
+  padding: 0;
   color: #444; }
 
 .default-form .row {
@@ -89,7 +115,8 @@
     border-radius: 0 !important;
     padding: 2px; }
     .default-form .row .item-select select {
-      border: solid 1px #ABABAB;
+      border: none;
+      border-bottom: solid 2px #ddd;
       width: 100%;
       max-width: 100%;
       border-radius: 0;
@@ -131,6 +158,17 @@ ion-header-bar, ion-nav-bar {
     background-color: #8EBAFF;
     text-align: center; }
   ion-header-bar i, ion-header-bar button, ion-nav-bar i, ion-nav-bar button {
+    color: #2f6ab5; }
+  ion-header-bar [class^="icon-smc"], ion-header-bar [class*=" icon-smc"], ion-nav-bar [class^="icon-smc"], ion-nav-bar [class*=" icon-smc"] {
+    font-size: 32px; }
+  ion-header-bar .badge, ion-nav-bar .badge {
+    float: right;
+    background: none;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 32px;
+    margin: 0;
+    padding: 3px;
     color: #2f6ab5; }
   ion-header-bar span, ion-nav-bar span {
     text-align: center; }
@@ -217,17 +255,6 @@ ion-header-bar, ion-nav-bar {
       /* Firefox 18- */
       color: white; }
 
-#profile #profile-header {
-  text-align: center; }
-  #profile #profile-header .avatar {
-    border-radius: 50%; }
-  #profile #profile-header .name {
-    font-weight: bold;
-    font-size: 120%; }
-  #profile #profile-header .edit a {
-    text-decoration: underline;
-    color: #444; }
-
 #profile #profile-information {
   text-align: center; }
 
@@ -242,21 +269,19 @@ ion-header-bar, ion-nav-bar {
 #edit-profile .avatar-item {
   text-align: center; }
 
-#deliveries-end {
+.default-modal {
   text-align: center;
   background-color: #69a7ff; }
-  #deliveries-end .title {
+  .default-modal .title {
     font-size: 120%;
-    color: #FDCC5A;
+    color: #fff;
     font-weight: bold; }
-  #deliveries-end ion-content {
+  .default-modal ion-content {
     margin-top: 50%; }
-  #deliveries-end p {
+  .default-modal p {
     color: #fff;
     padding-top: 12px;
     font-weight: bold; }
-  #deliveries-end .button.button-stable {
-    margin-top: 30%; }
 
 #notifications {
   text-align: center; }
@@ -312,9 +337,11 @@ ion-header-bar, ion-nav-bar {
     font-size: 18px; }
   #deliveries .item-content .recipient, #orders .item-content .recipient {
     color: #8C8C8C;
-    font-weight: bold; }
+    font-weight: bold;
+    font-size: 14px; }
   #deliveries .item-content .shop, #deliveries .item-content .schedule, #orders .item-content .shop, #orders .item-content .schedule {
-    color: #8C8C8C; }
+    color: #8C8C8C;
+    font-size: 14px; }
   #deliveries .item-content .ion-chevron-right, #orders .item-content .ion-chevron-right {
     font-size: 1em; }
 
@@ -342,9 +369,9 @@ ion-header-bar, ion-nav-bar {
   border-color: white;
   margin: 3px;
   text-align: center;
-  padding: 5px; }
+  padding: 1px 5px; }
   #deliveries-schedule .schedule.selected, #new-order .schedule.selected {
-    background-color: gold;
+    background-color: #FDCC5A;
     color: #fff;
     font-weight: bold; }
   #deliveries-schedule .schedule .item-divider:first-letter, #new-order .schedule .item-divider:first-letter {
@@ -360,10 +387,12 @@ ion-header-bar, ion-nav-bar {
 
 #new-deliveries .item-icon-right .title, #shop-order .item-icon-right .title {
   color: #8C8C8C;
-  font-weight: bold; }
+  font-weight: bold;
+  font-size: 14px; }
 
 #new-deliveries .item-icon-right .distance, #new-deliveries .item-icon-right .address, #shop-order .item-icon-right .distance, #shop-order .item-icon-right .address {
-  color: #8C8C8C; }
+  color: #8C8C8C;
+  font-size: 14px; }
 
 .price-box.total {
   background-color: #69a7ff; }
@@ -391,25 +420,21 @@ ion-header-bar, ion-nav-bar {
 #cart-modal span.quantity {
   color: #fff; }
 
-#delivery #delivery-header, #order #delivery-header {
-  text-align: center; }
-  #delivery #delivery-header .name, #order #delivery-header .name {
-    font-weight: bold;
-    font-size: 120%;
-    color: #69a7ff; }
-  #delivery #delivery-header .address, #order #delivery-header .address {
-    padding: 10px 0px;
-    overflow: hidden;
-    font-size: 1.1em; }
-    #delivery #delivery-header .address i, #order #delivery-header .address i {
-      color: #ef473a; }
-  #delivery #delivery-header .actions .button, #order #delivery-header .actions .button {
-    margin: 10px; }
-
 #delivery #delivery-prices, #order #delivery-prices {
   text-align: center; }
   #delivery #delivery-prices.row, #order #delivery-prices.row {
     padding: 0px; }
+
+#delivery .address, #order .address {
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 3px; }
+  #delivery .address i, #order .address i {
+    color: #ef473a; }
+
+#delivery .actions, #order .actions {
+  white-space: normal;
+  border: none; }
 
 #delivery .list .title, #order .list .title {
   text-align: center; }
@@ -555,9 +580,6 @@ ion-header-bar, ion-nav-bar {
   border-radius: 50%;
   margin-bottom: 20px; }
 
-.address {
-  overflow: hidden; }
-
 .error-message {
   padding-left: 5px;
   font-weight: bold;
@@ -602,6 +624,12 @@ ion-header-bar, ion-nav-bar {
   font-weight: bold;
   border: none; }
 
+.item-divider-default {
+  background: #f8f8f8;
+  color: #8C8C8C;
+  border-top: solid 1px #ddd;
+  border-bottom: solid 1px #ddd; }
+
 .star-filter {
   font-size: 15px;
   line-height: 30px;
@@ -615,9 +643,28 @@ ion-header-bar, ion-nav-bar {
     .star-filter .stars i.yellow {
       color: #FDCC5A; }
 
+span {
+  color: inherit; }
+
+.item p, p {
+  text-align: center;
+  color: #8C8C8C;
+  white-space: normal; }
+
 .shop-list .shop .title {
   text-transform: capitalize;
   margin-bottom: 3px; }
 
 .shop-list .shop i {
   color: #ef473a; }
+
+.popup-container .popup {
+  background: #fff; }
+  .popup-container .popup .popup-buttons .button {
+    border: none;
+    border-radius: 30px;
+    font-weight: bold; }
+  .popup-container .popup .popup-buttons .button-default {
+    background: #fff;
+    color: #69a7ff;
+    border: solid 1px #69a7ff; }
