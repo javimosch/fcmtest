@@ -32,6 +32,13 @@ angular.module('shopmycourse.services')
             return next(currentDelivery);
           });
         },
+        setAddress: function(address, next) {
+          currentDelivery.address_attributes = address;
+          return DataStorage.set('current_delivery', currentDelivery).then(function () {
+            $rootScope.currentDelivery = currentDelivery;
+            return next(currentDelivery);
+          });
+        },
         clear: function (next) {
           DataStorage.remove('current_delivery').then(next);
         }

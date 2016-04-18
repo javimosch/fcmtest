@@ -51,30 +51,16 @@ angular.module('shopmycourse.controllers')
     }, 1300);
   }
 
-  $ionicModal.fromTemplateUrl('templates/Orders/Modals/Address.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.addressModal = modal
-  });
-
-  $scope.setShop = function(shop) {
-    CurrentDelivery.setShop(shop, function(currentDelivery) {
-      $scope.addressModal.show();
-    });
-  };
-
-  $scope.sendDeliveryRequest = function(address) {
+  $scope.sendDeliveryRequest = function() {
     var currentDelivery = $rootScope.currentDelivery;
     currentDelivery.buyer_id = $rootScope.currentUser.id;
-    currentDelivery.address_attributes = address;
+
 
     $ionicLoading.show({
       template: 'Nous créons votre demande...'
     });
     DeliveryRequestAPI.create(currentDelivery, function(data) {
       console.log(data);
-      $scope.addressModal.hide();
       $ionicLoading.hide();
       $state.go('tabs.confirmdelivery');
     }, function(err) {

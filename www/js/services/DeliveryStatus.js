@@ -2,6 +2,10 @@ angular.module('shopmycourse.services')
 
 .factory('DeliveryStatus', function () {
   return {
+    pending: {
+      color: "#ffc900", //energized
+      icon: "ion-person"
+    },
     accepted: {
       color: "#ffc900", //energized
       icon: "icon-smc-cart"

@@ -52,8 +52,8 @@ angular.module('shopmycourse.controllers')
 
 				$ionicLoading.hide();
 				var alertPopup = $ionicPopup.alert({
-					title: 'Votre réponse à été prise en compte',
-					template: 'L\'acheteur va recevoir une notification l\'invitant à remplir son panier. Vous serez averti à ce moment là.'
+					title: 'Acceptation confirmée',
+					template: 'Il ne vous reste plus qu\'à attendre la création de la liste par l\'acheteur'
 				});
 
 				alertPopup.then(function(res) {
