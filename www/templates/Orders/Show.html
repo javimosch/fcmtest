@@ -16,6 +16,7 @@
         <div class="actions">
           <button class="button button-positive" ng-if="order.status === 'completed' && !order.buyer_rating" ng-click="openFinishOrderModal()">Finaliser la commande</button>
           <button class="button button-positive" ng-if="order.status !== 'completed' || order.status == 'accepted'" ui-sref="tabs.ordercontent({idOrder: order.id})">Modifier le panier</button>
+          <button class="button button-positive" ng-if="order.status === 'accepted'" ng-click="confirmDelivery()">Confirmer la commande</button>
           <button class="button button-stable bordered" ng-if="order.deliveryman.share_phone" ng-click="sendSMS()">Contacter par SMS</button>
           <div ng-if="!order.deliveryman.share_phone">
             Le livreur ne souhaite pas être contacté.
@@ -24,11 +25,11 @@
       </div>
       <div id="delivery-prices" class="row">
         <div class="price-box total col">
-          <span class="price">{{order.total | number: 2 || 0}}€</span>
+          <span class="price">{{order.total || 0 | number: 2}}€</span>
           <span class="title">Prix total</span>
         </div>
         <div class="price-box commission col">
-          <span class="price">{{order.commission + order.shipping_total | number: 2 || 0}}€</span>
+          <span class="price">{{order.commission + order.shipping_total || 0 | number: 2}}€</span>
           <span class="title">Frais de livraison</span>
         </div>
       </div>
@@ -42,6 +43,7 @@
               <div class="detail">{{delivery_content.product.detail}}</div>
               <div class="price">{{delivery_content.unit_price*delivery_content.quantity | number: 2 || 0 }}€ ({{delivery_content.quantity}})</div>
           </ion-item>
+          <div ng-if="order.delivery_contents.length == 0" style="text-align: center;">Vous n'avez pas encore rempli votre panier</div>
       </ion-list>
     </ion-content>
 </ion-view>

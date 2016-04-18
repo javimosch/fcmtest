@@ -51,10 +51,10 @@ angular.module('shopmycourse.controllers')
     }, 1300);
   }
 
-  $scope.sendDeliveryRequest = function() {
+  $scope.sendDeliveryRequest = function(shop) {
     var currentDelivery = $rootScope.currentDelivery;
     currentDelivery.buyer_id = $rootScope.currentUser.id;
-
+    currentDelivery.shop_id = shop.id;
 
     $ionicLoading.show({
       template: 'Nous créons votre demande...'

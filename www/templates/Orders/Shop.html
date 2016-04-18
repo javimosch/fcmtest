@@ -21,7 +21,7 @@
             </label>
           </div>
           <ion-item class="item-icon-right item-icon-left" ng-repeat="shop in shops">
-              <div ng-click="setShop(shop)">
+              <div ng-click="sendDeliveryRequest(shop)">
                 <div class="title">{{shop.name}}</div>
                 <div class="distance"><i class="icon-smc-truck-checked"></i> {{shop.count}} livreur<span ng-if="shop.count > 1">s</span> disponible<span ng-if="shop.count > 1">s</span></div>
                 <div class="address"><i class="icon-smc-marker"></i> {{shop.address}}</div>
