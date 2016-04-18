@@ -12,9 +12,9 @@
             </div>
             <ion-item class="item-icon-right item-icon-left" ng-repeat="shop in shops">
                 <div ng-click="setShop(shop)">
-                  <div class="title">{{shop.name}}</div>
+                  <div class="title">{{shop.name | capitalize:true}}</div>
                   <div class="distance"><i class="icon-smc-rule"></i> {{shop.distance / 1000 | number: 2}} km</div>
-                  <div class="address"><i class="icon-smc-marker"></i> {{shop.address}}</div>
+                  <div class="address"><i class="icon-smc-marker"></i> {{shop.address | capitalize:true}}</div>
                   <i class="icon ion-chevron-right"></i>
                 </div>
             </ion-item>

@@ -7,6 +7,7 @@ angular.module('shopmycourse', [
   'ngCordova',
   'angularMoment',
   'LocalForageModule',
+  'shopmycourse.filters',
   'shopmycourse.controllers',
   'shopmycourse.routes',
   'shopmycourse.services',
