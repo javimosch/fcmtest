@@ -7,7 +7,7 @@
         </div>
       </div>
         <ion-list class="content has-header">
-            <ion-item class="item item-icon-left item-icon-right" ng-repeat="order in orders | filter: byStatus(status)" ui-sref="{{order.deliveryman ? 'tabs.order({idOrder: order.id})' : '#'}}">
+            <ion-item class="item item-icon-left item-icon-right" ng-repeat="order in orders | filter: byStatus(status)" ui-sref="{{order.deliveryman ? 'tabs.order({idOrder: order.id})' : 'tabs.orders'}}">
                 <div class="color-status">
                   <i class="icon {{ deliveryStatus[order.status].icon }}"></i>
                 </div>
