@@ -9,6 +9,7 @@ angular.module('shopmycourse.services')
         'create': { method: 'POST', url: Configuration.apiEndpoint + 'deliveries', headers: { 'Authorization': 'Bearer' }, cache: false },
         'update': { method: 'PUT', url: Configuration.apiEndpoint + 'deliveries/:idDelivery', headers: { 'Authorization': 'Bearer' }, cache: false },
         'confirm': { method: 'POST', url: Configuration.apiEndpoint + 'deliveries/:idDelivery/confirm', headers: { 'Authorization': 'Bearer' }, cache: false },
+        'cancel': { method: 'POST', url: Configuration.apiEndpoint + 'deliveries/:idDelivery/cancel', headers: { 'Authorization': 'Bearer' }, cache: false },
         'finalize': { method: 'POST', url: Configuration.apiEndpoint + 'deliveries/:idDelivery/finalize', headers: { 'Authorization': 'Bearer' }, cache: false }
     });
 

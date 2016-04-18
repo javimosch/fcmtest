@@ -42,13 +42,23 @@ angular.module('shopmycourse.controllers')
 		}
 	}
 
+	$scope.readNotification = function(notification, next) {
+		NotificationAPI.update({
+			idNotification: notification.id,
+			read: true
+		}, function() {
+			removeNotification(notification.id);
+			if (next)
+				next();
+		});
+	}
+
 	$scope.acceptDelivery = function (notification) {
 		$ionicLoading.show({
 			template: 'Nous envoyons votre réponse...'
 		});
-		NotificationAPI.update({idNotification: notification.id, read: true}, function () {
+			$scope.readNotification(notification, function () {
 			DeliveryAPI.create({availability_id: notification.meta.availability.id, delivery_request_id: notification.meta.delivery_request.id, status: 'accepted'}, function (delivery) {
-				removeNotification(notification.id);
 
 				$ionicLoading.hide();
 				var alertPopup = $ionicPopup.alert({
@@ -75,20 +85,22 @@ angular.module('shopmycourse.controllers')
 		$ionicLoading.show({
 			template: 'Nous envoyons votre réponse...'
 		});
-		NotificationAPI.update({idNotification: notification.id, read: true}, function () {
-			removeNotification(notification.id);
-			$ionicLoading.hide();
-		}, function (err) {
-			console.error(err);
-			$ionicLoading.hide();
-		})
+
+			$scope.readNotification(notification, function() {
+			DeliveryAPI.cancel({idDelivery: notification.meta.delivery.id}, function() {
+				$ionicLoading.hide();
+			}, function(err) {
+				console.error(err);
+				$ionicLoading.hide();
+			})
+		});
 	};
 
 	$scope.editCart = function (notification) {
 		$ionicLoading.show({
 			template: 'Nous préparons votre panier...'
 		});
-		NotificationAPI.update({idNotification: notification.id, read: true}, function () {
+			$scope.readNotification(notification, function () {
 			$scope.closeNotificationsModal();
 			$ionicLoading.hide();
 			$state.go('tabs.ordercontent', {idOrder: notification.meta.delivery.id});
@@ -96,7 +108,7 @@ angular.module('shopmycourse.controllers')
 	};
 
 	$scope.goDelivery = function (notification) {
-		NotificationAPI.update({idNotification: notification.id, read: true}, function () {
+			$scope.readNotification(notification, function () {
 			$scope.closeNotificationsModal();
 			$ionicLoading.hide();
 			$state.go('tabs.delivery', {idDelivery: notification.meta.delivery.id});
