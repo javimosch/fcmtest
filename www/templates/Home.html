@@ -57,7 +57,7 @@
                   <button class="button button-positive button-block accept" ng-click="acceptDelivery(notification)">Accepter</button>
                 </div>
                 <div class="col">
-                  <button class="button button-stable bordered button-block decline" ng-click="declineDelivery(notification)">Décliner</button>
+                  <button class="button button-stable bordered button-block decline" ng-click="readNotification(notification)">Décliner</button>
                 </div>
               </div>
             </ion-item>
@@ -112,7 +112,7 @@
               <div class="response row">
                 <div class="col">
                   <div class="title">{{notification.content}}</div>
-                  <button class="button button-positive button-block" ng-click="declineDelivery(notification)">D'accord</button>
+                  <button class="button button-positive button-block" ng-click="readNotification(notification)">D'accord</button>
                 </div>
               </div>
             </ion-item>

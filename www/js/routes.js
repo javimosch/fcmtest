@@ -207,6 +207,16 @@ angular.module('shopmycourse.routes', [])
     }
   })
 
+  .state('tabs.addressorder', {
+    url: '/order/create/address',
+    views: {
+      'home-tab': {
+        templateUrl: 'templates/Orders/Address.html',
+        controller: 'OrdersAddressCtrl'
+      }
+    }
+  })
+
   .state('tabs.shoporder', {
     url: '/order/create/shop',
     views: {

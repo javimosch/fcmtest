@@ -12,13 +12,6 @@ angular.module('shopmycourse.controllers')
     })
   }
 
-  $ionicModal.fromTemplateUrl('templates/Orders/Modals/Address.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.addressModal = modal
-  });
-
   $scope.selectTime = function (date, time) {
     // Si la case est déjà selectionnées
     if ($scope.isSelected(date, time)) {
@@ -46,7 +39,7 @@ angular.module('shopmycourse.controllers')
 
   $scope.validate = function () {
     CurrentDelivery.setSchedule($scope.selected, function () {
-      $scope.addressModal.show();
+      $state.go('tabs.addressorder');
     });
   };
 })

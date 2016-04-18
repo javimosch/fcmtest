@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('OrderAddressCtrl', function($scope, Validation, $state, CurrentDelivery) {
+.controller('OrdersAddressCtrl', function($scope, Validation, $state, CurrentDelivery) {
   $scope.validation = Validation;
   $scope.address = {
     address: '',
@@ -11,7 +11,6 @@ angular.module('shopmycourse.controllers')
 
   $scope.setAddress = function(address) {
     CurrentDelivery.setAddress(address, function(currentDelivery) {
-      $scope.addressModal.hide();
       $state.go('tabs.shoporder');
     });
   }
