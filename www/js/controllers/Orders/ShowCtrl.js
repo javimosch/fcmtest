@@ -71,7 +71,9 @@ angular.module('shopmycourse.controllers')
             idOrder: parseInt($stateParams.idOrder)
           });
         } else {
-          $state.go('tabs.editcreditcard');
+          $state.go('tabs.orderpayment', {
+            idOrder: parseInt($stateParams.idOrder)
+          });
         }
 
       });

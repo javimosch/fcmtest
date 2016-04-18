@@ -105,6 +105,18 @@ angular.module('shopmycourse.routes', [])
     }
   })
 
+  .state('tabs.orderpayment', {
+    url: '/order/:idOrder/payment',
+    cache: false,
+    views: {
+      'orders-tab': {
+        templateUrl: 'templates/Profile/EditCreditCard.html',
+        controller: 'ProfileEditCreditCardCtrl'
+      }
+    }
+  })
+
+
   .state('tabs.sendOrder', {
     url: '/order/:idOrder/send',
     views: {

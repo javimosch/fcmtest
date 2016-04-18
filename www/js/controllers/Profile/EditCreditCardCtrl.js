@@ -47,9 +47,19 @@ angular.module('shopmycourse.controllers')
         cvv: $scope.card.cvv
     }
 
-    CardAPI.update({idUser: $scope.user.id, card: card}, function() {
-        $state.go('tabs.sendOrder');
-        $ionicLoading.hide();
+    CardAPI.update({
+        idUser: $scope.user.id,
+        card: card
+    }, function(wallet) {
+        $scope.user.wallet = wallet;
+        CurrentUser.set($scope.user, function() {
+            if ($state.current.name == 'tabs.orderpayment') {
+                $state.go('tabs.sendOrder');
+            } else {
+                $state.go('tabs.profile');
+            }
+            $ionicLoading.hide();
+        })
     }, function(err) {
         $ionicLoading.hide();
         console.log(err);
