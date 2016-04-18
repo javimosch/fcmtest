@@ -77,9 +77,10 @@
 
 .default-form input {
   border: solid 1px #ABABAB;
-  border-radius: 0;
+  border-radius: 2px;
   margin: 4px 0 10px 0;
-  padding: 5px; }
+  padding: 5px;
+  color: #444; }
 
 .default-form .row {
   padding: 0; }
@@ -272,25 +273,43 @@ ion-header-bar, ion-nav-bar {
     font-size: 120%;
     color: #69a7ff;
     margin: 25px 0 28px 0; }
-  #notifications .stars {
-    font-size: 2em;
-    margin-top: 5px; }
   #notifications .ion-ios-calendar-outline, #notifications .ion-ios-location, #notifications .ion-ios-person {
     color: #8EBAFF; }
+
+#deliveries .list, #orders .list {
+  border: none; }
+  #deliveries .list .item, #orders .list .item {
+    border: none;
+    border-bottom: solid 1px #f8f8f8;
+    margin: 0; }
 
 #deliveries .item-content, #orders .item-content {
   padding-left: 85px; }
   #deliveries .item-content .color-status, #orders .item-content .color-status {
     position: absolute;
     left: 0;
-    margin-left: 15px; }
+    margin-left: 15px;
+    border: 1px solid;
+    border-radius: 100%;
+    padding: 7px;
+    height: 60px;
+    width: 60px;
+    text-align: center;
+    border-color: #FDCC5A; }
     #deliveries .item-content .color-status .icon, #orders .item-content .color-status .icon {
-      height: auto;
-      border: 1px solid;
-      border-radius: 100px;
-      padding: 7px; }
+      font-size: 36px;
+      position: relative;
+      left: 0;
+      top: 3px;
+      display: inline;
+      color: #FDCC5A; }
+      #deliveries .item-content .color-status .icon:before, #orders .item-content .color-status .icon:before {
+        width: 100%;
+        height: 100%;
+        line-height: 100%; }
   #deliveries .item-content i, #orders .item-content i {
-    color: #69a7ff; }
+    color: #69a7ff;
+    font-size: 18px; }
   #deliveries .item-content .recipient, #orders .item-content .recipient {
     color: #8C8C8C;
     font-weight: bold; }
@@ -464,9 +483,6 @@ ion-header-bar, ion-nav-bar {
     background-color: #444;
     font-weight: bold; }
 
-#shop-order .stars i {
-  font-size: 250%; }
-
 #cart-modal .button-bar {
   float: right;
   padding: 0px;
@@ -562,13 +578,46 @@ ion-header-bar, ion-nav-bar {
     #toast-container .toast .toast-message {
       color: white; }
 
-.loading span {
-  color: white; }
+.loading-container {
+  padding: 30px; }
+  .loading-container .loading span {
+    color: white; }
 
-.bar-header .button-bar {
-  background: #f8f8f8;
-  border-radius: 30px; }
-  .bar-header .button-bar .button {
-    border: none;
-    border-radius: 30px;
-    font-weight: bold; }
+.bar-header {
+  border: none;
+  background-image: none; }
+  .bar-header .button-bar {
+    background: #f8f8f8;
+    border-radius: 30px; }
+    .bar-header .button-bar .button {
+      border: none;
+      border-radius: 30px;
+      font-weight: bold; }
+
+.item-divider {
+  background: #8EBAFF;
+  text-align: center;
+  font-size: 13px;
+  color: #fff;
+  font-weight: bold;
+  border: none; }
+
+.star-filter {
+  font-size: 15px;
+  line-height: 30px;
+  color: #8C8C8C;
+  padding-top: 8px; }
+  .star-filter .stars {
+    top: 5px;
+    position: relative; }
+    .star-filter .stars i {
+      font-size: 28px; }
+    .star-filter .stars i.yellow {
+      color: #FDCC5A; }
+
+.shop-list .shop .title {
+  text-transform: capitalize;
+  margin-bottom: 3px; }
+
+.shop-list .shop i {
+  color: #ef473a; }
