@@ -16,7 +16,6 @@
             <div class="address"><i class="icon-smc-marker"></i> {{order.address.address}}, {{order.address.zip}} {{order.address.city}}</div>
 
         </div>
-        <div class="address"><i class="ion-ios-location-outline"></i> {{order.address.address}}, {{order.address.zip}} {{order.address.city}}</div>
         <div class="actions">
           <button class="button button-positive button-block" ng-if="order.status === 'completed' && !order.buyer_rating" ng-click="openFinishOrderModal()">Finaliser la commande</button>
           <button class="button button-positive button-block" ng-if="order.status !== 'completed' || order.status == 'accepted'" ui-sref="tabs.ordercontent({idOrder: order.id})">Modifier le panier</button>
@@ -38,7 +37,7 @@
         </div>
       </div>
       <ion-list>
-          <div class="item title">
+          <div class="item item-divider item-divider-default">
             Liste des produits
           </div>
           <ion-item class="item product" ng-repeat="delivery_content in order.delivery_contents">

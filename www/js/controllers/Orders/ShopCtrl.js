@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('OrdersShopCtrl', function($rootScope, $scope, $cordovaGeolocation, toastr, $state, $ionicModal, $ionicLoading, CurrentDelivery, ShopAPI, DeliveryRequestAPI, DeliveryRequestAPI, $timeout) {
+.controller('OrdersShopCtrl', function($rootScope, $scope, $cordovaGeolocation, toastr, $state, $ionicModal, $ionicLoading, CurrentDelivery, ShopAPI, DeliveryRequestAPI, DeliveryRequestAPI, $timeout, OrderStore) {
   $scope.shops = [];
   $scope.minimumStar = 0;
   var timer = null;
@@ -57,10 +57,27 @@ angular.module('shopmycourse.controllers')
     $ionicLoading.show({
       template: 'Nous créons votre demande...'
     });
+
+
+
     DeliveryRequestAPI.create(currentDelivery, function(data) {
-      console.log(data);
       $ionicLoading.hide();
-      $state.go('tabs.confirmdelivery');
+
+      $scope.modalTitle = "Bravo !"
+      $scope.modalMessage = "Votre proposition de livraison a été enregistrée. Vous serez notifié dés qu'une demande de livraison correspondra à vos critères."
+      $scope.modalClose = function () {
+        $state.go('tabs.orders');
+        $scope.modal.hide();
+      }
+
+      $ionicModal.fromTemplateUrl('default-modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        $scope.modal = modal;
+        $scope.modal.show();
+        OrderStore.pull()
+      });
     }, function(err) {
       $ionicLoading.hide();
       console.error(err);

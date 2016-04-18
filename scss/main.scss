@@ -257,7 +257,7 @@ ion-header-bar, ion-nav-bar {
   }
 }
 
-.button-block {
+.button-block, button.button-block {
   border-radius: 30px;
   width: 90%;
   margin: 20px auto;
@@ -447,6 +447,36 @@ ion-header-bar, ion-nav-bar {
   }
 }
 
+.notification {
+  .title {
+    white-space: normal;
+    text-align: left;
+    font-weight: 500;
+  }
+
+  i {
+    color: $positive;
+  }
+
+  .icon-smc-profile {
+    font-size: 150%;
+    line-height: 60%;
+    position: relative;
+    top: 3px;
+  }
+
+  .stars {
+    i {
+      font-size: 28px;
+      color: $grey-light;
+    }
+
+    i.yellow {
+      color: $gold;
+    }
+  }
+}
+
 #deliveries, #orders {
   .list {
     border: none;
@@ -610,6 +640,14 @@ ion-header-bar, ion-nav-bar {
     display: block;
     text-align: center;
     padding: 0;
+
+    .button-block {
+      width: 90%;
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 47px;
+      margin: 15px auto;
+    }
   }
 
   .row {
@@ -740,12 +778,21 @@ ion-header-bar, ion-nav-bar {
 }
 
 #cart-modal {
+  .product {
+    padding-right: 20px;
+  }
+
   .button-bar {
-    float: right;
+    position: absolute;
     padding: 0px;
     margin: 0px;
     width: auto;
     text-align: right;
+    background: $gold;
+    border-radius: 20px;
+    top: 35px;
+    right: 20px;
+
     a, span {
       max-width: 40px;
       min-width: 20px;
@@ -755,39 +802,32 @@ ion-header-bar, ion-nav-bar {
       max-height: 20px;
       line-height: normal;
       padding: 0px;
+      border: none;
+      font-size: 14px;
     }
 
     a {
-      border-color: $gold;
+      border: solid 1px $gold;
       color: $positive;
+      border-radius: 100px;
+      width: 20px;
+      height: 20px;
     }
 
     span {
       background-color: $gold;
       width: 10px;
+      line-height: 20px;
     }
   }
   .bar-footer {
-    height: 150px;
+    height: 117px;
   }
 }
 
 #order-content, #cart-modal, #delivery-prices {
   .item-icon-left {
     padding-left: 80px;
-  }
-
-  .search {
-    background-color: $light;
-
-    label {
-      border: none;
-
-      .icon-smc-wen {
-        color: $positive-dark;
-        font-size: 1.5em;
-      }
-    }
   }
 
   .results-title {
@@ -805,23 +845,28 @@ ion-header-bar, ion-nav-bar {
 }
 
 .product {
+  padding-right: 48px;
   .name {
-    font-size: 95%;
+    font-size: 80%;
     font-weight: bold;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
   .detail {
     font-style: italic;
-    font-size: 90%;
+    font-size: 70%;
   }
   .price {
-    font-size: 95%;
+    font-size: 90%;
     font-weight: bold;
     color: $positive;
   }
   img {
-    height: 80px;
-    max-width: 80px;
+    height: 60px;
+    max-width: 60px;
     float: left;
+    margin-right: 10px;
   }
 
   .cart-down {
@@ -945,6 +990,12 @@ span {
     i {
       color: $assertive;
     }
+
+    .address {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
   }
 }
 
@@ -961,5 +1012,22 @@ span {
       color: $positive;
       border: solid 1px $positive;
     }
+  }
+}
+
+.search {
+  background-color: $light;
+
+  label {
+    border: none;
+
+    .icon-smc-wen {
+      color: $positive !important;
+      font-size: 1.5em;
+    }
+  }
+
+  input {
+    font-weight: 500;
   }
 }

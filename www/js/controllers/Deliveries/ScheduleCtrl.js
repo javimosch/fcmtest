@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('DeliveriesScheduleCtrl', function($scope, $rootScope, $ionicLoading, $state, CurrentUser, CurrentAvailability, AvailabilityAPI, $ionicHistory, $ionicModal, CurrentDelivery) {
+.controller('DeliveriesScheduleCtrl', function($scope, $rootScope, $ionicLoading, $state, CurrentUser, CurrentAvailability, AvailabilityAPI, $ionicHistory, $ionicModal, CurrentDelivery, DeliveryStore) {
   $scope.schedules = [];
   $scope.selected = {};
 
@@ -55,12 +55,8 @@ angular.module('shopmycourse.controllers')
       $scope.modalTitle = "Bravo !"
       $scope.modalMessage = "Votre proposition de livraison a été enregistrée. Vous serez notifié dés qu'une demande de livraison correspondra à vos critères."
       $scope.modalClose = function () {
-        $ionicHistory.nextViewOptions({
-          disableAnimate: false,
-          disableBack: true
-        });
         CurrentDelivery.clear(function() {
-          $state.go('tabs.home');
+          $state.go('tabs.deliveries');
           $scope.modal.hide();
         });
       }
