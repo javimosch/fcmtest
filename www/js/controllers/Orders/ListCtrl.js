@@ -17,7 +17,7 @@ angular.module('shopmycourse.controllers')
   });
 
   $scope.byStatus = function (status) {
-    var statuses = ['done'];
+    var statuses = ['done', 'canceled'];
     if (status === 'pending') {
       statuses = ['pending', 'accepted', 'completed']
     }

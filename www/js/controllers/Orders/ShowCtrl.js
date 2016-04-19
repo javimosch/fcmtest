@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('OrdersShowCtrl', function($scope, $ionicLoading, $ionicPopup, $rootScope, $stateParams, CurrentCart, $ionicModal, OrderStore, $interval, $cordovaSms, DeliveryAPI, CurrentUser, $state) {
+.controller('OrdersShowCtrl', function($scope, $ionicLoading, $ionicPopup, $rootScope, $stateParams, CurrentCart, $ionicModal, OrderStore, $interval, $cordovaSms, DeliveryAPI, CurrentUser, $state, $ionicSlideBoxDelegate) {
 
   $scope.order = {};
   $scope.user = {};
@@ -16,7 +16,7 @@ angular.module('shopmycourse.controllers')
   OrderStore.get({id: parseInt($stateParams.idOrder)}, function (err, order) {
     $scope.order = order[0];
     $scope.order.deliveryman.rating_average |= 0;
-    console.log($scope.order.id)
+    $scope.ratingStar = $scope.order.buyer_rating ? $scope.order.buyer_rating.rating : 0;
     CurrentCart.initFromLocalStorage($scope.order.id);
     $ionicLoading.hide();
   })
@@ -33,7 +33,8 @@ angular.module('shopmycourse.controllers')
   };
 
   $scope.closeFinishOrderModal = function () {
-    $scope.finishOrderModal.hide();
+    $ionicSlideBoxDelegate.slide(0, 0)
+    $scope.finishOrderModal.hide()
   };
 
   $scope.sendSMS = function () {

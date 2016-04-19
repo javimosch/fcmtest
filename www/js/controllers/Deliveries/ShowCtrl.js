@@ -10,6 +10,7 @@ angular.module('shopmycourse.controllers')
 
   DeliveryStore.get({id: parseInt($stateParams.idDelivery)}, function (err, delivery) {
     $scope.delivery = delivery[0];
+    console.log($scope.delivery)
     $ionicLoading.hide();
   })
 

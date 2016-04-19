@@ -709,6 +709,9 @@ ion-header-bar, ion-nav-bar {
     border-bottom: 2px solid $grey;
     margin: auto;
     margin-top: 20px;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 6px;
   }
   hr {
     margin: 40px 40%;
@@ -744,6 +747,17 @@ ion-header-bar, ion-nav-bar {
   .instructions {
     font-size: 12px;
     font-weight: bold;
+  }
+
+  .slider {
+    height: 100%;
+
+    .thanks {
+      > div {
+        position: absolute;
+        bottom: 50px;
+      }
+    }
   }
 }
 

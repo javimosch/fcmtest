@@ -483,7 +483,10 @@ ion-header-bar, ion-nav-bar {
     border: none;
     border-bottom: 2px solid #8C8C8C;
     margin: auto;
-    margin-top: 20px; }
+    margin-top: 20px;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 6px; }
   #finish-order-modal hr, #finish-delivery-modal hr {
     margin: 40px 40%;
     border: solid 1px #ddd; }
@@ -511,6 +514,11 @@ ion-header-bar, ion-nav-bar {
   #finish-order-modal .instructions, #finish-delivery-modal .instructions {
     font-size: 12px;
     font-weight: bold; }
+  #finish-order-modal .slider, #finish-delivery-modal .slider {
+    height: 100%; }
+    #finish-order-modal .slider .thanks > div, #finish-delivery-modal .slider .thanks > div {
+      position: absolute;
+      bottom: 50px; }
 
 #cart-modal .product {
   padding-right: 20px; }
