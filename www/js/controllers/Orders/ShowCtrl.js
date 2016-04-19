@@ -97,6 +97,9 @@ angular.module('shopmycourse.controllers')
                  $scope.modal.show();
                });
             })
+          }, function(err) {
+            console.log(err);
+            $ionicLoading.hide();
           })
         }
       })
