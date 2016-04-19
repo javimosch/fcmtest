@@ -16,7 +16,7 @@
               L'acheteur ne souhaite pas être contacté.
             </p>
           </div>
-          <div ng-if="delivery.status != 'completed'">
+          <div ng-if="delivery.delivery_contents.length == 0 || delivery.status === 'accepted'">
             <p>
               <b>L'acheteur n'a pas encore finalisé son panier, il apparaîtra ci-dessous une fois terminé.</b>
             </p>
@@ -37,7 +37,6 @@
           <div class="item title item-divider item-divider-default">
             Liste des produits
           </div>
-          <div ng-if="delivery.delivery_contents.length == 0 || delivery.status === 'accepted'" style="text-align: center;">L'acheteur n'a pas encore rempli son panier</div>
           <ion-item class="item product" ng-repeat="delivery_content in delivery.delivery_contents" ng-if="delivery.status != 'accepted'">
               <img ng-src="{{delivery_content.product.image_url}}" alt="{{delivery_content.product.name}}">
               <div class="name">{{delivery_content.product.name}}</div>

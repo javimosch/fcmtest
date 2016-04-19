@@ -22,7 +22,9 @@
           <button class="button button-positive button-block" ng-if="order.status === 'accepted'" ng-click="confirmDelivery()">Confirmer la commande</button>
           <button class="button button-stable bordered button-block" ng-if="order.deliveryman.share_phone" ng-click="sendSMS()">Contacter par SMS</button>
           <div ng-if="!order.deliveryman.share_phone">
-            Le livreur ne souhaite pas être contacté.
+            <p>
+              L'acheteur ne souhaite pas être contacté.
+            </p>
           </div>
         </div>
       </div>
