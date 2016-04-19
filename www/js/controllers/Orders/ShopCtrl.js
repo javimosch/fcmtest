@@ -62,6 +62,7 @@ angular.module('shopmycourse.controllers')
 
     DeliveryRequestAPI.create(currentDelivery, function(data) {
       $ionicLoading.hide();
+      OrderStore.pull();
 
       $scope.modalTitle = "Bravo !"
       $scope.modalMessage = "Votre proposition de livraison a été enregistrée. Vous serez notifié dés qu'une demande de livraison correspondra à vos critères."
@@ -76,7 +77,6 @@ angular.module('shopmycourse.controllers')
       }).then(function(modal) {
         $scope.modal = modal;
         $scope.modal.show();
-        OrderStore.pull()
       });
     }, function(err) {
       $ionicLoading.hide();
