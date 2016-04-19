@@ -16,6 +16,8 @@ angular.module('shopmycourse.controllers')
   OrderStore.get({id: parseInt($stateParams.idOrder)}, function (err, order) {
     $scope.order = order[0];
     $scope.order.deliveryman.rating_average |= 0;
+    console.log($scope.order.id)
+    CurrentCart.initFromLocalStorage($scope.order.id);
     $ionicLoading.hide();
   })
 
