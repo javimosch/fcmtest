@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('ProfileEditCreditCardCtrl', function($scope, $state, $ionicLoading, $ionicHistory, $ionicViewSwitcher, Validation, CardAPI, CurrentUser) {
+.controller('ProfileEditCreditCardCtrl', function($scope, $state, $ionicPopup, $stateParams, $ionicLoading, $ionicHistory, $ionicViewSwitcher, Validation, CardAPI, CurrentUser, OrderStore, DeliveryAPI, $ionicModal) {
     $scope.validation = Validation;
     $scope.card = {};
     $scope.expirations = []
@@ -38,7 +38,7 @@ angular.module('shopmycourse.controllers')
   $scope.endEdit = function ($event) {
     $event.preventDefault();
     $ionicLoading.show({
-      template: 'Nous modifions votre moyen de paiement...'
+      template: 'Nous enregistrons votre moyen de paiement...'
     });
     var card = {
         number: $scope.card.number,
@@ -54,11 +54,50 @@ angular.module('shopmycourse.controllers')
         $scope.user.wallet = wallet;
         CurrentUser.set($scope.user, function() {
             if ($state.current.name == 'tabs.orderpayment') {
-                $state.go('tabs.sendOrder');
+              OrderStore.get({id: parseInt($stateParams.idOrder)}, function (err, order) {
+                $scope.order = order[0];
+                total = Math.round(($scope.order.total + $scope.order.commission + $scope.order.shipping_total) * 100) / 100
+
+                $ionicLoading.hide();
+                 var confirmPopup = $ionicPopup.confirm({
+                   title: 'Paiement',
+                   template: 'Votre carte ' + $scope.user.wallet.credit_card_display + ' sera débité de ' + total + '€ après la livraison de votre commande.'
+                 });
+
+                 confirmPopup.then(function(res) {
+                   if(res) {
+                     $ionicLoading.show({
+                        template: 'Nous envoyons votre commande...'
+                      });
+                     DeliveryAPI.confirm({
+                       'idDelivery': $scope.order.id
+                     }, function() {
+                       OrderStore.pull(function(orders) {
+                         $scope.modalTitle = "Commande envoyée"
+                         $scope.modalMessage = "Votre livreur va recevoir votre liste de courses d'ici quelques minutes."
+                         $scope.modalClose = function () {
+                           $state.go('tabs.orders');
+                           $scope.modal.hide();
+                         }
+
+                         $ionicModal.fromTemplateUrl('default-modal.html', {
+                           scope: $scope,
+                           animation: 'slide-in-up'
+                         }).then(function(modal) {
+                           $scope.modal = modal;
+                           $ionicLoading.hide();
+                           $scope.modal.show();
+                         });
+                      })
+                    })
+                  }
+                })
+              })
             } else {
+                $ionicLoading.hide();
                 $state.go('tabs.profile');
             }
-            $ionicLoading.hide();
+
         })
     }, function(err) {
         $ionicLoading.hide();

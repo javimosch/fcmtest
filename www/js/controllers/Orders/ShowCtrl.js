@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('OrdersShowCtrl', function($scope, $ionicLoading, $rootScope, $stateParams, CurrentCart, $ionicModal, OrderStore, $interval, $cordovaSms, DeliveryAPI, CurrentUser, $state) {
+.controller('OrdersShowCtrl', function($scope, $ionicLoading, $ionicPopup, $rootScope, $stateParams, CurrentCart, $ionicModal, OrderStore, $interval, $cordovaSms, DeliveryAPI, CurrentUser, $state) {
 
   $scope.order = {};
   $scope.user = {};
@@ -63,21 +63,46 @@ angular.module('shopmycourse.controllers')
   }
 
   $scope.confirmDelivery = function() {
-    DeliveryAPI.confirm({
-      'idDelivery': $scope.order.id
-    }, function() {
-      OrderStore.pull(function(orders) {
-        if ($scope.user.wallet && $scope.user.wallet.lemonway_card_id) {
-          $state.go('tabs.sendOrder', {
-            idOrder: parseInt($stateParams.idOrder)
-          });
-        } else {
-          $state.go('tabs.orderpayment', {
-            idOrder: parseInt($stateParams.idOrder)
-          });
-        }
+    total = Math.round(($scope.order.total + $scope.order.commission + $scope.order.shipping_total) * 100) / 100
 
-      });
-    })
+    if ($scope.user.wallet && $scope.user.wallet.credit_card_display) {
+       var confirmPopup = $ionicPopup.confirm({
+         title: 'Paiement',
+         template: 'Votre carte ' + $scope.user.wallet.credit_card_display + ' sera débité de ' + total + '€ après la livraison de votre commande.'
+       });
+
+       confirmPopup.then(function(res) {
+         if(res) {
+           $ionicLoading.show({
+              template: 'Nous envoyons votre commande...'
+            });
+           DeliveryAPI.confirm({
+             'idDelivery': $scope.order.id
+           }, function() {
+             OrderStore.pull(function(orders) {
+               $scope.modalTitle = "Commande envoyée"
+               $scope.modalMessage = "Votre livreur va recevoir votre liste de courses d'ici quelques minutes."
+               $scope.modalClose = function () {
+                 $state.go('tabs.orders');
+                 $scope.modal.hide();
+               }
+
+               $ionicModal.fromTemplateUrl('default-modal.html', {
+                 scope: $scope,
+                 animation: 'slide-in-up'
+               }).then(function(modal) {
+                 $scope.modal = modal;
+                 $ionicLoading.hide();
+                 $scope.modal.show();
+               });
+            })
+          })
+        }
+      })
+    } else {
+      $state.go('tabs.orderpayment', {
+        idOrder: parseInt($stateParams.idOrder)
+      })
+    }
   }
 })
