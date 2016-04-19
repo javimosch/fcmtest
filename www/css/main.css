@@ -47,11 +47,12 @@
       margin-top: 4px; }
     #profile-header.alt .stars i {
       font-size: 22px; }
-    #profile-header.alt .stars i.yellow {
-      color: #FDCC5A; }
     #profile-header.alt hr {
       clear: both;
       border: solid 1px #ddd; }
+
+.stars i.yellow {
+  color: #FDCC5A; }
 
 #profile .name {
   color: #69a7ff; }
@@ -466,33 +467,33 @@ ion-header-bar, ion-nav-bar {
 #delivery .list .title, #order .list .title {
   text-align: center; }
 
-#address-modal {
+#address-view {
   background-color: #69a7ff; }
-  #address-modal form {
+  #address-view form {
     background-color: #69a7ff; }
-  #address-modal .item {
+  #address-view .item {
     border: none;
     padding: 6px 16px 5px 16px; }
-    #address-modal .item input {
+    #address-view .item input {
       border-bottom: 2px solid white;
       padding: 0px; }
-    #address-modal .item input, #address-modal .item label, #address-modal .item .input-label {
+    #address-view .item input, #address-view .item label, #address-view .item .input-label {
       color: white;
       text-align: center; }
-    #address-modal .item .input-label {
+    #address-view .item .input-label {
       width: 100%;
       max-width: none;
       text-align: center; }
-    #address-modal .item ::-webkit-input-placeholder {
+    #address-view .item ::-webkit-input-placeholder {
       /* Chrome/Opera/Safari */
       color: white; }
-    #address-modal .item ::-moz-placeholder {
+    #address-view .item ::-moz-placeholder {
       /* Firefox 19+ */
       color: white; }
-    #address-modal .item :-ms-input-placeholder {
+    #address-view .item :-ms-input-placeholder {
       /* IE 10+ */
       color: white; }
-    #address-modal .item :-moz-placeholder {
+    #address-view .item :-moz-placeholder {
       /* Firefox 18- */
       color: white; }
 
@@ -505,20 +506,21 @@ ion-header-bar, ion-nav-bar {
 #finish-order-modal, #finish-delivery-modal {
   text-align: center; }
   #finish-order-modal .detail, #finish-delivery-modal .detail {
-    margin: 20px 10px;
+    margin: 15px 20px;
+    font-size: 16px;
     color: #ABABAB; }
   #finish-order-modal input, #finish-delivery-modal input {
-    border: 1px solid #444;
+    border: none;
+    border-bottom: 2px solid #8C8C8C;
     margin: auto;
     margin-top: 20px; }
   #finish-order-modal hr, #finish-delivery-modal hr {
-    margin: 40px 40%; }
+    margin: 40px 40%;
+    border: solid 1px #ddd; }
   #finish-order-modal .delivery, #finish-order-modal .delivery i, #finish-delivery-modal .delivery, #finish-delivery-modal .delivery i {
     font-weight: bold;
     color: #69a7ff !important;
     font-size: 1.2em; }
-  #finish-order-modal .instructions, #finish-delivery-modal .instructions {
-    margin: 10px 0px; }
   #finish-order-modal .stars, #finish-delivery-modal .stars {
     font-size: 300%;
     margin: 20px 0px; }
@@ -529,10 +531,15 @@ ion-header-bar, ion-nav-bar {
     font-size: 120%;
     color: #69a7ff; }
   #finish-order-modal .code, #finish-delivery-modal .code {
-    margin: 10px;
-    padding: 5px;
+    margin: 20px 20px 5px 20px;
+    padding: 5px 15px;
+    font-size: 16px;
+    display: inline-block;
     color: #f8f8f8;
-    background-color: #444;
+    background-color: #FDCC5A;
+    font-weight: bold; }
+  #finish-order-modal .instructions, #finish-delivery-modal .instructions {
+    font-size: 12px;
     font-weight: bold; }
 
 #cart-modal .product {

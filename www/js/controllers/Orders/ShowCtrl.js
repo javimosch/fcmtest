@@ -13,7 +13,6 @@ angular.module('shopmycourse.controllers')
     $scope.user = user;
   })
 
-
   OrderStore.get({id: parseInt($stateParams.idOrder)}, function (err, order) {
     $scope.order = order[0];
     $scope.order.deliveryman.rating_average |= 0;

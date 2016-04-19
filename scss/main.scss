@@ -70,10 +70,6 @@
       i {
         font-size: 22px;
       }
-
-      i.yellow {
-        color: $gold;
-      }
     }
 
     hr {
@@ -81,6 +77,10 @@
       border: solid 1px $stable-dark;
     }
   }
+}
+
+.stars i.yellow {
+  color: $gold;
 }
 
 #profile {
@@ -737,24 +737,24 @@ ion-header-bar, ion-nav-bar {
 #finish-order-modal, #finish-delivery-modal {
   text-align: center;
   .detail {
-    margin: 20px 10px;
+    margin: 15px 20px;
+    font-size: 16px;
     color: $grey-light;
   }
   input {
-    border: 1px solid $dark;
+    border: none;
+    border-bottom: 2px solid $grey;
     margin: auto;
     margin-top: 20px;
   }
   hr {
     margin: 40px 40%;
+    border: solid 1px $stable-dark;
   }
   .delivery, .delivery i {
     font-weight: bold;
     color: $positive !important;
     font-size: 1.2em;
-  }
-  .instructions {
-    margin: 10px 0px;
   }
   .stars {
     font-size: 300%;
@@ -769,10 +769,17 @@ ion-header-bar, ion-nav-bar {
     color: $positive;
   }
   .code {
-    margin: 10px;
-    padding: 5px;
+    margin: 20px 20px 5px 20px;
+    padding: 5px 15px;
+    font-size: 16px;
+    display: inline-block;
     color: $stable;
-    background-color: $dark;
+    background-color: $gold;
+    font-weight: bold;
+  }
+
+  .instructions {
+    font-size: 12px;
     font-weight: bold;
   }
 }

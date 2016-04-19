@@ -56,7 +56,7 @@ angular.module('shopmycourse.controllers')
       $scope.modalMessage = "Votre proposition de livraison a été enregistrée. Vous serez notifié dés qu'une demande de livraison correspondra à vos critères."
       $scope.modalClose = function () {
         CurrentDelivery.clear(function() {
-          $state.go('tabs.deliveries');
+          $state.go('tabs.home');
           $scope.modal.hide();
         });
       }
