@@ -9,7 +9,7 @@ angular.module('shopmycourse.controllers')
     template: 'Nous recherchons vos livraisons...'
   });
 
-  DeliveryStore.get({}, function (err, deliveries) {
+  DeliveryStore.pull(function (err, deliveries) {
     $scope.deliveries = deliveries;
     $ionicLoading.hide();
   }, function (err) {
