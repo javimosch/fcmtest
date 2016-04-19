@@ -53,47 +53,88 @@ angular.module('shopmycourse.controllers')
 		});
 	}
 
-	$scope.acceptDelivery = function (notification) {
-		$ionicLoading.show({
-			template: 'Nous envoyons votre réponse...'
+	$scope.acceptDeliveryRequest = function(notification) {
+		var myPopup = $ionicPopup.confirm({
+			template: 'Vous êtes sur le point de d\'accepter la livraison, êtes-vous sûr ?',
+			title: 'Accepter la demande',
+			cancelText: 'retour'
 		});
-			$scope.readNotification(notification, function () {
-			DeliveryAPI.create({availability_id: notification.meta.availability.id, delivery_request_id: notification.meta.delivery_request.id, status: 'accepted'}, function (delivery) {
 
-				$ionicLoading.hide();
-				var alertPopup = $ionicPopup.alert({
-					title: 'Acceptation confirmée',
-					template: 'Il ne vous reste plus qu\'à attendre la création de la liste par l\'acheteur'
+		myPopup.then(function(res) {
+			if (res) {
+				$ionicLoading.show({
+					template: 'Nous envoyons votre réponse...'
 				});
+				$scope.readNotification(notification, function() {
+					DeliveryAPI.create({
+						availability_id: notification.meta.availability.id,
+						delivery_request_id: notification.meta.delivery_request.id,
+						status: 'accepted'
+					}, function(delivery) {
 
-				alertPopup.then(function(res) {
-					if ($scope.notifications.length === 0) {
-						$scope.closeNotificationsModal();
-					}
-				});
-			}, function (err) {
-				$ionicLoading.hide();
-				console.error(err);
-			});
-		}, function (err) {
-			$ionicLoading.hide();
-			console.error(err);
-		})
+						$ionicLoading.hide();
+						var alertPopup = $ionicPopup.alert({
+							title: 'Acceptation confirmée',
+							template: 'Il ne vous reste plus qu\'à attendre la création de la liste par l\'acheteur'
+						});
+
+						alertPopup.then(function(res) {
+							if ($scope.notifications.length === 0) {
+								$scope.closeNotificationsModal();
+							}
+						});
+					}, function(err) {
+						$ionicLoading.hide();
+						console.error(err);
+					});
+				}, function(err) {
+					$ionicLoading.hide();
+					console.error(err);
+				})
+			}
+		});
 	};
 
-	$scope.declineDelivery = function (notification) {
-		$ionicLoading.show({
-			template: 'Nous envoyons votre réponse...'
+	$scope.declineDeliveryRequest = function(notification) {
+		var myPopup = $ionicPopup.confirm({
+			template: 'Vous êtes sur le point de décliner, êtes-vous sûr ?',
+			title: 'Décliner la demande',
+			cancelText: 'retour'
 		});
 
-			$scope.readNotification(notification, function() {
-			DeliveryAPI.cancel({idDelivery: notification.meta.delivery.id}, function() {
-				$ionicLoading.hide();
-			}, function(err) {
-				console.error(err);
-				$ionicLoading.hide();
-			})
+		myPopup.then(function(res) {
+			if (res) {
+				$scope.readNotification(notification, null);
+			}
 		});
+	}
+
+	$scope.cancelOrder = function(notification) {
+		var myPopup = $ionicPopup.confirm({
+			template: 'Vous êtes sur le point d\'annuler votre demande de livraison, êtes-vous sûr ?',
+			title: 'Annuler la demande',
+			cancelText: 'retour'
+		});
+
+		myPopup.then(function(res) {
+			if (res) {
+				$ionicLoading.show({
+					template: 'Nous envoyons votre réponse...'
+				});
+
+				$scope.readNotification(notification, function() {
+					DeliveryAPI.cancel({
+						idDelivery: notification.meta.delivery.id
+					}, function() {
+						$ionicLoading.hide();
+					}, function(err) {
+						console.error(err);
+						$ionicLoading.hide();
+					})
+				});
+			}
+		});
+
 	};
 
 	$scope.editCart = function (notification) {
