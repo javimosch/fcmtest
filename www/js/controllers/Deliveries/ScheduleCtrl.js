@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('DeliveriesScheduleCtrl', function($scope, $rootScope, $ionicLoading, $state, CurrentUser, CurrentAvailability, AvailabilityAPI, $ionicHistory, $ionicModal, CurrentDelivery, DeliveryStore) {
+.controller('DeliveriesScheduleCtrl', function($scope, $rootScope, $ionicLoading, $state, CurrentUser, CurrentAvailability, AvailabilityAPI, $ionicHistory, $ionicModal, CurrentDelivery, DeliveryStore, CurrentAddress) {
   $scope.schedules = [];
   $scope.selected = {};
 

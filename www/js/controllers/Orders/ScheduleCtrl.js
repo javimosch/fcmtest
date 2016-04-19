@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('OrdersScheduleCtrl', function($scope, $rootScope, $state, CurrentDelivery, $ionicModal) {
+.controller('OrdersScheduleCtrl', function($scope, $rootScope, $state, CurrentDelivery, $ionicModal, CurrentAddress) {
   $scope.schedules = [];
   $scope.selected = $rootScope.currentDelivery;
 
@@ -11,6 +11,8 @@ angular.module('shopmycourse.controllers')
       times: ['08h - 10h', '10h - 12h', '12h - 14h', '14h - 16h', '16h - 18h', '18h - 20h', '20h - 22h']
     })
   }
+  
+  CurrentAddress.init()
 
   $scope.selectTime = function (date, time) {
     // Si la case est déjà selectionnées

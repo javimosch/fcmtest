@@ -22,6 +22,12 @@
                 <i class="icon ion-chevron-right"></i>
               </div>
           </ion-item>
+
+          <ion-item class="item" ng-show="(shops.length == 0)">
+            <p>
+              Aucun vendeur disponible n'a été trouvé à proximité.
+            </p>
+          </ion-item>
       </ion-list>
     </ion-content>
 </ion-view>

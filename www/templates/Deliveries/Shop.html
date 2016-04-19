@@ -19,8 +19,10 @@
                 </div>
             </ion-item>
 
-            <ion-item class="item" ng-if="(shops.length === 0)">
-              Aucun magasin n'a été trouvé à proximité.
+            <ion-item class="item" ng-show="(shops.length == 0)">
+              <p>
+                Aucun magasin n'a été trouvé à proximité.
+              </p>
             </ion-item>
         </ion-list>
     </ion-content>

@@ -467,36 +467,6 @@ ion-header-bar, ion-nav-bar {
 #delivery .list .title, #order .list .title {
   text-align: center; }
 
-#address-view {
-  background-color: #69a7ff; }
-  #address-view form {
-    background-color: #69a7ff; }
-  #address-view .item {
-    border: none;
-    padding: 6px 16px 5px 16px; }
-    #address-view .item input {
-      border-bottom: 2px solid white;
-      padding: 0px; }
-    #address-view .item input, #address-view .item label, #address-view .item .input-label {
-      color: white;
-      text-align: center; }
-    #address-view .item .input-label {
-      width: 100%;
-      max-width: none;
-      text-align: center; }
-    #address-view .item ::-webkit-input-placeholder {
-      /* Chrome/Opera/Safari */
-      color: white; }
-    #address-view .item ::-moz-placeholder {
-      /* Firefox 19+ */
-      color: white; }
-    #address-view .item :-ms-input-placeholder {
-      /* IE 10+ */
-      color: white; }
-    #address-view .item :-moz-placeholder {
-      /* Firefox 18- */
-      color: white; }
-
 .ion-ios-star {
   color: #FDCC5A; }
 

@@ -689,43 +689,6 @@ ion-header-bar, ion-nav-bar {
   }
 }
 
-#address-view {
-  background-color: $positive;
-  form {
-    background-color: $positive;
-  }
-
-  .item {
-    border: none;
-    padding: 6px 16px 5px 16px;
-    input {
-      border-bottom: 2px solid white;
-      padding: 0px;
-    }
-    input, label, .input-label {
-      color: white;
-      text-align: center;
-    }
-    .input-label {
-      width: 100%;
-      max-width: none;
-      text-align: center;
-    }
-    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-      color: white;
-    }
-    ::-moz-placeholder { /* Firefox 19+ */
-      color: white;
-    }
-    :-ms-input-placeholder { /* IE 10+ */
-      color: white;
-    }
-    :-moz-placeholder { /* Firefox 18- */
-      color: white;
-    }
-  }
-}
-
 .ion-ios-star {
   color: $gold;
 }
