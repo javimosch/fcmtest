@@ -9,10 +9,13 @@ angular.module('shopmycourse.controllers')
 				n.meta = JSON.parse(n.meta);
 				switch (n.mode) {
 					case 'delivery_request':
-						n.meta.buyer.average_rating = n.meta.buyer.average_rating || 0;
+						n.meta.buyer.rating_average = n.meta.buyer.rating_average || 0;
 						break;
 					case 'accepted_delivery':
-						n.meta.deliveryman.average_rating = n.meta.deliveryman.average_rating || 0;
+						n.meta.deliveryman.rating_average = n.meta.deliveryman.rating_average || 0;
+						break;
+					case 'cart_filled':
+						n.meta.buyer.rating_average = n.meta.buyer.rating_average || 0;
 						break;
 				}
 				return n;
@@ -25,68 +28,119 @@ angular.module('shopmycourse.controllers')
 		});
 	});
 
-	$scope.acceptDelivery = function (notification) {
-		$ionicLoading.show({
-			template: 'Nous envoyons votre réponse...'
+	function removeNotification(id) {
+		var notifications = $scope.notifications;
+		$scope.notifications = [];
+		for (var i = 0; i < notifications.length; i++) {
+			if(notifications[i].id !== id) {
+				$scope.notifications.push(notifications[i]);
+			}
+		}
+
+		if ($scope.notifications.length === 0) {
+			$scope.closeNotificationsModal();
+		}
+	}
+
+	$scope.readNotification = function(notification, next) {
+		NotificationAPI.update({
+			idNotification: notification.id,
+			read: true
+		}, function() {
+			removeNotification(notification.id);
+			if (next)
+				next();
 		});
-		NotificationAPI.update({idNotification: notification.id, read: true}, function () {
-			DeliveryAPI.create({availability_id: notification.meta.availability.id, delivery_request_id: notification.meta.delivery_request.id, status: 'accepted'}, function (delivery) {
-				var notifications = $scope.notifications;
-				$scope.notifications = [];
-				for (var i = 0; i < notifications.length; i++) {
-					if(notifications[i].id !== notification.id) {
-						$scope.notifications.push(notification);
-					}
-				}
+	}
 
-				$ionicLoading.hide();
-				var alertPopup = $ionicPopup.alert({
-					title: 'Votre réponse à été prise en compte',
-					template: 'L\'acheteur va recevoir une notification l\'invitant à remplir son panier. Vous serez averti à ce moment là.'
-				});
+	$scope.acceptDeliveryRequest = function(notification) {
+		var myPopup = $ionicPopup.confirm({
+			template: 'Vous êtes sur le point de d\'accepter la livraison, êtes-vous sûr ?',
+			title: 'Accepter la demande',
+			cancelText: 'retour'
+		});
 
-				alertPopup.then(function(res) {
-					if ($scope.notifications.length === 0) {
-						$scope.closeNotificationsModal();
-					}
+		myPopup.then(function(res) {
+			if (res) {
+				$ionicLoading.show({
+					template: 'Nous envoyons votre réponse...'
 				});
-			}, function (err) {
-				$ionicLoading.hide();
-				console.error(err);
-			});
-		}, function (err) {
-			$ionicLoading.hide();
-			console.error(err);
-		})
+				$scope.readNotification(notification, function() {
+					DeliveryAPI.create({
+						availability_id: notification.meta.availability.id,
+						delivery_request_id: notification.meta.delivery_request.id,
+						status: 'accepted'
+					}, function(delivery) {
+
+						$ionicLoading.hide();
+						var alertPopup = $ionicPopup.alert({
+							title: 'Acceptation confirmée',
+							template: 'Il ne vous reste plus qu\'à attendre la création de la liste par l\'acheteur'
+						});
+						alertPopup.then(function(res) {
+							if ($scope.notifications.length === 0) {
+								$scope.closeNotificationsModal();
+							}
+						});
+					}, function(err) {
+						$ionicLoading.hide();
+						console.error(err);
+					});
+				}, function(err) {
+					$ionicLoading.hide();
+					console.error(err);
+				})
+			}
+		});
 	};
 
-	$scope.declineDelivery = function (notification) {
-		$ionicLoading.show({
-			template: 'Nous envoyons votre réponse...'
+	$scope.declineDeliveryRequest = function(notification) {
+		var myPopup = $ionicPopup.confirm({
+			template: 'Vous êtes sur le point de décliner, êtes-vous sûr ?',
+			title: 'Décliner la demande',
+			cancelText: 'retour'
 		});
-		NotificationAPI.update({idNotification: notification.id, read: true}, function () {
-			var notifications = $scope.notifications;
-			$scope.notifications = [];
-			for (var i = 0; i < notifications.length; i++) {
-				if(notifications[i].id !== notification.id) {
-					$scope.notifications.push(notification);
-				}
+
+		myPopup.then(function(res) {
+			if (res) {
+				$scope.readNotification(notification, null);
 			}
-			if ($scope.notifications.length === 0) {
-				$scope.closeNotificationsModal();
+		});
+	}
+
+	$scope.cancelOrder = function(notification) {
+		var myPopup = $ionicPopup.confirm({
+			template: 'Vous êtes sur le point d\'annuler votre demande de livraison, êtes-vous sûr ?',
+			title: 'Annuler la demande',
+			cancelText: 'retour'
+		});
+
+		myPopup.then(function(res) {
+			if (res) {
+				$ionicLoading.show({
+					template: 'Nous envoyons votre réponse...'
+				});
+
+				$scope.readNotification(notification, function() {
+					DeliveryAPI.cancel({
+						idDelivery: notification.meta.delivery.id
+					}, function() {
+						$ionicLoading.hide();
+					}, function(err) {
+						console.error(err);
+						$ionicLoading.hide();
+					})
+				});
 			}
-			$ionicLoading.hide();
-		}, function (err) {
-			console.error(err);
-			$ionicLoading.hide();
-		})
+		});
+
 	};
 
 	$scope.editCart = function (notification) {
 		$ionicLoading.show({
 			template: 'Nous préparons votre panier...'
 		});
-		NotificationAPI.update({idNotification: notification.id, read: true}, function () {
+			$scope.readNotification(notification, function () {
 			$scope.closeNotificationsModal();
 			$ionicLoading.hide();
 			$state.go('tabs.ordercontent', {idOrder: notification.meta.delivery.id});
@@ -94,7 +148,7 @@ angular.module('shopmycourse.controllers')
 	};
 
 	$scope.goDelivery = function (notification) {
-		NotificationAPI.update({idNotification: notification.id, read: true}, function () {
+			$scope.readNotification(notification, function () {
 			$scope.closeNotificationsModal();
 			$ionicLoading.hide();
 			$state.go('tabs.delivery', {idDelivery: notification.meta.delivery.id});

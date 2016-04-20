@@ -2,21 +2,25 @@ angular.module('shopmycourse.services')
 
 .factory('DeliveryStatus', function () {
   return {
+    pending: {
+      color: "#ffc900", //energized
+      icon: "ion-person"
+    },
     accepted: {
-      color: "grey",
-      icon: "ion-checkmark"
+      color: "#ffc900", //energized
+      icon: "icon-smc-cart"
     },
     completed: {
-      color: "#EC644B",
-      icon: "ion-checkmark"
+      color: "#ffc900", //energized
+      icon: "icon-smc-cart-down"
     },
     done: {
       color: "green",
-      icon: "ion-checkmark"
+      icon: "icon-smc-check"
     },
     canceled: {
       color: "red",
-      icon: "ion-close"
+      icon: "icon-smc-cart-cancel"
     }
   };
 });

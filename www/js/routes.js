@@ -96,10 +96,33 @@ angular.module('shopmycourse.routes', [])
 
   .state('tabs.order', {
     url: '/order/:idOrder',
+    cache: false,
     views: {
       'orders-tab': {
         templateUrl: 'templates/Orders/Show.html',
         controller: 'OrdersShowCtrl'
+      }
+    }
+  })
+
+  .state('tabs.orderpayment', {
+    url: '/order/:idOrder/payment',
+    cache: false,
+    views: {
+      'orders-tab': {
+        templateUrl: 'templates/Profile/EditCreditCard.html',
+        controller: 'ProfileEditCreditCardCtrl'
+      }
+    }
+  })
+
+
+  .state('tabs.sendOrder', {
+    url: '/order/:idOrder/send',
+    views: {
+      'orders-tab': {
+        templateUrl: 'templates/Orders/Send.html',
+        controller: 'OrdersSendCtrl'
       }
     }
   })
@@ -184,6 +207,16 @@ angular.module('shopmycourse.routes', [])
     }
   })
 
+  .state('tabs.addressorder', {
+    url: '/order/create/address',
+    views: {
+      'home-tab': {
+        templateUrl: 'templates/Orders/Address.html',
+        controller: 'OrdersAddressCtrl'
+      }
+    }
+  })
+
   .state('tabs.shoporder', {
     url: '/order/create/shop',
     views: {
@@ -199,7 +232,7 @@ angular.module('shopmycourse.routes', [])
     views: {
       'home-tab': {
         templateUrl: 'templates/Orders/Confirm.html',
-        controller: 'OrdersConfirmCtrl'
+        controller: 'OrdersConfirmCvtrl'
       }
     }
   })

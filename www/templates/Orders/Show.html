@@ -1,32 +1,45 @@
 <ion-view id="order" title="Détail">
     <ion-content overflow-scroll="true" padding="false" class="has-header">
-      <div id="delivery-header">
-        <div style="line-height: 100px; border: 1px solid rgb(238, 238, 238); border-radius: 3px; text-align: center; background-color: rgb(255, 255, 255);">
-            <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
+      <div id="order-header">
+        <div class="item alt" id="profile-header">
+            <i class="profil-pic icon-smc-profile"></i>
+
+            <div class="name">{{order.deliveryman.firstname}} {{order.deliveryman.lastname}}</div>
+            <div class="stars">
+              <i ng-class="{'icon-smc-star-filled': order.deliveryman.rating_average < 1, 'icon-smc-star-filled yellow': order.deliveryman.rating_average >= 1}"></i>
+              <i ng-class="{'icon-smc-star-filled': order.deliveryman.rating_average < 2, 'icon-smc-star-filled yellow': order.deliveryman.rating_average >= 2}"></i>
+              <i ng-class="{'icon-smc-star-filled': order.deliveryman.rating_average < 3, 'icon-smc-star-filled yellow': order.deliveryman.rating_average >= 3}"></i>
+              <i ng-class="{'icon-smc-star-filled': order.deliveryman.rating_average < 4, 'icon-smc-star-filled yellow': order.deliveryman.rating_average >= 4}"></i>
+              <i ng-class="{'icon-smc-star-filled': order.deliveryman.rating_average < 5, 'icon-smc-star-filled yellow': order.deliveryman.rating_average >= 5}"></i>
+            </div>
+            <hr/>
+            <div class="address"><i class="icon-smc-marker"></i> {{order.address.address}}, {{order.address.zip}} {{order.address.city}}</div>
+
         </div>
-        <div class="name">{{order.deliveryman.firstname}} {{order.deliveryman.lastname}}</div>
-        <div class="address"><i class="ion-ios-location-outline"></i> {{order.address.address}}, {{order.address.zip}} {{order.address.city}}</div>
         <div class="actions">
-          <button class="button button-stable" ng-if="order.status === 'completed' && !order.buyer_rating" ng-click="openFinishOrderModal()">Finaliser la commande</button>
-          <button class="button button-stable" ng-if="order.status !== 'done' && !deliveryStarted(order.schedule.schedule, order.schedule.date)" ui-sref="tabs.ordercontent({idOrder: order.id})">Modifier le panier</button>
-          <button class="button button-stable" ng-if="order.deliveryman.share_phone" ng-click="sendSMS()">Contacter par SMS</button>
+          <button class="button button-positive button-block" ng-if="order.status === 'completed'" ng-click="openFinishOrderModal()">Finaliser la commande</button>
+          <button class="button button-positive button-block" ng-if="(order.status !== 'completed' || order.status == 'accepted') && order.status != 'done'" ui-sref="tabs.ordercontent({idOrder: order.id})">Modifier le panier</button>
+          <button class="button button-positive button-block" ng-if="order.status === 'accepted'" ng-click="confirmDelivery()">Confirmer la commande</button>
+          <button class="button button-stable bordered button-block" ng-if="order.deliveryman.share_phone" ng-click="sendSMS()">Contacter par SMS</button>
           <div ng-if="!order.deliveryman.share_phone">
-            Le livreur ne souhaite pas être contacté.
+            <p>
+              L'acheteur ne souhaite pas être contacté.
+            </p>
           </div>
         </div>
       </div>
       <div id="delivery-prices" class="row">
-        <div class="price-box col">
-          <span class="price">{{order.total | number: 2 || 0}}€</span>
+        <div class="price-box total col">
+          <span class="price">{{order.total || 0 | number: 2}}€</span>
           <span class="title">Prix total</span>
         </div>
-        <div class="price-box col">
-          <span class="price">{{order.commission + order.shipping_total | number: 2 || 0}}€</span>
+        <div class="price-box commission col">
+          <span class="price">{{order.commission + order.shipping_total || 0 | number: 2}}€</span>
           <span class="title">Frais de livraison</span>
         </div>
       </div>
       <ion-list>
-          <div class="item item-divider">
+          <div class="item item-divider item-divider-default">
             Liste des produits
           </div>
           <ion-item class="item product" ng-repeat="delivery_content in order.delivery_contents">
@@ -35,6 +48,18 @@
               <div class="detail">{{delivery_content.product.detail}}</div>
               <div class="price">{{delivery_content.unit_price*delivery_content.quantity | number: 2 || 0 }}€ ({{delivery_content.quantity}})</div>
           </ion-item>
+          <div ng-if="order.delivery_contents.length == 0" style="text-align: center;">Vous n'avez pas encore rempli votre panier</div>
       </ion-list>
     </ion-content>
 </ion-view>
+
+
+<script id="default-modal.html" type="text/ng-template">
+  <ion-modal-view class="default-modal">
+      <ion-content scroll="false" padding="true">
+          <span class="title">{{modalTitle}}</span>
+          <p>{{modalMessage}}</p>
+          <button class="button button-stable button-block" ng-click="modalClose()">Ok</button>
+      </ion-content>
+  </ion-modal-view>
+</script>

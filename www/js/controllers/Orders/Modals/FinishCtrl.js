@@ -1,8 +1,6 @@
 angular.module('shopmycourse.controllers')
 
 .controller('OrdersFinishCtrl', function($scope, $ionicLoading, $ionicSlideBoxDelegate, DeliveryAPI) {
-	$scope.ratingStar = 0;
-
 
   $scope.disableSwipe = function() {
     $ionicSlideBoxDelegate.enableSlide(false);
@@ -26,6 +24,8 @@ angular.module('shopmycourse.controllers')
   };
 
   $scope.setRatingStar = function(newRating) {
-		$scope.ratingStar = newRating;
+		if(!$scope.order.buyer_rating) {
+			$scope.ratingStar = newRating;
+		}
   };
 })

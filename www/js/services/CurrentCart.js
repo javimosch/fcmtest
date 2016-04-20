@@ -24,6 +24,14 @@ angular.module('shopmycourse.services')
 
     return {
         init: init,
+        initFromLocalStorage: function(orderId) {
+          return DataStorage.get('current_cart_' + orderId).then(function (currentCartFromStorage) {
+            currentCart = currentCartFromStorage || {};
+            $rootScope.currentCart = currentCart;
+            $rootScope.currentCartId = orderId;
+            console.log($rootScope.currentCartId)
+          });
+        },
         initFromOrder: function (order) {
           currentCart = {};
           lodash.each(order.delivery_contents, function (p) {
@@ -38,6 +46,7 @@ angular.module('shopmycourse.services')
             currentCart[p.product.id] = item;
           });
           $rootScope.currentCart = currentCart;
+          $rootScope.currentCartId = order.id;
           return currentCart;
         },
         addProduct: function (product) {
@@ -52,7 +61,7 @@ angular.module('shopmycourse.services')
             currentCart[product_id].quantity = 1;
           }
           $rootScope.currentCart = currentCart;
-          DataStorage.set('current_cart', currentCart);
+          DataStorage.set('current_cart_' + $rootScope.currentCartId, currentCart);
         },
         removeProduct: function (product) {
           var product_id = product.id;
@@ -64,9 +73,10 @@ angular.module('shopmycourse.services')
             }
           }
           $rootScope.currentCart = currentCart;
-          DataStorage.set('current_cart', currentCart);
+          DataStorage.set('current_cart_' + $rootScope.currentCartId, currentCart);
         },
         quantity: function () {
+          console.log(currentCart)
           var q = 0;
           lodash.map(currentCart, function (p) {
             q += p.quantity;

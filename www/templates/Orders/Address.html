@@ -1,41 +1,41 @@
-<ion-modal-view id="address-modal" ng-controller="OrderAddressCtrl">
-  <ion-header-bar>
-    <span class="title center">Adresse</span>
+<ion-view id="address-view" ng-controller="OrdersAddressCtrl" title="Adresse de livraison">
+  <ion-header-bar class="bar-positive">
   </ion-header-bar>
-  <ion-content overflow-scroll="true" padding="false" class="has-header">
+  <ion-content overflow-scroll="true" padding="true" class="has-header">
     <form class="list" name="addressForm">
-        <ion-list>
+        <ion-list class="default-form">
             <!-- Adresse -->
-            <label class="item item-input">
+            <label class="item item-input item-stacked-label">
                 <span class="input-label">Adresse</span>
                 <input type="text" name="address" ng-model="address.address" placeholder="Saisissez votre addresse" ng-pattern="validation.address.pattern" required="required">
             </label>
             <div class="error-message" ng-show="addressForm.address.$error.pattern">
               <span><i class="icon ion-close-circled"></i> {{validation.address.message}}</span>
             </div>
+            <!-- Code postal -->
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Code postal</span>
+                <input type="text" name="zip" ng-model="address.zip" placeholder="Saisissez votre ville" ng-pattern="validation.zipcode.pattern" required="required">
+            </label>
+            <div class="error-message" ng-show="addressForm.zip.$error.pattern">
+              <span><i class="icon ion-close-circled"></i> {{validation.zip.message}}</span>
+            </div>
             <!-- Ville -->
-            <label class="item item-input">
+            <label class="item item-input item-stacked-label">
                 <span class="input-label">Ville</span>
                 <input type="text" name="city" ng-model="address.city" placeholder="Saisissez votre ville" ng-pattern="validation.city.pattern" required="required">
             </label>
             <div class="error-message" ng-show="addressForm.city.$error.pattern">
               <span><i class="icon ion-close-circled"></i> {{validation.city.message}}</span>
             </div>
-            <!-- Code postal -->
-            <label class="item item-input">
-                <span class="input-label">Code postam</span>
-                <input type="text" name="zip" ng-model="address.zip" placeholder="Saisissez votre ville" ng-pattern="validation.zipcode.pattern" required="required">
-            </label>
-            <div class="error-message" ng-show="addressForm.zip.$error.pattern">
-              <span><i class="icon ion-close-circled"></i> {{validation.zip.message}}</span>
-            </div>
+
             <!-- Complément d'adresse -->
-            <label class="item item-input">
-                <span class="input-label">Complément</span>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Complément d'adresse</span>
                 <input type="text" name="additional_address" ng-model="address.additional_address" placeholder="Saisissez votre addresse">
             </label>
         </ion-list>
     </form>
-    <a ng-click="sendDeliveryRequest(address)" class="button button-stable button-block" ng-disabled="addressForm.$invalid">Envoyer</a>
+    <a ng-click="setAddress(address)" class="button button-positive button-block" ng-disabled="addressForm.$invalid">Envoyer</a>
   </ion-content>
-</ion-model-view>
+</ion-view>

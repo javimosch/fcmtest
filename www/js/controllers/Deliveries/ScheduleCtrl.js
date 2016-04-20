@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('DeliveriesScheduleCtrl', function($scope, $rootScope, $ionicLoading, $state, CurrentUser, CurrentAvailability, AvailabilityAPI) {
+.controller('DeliveriesScheduleCtrl', function($scope, $rootScope, $ionicLoading, $state, CurrentUser, CurrentAvailability, AvailabilityAPI, $ionicHistory, $ionicModal, CurrentDelivery, DeliveryStore, CurrentAddress) {
   $scope.schedules = [];
   $scope.selected = {};
 
@@ -17,6 +17,9 @@ angular.module('shopmycourse.controllers')
     if ($scope.isSelected(date, time)) {
       var index = $scope.selected[date].indexOf(time);
       $scope.selected[date].splice(index, 1);
+      if ($scope.selected[date].length == 0) {
+        delete $scope.selected[date];
+      }
       return;
     }
     // Si la case n'est pas selectionnées
@@ -48,7 +51,23 @@ angular.module('shopmycourse.controllers')
         console.log(err);
         $ionicLoading.hide();
       });
-      $state.go('tabs.confirmdelivery');
+
+      $scope.modalTitle = "Bravo !"
+      $scope.modalMessage = "Votre proposition de livraison a été enregistrée. Vous serez notifié dés qu'une demande de livraison correspondra à vos critères."
+      $scope.modalClose = function () {
+        CurrentDelivery.clear(function() {
+          $state.go('tabs.home');
+          $scope.modal.hide();
+        });
+      }
+
+      $ionicModal.fromTemplateUrl('default-modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        $scope.modal = modal;
+        $scope.modal.show();
+      });
     });
   };
 

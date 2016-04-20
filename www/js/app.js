@@ -7,6 +7,7 @@ angular.module('shopmycourse', [
   'ngCordova',
   'angularMoment',
   'LocalForageModule',
+  'shopmycourse.filters',
   'shopmycourse.controllers',
   'shopmycourse.routes',
   'shopmycourse.services',
@@ -29,6 +30,10 @@ angular.module('shopmycourse', [
 
 .config(function ($httpProvider) {
   $httpProvider.interceptors.push('HTTPInterceptor');
+})
+
+.config(function($ionicConfigProvider) {
+  $ionicConfigProvider.backButton.previousTitleText(false).text(' ').icon('icon-smc-back');
 })
 
 .config(function(toastrConfig) {

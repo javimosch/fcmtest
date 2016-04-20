@@ -1,9 +1,8 @@
 angular.module('shopmycourse.controllers')
 
-.controller('OrdersShopCtrl', function($rootScope, $scope, $cordovaGeolocation, toastr, $state, $ionicModal, $ionicLoading, CurrentDelivery, ShopAPI, DeliveryRequestAPI, DeliveryRequestAPI, $timeout) {
+.controller('OrdersShopCtrl', function($rootScope, $scope, $cordovaGeolocation, toastr, $state, $ionicModal, $ionicLoading, CurrentDelivery, ShopAPI, DeliveryRequestAPI, DeliveryRequestAPI, $timeout, OrderStore) {
   $scope.shops = [];
   $scope.minimumStar = 0;
-  $scope.address = "";
   var timer = null;
 
   var posOptions = {
@@ -40,8 +39,7 @@ angular.module('shopmycourse.controllers')
         lat: $scope.position.coords.latitude,
         lon: $scope.position.coords.longitude,
         stars: $scope.minimumStar,
-        schedule: $rootScope.currentDelivery.schedule,
-        address: $scope.address
+        schedule: $rootScope.currentDelivery.schedule
       }, function(shops) {
         $scope.shops = shops;
         $ionicLoading.hide();
@@ -51,32 +49,35 @@ angular.module('shopmycourse.controllers')
     }, 1300);
   }
 
-  $ionicModal.fromTemplateUrl('templates/Orders/Modals/Address.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.addressModal = modal
-  });
-
-  $scope.setShop = function(shop) {
-    CurrentDelivery.setShop(shop, function(currentDelivery) {
-      $scope.addressModal.show();
-    });
-  };
-
-  $scope.sendDeliveryRequest = function(address) {
+  $scope.sendDeliveryRequest = function(shop) {
     var currentDelivery = $rootScope.currentDelivery;
     currentDelivery.buyer_id = $rootScope.currentUser.id;
-    currentDelivery.address_attributes = address;
+    currentDelivery.shop_id = shop.id;
 
     $ionicLoading.show({
       template: 'Nous créons votre demande...'
     });
+
+
+
     DeliveryRequestAPI.create(currentDelivery, function(data) {
-      console.log(data);
-      $scope.addressModal.hide();
       $ionicLoading.hide();
-      $state.go('tabs.confirmdelivery');
+      OrderStore.pull();
+
+      $scope.modalTitle = "Bravo !"
+      $scope.modalMessage = "Votre proposition de livraison a été enregistrée. Vous serez notifié dés qu'une demande de livraison correspondra à vos critères."
+      $scope.modalClose = function () {
+        $state.go('tabs.home');
+        $scope.modal.hide();
+      }
+
+      $ionicModal.fromTemplateUrl('default-modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        $scope.modal = modal;
+        $scope.modal.show();
+      });
     }, function(err) {
       $ionicLoading.hide();
       console.error(err);
@@ -99,10 +100,5 @@ angular.module('shopmycourse.controllers')
       url = "http://maps.google.com?q=" + encodeURIComponent(address);
     }
     window.open(url, "_system", 'location=no');
-  };
-
-  $scope.search = function(query) {
-    $scope.address = query;
-    refreshShopList();
   };
 })

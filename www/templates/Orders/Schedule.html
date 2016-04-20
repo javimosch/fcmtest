@@ -9,12 +9,13 @@
       <div ng-repeat="schedule in schedules">
         <div class="item item-divider">
           {{ schedule.date | amDateFormat:'dddd Do MMMM' }}
+          <hr>
         </div>
         <ion-item>
           <div ng-repeat="(timeKey, time) in schedule.times" class="col-schedule schedule" ng-class="{'selected': isSelected(schedule.date, time)}" ng-click="selectTime(schedule.date, time)">{{time}}</div>
         </ion-item>
       </div>
     </ion-list>
-    <button class="button button-stable button-block" ng-click="validate()">Valider</button>
+    <button class="button button-positive button-block" ng-click="validate()">Valider</button>
   </ion-content>
 </ion-view>

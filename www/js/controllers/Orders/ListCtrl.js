@@ -8,7 +8,7 @@ angular.module('shopmycourse.controllers')
     template: 'Nous recherchons vos commandes...'
   });
 
-  OrderStore.get({}, function (err, orders) {
+  OrderStore.pull(function (err, orders) {
     $scope.orders = orders;
     $ionicLoading.hide();
   }, function (err) {
@@ -17,7 +17,7 @@ angular.module('shopmycourse.controllers')
   });
 
   $scope.byStatus = function (status) {
-    var statuses = ['done'];
+    var statuses = ['done', 'canceled'];
     if (status === 'pending') {
       statuses = ['pending', 'accepted', 'completed']
     }

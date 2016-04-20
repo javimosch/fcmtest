@@ -1,36 +1,15 @@
 angular.module('shopmycourse.controllers')
 
-.controller('OrdersCartCtrl', function($rootScope, $ionicPopup, $ionicLoading, $scope, $timeout, $state, $stateParams, OrderStore, $ionicModal, CurrentCart, lodash, $interval, CurrentUser) {
+.controller('OrdersCartCtrl', function($rootScope, $ionicPopup, $ionicLoading, $scope, $timeout, $state, $stateParams, OrderStore, $ionicModal, CurrentCart, lodash, $interval) {
 
   $scope.order = {};
-  $scope.user = {};
 
   OrderStore.get({id: parseInt($stateParams.idOrder)}, function (err, order) {
     $scope.order = order[0];
     CurrentCart.initFromOrder($scope.order);
   })
 
-  CurrentUser.get(function(user) {
-    $scope.user = user;
-  })
-
   $scope.saveCart = function() {
-    var confirmPopup = $ionicPopup.confirm({
-      title: 'Valider le panier?',
-      template: 'Si vous validez votre panier, vous ne pourrez plus le modifier.',
-      cancelText: 'Non',
-      okText: 'Oui'
-    });
-
-    confirmPopup.then(function(res) {
-      if(!res) {
-        return;
-      }
-      return definitlySaveTheCart();
-    });
-  };
-
-  function definitlySaveTheCart () {
     $ionicLoading.show({
       template: 'Nous enregistrons votre panier...'
     });
@@ -53,12 +32,7 @@ angular.module('shopmycourse.controllers')
         return;
       }
       OrderStore.pull(function (orders) {
-        if ($scope.user.wallet && $scope.user.wallet.lemonway_card_id) {
-            $state.go('tabs.order', {idOrder: parseInt($stateParams.idOrder)});
-        }
-        else {
-            $state.go('tabs.editcreditcard');
-        }
+        $state.go('tabs.order', {idOrder: parseInt($stateParams.idOrder)});
         $ionicLoading.hide();
         $scope.closeCartModal();
       });

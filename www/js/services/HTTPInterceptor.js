@@ -23,7 +23,7 @@ angular.module('shopmycourse.services')
     },
     response: function (response) {
       if (response && response.data && response.data.notice) {
-        $injector.get('toastr').success(Configuration.success[response.data.notice]);
+        //$injector.get('toastr').success(Configuration.success[response.data.notice]);
       }
       return response;
     },

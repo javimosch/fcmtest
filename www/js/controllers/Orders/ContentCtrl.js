@@ -9,6 +9,7 @@ angular.module('shopmycourse.controllers')
 
   OrderStore.get({id: parseInt($stateParams.idOrder)}, function (err, order) {
     $scope.order = order[0];
+    CurrentCart.initFromLocalStorage($scope.order.id);
   })
 
   $ionicModal.fromTemplateUrl('templates/Orders/Modals/Cart.html', {
