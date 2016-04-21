@@ -34,6 +34,7 @@ angular.module('shopmycourse', [
 
 .config(function($ionicConfigProvider) {
   $ionicConfigProvider.backButton.previousTitleText(false).text(' ').icon('icon-smc-back');
+  $ionicConfigProvider.tabs.position('bottom');
 })
 
 .config(function(toastrConfig) {

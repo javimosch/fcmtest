@@ -629,11 +629,16 @@ ion-header-bar, ion-nav-bar {
   background-image: none; }
   .bar-header .button-bar {
     background: #f8f8f8;
-    border-radius: 30px; }
+    border-radius: 32px;
+    line-height: 36px; }
     .bar-header .button-bar .button {
       border: none;
-      border-radius: 30px;
-      font-weight: bold; }
+      border-radius: 32px;
+      font-weight: bold;
+      line-height: 36px; }
+
+.tabs-striped.tabs-stable .tab-item.tab-item-active, .tabs-striped.tabs-stable .tab-item.active, .tabs-striped.tabs-stable .tab-item.activated {
+  border-color: #69a7ff; }
 
 .item-divider {
   background: #8EBAFF;

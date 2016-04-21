@@ -906,14 +906,20 @@ ion-header-bar, ion-nav-bar {
 
   .button-bar {
     background: $stable;
-    border-radius: 30px;
+    border-radius: 32px;
+    line-height: 36px;
 
     .button {
       border: none;
-      border-radius: 30px;
+      border-radius: 32px;
       font-weight: bold;
+      line-height: 36px;
     }
   }
+}
+
+.tabs-striped.tabs-stable .tab-item.tab-item-active, .tabs-striped.tabs-stable .tab-item.active, .tabs-striped.tabs-stable .tab-item.activated {
+  border-color: $positive;
 }
 
 .item-divider {
