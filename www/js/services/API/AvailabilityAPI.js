@@ -6,7 +6,8 @@ angular.module('shopmycourse.services')
     {
         'create': { method: 'POST', url: Configuration.apiEndpoint + 'availabilities', headers: { 'Authorization': 'Bearer' }, cache: false },
         'get': { method: 'GET', url: Configuration.apiEndpoint + 'availabilities', headers: { 'Authorization': 'Bearer' }, cache: false, isArray: true },
-        'delete': { method: 'DELETE', url: Configuration.apiEndpoint + 'availabilities/:idAvailability', headers: { 'Authorization': 'Bearer' }, cache: false }
+        'delete': { method: 'DELETE', url: Configuration.apiEndpoint + 'availabilities/:idAvailability', headers: { 'Authorization': 'Bearer' }, cache: false },
+        'cancel': { method: 'POST', url: Configuration.apiEndpoint + 'availabilities/:idAvailability/cancel', headers: { 'Authorization': 'Bearer' }, cache: false }
     });
 
     return resource;

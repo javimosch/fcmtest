@@ -60,7 +60,7 @@ angular.module('shopmycourse.services')
         },
         cancel: function (next) {
           async.each(currentAvailability, function (availability, next) {
-            AvailabilityAPI.delete({idAvailability: availability.id}, function (a, b) {
+            AvailabilityAPI.cancel({idAvailability: availability.id}, function (a, b) {
               console.log((a, b));
               return next();
             })
