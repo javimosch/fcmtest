@@ -38,6 +38,10 @@ angular.module('shopmycourse.services')
       pattern: "[0-9]{1,}",
       "message": "Entrez un numéro valide"
     },
+    creditcard: {
+      pattern: "[0-9]{4} *[0-9]{4} *[0-9]{4} *[0-9]{4}",
+      "message": "Entrez un numéro de carte valide"
+    },
     cvv: {
       pattern: "[0-9]{1,3}",
       "message": "Entrez un cvv valide"

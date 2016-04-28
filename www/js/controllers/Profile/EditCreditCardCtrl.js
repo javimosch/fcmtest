@@ -7,7 +7,7 @@ angular.module('shopmycourse.controllers')
     $scope.user = {};
 
     $ionicLoading.show({
-      template: 'Nous récupérons votre profil...'
+      template: 'Nous récupérons votre profil ...'
     });
 
     CurrentUser.get(function (user) {
@@ -35,13 +35,28 @@ angular.module('shopmycourse.controllers')
         today.add(1, 'years');
     }
 
+  $scope.formatCreditCard = function () {
+    var value = $scope.card.number;
+    var v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+    var matches = v.match(/\d{4,16}/g);
+    var match = matches && matches[0] || '';
+    var parts = [];
+    for (i = 0, len = match.length; i < len; i += 4) {
+      parts.push(match.substring(i, i + 4));
+    }
+    if (parts.length) {
+      $scope.card.number = parts.join(' ');
+    }
+  };
+
   $scope.endEdit = function ($event) {
     $event.preventDefault();
     $ionicLoading.show({
-      template: 'Nous enregistrons votre moyen de paiement...'
+      template: 'Nous enregistrons votre moyen de paiement ...'
     });
+
     var card = {
-        number: $scope.card.number,
+        number: $scope.card.number.replace(/\s+/g, ''),
         type: 0,
         date: $scope.card.month + '/' + $scope.card.year.year,
         cvv: $scope.card.cvv
