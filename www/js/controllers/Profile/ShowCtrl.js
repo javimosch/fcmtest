@@ -4,7 +4,7 @@ angular.module('shopmycourse.controllers')
 
   $scope.user = {};
   $ionicLoading.show({
-    template: 'Nous récupérons votre profil...'
+    template: 'Nous récupérons votre profil ...'
   });
   CurrentUser.get(function (user) {
       $scope.user = user;
@@ -17,16 +17,16 @@ angular.module('shopmycourse.controllers')
   });
 
   $scope.togglePhone = function () {
-    if ($scope.user.share_phone) {
+    if (!$scope.user.share_phone) {
       var confirmPopup = $ionicPopup.confirm({
-        title: 'Afficher son numéro de téléphone',
-        template: 'Êtes-vous sûr de vouloir afficher votre numéro de téléphone?'
+        title: 'Masquer son numéro de téléphone',
+        template: 'Êtes-vous sûr de vouloir masquer votre numéro de téléphone ? On vous le déconseille si vous voulez améliorer votre note.'
       });
 
       confirmPopup.then(function (res) {
-        $scope.user.share_phone = res;
+        $scope.user.share_phone = !res;
         $ionicLoading.show({
-          template: 'Nous sauvegardons vos préférences...'
+          template: 'Nous sauvegardons vos préférences ...'
         });
         UserAPI.update($scope.user, function (user) {
           $ionicLoading.hide();
@@ -36,7 +36,7 @@ angular.module('shopmycourse.controllers')
       });
     } else {
       $ionicLoading.show({
-        template: 'Nous sauvegardons vos préférences...'
+        template: 'Nous sauvegardons vos préférences ...'
       });
       UserAPI.update($scope.user, function (user) {
         $ionicLoading.hide();
