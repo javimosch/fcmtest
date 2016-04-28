@@ -3,6 +3,11 @@
       <img src="img/logo.png" class="logo"></i>
         <form class="list" name="signup">
             <ion-list>
+                <!-- Prénom -->
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Prénom</span>
+                    <input type="text" name="firstname" ng-model="user.firstname" placeholder="Saisissez votre prénom" ng-pattern="validation.name.pattern" required="required" autocomplete="off">
+                </label>
                 <!-- Nom -->
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Nom</span>
@@ -11,11 +16,6 @@
                 <div class="error-message" ng-show="signup.lastname.$error.pattern">
                   <span><i class="icon ion-close-circled"></i> {{validation.name.message}}</span>
                 </div>
-                <!-- Prénom -->
-                <label class="item item-input item-floating-label">
-                    <span class="input-label">Prénom</span>
-                    <input type="text" name="firstname" ng-model="user.firstname" placeholder="Saisissez votre prénom" ng-pattern="validation.name.pattern" required="required" autocomplete="off">
-                </label>
                 <div class="error-message" ng-show="signup.firstname.$error.pattern">
                   <span><i class="icon ion-close-circled"></i> {{validation.name.message}}</span>
                 </div>
@@ -38,7 +38,7 @@
                 <!-- N° de téléphone -->
                 <label class="item item-input item-floating-label">
                     <span class="input-label">N° de mobile</span>
-                    <input type="tel" name="phone" ng-model="user.phone" placeholder="Saisissez votre téléphone" ng-pattern="validation.phone.pattern" required="required" autocomplete="off">
+                    <input type="tel" name="phone" ng-model="user.phone" placeholder="Saisissez votre n° de portable" ng-pattern="validation.phone.pattern" required="required" autocomplete="off">
                 </label>
                 <div class="error-message" ng-show="signup.phone.$error.pattern">
                   <span><i class="icon ion-close-circled"></i> {{validation.phone.message}}</span>
