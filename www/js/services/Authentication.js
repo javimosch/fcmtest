@@ -25,6 +25,9 @@ angular.module('shopmycourse.services')
           if (error.data.errors.email) {
             return next(false, "Cet email est déjà utilisé sur Shop My Course");
           }
+          else if (error.data.errors.phone) {
+            return next(false, error.data.errors.phone[0]);
+          }
         } else if (error.data.error_message) {
           return next(false, error.data.error_message);
         }
