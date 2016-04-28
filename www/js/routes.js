@@ -145,6 +145,7 @@ angular.module('shopmycourse.routes', [])
 
   .state('tabs.profile', {
     url: '/profile',
+    cache: false,
     views: {
       'profile-tab': {
         templateUrl: 'templates/Profile/Show.html',

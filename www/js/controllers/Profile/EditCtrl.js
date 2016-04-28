@@ -68,6 +68,9 @@ angular.module('shopmycourse.controllers')
       } else {
         console.log(errorCode);
       }
+    }, function(err) {
+      $ionicLoading.hide();
+      console.log(err);
     });
   };
 })
