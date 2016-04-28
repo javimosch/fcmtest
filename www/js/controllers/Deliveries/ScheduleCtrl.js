@@ -1,16 +1,31 @@
 angular.module('shopmycourse.controllers')
 
-.controller('DeliveriesScheduleCtrl', function($scope, $rootScope, $ionicLoading, $state, CurrentUser, CurrentAvailability, AvailabilityAPI, $ionicHistory, $ionicModal, CurrentDelivery, DeliveryStore, CurrentAddress) {
+.controller('DeliveriesScheduleCtrl', function($scope, $rootScope, $ionicLoading, $state, CurrentUser, CurrentAvailability, AvailabilityAPI, $ionicHistory, $ionicModal, CurrentDelivery, DeliveryStore, CurrentAddress, lodash, moment) {
   $scope.schedules = [];
   $scope.selected = {};
+  var times = ['08h - 10h', '10h - 12h', '12h - 14h', '14h - 16h', '16h - 18h', '18h - 20h', '20h - 22h'];
+  var now = moment();
 
   for (var i = 0; i < 7; i++) {
     var date = new Date(new Date().getTime() + i * 24 * 60 * 60 * 1000);
+    var day = moment(date).hours(0).minutes(0).seconds(0);
+    var scheduleTimes = [];
+
+    lodash.each(times, function(time) {
+      var hours = time.replace('h', '').split('-');
+      var start = parseInt(hours[0]);
+
+      day.hours(start);
+      if (day.unix() > now.unix()) {
+        scheduleTimes.push(time);
+      }
+    });
     $scope.schedules.push({
       date: date,
-      times: ['08h - 10h', '10h - 12h', '12h - 14h', '14h - 16h', '16h - 18h', '18h - 20h', '20h - 22h']
-    })
+      times: scheduleTimes
+    });
   }
+
 
   $scope.selectTime = function (date, time) {
     // Si la case est déjà selectionnées
