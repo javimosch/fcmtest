@@ -194,14 +194,25 @@ ion-header-bar, ion-nav-bar {
     .button-block.button-positive.bordered, .button-block.button-positive:hover.bordered, button.button-block.button-positive.bordered, button.button-block.button-positive:hover.bordered {
       border: 1px solid #fff; }
 
-#home .logo-centered {
-  width: 80%;
-  margin: auto; }
-  #home .logo-centered img {
-    width: 100%; }
+#home {
+  background-color: #69a7ff; }
+  #home .logo-centered {
+    padding-bottom: 10%; }
+    #home .logo-centered img {
+      width: 80%;
+      color: #888888;
+      vertical-align: middle;
+      border-radius: 50%;
+      margin: 5% auto auto auto;
+      display: block; }
+  #home .item p, #home p {
+    text-align: center;
+    color: #2f6ab5;
+    white-space: normal;
+    font-weight: bold; }
 
-.start ion-nav-bar.bar.bar-positive, .start ion-header-bar.bar.bar-positive, .signin ion-nav-bar.bar.bar-positive, .signin ion-header-bar.bar.bar-positive, .signup ion-nav-bar.bar.bar-positive, .signup ion-header-bar.bar.bar-positive {
-  background-color: transparent;
+.start ion-nav-bar.bar.bar-stable, .start ion-header-bar.bar.bar-stable, .signin ion-nav-bar.bar.bar-stable, .signin ion-header-bar.bar.bar-stable, .signup ion-nav-bar.bar.bar-stable, .signup ion-header-bar.bar.bar-stable {
+  background-color: #69a7ff;
   background-image: none; }
 
 #signin, #signup {
@@ -220,15 +231,18 @@ ion-header-bar, ion-nav-bar {
     width: 100%;
     text-align: center;
     text-decoration: underline;
-    color: white;
-    display: inline-block; }
+    color: #2f6ab5;
+    display: inline-block;
+    font-weight: bold; }
   #signin .cgu, #signup .cgu {
-    width: 100%;
+    width: 80%;
+    margin: 0 10%;
+    font-weight: bold;
     text-align: center;
-    color: white;
+    color: #2f6ab5;
     display: inline-block; }
     #signin .cgu a, #signup .cgu a {
-      color: white;
+      color: #2f6ab5;
       text-decoration: underline; }
   #signin .item, #signup .item {
     border: none;
@@ -623,6 +637,10 @@ ion-header-bar, ion-nav-bar {
   padding: 30px; }
   .loading-container .loading span {
     color: white; }
+
+.bar.bar-stable .title {
+  color: #2f6ab5;
+  font-weight: bold; }
 
 .bar-header {
   border: none;

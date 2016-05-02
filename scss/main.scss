@@ -274,7 +274,6 @@ ion-header-bar, ion-nav-bar {
   &.button-stable, &.button-stable:hover {
     color: $positive;
     background-color: $light;
-
     &.bordered {
       border: 1px solid $positive;
     }
@@ -290,20 +289,34 @@ ion-header-bar, ion-nav-bar {
 }
 
 #home {
+  background-color: $positive;
   .logo-centered {
-    width: 80%;
-    margin: auto;
+    padding-bottom: 10%;
 
     img {
-      width: 100%;
+      width: 80%;
+      color: rgb(136, 136, 136);
+      vertical-align: middle;
+      border-radius: 50%;
+      margin: 5% auto auto auto;
+      display: block;
     }
   }
+
+  .item p, p {
+    text-align: center;
+    color: $positive-dark;
+    white-space: normal;
+    font-weight: bold;
+  }
+
 }
 
 .start, .signin, .signup {
-  ion-nav-bar.bar.bar-positive , ion-header-bar.bar.bar-positive {
-    background-color: transparent;
+  ion-nav-bar.bar.bar-stable , ion-header-bar.bar.bar-stable {
+    background-color: $positive;
     background-image: none;
+
   }
 }
 
@@ -327,16 +340,19 @@ ion-header-bar, ion-nav-bar {
     width: 100%;
     text-align: center;
     text-decoration: underline;
-    color: white;
+    color: $positive-dark;
     display: inline-block;
+    font-weight: bold;
   }
   .cgu {
-    width: 100%;
+    width: 80%;
+    margin: 0 10%;
+    font-weight: bold;
     text-align: center;
-    color: white;
+    color: $positive-dark;
     display: inline-block;
     a {
-      color: white;
+      color: $positive-dark;
       text-decoration: underline;
     }
   }
@@ -899,6 +915,10 @@ ion-header-bar, ion-nav-bar {
   }
 }
 
+.bar.bar-stable .title {
+  color: $positive-dark;
+  font-weight: bold;
+}
 
 .bar-header {
   border: none;
@@ -957,8 +977,6 @@ ion-header-bar, ion-nav-bar {
     }
   }
 }
-
-
 
 span {
   color: inherit;
