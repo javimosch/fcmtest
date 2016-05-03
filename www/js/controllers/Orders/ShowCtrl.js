@@ -14,6 +14,7 @@ angular.module('shopmycourse.controllers')
   })
 
   OrderStore.get({id: parseInt($stateParams.idOrder)}, function (err, order) {
+    console.log(order)
     $scope.order = order[0];
     $scope.order.deliveryman.rating_average |= 0;
     $scope.ratingStar = $scope.order.buyer_rating ? $scope.order.buyer_rating.rating : 0;

@@ -58,14 +58,14 @@ angular.module('shopmycourse.controllers')
     var currentDelivery = $rootScope.currentDelivery;
     currentDelivery.buyer_id = $rootScope.currentUser.id;
     currentDelivery.shop_id = shop.id;
+    CurrentDelivery.setShop(shop, function () {});
 
     $ionicLoading.show({
       template: 'Nous créons votre demande...'
     });
 
-
-
     DeliveryRequestAPI.create(currentDelivery, function(data) {
+      CurrentDelivery.setDeliveryRequestID(data.id, function () {});
       $ionicLoading.hide();
       OrderStore.pull();
 

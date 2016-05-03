@@ -27,6 +27,7 @@ angular.module('shopmycourse.services')
         },
         setShop: function (shop, next) {
           currentDelivery.shop_id = shop.id;
+          currentDelivery.shop_name = shop.name;
           return DataStorage.set('current_delivery', currentDelivery).then(function () {
             $rootScope.currentDelivery = currentDelivery;
             return next(currentDelivery);
@@ -34,6 +35,13 @@ angular.module('shopmycourse.services')
         },
         setAddress: function(address, next) {
           currentDelivery.address_attributes = address;
+          return DataStorage.set('current_delivery', currentDelivery).then(function () {
+            $rootScope.currentDelivery = currentDelivery;
+            return next(currentDelivery);
+          });
+        },
+        setDeliveryRequestID: function (delivery_request_id, next) {
+          currentDelivery.delivery_request_id = delivery_request_id;
           return DataStorage.set('current_delivery', currentDelivery).then(function () {
             $rootScope.currentDelivery = currentDelivery;
             return next(currentDelivery);

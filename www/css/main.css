@@ -213,7 +213,8 @@ ion-header-bar, ion-nav-bar {
 
 .start ion-nav-bar.bar.bar-stable, .start ion-header-bar.bar.bar-stable, .signin ion-nav-bar.bar.bar-stable, .signin ion-header-bar.bar.bar-stable, .signup ion-nav-bar.bar.bar-stable, .signup ion-header-bar.bar.bar-stable {
   background-color: #69a7ff;
-  background-image: none; }
+  background-image: none;
+  color: #69a7ff; }
 
 #signin, #signup {
   background-color: #69a7ff; }
