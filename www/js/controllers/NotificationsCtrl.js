@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('NotificationsCtrl', function($scope, $ionicPopup, $ionicLoading, toastr, $state, NotificationAPI, DeliveryAPI, CurrentUser, lodash) {
+.controller('NotificationsCtrl', function($scope, $ionicPopup, $ionicLoading, toastr, $state, NotificationAPI, DeliveryAPI, CurrentUser, CurrentDelivery, lodash) {
 
 	$scope.notifications = [];
 	CurrentUser.get(function (user) {
@@ -125,6 +125,7 @@ angular.module('shopmycourse.controllers')
 					DeliveryAPI.cancel({
 						idDelivery: notification.meta.delivery.id
 					}, function() {
+						CurrentDelivery.clear();
 						$ionicLoading.hide();
 					}, function(err) {
 						console.error(err);
