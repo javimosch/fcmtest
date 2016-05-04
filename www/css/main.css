@@ -309,11 +309,15 @@ ion-header-bar, ion-nav-bar {
     #notifications .item-icon-left .ion-android-notifications-none {
       color: #FDCC5A;
       font-size: 3em; }
+  #notifications .mascot {
+    text-align: center;
+    margin: 10px 0; }
+    #notifications .mascot img {
+      width: 50%; }
   #notifications .shop {
     font-weight: bold;
     font-size: 120%;
-    color: #69a7ff;
-    margin: 25px 0 28px 0; }
+    color: #69a7ff; }
   #notifications .ion-ios-calendar-outline, #notifications .ion-ios-location, #notifications .ion-ios-person {
     color: #8EBAFF; }
 

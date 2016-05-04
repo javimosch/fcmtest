@@ -451,11 +451,18 @@ ion-header-bar, ion-nav-bar {
     padding-bottom: 25px;
   }
 
+  .mascot {
+    text-align: center;
+    margin: 10px 0;
+    img {
+      width: 50%;
+    }
+  }
+
   .shop {
     font-weight: bold;
     font-size: 120%;
     color: $positive;
-    margin: 25px 0 28px 0;
   }
 
   .ion-ios-calendar-outline, .ion-ios-location, .ion-ios-person {
