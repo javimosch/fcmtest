@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('HomeCtrl', function($scope, $ionicLoading, $state, $ionicModal, $ionicPopup, CurrentUser, CurrentAvailability, moment, lodash) {
+.controller('HomeCtrl', function($scope, $ionicLoading, $state, $ionicModal, $ionicPopup, CurrentUser, CurrentAvailability, CurrentDelivery, DeliveryRequestAPI, moment, lodash) {
 
   $ionicLoading.show({
     template: 'Nous recherchons les dernières informations...'
@@ -22,6 +22,54 @@ angular.module('shopmycourse.controllers')
     $scope.date = lodash.uniq(dates).join(', ');
     $ionicLoading.hide();
   });
+
+  $scope.currentDelivery = [];
+  CurrentDelivery.get(function(currentDelivery) {
+    $scope.currentDelivery = currentDelivery;
+    var dates = []
+    for(var schedule in currentDelivery.schedule) {
+      var hours = currentDelivery.schedule[schedule].toString();
+      if (moment(schedule).diff(moment(), 'days', true) >= -1 && moment(schedule).diff(moment(), 'days', true) < 0) {
+        dates.push('aujourd\'hui entre ' +  hours.replace(' - ', ' et '));
+      } else if (moment(schedule).diff(moment(), 'days', true) >= 0) {
+        dates.push(moment(schedule).format('dddd') + ' entre ' + hours.replace(' - ', ' et '));
+      }
+    }
+
+    $scope.deliveryDate = lodash.uniq(dates).join(', ');
+    $ionicLoading.hide();
+  });
+
+  $scope.cancelDeliveryRequest = function(delivery_request_id) {
+    var myPopup = $ionicPopup.confirm({
+      template: 'Vous êtes sur le point d\'annuler votre demande de livraison, êtes-vous sûr ?',
+      title: 'Annuler la demande',
+      cancelText: 'retour'
+    });
+
+    myPopup.then(function(res) {
+      if (res) {
+
+        $ionicLoading.show({
+          template: 'Nous envoyons votre réponse ...'
+        });
+
+        CurrentDelivery.clear();
+        if (delivery_request_id) {
+          DeliveryRequestAPI.cancel({ idDeliveryRequest: delivery_request_id },
+            function (success) {
+              $ionicLoading.hide();
+            },
+            function (err) {
+              $ionicLoading.hide();
+          });
+        }
+        $state.go($state.current, {}, {reload: true});
+
+      }
+    });
+
+  };
 
   if (!CurrentUser.isLogged()) {
     $state.go('start');
