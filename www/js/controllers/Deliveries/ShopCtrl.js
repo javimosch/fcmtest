@@ -1,9 +1,9 @@
 angular.module('shopmycourse.controllers')
 
-.controller('DeliveriesShopCtrl', function($scope, $state, $ionicLoading, $cordovaGeolocation, toastr, ShopAPI, CurrentAvailability, $timeout) {
+.controller('DeliveriesShopCtrl', function($scope, $state, $ionicLoading, $ionicPopup, $cordovaGeolocation, toastr, ShopAPI, CurrentAvailability, $timeout) {
 
   $ionicLoading.show({
-    template: 'Nous recherchons les magasins à proximité...'
+    template: 'Nous recherchons les magasins à proximité ...'
   });
 
   $scope.shops = [];
@@ -45,7 +45,10 @@ angular.module('shopmycourse.controllers')
       $scope.position = position;
       refreshShopList();
     }, function(err) {
-      toastr.warning("Nous n\'arrivons pas à vous géolocaliser, merci d'activer votre GPS", 'Attention');
+      $ionicPopup.alert({
+       title: 'Attention !',
+       template: 'Nous n\'arrivons pas à vous géolocaliser, merci d\'activer votre GPS.'
+      });
       $ionicLoading.hide();
     });
 
