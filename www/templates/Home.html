@@ -48,6 +48,7 @@
 
             <!-- delivery_request -->
             <ion-item class="secondary" ng-if="notification.mode === 'delivery_request'">
+              <div class="mascot"><img src="img/notifs/bravo.jpg" alt="delivery_request"></div>
               <div class="shop">{{notification.meta.shop.name}}</div>
               <div class="schedule"><i class="icon-smc-clock"></i> {{notification.meta.schedule.schedule}}</div>
               <div class="address"><i class="icon-smc-marker"></i> {{notification.meta.address.address}}, {{notification.meta.address.city}}</div>
@@ -71,6 +72,7 @@
 
             <!-- accepted_delivery -->
             <ion-item class="secondary" ng-if="notification.mode === 'accepted_delivery'">
+              <div class="mascot"><img src="img/notifs/acceptation_confirmee.jpg" alt="accepted_delivery"></div>
               <div class="shop">{{notification.meta.shop.name}}</div>
               <div class="schedule"><i class="icon-smc-clock"></i> {{notification.meta.schedule.schedule}}</div>
               <div class="address"><i class="icon-smc-marker"></i> {{notification.meta.address.address}}, {{notification.meta.address.city}}</div>
@@ -92,6 +94,7 @@
 
             <!-- cart_filled -->
             <ion-item class="secondary" ng-if="notification.mode === 'cart_filled'">
+              <div class="mascot"><img src="img/notifs/liste_course_prete.jpg" alt="cart_filled"></div>
               <div class="shop">{{notification.meta.shop.name}}</div>
               <div class="schedule"><i class="ion-ios-calendar-outline"></i> {{notification.meta.schedule.schedule}}</div>
               <div class="address"><i class="ion-ios-location"></i> {{notification.meta.address.address}}, {{notification.meta.address.city}}</div>
@@ -112,6 +115,7 @@
 
             <!-- outdated_delivery -->
             <ion-item class="secondary" ng-if="notification.mode === 'outdated_delivery'">
+              <div class="mascot"><img src="img/notifs/trop_tard.jpg" alt="outdated_delivery"></div>
               <div class="shop">{{notification.meta.shop.name}}</div>
               <div class="schedule"><i class="ion-ios-calendar-outline"></i> {{notification.meta.schedule.schedule}}</div>
               <div class="address"><i class="ion-ios-location"></i> {{notification.meta.address.address}}, {{notification.meta.address.city}}</div>
@@ -119,7 +123,7 @@
               {{notification.meta.buyer.lastname || notification.meta.deliveryman.lastname}}</div>
               <div class="response row">
                 <div class="col">
-                  <div class="title">{{notification.content}}</div>
+                  {{notification.content}}
                   <button class="button button-positive button-block" ng-click="readNotification(notification)">D'accord</button>
                 </div>
               </div>
