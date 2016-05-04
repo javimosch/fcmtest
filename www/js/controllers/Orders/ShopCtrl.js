@@ -10,7 +10,6 @@ angular.module('shopmycourse.controllers')
     enableHighAccuracy: true
   };
 
-
   $ionicLoading.show({
     template: 'Nous recherchons les magasins correspondants...'
   });

@@ -37,9 +37,9 @@
           <div class="item title item-divider item-divider-default">
             Liste des produits
           </div>
-          <ion-item class="item product" ng-repeat="delivery_content in delivery.delivery_contents" ng-if="delivery.status != 'accepted'">
+          <ion-item class="item product" ng-repeat="delivery_content in delivery.delivery_contents" ng-if="delivery.status != 'accepted'" ng-click="setChecked($index)">
               <img ng-src="{{delivery_content.product.image_url}}" alt="{{delivery_content.product.name}}">
-              <div class="name">{{delivery_content.product.name}}</div>
+              <div class="name" ng-class="delivery_content.checked ? 'checked' : ''">{{delivery_content.product.name}}</div>
               <div class="detail">{{delivery_content.product.detail}}</div>
               <div class="price">{{delivery_content.unit_price*delivery_content.quantity | number: 2 || 0}}€ ({{delivery_content.quantity}})</div>
           </ion-item>

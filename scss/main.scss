@@ -710,6 +710,10 @@ ion-header-bar, ion-nav-bar {
       text-align: center;
     }
   }
+
+  .checked {
+    color: $gold;
+  }
 }
 
 .ion-ios-star {

@@ -486,6 +486,9 @@ ion-header-bar, ion-nav-bar {
 #delivery .list .title, #order .list .title {
   text-align: center; }
 
+#delivery .checked, #order .checked {
+  color: #FDCC5A; }
+
 .ion-ios-star {
   color: #FDCC5A; }
 
