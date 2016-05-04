@@ -29,6 +29,10 @@ angular.module('shopmycourse.controllers')
     $scope.finishDeliveryModal.hide();
   };
 
+  $scope.setChecked = function (index) {
+      $scope.delivery.delivery_contents[index].checked = !$scope.delivery.delivery_contents[index].checked;
+  };
+
   $scope.sendSMS = function () {
     var number = $scope.delivery.buyer.phone;
     $cordovaSms.send(number, '', {
