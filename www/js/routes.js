@@ -174,6 +174,16 @@ angular.module('shopmycourse.routes', [])
     }
   })
 
+  .state('tabs.editaddress', {
+    url: '/profile/address/edit',
+    views: {
+      'profile-tab': {
+        templateUrl: 'templates/Profile/EditAddress.html',
+        controller: 'ProfileEditAddressCtrl'
+      }
+    }
+  })
+
   .state('start', {
     url: '/start',
     templateUrl: 'templates/Start.html',

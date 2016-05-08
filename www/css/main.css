@@ -15,6 +15,11 @@
     margin: 30% auto auto auto;
     display: block; }
 
+#profile-header .edit a, #profile-address .edit a {
+  text-decoration: underline;
+  color: #444;
+  font-size: 12px; }
+
 #profile-header {
   text-align: center;
   border: none;
@@ -25,9 +30,6 @@
     font-weight: bold;
     font-size: 100%;
     color: #69a7ff; }
-  #profile-header .edit a {
-    text-decoration: underline;
-    color: #444; }
   #profile-header .profil-pic {
     color: #69a7ff;
     font-size: 50px;
@@ -61,15 +63,15 @@
   font-size: 80%;
   margin-top: 7px; }
 
-#profile #profile-information i, #profile #profile-creditcard i {
+#profile #profile-information i, #profile #profile-creditcard i, #profile #profile-address i {
   color: #ef473a; }
 
-#profile #profile-information > div, #profile #profile-creditcard > div {
+#profile #profile-information > div, #profile #profile-creditcard > div, #profile #profile-address > div {
   font-size: 15px; }
 
-#profile #profile-information > div {
+#profile #profile-information > div, #profile #profile-address > div {
   margin-bottom: 12px; }
-  #profile #profile-information > div:last-child {
+  #profile #profile-information > div:last-child, #profile #profile-address > div:last-child {
     margin-bottom: 0; }
 
 #profile #profile-phone > div {
@@ -271,7 +273,7 @@ ion-header-bar, ion-nav-bar {
       /* Firefox 18- */
       color: white; }
 
-#profile #profile-information {
+#profile #profile-information, #profile #profile-address {
   text-align: center; }
 
 #profile #profile-phone .item-toggle {
