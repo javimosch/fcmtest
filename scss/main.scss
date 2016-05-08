@@ -23,6 +23,16 @@
   }
 }
 
+#profile-header, #profile-address {
+  .edit {
+    a {
+      text-decoration: underline;;
+      color: $dark;
+      font-size: 12px;
+    }
+  }
+}
+
 #profile-header {
   text-align: center;
   border: none;
@@ -35,12 +45,6 @@
     font-weight: bold;
     font-size: 100%;
     color: $positive;
-  }
-  .edit {
-    a {
-      text-decoration: underline;;
-      color: $dark;
-    }
   }
 
   .profil-pic {
@@ -92,7 +96,7 @@
     margin-top: 7px;
   }
 
-  #profile-information, #profile-creditcard {
+  #profile-information, #profile-creditcard, #profile-address {
     i {
       color: $assertive;
     }
@@ -101,7 +105,7 @@
     }
   }
 
-  #profile-information {
+  #profile-information, #profile-address {
     > div {
       margin-bottom: 12px;
 
@@ -389,7 +393,7 @@ ion-header-bar, ion-nav-bar {
 
 #profile {
 
-  #profile-information {
+  #profile-information, #profile-address {
     text-align: center;
   }
 
