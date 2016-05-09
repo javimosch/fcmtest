@@ -1,12 +1,12 @@
 angular.module('shopmycourse.controllers')
 
-.controller('OrdersShowCtrl', function($scope, $state, $ionicLoading, $ionicPopup, $rootScope, $stateParams, CurrentCart, $ionicModal, OrderStore, $interval, $cordovaSms, DeliveryAPI, CurrentUser, $ionicSlideBoxDelegate) {
+.controller('OrdersShowCtrl', function($scope, $state, $ionicLoading, $ionicPopup, $rootScope, $stateParams, CurrentCart, CurrentDelivery, $ionicModal, OrderStore, $interval, $cordovaSms, DeliveryAPI, CurrentUser, $state, $ionicSlideBoxDelegate) {
 
   $scope.order = {};
   $scope.user = {};
 
   $ionicLoading.show({
-    template: 'Nous recherchons votre commande ...'
+    template: 'Nous recherchons votre commande...'
   });
 
   CurrentUser.get(function(user) {
@@ -43,6 +43,7 @@ angular.module('shopmycourse.controllers')
 
   $scope.goFinishOrderModal = function () {
       $scope.finishOrderModal.hide();
+      CurrentDelivery.clear();
       $state.go('tabs.home');
   };
 

@@ -7,7 +7,7 @@ angular.module('shopmycourse.controllers')
     $scope.user = {};
 
     $ionicLoading.show({
-      template: 'Nous récupérons votre profil ...'
+      template: 'Nous récupérons votre profil...'
     });
 
     CurrentUser.get(function (user) {
@@ -52,7 +52,7 @@ angular.module('shopmycourse.controllers')
   $scope.endEdit = function ($event) {
     $event.preventDefault();
     $ionicLoading.show({
-      template: 'Nous enregistrons votre moyen de paiement ...'
+      template: 'Nous enregistrons votre moyen de paiement...'
     });
 
     var card = {

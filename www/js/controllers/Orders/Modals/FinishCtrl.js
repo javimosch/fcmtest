@@ -12,7 +12,7 @@ angular.module('shopmycourse.controllers')
 
   $scope.finalizeDelivery = function(order) {
 		$ionicLoading.show({
-	    template: 'Nous enregistrons votre avis ...'
+	    template: 'Nous enregistrons votre avis...'
 	  });
 		DeliveryAPI.finalize({'idDelivery': order.id, 'rating': $scope.ratingStar}, function() {
 			$ionicLoading.hide();
