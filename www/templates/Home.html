@@ -19,14 +19,14 @@
           </p>
         </span>
         <button class="button button-stable button-block icon-right ion-chevron-right" ng-click="cancelAvailability()" ng-if="(currentAvailability.length > 0)">Annuler <span ng-if='currentAvailability.length <= 1'>cette</span><span ng-if='currentAvailability.length > 1'>ces</span> disponibilité<span ng-if='currentAvailability.length > 1'>s</soan></button>
-        <button class="button button-stable button-block icon-right ion-chevron-right" ng-if="deliveryDate.length <= 0" ui-sref="tabs.scheduleorder">Demander une livraison</button>
-        <span ng-if="(deliveryDate.length > 0)">
+        <button class="button button-stable button-block icon-right ion-chevron-right" ng-if="deliveryDate.length <= 0 || !currentDelivery.shop_name" ui-sref="tabs.scheduleorder">Demander une livraison</button>
+        <span ng-if="(deliveryDate.length > 0 && currentDelivery.shop_name)">
           <p>
             Vous avez demandé une livraison {{deliveryDate}} dans le
             <span class="shop">{{currentDelivery.shop_name}}</span>
           </p>
         </span>
-        <button class="button button-stable button-block icon-right ion-chevron-right" ng-if="deliveryDate.length > 0" ng-click="cancelDeliveryRequest(currentDelivery.delivery_request_id)">Annuler ma demande</button>
+        <button class="button button-stable button-block icon-right ion-chevron-right" ng-if="deliveryDate.length > 0 && currentDelivery.shop_name" ng-click="cancelDeliveryRequest(currentDelivery.delivery_request_id)">Annuler ma demande</button>
     </ion-content>
 </ion-view>
 
