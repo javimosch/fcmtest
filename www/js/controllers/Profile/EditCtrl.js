@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('ProfileEditCtrl', function($scope, $ionicLoading, $state, $ionicHistory, $ionicViewSwitcher, $ionicPopup, Validation, CurrentUser, UserAPI) {
+.controller('ProfileEditCtrl', function($scope, $ionicLoading, $state, $ionicHistory, $ionicViewSwitcher, $ionicPopup, Validation, CurrentUser, UserAPI, Camera, $ionicActionSheet) {
 
   $scope.validation = Validation;
 
@@ -12,6 +12,8 @@ angular.module('shopmycourse.controllers')
       $scope.user = user;
       $ionicLoading.hide();
   })
+
+  $scope.avatarBackground = "http://pickaface.net/includes/themes/clean/img/slide2.png";
 
   $scope.avatar = null;
   CurrentUser.getAvatar(function (avatar) {
@@ -50,6 +52,40 @@ angular.module('shopmycourse.controllers')
       }
     });
   };
+
+    getPictureFromCamera = function(type) {
+      Camera.getPicture(type, function(imageData) {
+          // Pass the base64 string to avatar.url for displaying in the app
+          $rootScope.avatarBackground = "data:image/jpeg;base64," + imageData;
+          $scope.$apply();
+
+          // Pass the base64 string to the param for rails saving
+          $scope.seller.avatar = "data:image/jpeg;base64," + imageData;
+          SellerAPI.update($scope.seller, function() {
+              CurrentSeller.reloadSeller();
+          }, function() {});
+      })
+  }
+
+  $scope.changeAvatar = function() {
+
+      var photoSheet = $ionicActionSheet.show({
+          buttons: [
+              { text: 'Prendre une photo' },
+              { text: 'Accéder à la galerie' }
+          ],
+          titleText: 'Modifier votre avatar',
+          cancelText: 'Annuler',
+          cancel: function() {
+              // add cancel code..
+          },
+          buttonClicked: function(index) {
+              getPictureFromCamera(index);
+              return true;
+          }
+      });
+  }
+
 
   $scope.endEdit = function () {
     $ionicLoading.show({
