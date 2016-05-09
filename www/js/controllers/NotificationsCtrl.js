@@ -144,7 +144,16 @@ angular.module('shopmycourse.controllers')
 			$scope.readNotification(notification, function () {
 			$scope.closeNotificationsModal();
 			$ionicLoading.hide();
+			$state.go('tabs.orders', {idOrder: notification.meta.delivery.id});
+			setTimeout(function() {
+
+			$state.go('tabs.order', {idOrder: notification.meta.delivery.id});
+			}, 100);
+
+			setTimeout(function() {
+
 			$state.go('tabs.ordercontent', {idOrder: notification.meta.delivery.id});
+			}, 200);
 		});
 	};
 
@@ -152,7 +161,11 @@ angular.module('shopmycourse.controllers')
 			$scope.readNotification(notification, function () {
 			$scope.closeNotificationsModal();
 			$ionicLoading.hide();
+			$state.go('tabs.deliveries', {}, {reload: false});
+			setTimeout(function() {
+
 			$state.go('tabs.delivery', {idDelivery: notification.meta.delivery.id});
+			}, 100);
 		});
 	};
 
