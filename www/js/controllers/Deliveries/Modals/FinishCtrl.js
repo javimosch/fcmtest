@@ -17,7 +17,7 @@ angular.module('shopmycourse.controllers')
 
   $scope.finalizeDelivery = function(delivery, validation_code) {
 		$ionicLoading.show({
-      template: 'Nous enregistrons votre avis...'
+      template: 'Nous enregistrons votre avis ...'
     });
 		DeliveryAPI.finalize({'idDelivery': delivery.id, 'validation_code': validation_code, 'rating': $scope.ratingStar}, function() {
 			$scope.nextSlide();
