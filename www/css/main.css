@@ -218,6 +218,9 @@ ion-header-bar, ion-nav-bar {
   background-image: none;
   color: #69a7ff; }
 
+.start .bar.bar-stable .title, .signin .bar.bar-stable .title, .signup .bar.bar-stable .title {
+  color: #69a7ff; }
+
 #signin, #signup {
   background-color: #69a7ff; }
   #signin .logo, #signup .logo {
