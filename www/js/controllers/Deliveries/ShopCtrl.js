@@ -3,7 +3,7 @@ angular.module('shopmycourse.controllers')
 .controller('DeliveriesShopCtrl', function($scope, $state, $ionicLoading, $ionicPopup, $cordovaGeolocation, toastr, ShopAPI, CurrentAvailability, $timeout) {
 
   $ionicLoading.show({
-    template: 'Nous recherchons les magasins à proximité ...'
+    template: 'Nous recherchons les magasins à proximité...'
   });
 
   $scope.shops = [];

@@ -4,7 +4,7 @@ angular.module('shopmycourse.controllers')
 
   $scope.user = {};
   $ionicLoading.show({
-    template: 'Nous récupérons votre profil ...'
+    template: 'Nous récupérons votre profil...'
   });
   CurrentUser.get(function (user) {
       $scope.user = user;
@@ -26,7 +26,7 @@ angular.module('shopmycourse.controllers')
       confirmPopup.then(function (res) {
         $scope.user.share_phone = !res;
         $ionicLoading.show({
-          template: 'Nous sauvegardons vos préférences ...'
+          template: 'Nous sauvegardons vos préférences...'
         });
         UserAPI.update($scope.user, function (user) {
           $ionicLoading.hide();
@@ -36,7 +36,7 @@ angular.module('shopmycourse.controllers')
       });
     } else {
       $ionicLoading.show({
-        template: 'Nous sauvegardons vos préférences ...'
+        template: 'Nous sauvegardons vos préférences...'
       });
       UserAPI.update($scope.user, function (user) {
         $ionicLoading.hide();

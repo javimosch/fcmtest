@@ -3,7 +3,7 @@ angular.module('shopmycourse.controllers')
 .controller('HomeCtrl', function($scope, $state, $ionicLoading, $ionicModal, $ionicPopup, CurrentUser, CurrentAvailability, CurrentDelivery, DeliveryRequestAPI, moment, lodash) {
 
   $ionicLoading.show({
-    template: 'Nous recherchons les dernières informations ...'
+    template: 'Nous recherchons les dernières informations...'
   });
 
   $scope.currentAvailability = [];
@@ -51,7 +51,7 @@ angular.module('shopmycourse.controllers')
       if (res) {
 
         $ionicLoading.show({
-          template: 'Nous envoyons votre réponse ...'
+          template: 'Nous envoyons votre réponse...'
         });
 
         CurrentDelivery.clear();
