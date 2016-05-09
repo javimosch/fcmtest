@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('DeliveriesShowCtrl', function($scope, $ionicLoading, $stateParams, $ionicModal, $cordovaSms, DeliveryStore) {
+.controller('DeliveriesShowCtrl', function($scope, $state, $stateParams, $ionicLoading, $ionicModal, $cordovaSms, DeliveryStore) {
 
   $scope.delivery = {};
 
@@ -27,6 +27,11 @@ angular.module('shopmycourse.controllers')
 
   $scope.closeFinishDeliveryModal = function () {
     $scope.finishDeliveryModal.hide();
+  };
+
+  $scope.goFinishDeliveryModal = function () {
+      $scope.finishDeliveryModal.hide();
+      $state.go('tabs.home');
   };
 
   $scope.setChecked = function (index) {
