@@ -220,6 +220,7 @@ angular.module('shopmycourse.routes', [])
 
   .state('tabs.addressorder', {
     url: '/order/create/address',
+    cache: false,
     views: {
       'home-tab': {
         templateUrl: 'templates/Orders/Address.html',
@@ -230,6 +231,7 @@ angular.module('shopmycourse.routes', [])
 
   .state('tabs.shoporder', {
     url: '/order/create/shop',
+    cache: false,
     views: {
       'home-tab': {
         templateUrl: 'templates/Orders/Shop.html',
