@@ -322,6 +322,9 @@ ion-header-bar, ion-nav-bar {
     background-image: none;
     color: $positive;
   }
+  .bar.bar-stable .title {
+    color: $positive;
+  }
 }
 
 #signin, #signup {
