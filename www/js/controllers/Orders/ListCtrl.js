@@ -5,7 +5,7 @@ angular.module('shopmycourse.controllers')
   $scope.status = 'pending';
 
   $ionicLoading.show({
-    template: 'Nous recherchons vos commandes...'
+    template: 'Nous recherchons vos commandes ...'
   });
 
   OrderStore.pull(function (err, orders) {
