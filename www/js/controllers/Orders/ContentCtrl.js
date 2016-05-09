@@ -13,8 +13,8 @@ angular.module('shopmycourse.controllers')
   })
 
   $ionicModal.fromTemplateUrl('templates/Orders/Modals/Cart.html', {
-      scope: $scope,
-      animation: 'slide-in-up'
+    scope: $scope,
+    animation: 'slide-in-up'
   }).then(function (modal) {
     $scope.cartModal = modal
   });
@@ -44,4 +44,5 @@ angular.module('shopmycourse.controllers')
 
   $scope.addProduct = CurrentCart.addProduct;
   $scope.removeProduct = CurrentCart.removeProduct;
+
 })

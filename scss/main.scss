@@ -783,10 +783,11 @@ ion-header-bar, ion-nav-bar {
   .slider {
     height: 100%;
 
-    .thanks {
-      > div {
-        position: absolute;
-        bottom: 50px;
+    .mascot {
+      text-align: center;
+      margin: 10px 0;
+      img {
+      width: 80%;
       }
     }
   }

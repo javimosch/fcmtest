@@ -540,9 +540,11 @@ ion-header-bar, ion-nav-bar {
     font-weight: bold; }
   #finish-order-modal .slider, #finish-delivery-modal .slider {
     height: 100%; }
-    #finish-order-modal .slider .thanks > div, #finish-delivery-modal .slider .thanks > div {
-      position: absolute;
-      bottom: 50px; }
+    #finish-order-modal .slider .mascot, #finish-delivery-modal .slider .mascot {
+      text-align: center;
+      margin: 10px 0; }
+      #finish-order-modal .slider .mascot img, #finish-delivery-modal .slider .mascot img {
+        width: 80%; }
 
 #cart-modal .product {
   padding-right: 20px; }
