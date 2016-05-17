@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('OrdersContentCtrl', function($scope, $stateParams, $ionicModal, $timeout, $ionicLoading, OrderStore, ProductAPI, CurrentCart) {
+.controller('OrdersContentCtrl', function($scope, $stateParams, $ionicModal, $timeout, $ionicLoading, OrderStore, ProductAPI, CurrentCart, $state) {
 
   $scope.currentCartObject = CurrentCart;
   $scope.order = {};
@@ -40,6 +40,10 @@ angular.module('shopmycourse.controllers')
         $ionicLoading.hide();
       });
     }, 700);
+  };
+
+  $scope.goBack = function() {
+    $state.go('tabs.order', {idOrder: $stateParams.idOrder});
   };
 
   $scope.addProduct = CurrentCart.addProduct;

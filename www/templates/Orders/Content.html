@@ -1,4 +1,7 @@
-<ion-view id="order-content" title="Liste de course">
+<ion-view id="order-content" title="Liste de course" hide-back-button="true">
+    <ion-nav-buttons side="left">
+    <button ng-click="goBack()" class="button back-button buttons button-clear header-item"><i class="icon icon-smc-back"></i> <span class="back-text" style="transform: translate3d(0px, 0px, 0px);"><span class="default-title"> </span></span></button>
+    </ion-nav-buttons>
     <ion-nav-buttons side="right">
       <button class="button button-clear" ng-click="openCartModal()">
         <i class="icon-smc-cart"></i>
