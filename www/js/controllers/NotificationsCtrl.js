@@ -144,10 +144,10 @@ angular.module('shopmycourse.controllers')
 			$scope.readNotification(notification, function () {
 			$scope.closeNotificationsModal();
 			$ionicLoading.hide();
-			$state.go('tabs.orders', {idOrder: notification.meta.delivery.id});
+			$state.go('tabs.orders', {idOrder: notification.meta.delivery.id, reload: false, cache: true});
 			setTimeout(function() {
 
-			$state.go('tabs.order', {idOrder: notification.meta.delivery.id});
+			$state.go('tabs.order', {idOrder: notification.meta.delivery.id, reload: false, cache: true});
 			}, 100);
 
 			setTimeout(function() {
