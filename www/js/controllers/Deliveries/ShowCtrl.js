@@ -21,6 +21,10 @@ angular.module('shopmycourse.controllers')
     $scope.finishDeliveryModal = modal
   });
 
+  $scope.goBack = function() {
+    $state.go('tabs.deliveries');
+  };
+
   $scope.openFinishDeliveryModal = function () {
     $scope.finishDeliveryModal.show();
   };

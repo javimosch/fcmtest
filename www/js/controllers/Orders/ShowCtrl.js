@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('OrdersShowCtrl', function($scope, $state, $ionicLoading, $ionicPopup, $rootScope, $stateParams, CurrentCart, $ionicModal, OrderStore, $interval, $cordovaSms, DeliveryAPI, CurrentUser, $state, $ionicSlideBoxDelegate) {
+.controller('OrdersShowCtrl', function($scope, $state, $ionicLoading, $ionicPopup, $rootScope, $stateParams, CurrentCart, $ionicModal, OrderStore, $interval, $cordovaSms, DeliveryAPI, CurrentUser, $ionicSlideBoxDelegate) {
 
   $scope.order = {};
   $scope.user = {};
@@ -27,6 +27,10 @@ angular.module('shopmycourse.controllers')
   }).then(function (modal) {
     $scope.finishOrderModal = modal
   });
+
+  $scope.goBack = function() {
+    $state.go('tabs.orders');
+  };
 
   $scope.openFinishOrderModal = function () {
     $scope.finishOrderModal.show();
