@@ -7,9 +7,14 @@ angular.module('shopmycourse.controllers')
   $scope.products = [];
   var timer = null;
 
+  $ionicLoading.show({
+    template: 'Nous récupérons votre commande...'
+  });
+
   OrderStore.get({id: parseInt($stateParams.idOrder)}, function (err, order) {
     $scope.order = order[0];
     CurrentCart.initFromLocalStorage($scope.order.id);
+    $ionicLoading.hide();
   })
 
   $ionicModal.fromTemplateUrl('templates/Orders/Modals/Cart.html', {
