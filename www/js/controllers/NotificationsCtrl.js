@@ -12,6 +12,7 @@ angular.module('shopmycourse.controllers')
 						n.meta.buyer.rating_average = n.meta.buyer.rating_average || 0;
 						break;
 					case 'accepted_delivery':
+						CurrentDelivery.clear();
 						n.meta.deliveryman.rating_average = n.meta.deliveryman.rating_average || 0;
 						break;
 					case 'cart_filled':
