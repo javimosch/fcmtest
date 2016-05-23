@@ -928,6 +928,8 @@ ion-header-bar, ion-nav-bar {
 .loading-container {
   padding: 30px;
   .loading {
+    border-radius: 20px;
+    background-color: rgba(41, 65, 100, 0.7);
     span {
       color: white;
     }

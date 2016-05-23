@@ -648,16 +648,13 @@ ion-header-bar, ion-nav-bar {
     #toast-container .toast .toast-message {
       color: white; }
 
-
-
 .loading-container {
   padding: 30px; }
-.loading-container .loading {
+  .loading-container .loading {
     border-radius: 20px;
-    background-color: rgba(41, 65, 100, 0.7);
-  }
-  .loading-container .loading span {
-    color: white; }
+    background-color: rgba(41, 65, 100, 0.7); }
+    .loading-container .loading span {
+      color: white; }
 
 .bar.bar-stable .title {
   color: #2f6ab5;
