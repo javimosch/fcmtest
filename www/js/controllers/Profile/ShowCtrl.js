@@ -8,13 +8,9 @@ angular.module('shopmycourse.controllers')
   });
   CurrentUser.get(function (user) {
       $scope.user = user;
+      $scope.avatarBackground = CurrentUser.getAvatar();
       $ionicLoading.hide();
   })
-
-  $scope.avatar = null;
-  CurrentUser.getAvatar(function (avatar) {
-    $scope.avatar = avatar;
-  });
 
   $scope.togglePhone = function () {
     if (!$scope.user.share_phone) {

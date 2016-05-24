@@ -3,6 +3,18 @@ angular.module('shopmycourse.services')
 .service('CurrentUser', function ($rootScope, DataStorage, UserAPI, HTTPInterceptor) {
     var currentUser = {};
 
+    function avatarFromUserAvatar(avatar) {
+      if (avatar && avatar.avatar) {
+        avatar = avatar.avatar;
+      }
+
+      if ((Object.keys(currentUser).length === 0) || !avatar || !avatar.url) {
+        return 'img/no_image_user.png';
+      } else {
+        return avatar.thumb.url ? avatar.thumb.url.replace(/http:/g, 'https:') : avatar.thumb.replace(/http:/g, 'https:');
+      }
+    }
+
     return {
         init: function (next) {
           return DataStorage.get('current_user').then(function (currentUserFromStorage) {
@@ -35,12 +47,9 @@ angular.module('shopmycourse.services')
         isLogged: function () {
           return (currentUser && Object.keys(currentUser).length > 0)
         },
-        getAvatar: function (next) {
-          if((Object.keys(currentUser).length == 0) || !currentUser.avatar || !currentUser.avatar.url) {
-            return next('img/no_image_user.png')
-          } else {
-            return next(currentUser.avatar.thumb.url ? currentUser.avatar.thumb.url.replace(/http:/g, 'https:') : currentUser.avatar.thumb.replace(/http:/g, 'https:'))
-          }
+        avatarFromUserAvatar: avatarFromUserAvatar,
+        getAvatar: function () {
+          return avatarFromUserAvatar(currentUser.avatar);
         }
     };
 });
