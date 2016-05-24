@@ -44,7 +44,7 @@
               <img ng-src="{{delivery_content.product.image_url}}" alt="{{delivery_content.product.name}}">
               <div class="name" ng-class="delivery_content.checked ? 'checked' : ''">{{delivery_content.product.name}}</div>
               <div class="detail">{{delivery_content.product.detail}}</div>
-              <div class="price">{{delivery_content.unit_price*delivery_content.quantity | number: 2 || 0}}€ ({{delivery_content.quantity}})</div>
+              <div class="price">{{delivery_content.unit_price*delivery_content.quantity | number: 2 || 0}}€ (x{{delivery_content.quantity}})</div>
           </ion-item>
       </ion-list>
     </ion-content>
