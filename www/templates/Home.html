@@ -48,7 +48,7 @@
 
             <!-- delivery_request -->
             <ion-item class="secondary" ng-if="notification.mode === 'delivery_request'">
-              <div class="mascot"><img src="img/notifs/bravo.jpg" alt="delivery_request"></div>
+              <div class="mascot"><img src="img/notifs/acceptation_confirmee.jpg" alt="delivery_request"></div>
               <div class="shop">{{notification.meta.shop.name}}</div>
               <div class="schedule"><i class="icon-smc-clock"></i> {{notification.meta.schedule.schedule}}</div>
               <div class="address"><i class="icon-smc-marker"></i> {{notification.meta.address.address}}, {{notification.meta.address.city}}</div>
@@ -128,6 +128,22 @@
                 </div>
               </div>
             </ion-item>
+
+            <!-- canceled_delivery -->
+            <ion-item class="secondary" ng-if="notification.mode === 'canceled_delivery'">
+              <div class="mascot"><img src="img/notifs/commande_annulee.jpg" alt="outdated_delivery"></div>
+              <div class="shop">{{notification.meta.shop.name}}</div>
+              <div class="schedule"><i class="ion-ios-calendar-outline"></i> {{notification.meta.schedule.schedule}}</div>
+              <div class="address"><i class="ion-ios-location"></i> {{notification.meta.address.address}}, {{notification.meta.address.city}}</div>
+              <div class="recipient"><i class="ion-ios-person"></i> {{notification.meta.buyer.firstname || notification.meta.deliveryman.firstname}}
+              {{notification.meta.buyer.lastname || notification.meta.deliveryman.lastname}}</div>
+              <div class="response row">
+                <div class="col">
+                  {{notification.content}}
+                  <button class="button button-positive button-block" ng-click="readNotification(notification)">D'accord</button>
+                </div>
+              </div>
+            </ion-item>
           </div>
           <ion-item class="secondary" ng-if="notifications.length == 0">
             Vous n'avez aucune notification
@@ -140,6 +156,7 @@
 <script id="default-modal.html" type="text/ng-template">
   <ion-modal-view class="default-modal">
       <ion-content scroll="false" padding="true">
+          <div class="mascot" ng-if="modalImg"><img ng-src="{{modalImg}}" alt="availability"></div>
           <span class="title">{{modalTitle}}</span>
           <p>{{modalMessage}}</p>
           <button class="button button-stable button-block" ng-click="modalClose()">Ok</button>

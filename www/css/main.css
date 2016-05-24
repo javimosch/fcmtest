@@ -305,6 +305,11 @@ ion-header-bar, ion-nav-bar {
     color: #fff;
     padding-top: 12px;
     font-weight: bold; }
+  .default-modal .mascot {
+    text-align: center;
+    margin: 10px 0; }
+    .default-modal .mascot img {
+      width: 80%; }
 
 #notifications {
   text-align: center; }

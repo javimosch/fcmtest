@@ -67,8 +67,9 @@ angular.module('shopmycourse.controllers')
         $ionicLoading.hide();
       });
 
-      $scope.modalTitle = "Bravo !"
-      $scope.modalMessage = "Votre proposition de livraison a été enregistrée. Vous serez notifié dés qu'une demande de livraison correspondra à vos critères."
+      $scope.modalTitle = "Bravo !";
+      $scope.modalMessage = "Votre proposition de livraison a été enregistrée. Vous serez notifié dés qu'une demande de livraison correspondra à vos critères.";
+      $scope.modalImg = 'img/notifs/bravo.png';
       $scope.modalClose = function () {
         CurrentDelivery.clear(function() {
           $state.go('tabs.home');
@@ -76,13 +77,13 @@ angular.module('shopmycourse.controllers')
         });
       }
 
-      $ionicModal.fromTemplateUrl('default-modal.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-      }).then(function(modal) {
-        $scope.modal = modal;
-        $scope.modal.show();
-      });
+        $ionicModal.fromTemplateUrl('default-modal.html', {
+          scope: $scope,
+          animation: 'slide-in-up'
+        }).then(function(modal) {
+          $scope.modal = modal;
+          $scope.modal.show();
+        });
     });
   };
 

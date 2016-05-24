@@ -441,6 +441,14 @@ ion-header-bar, ion-nav-bar {
     padding-top: 12px;
     font-weight: bold;
   }
+
+  .mascot {
+      text-align: center;
+      margin: 10px 0;
+      img {
+      width: 80%;
+      }
+    }
 }
 
 #notifications {
