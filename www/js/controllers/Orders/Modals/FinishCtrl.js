@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('OrdersFinishCtrl', function($scope, $ionicLoading, $ionicSlideBoxDelegate, DeliveryAPI) {
+.controller('OrdersFinishCtrl', function($scope, $ionicLoading, $ionicSlideBoxDelegate, DeliveryAPI, $ionicPopup) {
 
   $scope.disableSwipe = function() {
     $ionicSlideBoxDelegate.enableSlide(false);
@@ -10,17 +10,39 @@ angular.module('shopmycourse.controllers')
     $ionicSlideBoxDelegate.next();
   }
 
-  $scope.finalizeDelivery = function(order) {
+	function finalize(order) {
 		$ionicLoading.show({
-	    template: 'Nous enregistrons votre avis...'
-	  });
-		DeliveryAPI.finalize({'idDelivery': order.id, 'rating': $scope.ratingStar}, function() {
+			template: 'Nous enregistrons votre avis...'
+		});
+		DeliveryAPI.finalize({
+			'idDelivery': order.id,
+			'rating': $scope.ratingStar
+		}, function() {
 			$ionicLoading.hide();
 			$ionicSlideBoxDelegate.next();
-		}, function (err) {
+		}, function(err) {
 			console.error(err);
 			$ionicLoading.hide();
 		});
+	}
+
+  $scope.finalizeDelivery = function(order) {
+		if (!$scope.ratingStar) {
+			var myPopup = $ionicPopup.confirm({
+				template: 'Vous n\'avez pas noté le livreur, êtes-vous sûr ?',
+				title: 'Ok',
+				cancelText: 'retour'
+			});
+
+			myPopup.then(function(res) {
+				if (res) {
+					finalize(order);
+				}
+			});
+		}
+		else {
+			finalize(order);
+		}
   };
 
   $scope.setRatingStar = function(newRating) {
