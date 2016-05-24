@@ -129,6 +129,7 @@ angular.module('shopmycourse.routes', [])
 
   .state('tabs.ordercontent', {
     url: '/order/:idOrder/content',
+    cache: false,
     views: {
       'orders-tab': {
         templateUrl: 'templates/Orders/Content.html',
