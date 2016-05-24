@@ -38,9 +38,12 @@ angular.module('shopmycourse.controllers')
   });
 
   $scope.openCGU = function () {
+    $scope.modal.show();
+  };
+
+  $scope.openLemonWayCGU = function() {
     window.open('https://www.lemonway.fr/legal/conditions-generales-d-utilisation', '_system', 'location=yes');
     return false;
-    // $scope.modal.show();
   };
 
   $scope.closeCGU = function () {
