@@ -16,6 +16,7 @@ angular.module('shopmycourse.controllers')
   OrderStore.get({id: parseInt($stateParams.idOrder)}, function (err, order) {
     $scope.order = order[0];
     $scope.order.deliveryman.rating_average |= 0;
+    $scope.avatarBackground = CurrentUser.avatarFromUserAvatar($scope.order.deliveryman.avatar);
     $scope.ratingStar = $scope.order.buyer_rating ? $scope.order.buyer_rating.rating : 0;
     CurrentCart.initFromLocalStorage($scope.order.id);
     $ionicLoading.hide();

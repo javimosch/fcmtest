@@ -10,15 +10,10 @@ angular.module('shopmycourse.controllers')
   $scope.user = {};
   CurrentUser.get(function (user) {
       $scope.user = user;
+      $scope.avatarBackground = CurrentUser.getAvatar();
       $ionicLoading.hide();
-  })
-
-  $scope.avatarBackground = "http://pickaface.net/includes/themes/clean/img/slide2.png";
-
-  $scope.avatar = null;
-  CurrentUser.getAvatar(function (avatar) {
-    $scope.avatar = avatar;
   });
+
 
   $scope.togglePhone = function () {
     CurrentUser.get(function (user) {
@@ -56,15 +51,12 @@ angular.module('shopmycourse.controllers')
     getPictureFromCamera = function(type) {
       Camera.getPicture(type, function(imageData) {
           // Pass the base64 string to avatar.url for displaying in the app
-          $rootScope.avatarBackground = "data:image/jpeg;base64," + imageData;
+          $scope.avatarBackground = "data:image/jpeg;base64," + imageData;
           $scope.$apply();
 
           // Pass the base64 string to the param for rails saving
-          $scope.seller.avatar = "data:image/jpeg;base64," + imageData;
-          SellerAPI.update($scope.seller, function() {
-              CurrentSeller.reloadSeller();
-          }, function() {});
-      })
+          $scope.user.avatar = "data:image/jpeg;base64," + imageData;
+      });
   }
 
   $scope.changeAvatar = function() {
@@ -91,10 +83,12 @@ angular.module('shopmycourse.controllers')
     $ionicLoading.show({
       template: 'Nous sauvegardons votre profil...'
     });
-    UserAPI.update($scope.user, function (correct, errorCode) {
+    UserAPI.update($scope.user, function (user) {
       $ionicLoading.hide();
-      if (correct) {
-        CurrentUser.set($scope.user, function () {
+      if (user) {
+        $scope.user = user;
+
+        CurrentUser.set(user, function () {
           $ionicHistory.nextViewOptions({
             disableAnimate: false,
             disableBack: true

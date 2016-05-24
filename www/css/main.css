@@ -37,7 +37,9 @@
     border-radius: 50px;
     padding: 5px;
     margin-bottom: 10px;
-    display: inline-block; }
+    display: inline-block;
+    width: 210px;
+    height: 210px; }
   #profile-header.alt {
     padding-left: 50px;
     padding-right: 50px; }
