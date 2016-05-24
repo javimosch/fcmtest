@@ -16,7 +16,7 @@ angular.module('shopmycourse.controllers')
       var start = parseInt(hours[0]);
 
       day.hours(start);
-      if (day.unix() > now.unix()) {
+      if (day.unix() >= (now.unix() - (90 * 60))) {
         scheduleTimes.push(time);
       }
     });
@@ -25,7 +25,7 @@ angular.module('shopmycourse.controllers')
       times: scheduleTimes
     });
   }
-  
+
   CurrentAddress.init()
 
   $scope.selectTime = function (date, time) {
