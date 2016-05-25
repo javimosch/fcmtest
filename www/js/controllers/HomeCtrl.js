@@ -90,24 +90,47 @@ angular.module('shopmycourse.controllers')
   };
 
   $scope.cancelAvailability = function() {
-    var confirmPopup = $ionicPopup.confirm({
-      title: 'Annuler cette disponibilité',
-      template: 'Voulez-vous vraiment annuler la disponibilité que vous avez déposée?',
-      cancelText: 'Non',
-      okText: 'Oui'
-    });
+    function hasCompletedDelivery() {
+      var completed = false;
+      lodash.each($scope.currentAvailability, function(availability) {
+        if (availability.delivery && availability.delivery.status === 'completed') {
+          completed = true;
+        }
+      });
 
-    confirmPopup.then(function(res) {
-      if(!res) {
-        return;
-      }
-      $ionicLoading.show({
-        template: 'Nous annulons votre disponibilité...'
+      return completed;
+    }
+
+    if (hasCompletedDelivery()) {
+      $ionicPopup.alert({
+        title: 'Livraison en cours',
+        template: 'Vous avez une livraison en cours, vous ne pouvez pas annuler votre disponibilité maintenant'
       });
-      CurrentAvailability.cancel(function() {
-        $scope.currentAvailability = [];
-        $ionicLoading.hide();
+    }
+    else {
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Annuler cette disponibilité',
+        template: 'Voulez-vous vraiment annuler la disponibilité que vous avez déposée?',
+        cancelText: 'Non',
+        okText: 'Oui'
       });
-    });
+
+      confirmPopup.then(function(res) {
+        if(!res) {
+          return;
+        }
+        $ionicLoading.show({
+          template: 'Nous annulons votre disponibilité...'
+        });
+        CurrentAvailability.cancel(function(err) {
+          if (!err) {
+            $scope.currentAvailability = [];
+          }
+
+          $ionicLoading.hide();
+        });
+      });
+    }
+
   };
 })

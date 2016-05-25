@@ -10,7 +10,8 @@ angular.module('shopmycourse.services')
       LEMONWAY_SERVER_ERROR: 'Une erreur liée à votre paiement est survenue',
       WALLET_ERROR: 'Une erreur liée à votre paiement est survenue',
       VALIDATION_CODE_ERROR: 'Une erreur est survenue lors de la validation',
-      EMPTY_CART: 'Vous devez remplir votre panier'
+      EMPTY_CART: 'Vous devez remplir votre panier',
+      COMPLETED_DELIVERY: 'Vous avez une livraison en cours, vous ne pouvez pas annuler votre disponibilité'
     },
     success: {
       ORDER_DONE: 'La commande a été effectuée',
