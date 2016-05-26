@@ -2,6 +2,11 @@ angular.module('shopmycourse.controllers')
 
 .controller('HomeCtrl', function($scope, $state, $ionicLoading, $ionicModal, $ionicPopup, CurrentUser, CurrentAvailability, CurrentDelivery, DeliveryRequestAPI, moment, lodash) {
 
+  $scope.$on("$ionicView.beforeEnter", function(event, data){
+     // handle event
+     console.log("State Params: ", data.stateParams);
+  });
+
   $ionicLoading.show({
     template: 'Nous recherchons les dernières informations...'
   });
@@ -40,6 +45,11 @@ angular.module('shopmycourse.controllers')
     $ionicLoading.hide();
   });
 
+  $scope.scheduleOrder = function () {
+    CurrentDelivery.clear();
+    $state.go('tabs.scheduleorder');
+  };
+
   $scope.cancelDeliveryRequest = function(delivery_request_id) {
     var myPopup = $ionicPopup.confirm({
       template: 'Vous êtes sur le point d\'annuler votre demande de livraison, êtes-vous sûr ?',
@@ -74,6 +84,7 @@ angular.module('shopmycourse.controllers')
   if (!CurrentUser.isLogged()) {
     $state.go('start');
   }
+
   $ionicModal.fromTemplateUrl('NotificationsModal.html', {
       scope: $scope,
       animation: 'slide-in-up'
@@ -87,6 +98,11 @@ angular.module('shopmycourse.controllers')
 
   $scope.closeNotificationsModal = function () {
     $scope.notificationsModal.hide();
+  };
+
+  $scope.shopDelivery = function () {
+    CurrentAvailability.clear();
+    $state.go('tabs.shopdelivery');
   };
 
   $scope.cancelAvailability = function() {
@@ -126,7 +142,6 @@ angular.module('shopmycourse.controllers')
           if (!err) {
             $scope.currentAvailability = [];
           }
-
           $ionicLoading.hide();
         });
       });

@@ -300,7 +300,7 @@ ion-header-bar, ion-nav-bar {
     color: #fff;
     font-weight: bold; }
   .default-modal ion-content {
-    margin-top: 50%; }
+    margin-top: 0px; }
   .default-modal p {
     color: #fff;
     padding-top: 12px;
