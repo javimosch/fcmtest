@@ -473,6 +473,9 @@ ion-header-bar, ion-nav-bar {
     line-height: 47px;
     margin: 15px auto; }
 
+#cart-modal .has-subfooter {
+  bottom: 118px; }
+
 #cart-modal .row {
   padding: 0; }
 
