@@ -3,7 +3,7 @@ angular.module('shopmycourse.controllers')
 .controller('DeliveriesShopCtrl', function($scope, $state, $ionicLoading, $ionicPopup, $cordovaGeolocation, toastr, ShopAPI, CurrentAvailability, $timeout) {
 
   $ionicLoading.show({
-    template: 'Nous recherchons les magasins à proximité ...'
+    template: 'Nous recherchons les magasins à proximité...'
   });
 
   $scope.shops = [];
@@ -26,10 +26,10 @@ angular.module('shopmycourse.controllers')
 
     timer = $timeout(function getProduct() {
       ShopAPI.search({
-        lat: ($scope.position ? $scope.position.coords.latitude : 0),
-        lon: ($scope.position ? $scope.position.coords.longitude : 0),
+        lat: ($scope.position ? $scope.position.coords.latitude : undefined),
+        lon: ($scope.position ? $scope.position.coords.longitude : undefined),
         stars: $scope.minimumStar,
-        address: $scope.address
+        address: ($scope.position ? undefined : $scope.address)
       }, function(shops) {
         $scope.shops = shops;
         $ionicLoading.hide();
@@ -72,6 +72,7 @@ angular.module('shopmycourse.controllers')
   };
 
   $scope.search = function(query) {
+    $scope.position = undefined
     $scope.address = query;
     refreshShopList();
   };

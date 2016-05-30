@@ -55,6 +55,8 @@
     padding: 5px;
     margin-bottom: 10px;
     display: inline-block;
+    width: 210px;
+    height: 210px;
   }
 
   &.alt {
@@ -96,7 +98,7 @@
     margin-top: 7px;
   }
 
-  #profile-information, #profile-creditcard, #profile-address {
+  #profile-information, #profile-creditcard, #profile-address, #profile-logout {
     i {
       color: $assertive;
     }
@@ -407,7 +409,7 @@ ion-header-bar, ion-nav-bar {
     }
   }
 
-  #profile-creditcard {
+  #profile-creditcard, #profile-logout {
     text-align: center;
     font-size: 120%;
   }
@@ -431,7 +433,7 @@ ion-header-bar, ion-nav-bar {
   }
 
   ion-content {
-    margin-top: 50%;
+    margin-top: 0px;
   }
 
   p {
@@ -439,6 +441,14 @@ ion-header-bar, ion-nav-bar {
     padding-top: 12px;
     font-weight: bold;
   }
+
+  .mascot {
+      text-align: center;
+      margin: 10px 0;
+      img {
+      width: 80%;
+      }
+    }
 }
 
 #notifications {
@@ -928,6 +938,8 @@ ion-header-bar, ion-nav-bar {
 .loading-container {
   padding: 30px;
   .loading {
+    border-radius: 20px;
+    background-color: rgba(41, 65, 100, 0.7);
     span {
       color: white;
     }

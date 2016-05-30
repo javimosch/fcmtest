@@ -43,7 +43,7 @@ angular.module('shopmycourse.services')
       "message": "Entrez un numéro de carte valide"
     },
     cvv: {
-      pattern: "[0-9]{1,3}",
+      pattern: "[0-9]{3}",
       "message": "Entrez un cvv valide"
     }
   };

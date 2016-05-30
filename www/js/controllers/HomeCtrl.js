@@ -2,8 +2,13 @@ angular.module('shopmycourse.controllers')
 
 .controller('HomeCtrl', function($scope, $state, $ionicLoading, $ionicModal, $ionicPopup, CurrentUser, CurrentAvailability, CurrentDelivery, DeliveryRequestAPI, moment, lodash) {
 
+  $scope.$on("$ionicView.beforeEnter", function(event, data){
+     // handle event
+     console.log("State Params: ", data.stateParams);
+  });
+
   $ionicLoading.show({
-    template: 'Nous recherchons les dernières informations ...'
+    template: 'Nous recherchons les dernières informations...'
   });
 
   $scope.currentAvailability = [];
@@ -40,6 +45,11 @@ angular.module('shopmycourse.controllers')
     $ionicLoading.hide();
   });
 
+  $scope.scheduleOrder = function () {
+    CurrentDelivery.clear();
+    $state.go('tabs.scheduleorder');
+  };
+
   $scope.cancelDeliveryRequest = function(delivery_request_id) {
     var myPopup = $ionicPopup.confirm({
       template: 'Vous êtes sur le point d\'annuler votre demande de livraison, êtes-vous sûr ?',
@@ -51,7 +61,7 @@ angular.module('shopmycourse.controllers')
       if (res) {
 
         $ionicLoading.show({
-          template: 'Nous envoyons votre réponse ...'
+          template: 'Nous envoyons votre réponse...'
         });
 
         CurrentDelivery.clear();
@@ -74,40 +84,68 @@ angular.module('shopmycourse.controllers')
   if (!CurrentUser.isLogged()) {
     $state.go('start');
   }
-  $ionicModal.fromTemplateUrl('NotificationsModal.html', {
-      scope: $scope,
-      animation: 'slide-in-up'
-  }).then(function (modal) {
-    $scope.notificationsModal = modal
-  });
 
-  $scope.openNotificationsModal = function () {
-    $scope.notificationsModal.show();
-  };
+  // $ionicModal.fromTemplateUrl('templates/NotificationsModal.html', {
+  //     scope: $scope,
+  //     animation: 'slide-in-up'
+  // }).then(function (modal) {
+  //   $scope.notificationsModal = modal
+  // });
+  //
+  // $scope.openNotificationsModal = function () {
+  //   $scope.notificationsModal.show();
+  // };
+  //
+  // $scope.closeNotificationsModal = function () {
+  //   $scope.notificationsModal.hide();
+  // };
 
-  $scope.closeNotificationsModal = function () {
-    $scope.notificationsModal.hide();
+  $scope.shopDelivery = function () {
+    CurrentAvailability.clear();
+    $state.go('tabs.shopdelivery');
   };
 
   $scope.cancelAvailability = function() {
-    var confirmPopup = $ionicPopup.confirm({
-      title: 'Annuler cette disponibilité',
-      template: 'Voulez-vous vraiment annuler la disponibilité que vous avez déposée?',
-      cancelText: 'Non',
-      okText: 'Oui'
-    });
+    function hasCompletedDelivery() {
+      var completed = false;
+      lodash.each($scope.currentAvailability, function(availability) {
+        if (availability.delivery && availability.delivery.status === 'completed') {
+          completed = true;
+        }
+      });
 
-    confirmPopup.then(function(res) {
-      if(!res) {
-        return;
-      }
-      $ionicLoading.show({
-        template: 'Nous annulons votre disponibilité...'
+      return completed;
+    }
+
+    if (hasCompletedDelivery()) {
+      $ionicPopup.alert({
+        title: 'Livraison en cours',
+        template: 'Vous avez une livraison en cours, vous ne pouvez pas annuler votre disponibilité maintenant'
       });
-      CurrentAvailability.cancel(function() {
-        $scope.currentAvailability = [];
-        $ionicLoading.hide();
+    }
+    else {
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Annuler cette disponibilité',
+        template: 'Voulez-vous vraiment annuler la disponibilité que vous avez déposée?',
+        cancelText: 'Non',
+        okText: 'Oui'
       });
-    });
+
+      confirmPopup.then(function(res) {
+        if(!res) {
+          return;
+        }
+        $ionicLoading.show({
+          template: 'Nous annulons votre disponibilité...'
+        });
+        CurrentAvailability.cancel(function(err) {
+          if (!err) {
+            $scope.currentAvailability = [];
+          }
+          $ionicLoading.hide();
+        });
+      });
+    }
+
   };
 })

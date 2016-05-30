@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('DeliveriesShowCtrl', function($scope, $state, $stateParams, $ionicLoading, $ionicModal, $cordovaSms, DeliveryStore) {
+.controller('DeliveriesShowCtrl', function($scope, $state, $stateParams, $ionicLoading, $ionicModal, $cordovaSms, DeliveryStore, CurrentUser) {
 
   $scope.delivery = {};
 
@@ -10,7 +10,7 @@ angular.module('shopmycourse.controllers')
 
   DeliveryStore.get({id: parseInt($stateParams.idDelivery)}, function (err, delivery) {
     $scope.delivery = delivery[0];
-    console.log($scope.delivery)
+    $scope.avatarBackground = CurrentUser.avatarFromUserAvatar($scope.delivery.buyer.avatar);
     $ionicLoading.hide();
   })
 
@@ -20,6 +20,10 @@ angular.module('shopmycourse.controllers')
   }).then(function (modal) {
     $scope.finishDeliveryModal = modal
   });
+
+  $scope.goBack = function() {
+    $state.go('tabs.deliveries');
+  };
 
   $scope.openFinishDeliveryModal = function () {
     $scope.finishDeliveryModal.show();

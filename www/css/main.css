@@ -37,7 +37,9 @@
     border-radius: 50px;
     padding: 5px;
     margin-bottom: 10px;
-    display: inline-block; }
+    display: inline-block;
+    width: 210px;
+    height: 210px; }
   #profile-header.alt {
     padding-left: 50px;
     padding-right: 50px; }
@@ -63,10 +65,10 @@
   font-size: 80%;
   margin-top: 7px; }
 
-#profile #profile-information i, #profile #profile-creditcard i, #profile #profile-address i {
+#profile #profile-information i, #profile #profile-creditcard i, #profile #profile-address i, #profile #profile-logout i {
   color: #ef473a; }
 
-#profile #profile-information > div, #profile #profile-creditcard > div, #profile #profile-address > div {
+#profile #profile-information > div, #profile #profile-creditcard > div, #profile #profile-address > div, #profile #profile-logout > div {
   font-size: 15px; }
 
 #profile #profile-information > div, #profile #profile-address > div {
@@ -283,7 +285,7 @@ ion-header-bar, ion-nav-bar {
   border: none;
   font-size: 100%; }
 
-#profile #profile-creditcard {
+#profile #profile-creditcard, #profile #profile-logout {
   text-align: center;
   font-size: 120%; }
 
@@ -298,11 +300,16 @@ ion-header-bar, ion-nav-bar {
     color: #fff;
     font-weight: bold; }
   .default-modal ion-content {
-    margin-top: 50%; }
+    margin-top: 0px; }
   .default-modal p {
     color: #fff;
     padding-top: 12px;
     font-weight: bold; }
+  .default-modal .mascot {
+    text-align: center;
+    margin: 10px 0; }
+    .default-modal .mascot img {
+      width: 80%; }
 
 #notifications {
   text-align: center; }
@@ -650,8 +657,11 @@ ion-header-bar, ion-nav-bar {
 
 .loading-container {
   padding: 30px; }
-  .loading-container .loading span {
-    color: white; }
+  .loading-container .loading {
+    border-radius: 20px;
+    background-color: rgba(41, 65, 100, 0.7); }
+    .loading-container .loading span {
+      color: white; }
 
 .bar.bar-stable .title {
   color: #2f6ab5;

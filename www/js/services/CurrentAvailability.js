@@ -62,6 +62,8 @@ angular.module('shopmycourse.services')
           async.each(currentAvailability, function (availability, next) {
             AvailabilityAPI.cancel({idAvailability: availability.id}, function (a, b) {
               return next();
+            }, function(err) {
+              return next(err);
             })
           }, next)
         }
