@@ -21,9 +21,9 @@
         </div>
         <div class="actions">
           <button class="button button-positive button-block" ng-if="order.status === 'completed'" ng-click="openFinishOrderModal()">Finaliser la commande</button>
-          <button class="button button-positive button-block" ng-if="(order.status !== 'completed' || order.status == 'accepted') && order.status != 'done'" ui-sref="tabs.ordercontent({idOrder: order.id})">Modifier le panier</button>
+          <button class="button button-positive button-block" ng-if="(order.status !== 'completed' || order.status == 'accepted') && order.status != 'done' && order.status != 'canceled'" ui-sref="tabs.ordercontent({idOrder: order.id})">Modifier le panier</button>
           <button class="button button-positive button-block" ng-if="order.status === 'accepted'" ng-click="confirmDelivery()">Confirmer la commande</button>
-          <button class="button button-stable bordered button-block" ng-if="order.deliveryman.share_phone" ng-click="sendSMS()">Contacter par SMS</button>
+          <button class="button button-stable bordered button-block" ng-if="order.deliveryman.share_phone && order.status != 'done' && order.status != 'canceled' && order.status != 'pending'" ng-click="sendSMS()">Contacter par SMS</button>
           <div ng-if="!order.deliveryman.share_phone">
             <p>
               L'acheteur ne souhaite pas être contacté.
