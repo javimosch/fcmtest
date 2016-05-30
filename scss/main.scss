@@ -645,7 +645,7 @@ ion-header-bar, ion-nav-bar {
 
     .distance, .address {
       color: $grey;
-      font-size: 14px;
+      font-size: 12px;
     }
 
   }
@@ -712,7 +712,7 @@ ion-header-bar, ion-nav-bar {
     i {
       color: $assertive;
     }
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 500;
     margin-top: 3px;
   }
@@ -1069,4 +1069,8 @@ span {
   input {
     font-weight: 500;
   }
+}
+
+.popup-container .popup {
+  border-radius: 5px;
 }

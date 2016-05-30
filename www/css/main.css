@@ -445,7 +445,7 @@ ion-header-bar, ion-nav-bar {
 
 #new-deliveries .item-icon-right .distance, #new-deliveries .item-icon-right .address, #shop-order .item-icon-right .distance, #shop-order .item-icon-right .address {
   color: #8C8C8C;
-  font-size: 14px; }
+  font-size: 12px; }
 
 .price-box.total {
   background-color: #69a7ff; }
@@ -485,7 +485,7 @@ ion-header-bar, ion-nav-bar {
     padding: 0px; }
 
 #delivery .address, #order .address {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   margin-top: 3px; }
   #delivery .address i, #order .address i {
@@ -750,3 +750,6 @@ span {
       font-size: 1.5em; }
   .search input {
     font-weight: 500; }
+
+.popup-container .popup {
+  border-radius: 5px; }

@@ -47,7 +47,7 @@ angular.module('shopmycourse.controllers')
     }, function(err) {
       $ionicPopup.alert({
        title: 'Attention !',
-       template: 'Nous n\'arrivons pas à vous géolocaliser, merci d\'activer votre GPS.'
+       template: "Nous n'arrivons pas à vous géolocaliser. Vous pouvez soit activer le GPS, soit renseigner une adresse manuellement"
       });
       $ionicLoading.hide();
     });
