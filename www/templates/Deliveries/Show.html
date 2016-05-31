@@ -13,7 +13,7 @@
         </div>
         <div class="actions item">
           <button class="button button-positive button-block" ng-click="openFinishDeliveryModal()" ng-if="delivery.status === 'completed'">Finaliser la livraison</button>
-          <button class="button button-stable button-block bordered" ng-if="delivery.buyer.share_phone  && delivery.status != 'done' && delivery.status != 'canceled' && delivery.status != 'pending'" ng-click="sendSMS()">Contacter par SMS</button>
+          <button class="button button-stable button-block bordered" ng-if="delivery.buyer.share_phone  && order.status === 'completed'" ng-click="sendSMS()">Contacter par SMS</button>
           <div ng-if="!delivery.buyer.share_phone">
             <p>
               L'acheteur ne souhaite pas être contacté.
