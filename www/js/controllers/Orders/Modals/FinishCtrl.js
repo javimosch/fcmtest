@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('OrdersFinishCtrl', function($scope, $ionicLoading, $ionicSlideBoxDelegate, DeliveryAPI, $ionicPopup) {
+.controller('OrdersFinishCtrl', function($scope, $ionicLoading, $ionicSlideBoxDelegate, $ionicPopup, $ionicHistory, DeliveryAPI) {
 
   $scope.disableSwipe = function() {
     $ionicSlideBoxDelegate.enableSlide(false);
@@ -19,6 +19,7 @@ angular.module('shopmycourse.controllers')
 			'rating': $scope.ratingStar
 		}, function() {
 			$ionicLoading.hide();
+      $ionicHistory.clearHistory();
 			$ionicSlideBoxDelegate.next();
 		}, function(err) {
 			console.error(err);
