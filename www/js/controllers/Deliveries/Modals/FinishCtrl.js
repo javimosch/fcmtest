@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('DeliveriesFinishCtrl', function($scope, $ionicLoading, $ionicSlideBoxDelegate, DeliveryAPI) {
+.controller('DeliveriesFinishCtrl', function($scope, $ionicLoading, $ionicSlideBoxDelegate, $ionicHistory, DeliveryAPI, $ionicPopup) {
 	$scope.ratingStar = 0;
 
   $scope.disableSwipe = function() {
@@ -15,16 +15,36 @@ angular.module('shopmycourse.controllers')
 	$scope.ratingStar = newRating;
   }
 
-  $scope.finalizeDelivery = function(delivery, validation_code) {
-		$ionicLoading.show({
+  function finalize(delivery, validation_code) {
+    $ionicLoading.show({
       template: 'Nous enregistrons votre avis...'
     });
-		DeliveryAPI.finalize({'idDelivery': delivery.id, 'validation_code': validation_code, 'rating': $scope.ratingStar}, function() {
-			$scope.nextSlide();
-			$ionicLoading.hide();
-		}, function (err) {
-			console.error(err);
-			$ionicLoading.hide();
-		});
+    DeliveryAPI.finalize({'idDelivery': delivery.id, 'validation_code': validation_code, 'rating': $scope.ratingStar}, function() {
+      $scope.nextSlide();
+			$ionicHistory.clearHistory();
+      $ionicLoading.hide();
+    }, function (err) {
+      console.error(err);
+      $ionicLoading.hide();
+    });
   }
-})
+
+  $scope.finalizeDelivery = function(delivery, validation_code) {
+
+    if (!$scope.ratingStar) {
+      var myPopup = $ionicPopup.confirm({
+        template: 'Vous n\'avez pas noté l\'acheteur, êtes-vous sûr ?',
+        title: 'Ok',
+        cancelText: 'retour'
+      });
+
+      myPopup.then(function(res) {
+        if (res) {
+          finalize(delivery, validation_code);
+        }
+      });
+    } else {
+      finalize(delivery, validation_code);
+    }
+  };
+});

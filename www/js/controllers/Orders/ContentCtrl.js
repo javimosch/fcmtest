@@ -1,20 +1,25 @@
 angular.module('shopmycourse.controllers')
 
-.controller('OrdersContentCtrl', function($scope, $stateParams, $ionicModal, $timeout, $ionicLoading, OrderStore, ProductAPI, CurrentCart) {
+.controller('OrdersContentCtrl', function($scope, $stateParams, $ionicModal, $timeout, $ionicLoading, OrderStore, ProductAPI, CurrentCart, $state) {
 
   $scope.currentCartObject = CurrentCart;
   $scope.order = {};
   $scope.products = [];
   var timer = null;
 
+  $ionicLoading.show({
+    template: 'Nous récupérons votre commande...'
+  });
+
   OrderStore.get({id: parseInt($stateParams.idOrder)}, function (err, order) {
     $scope.order = order[0];
     CurrentCart.initFromLocalStorage($scope.order.id);
+    $ionicLoading.hide();
   })
 
   $ionicModal.fromTemplateUrl('templates/Orders/Modals/Cart.html', {
-      scope: $scope,
-      animation: 'slide-in-up'
+    scope: $scope,
+    animation: 'slide-in-up'
   }).then(function (modal) {
     $scope.cartModal = modal
   });
@@ -42,6 +47,11 @@ angular.module('shopmycourse.controllers')
     }, 700);
   };
 
+  $scope.goBack = function() {
+    $state.go('tabs.order', {idOrder: $stateParams.idOrder});
+  };
+
   $scope.addProduct = CurrentCart.addProduct;
   $scope.removeProduct = CurrentCart.removeProduct;
+
 })

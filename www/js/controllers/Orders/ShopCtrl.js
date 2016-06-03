@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('OrdersShopCtrl', function($rootScope, $scope, $cordovaGeolocation, toastr, $state, $ionicModal, $ionicLoading, CurrentDelivery, ShopAPI, DeliveryRequestAPI, DeliveryRequestAPI, $timeout, OrderStore) {
+.controller('OrdersShopCtrl', function($rootScope, $scope, toastr, $state, $ionicModal, $ionicLoading, CurrentDelivery, ShopAPI, DeliveryRequestAPI, DeliveryRequestAPI, $timeout, OrderStore) {
   $scope.shops = [];
   $scope.minimumStar = 0;
   var timer = null;
@@ -10,20 +10,9 @@ angular.module('shopmycourse.controllers')
     enableHighAccuracy: true
   };
 
-
   $ionicLoading.show({
     template: 'Nous recherchons les magasins correspondants...'
   });
-
-  // $cordovaGeolocation
-  //   .getCurrentPosition(posOptions)
-  //   .then(function(position) {
-  //     $scope.position = position;
-  //
-  //   }, function(err) {
-  //     toastr.warning('Nous n\'arrivons pas à vous géolocaliser', 'Attention');
-  //     $ionicLoading.hide();
-  //   });
 
   refreshShopList();
 
@@ -71,6 +60,7 @@ angular.module('shopmycourse.controllers')
 
       $scope.modalTitle = "Bravo !"
       $scope.modalMessage = "Votre proposition de livraison a été enregistrée. Vous serez notifié dés qu'une demande de livraison correspondra à vos critères."
+      $scope.modalImg = "img/notifs/doigts-en-v.png";
       $scope.modalClose = function () {
         $state.go('tabs.home');
         $scope.modal.hide();

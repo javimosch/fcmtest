@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('ProfileEditCtrl', function($scope, $ionicLoading, $state, $ionicHistory, $ionicViewSwitcher, $ionicPopup, Validation, CurrentUser, UserAPI) {
+.controller('ProfileEditCtrl', function($scope, $ionicLoading, $state, $ionicHistory, $ionicViewSwitcher, $ionicPopup, Validation, CurrentUser, UserAPI, Camera, $ionicActionSheet) {
 
   $scope.validation = Validation;
 
@@ -10,13 +10,10 @@ angular.module('shopmycourse.controllers')
   $scope.user = {};
   CurrentUser.get(function (user) {
       $scope.user = user;
+      $scope.avatarBackground = CurrentUser.getAvatar();
       $ionicLoading.hide();
-  })
-
-  $scope.avatar = null;
-  CurrentUser.getAvatar(function (avatar) {
-    $scope.avatar = avatar;
   });
+
 
   $scope.togglePhone = function () {
     CurrentUser.get(function (user) {
@@ -51,14 +48,47 @@ angular.module('shopmycourse.controllers')
     });
   };
 
+    getPictureFromCamera = function(type) {
+      Camera.getPicture(type, function(imageData) {
+          // Pass the base64 string to avatar.url for displaying in the app
+          $scope.avatarBackground = "data:image/jpeg;base64," + imageData;
+          $scope.$apply();
+
+          // Pass the base64 string to the param for rails saving
+          $scope.user.avatar = "data:image/jpeg;base64," + imageData;
+      });
+  }
+
+  $scope.changeAvatar = function() {
+
+      var photoSheet = $ionicActionSheet.show({
+          buttons: [
+              { text: 'Prendre une photo' },
+              { text: 'Accéder à la galerie' }
+          ],
+          titleText: 'Modifier votre avatar',
+          cancelText: 'Annuler',
+          cancel: function() {
+              // add cancel code..
+          },
+          buttonClicked: function(index) {
+              getPictureFromCamera(index);
+              return true;
+          }
+      });
+  }
+
+
   $scope.endEdit = function () {
     $ionicLoading.show({
       template: 'Nous sauvegardons votre profil...'
     });
-    UserAPI.update($scope.user, function (correct, errorCode) {
+    UserAPI.update($scope.user, function (user) {
       $ionicLoading.hide();
-      if (correct) {
-        CurrentUser.set($scope.user, function () {
+      if (user) {
+        $scope.user = user;
+
+        CurrentUser.set(user, function () {
           $ionicHistory.nextViewOptions({
             disableAnimate: false,
             disableBack: true

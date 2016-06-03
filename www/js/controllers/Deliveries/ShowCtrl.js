@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('DeliveriesShowCtrl', function($scope, $ionicLoading, $stateParams, $ionicModal, $cordovaSms, DeliveryStore) {
+.controller('DeliveriesShowCtrl', function($scope, $state, $stateParams, $ionicLoading, $ionicModal, $cordovaSms, DeliveryStore, CurrentUser) {
 
   $scope.delivery = {};
 
@@ -10,7 +10,7 @@ angular.module('shopmycourse.controllers')
 
   DeliveryStore.get({id: parseInt($stateParams.idDelivery)}, function (err, delivery) {
     $scope.delivery = delivery[0];
-    console.log($scope.delivery)
+    $scope.avatarBackground = CurrentUser.avatarFromUserAvatar($scope.delivery.buyer.avatar);
     $ionicLoading.hide();
   })
 
@@ -21,12 +21,25 @@ angular.module('shopmycourse.controllers')
     $scope.finishDeliveryModal = modal
   });
 
+  $scope.goBack = function() {
+    $state.go('tabs.deliveries');
+  };
+
   $scope.openFinishDeliveryModal = function () {
     $scope.finishDeliveryModal.show();
   };
 
   $scope.closeFinishDeliveryModal = function () {
     $scope.finishDeliveryModal.hide();
+  };
+
+  $scope.goFinishDeliveryModal = function () {
+      $scope.finishDeliveryModal.hide();
+      $state.go('tabs.home');
+  };
+
+  $scope.setChecked = function (index) {
+      $scope.delivery.delivery_contents[index].checked = !$scope.delivery.delivery_contents[index].checked;
   };
 
   $scope.sendSMS = function () {

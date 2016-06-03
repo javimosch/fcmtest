@@ -23,6 +23,16 @@
   }
 }
 
+#profile-header, #profile-address {
+  .edit {
+    a {
+      text-decoration: underline;;
+      color: $dark;
+      font-size: 12px;
+    }
+  }
+}
+
 #profile-header {
   text-align: center;
   border: none;
@@ -36,12 +46,6 @@
     font-size: 100%;
     color: $positive;
   }
-  .edit {
-    a {
-      text-decoration: underline;;
-      color: $dark;
-    }
-  }
 
   .profil-pic {
     color: $positive;
@@ -51,6 +55,8 @@
     padding: 5px;
     margin-bottom: 10px;
     display: inline-block;
+    width: 100px;
+    height: 100px;
   }
 
   &.alt {
@@ -92,7 +98,7 @@
     margin-top: 7px;
   }
 
-  #profile-information, #profile-creditcard {
+  #profile-information, #profile-creditcard, #profile-address, #profile-logout {
     i {
       color: $assertive;
     }
@@ -101,7 +107,7 @@
     }
   }
 
-  #profile-information {
+  #profile-information, #profile-address {
     > div {
       margin-bottom: 12px;
 
@@ -318,6 +324,9 @@ ion-header-bar, ion-nav-bar {
     background-image: none;
     color: $positive;
   }
+  .bar.bar-stable .title {
+    color: $positive;
+  }
 }
 
 #signin, #signup {
@@ -389,7 +398,7 @@ ion-header-bar, ion-nav-bar {
 
 #profile {
 
-  #profile-information {
+  #profile-information, #profile-address {
     text-align: center;
   }
 
@@ -400,7 +409,7 @@ ion-header-bar, ion-nav-bar {
     }
   }
 
-  #profile-creditcard {
+  #profile-creditcard, #profile-logout {
     text-align: center;
     font-size: 120%;
   }
@@ -424,7 +433,7 @@ ion-header-bar, ion-nav-bar {
   }
 
   ion-content {
-    margin-top: 50%;
+    margin-top: 0px;
   }
 
   p {
@@ -432,6 +441,14 @@ ion-header-bar, ion-nav-bar {
     padding-top: 12px;
     font-weight: bold;
   }
+
+  .mascot {
+      text-align: center;
+      margin: 10px 0;
+      img {
+      width: 80%;
+      }
+    }
 }
 
 #notifications {
@@ -451,11 +468,18 @@ ion-header-bar, ion-nav-bar {
     padding-bottom: 25px;
   }
 
+  .mascot {
+    text-align: center;
+    margin: 10px 0;
+    img {
+      width: 50%;
+    }
+  }
+
   .shop {
     font-weight: bold;
     font-size: 120%;
     color: $positive;
-    margin: 25px 0 28px 0;
   }
 
   .ion-ios-calendar-outline, .ion-ios-location, .ion-ios-person {
@@ -621,7 +645,7 @@ ion-header-bar, ion-nav-bar {
 
     .distance, .address {
       color: $grey;
-      font-size: 14px;
+      font-size: 12px;
     }
 
   }
@@ -666,6 +690,10 @@ ion-header-bar, ion-nav-bar {
     }
   }
 
+  .has-subfooter {
+    bottom: 118px;
+  }
+
   .row {
     padding: 0;
   }
@@ -688,7 +716,7 @@ ion-header-bar, ion-nav-bar {
     i {
       color: $assertive;
     }
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 500;
     margin-top: 3px;
   }
@@ -702,6 +730,10 @@ ion-header-bar, ion-nav-bar {
     .title {
       text-align: center;
     }
+  }
+
+  .checked {
+    color: $gold;
   }
 }
 
@@ -768,10 +800,11 @@ ion-header-bar, ion-nav-bar {
   .slider {
     height: 100%;
 
-    .thanks {
-      > div {
-        position: absolute;
-        bottom: 50px;
+    .mascot {
+      text-align: center;
+      margin: 10px 0;
+      img {
+      width: 80%;
       }
     }
   }
@@ -909,6 +942,8 @@ ion-header-bar, ion-nav-bar {
 .loading-container {
   padding: 30px;
   .loading {
+    border-radius: 20px;
+    background-color: rgba(41, 65, 100, 0.7);
     span {
       color: white;
     }
@@ -1038,4 +1073,8 @@ span {
   input {
     font-weight: 500;
   }
+}
+
+.popup-container .popup {
+  border-radius: 5px;
 }

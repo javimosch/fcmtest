@@ -1,8 +1,9 @@
 angular.module('shopmycourse.controllers')
 
-.controller('OrdersScheduleCtrl', function($scope, $rootScope, $state, CurrentDelivery, $ionicModal, CurrentAddress, moment, lodash) {
+.controller('OrdersScheduleCtrl', function($scope, $rootScope, $state, CurrentDelivery, $ionicModal, $ionicPopup, CurrentAddress, moment, lodash) {
   $scope.schedules = [];
   $scope.selected = $rootScope.currentDelivery;
+  console.log($scope.selected);
   var times = ['08h - 10h', '10h - 12h', '12h - 14h', '14h - 16h', '16h - 18h', '18h - 20h', '20h - 22h'];
   var now = moment();
 
@@ -16,7 +17,7 @@ angular.module('shopmycourse.controllers')
       var start = parseInt(hours[0]);
 
       day.hours(start);
-      if (day.unix() > now.unix()) {
+      if (day.unix() >= (now.unix() - (90 * 60))) {
         scheduleTimes.push(time);
       }
     });
@@ -25,7 +26,7 @@ angular.module('shopmycourse.controllers')
       times: scheduleTimes
     });
   }
-  
+
   CurrentAddress.init()
 
   $scope.selectTime = function (date, time) {
@@ -33,6 +34,7 @@ angular.module('shopmycourse.controllers')
     if ($scope.isSelected(date, time)) {
       var index = $scope.selected[date].indexOf(time);
       $scope.selected[date].splice(index, 1);
+      $scope.selected = {};
       return;
     }
     // Si la case n'est pas selectionnées
@@ -54,8 +56,15 @@ angular.module('shopmycourse.controllers')
   };
 
   $scope.validate = function () {
-    CurrentDelivery.setSchedule($scope.selected, function () {
-      $state.go('tabs.addressorder');
-    });
+    if (Object.keys($scope.selected).length > 0) {
+      CurrentDelivery.setSchedule($scope.selected, function () {
+        $state.go('tabs.addressorder');
+      });
+    } else {
+      $ionicPopup.alert({
+        title: 'Sélection du créneau',
+        template: 'Merci de sélectionner un créneau !'
+      });
+    }
   };
 })

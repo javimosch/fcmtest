@@ -6,8 +6,8 @@ angular.module('shopmycourse.services')
     function init () {
       return DataStorage.get('current_address').then(function (currentAddressFromStorage) {
         currentAddress = currentAddressFromStorage || {};
-        console.log(currentAddress)
         $rootScope.currentAddress = currentAddress;
+        console.log($rootScope.currentAddress)
       });
     }
     init();
@@ -18,7 +18,7 @@ angular.module('shopmycourse.services')
           currentAddress = address;
           DataStorage.set('current_address', address);
         },
-        get: function(address) {
+        get: function() {
           return currentAddress;
         }
     };

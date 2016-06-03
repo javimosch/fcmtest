@@ -129,6 +129,7 @@ angular.module('shopmycourse.routes', [])
 
   .state('tabs.ordercontent', {
     url: '/order/:idOrder/content',
+    cache: false,
     views: {
       'orders-tab': {
         templateUrl: 'templates/Orders/Content.html',
@@ -174,6 +175,16 @@ angular.module('shopmycourse.routes', [])
     }
   })
 
+  .state('tabs.editaddress', {
+    url: '/profile/address/edit',
+    views: {
+      'profile-tab': {
+        templateUrl: 'templates/Profile/EditAddress.html',
+        controller: 'ProfileEditAddressCtrl'
+      }
+    }
+  })
+
   .state('start', {
     url: '/start',
     templateUrl: 'templates/Start.html',
@@ -210,6 +221,7 @@ angular.module('shopmycourse.routes', [])
 
   .state('tabs.addressorder', {
     url: '/order/create/address',
+    cache: false,
     views: {
       'home-tab': {
         templateUrl: 'templates/Orders/Address.html',
@@ -220,6 +232,7 @@ angular.module('shopmycourse.routes', [])
 
   .state('tabs.shoporder', {
     url: '/order/create/shop',
+    cache: false,
     views: {
       'home-tab': {
         templateUrl: 'templates/Orders/Shop.html',

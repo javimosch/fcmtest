@@ -15,6 +15,11 @@
     margin: 30% auto auto auto;
     display: block; }
 
+#profile-header .edit a, #profile-address .edit a {
+  text-decoration: underline;
+  color: #444;
+  font-size: 12px; }
+
 #profile-header {
   text-align: center;
   border: none;
@@ -25,9 +30,6 @@
     font-weight: bold;
     font-size: 100%;
     color: #69a7ff; }
-  #profile-header .edit a {
-    text-decoration: underline;
-    color: #444; }
   #profile-header .profil-pic {
     color: #69a7ff;
     font-size: 50px;
@@ -35,7 +37,9 @@
     border-radius: 50px;
     padding: 5px;
     margin-bottom: 10px;
-    display: inline-block; }
+    display: inline-block;
+    width: 100px;
+    height: 100px; }
   #profile-header.alt {
     padding-left: 50px;
     padding-right: 50px; }
@@ -61,15 +65,15 @@
   font-size: 80%;
   margin-top: 7px; }
 
-#profile #profile-information i, #profile #profile-creditcard i {
+#profile #profile-information i, #profile #profile-creditcard i, #profile #profile-address i, #profile #profile-logout i {
   color: #ef473a; }
 
-#profile #profile-information > div, #profile #profile-creditcard > div {
+#profile #profile-information > div, #profile #profile-creditcard > div, #profile #profile-address > div, #profile #profile-logout > div {
   font-size: 15px; }
 
-#profile #profile-information > div {
+#profile #profile-information > div, #profile #profile-address > div {
   margin-bottom: 12px; }
-  #profile #profile-information > div:last-child {
+  #profile #profile-information > div:last-child, #profile #profile-address > div:last-child {
     margin-bottom: 0; }
 
 #profile #profile-phone > div {
@@ -216,6 +220,9 @@ ion-header-bar, ion-nav-bar {
   background-image: none;
   color: #69a7ff; }
 
+.start .bar.bar-stable .title, .signin .bar.bar-stable .title, .signup .bar.bar-stable .title {
+  color: #69a7ff; }
+
 #signin, #signup {
   background-color: #69a7ff; }
   #signin .logo, #signup .logo {
@@ -271,14 +278,14 @@ ion-header-bar, ion-nav-bar {
       /* Firefox 18- */
       color: white; }
 
-#profile #profile-information {
+#profile #profile-information, #profile #profile-address {
   text-align: center; }
 
 #profile #profile-phone .item-toggle {
   border: none;
   font-size: 100%; }
 
-#profile #profile-creditcard {
+#profile #profile-creditcard, #profile #profile-logout {
   text-align: center;
   font-size: 120%; }
 
@@ -293,11 +300,16 @@ ion-header-bar, ion-nav-bar {
     color: #fff;
     font-weight: bold; }
   .default-modal ion-content {
-    margin-top: 50%; }
+    margin-top: 0px; }
   .default-modal p {
     color: #fff;
     padding-top: 12px;
     font-weight: bold; }
+  .default-modal .mascot {
+    text-align: center;
+    margin: 10px 0; }
+    .default-modal .mascot img {
+      width: 80%; }
 
 #notifications {
   text-align: center; }
@@ -309,11 +321,15 @@ ion-header-bar, ion-nav-bar {
     #notifications .item-icon-left .ion-android-notifications-none {
       color: #FDCC5A;
       font-size: 3em; }
+  #notifications .mascot {
+    text-align: center;
+    margin: 10px 0; }
+    #notifications .mascot img {
+      width: 50%; }
   #notifications .shop {
     font-weight: bold;
     font-size: 120%;
-    color: #69a7ff;
-    margin: 25px 0 28px 0; }
+    color: #69a7ff; }
   #notifications .ion-ios-calendar-outline, #notifications .ion-ios-location, #notifications .ion-ios-person {
     color: #8EBAFF; }
 
@@ -429,7 +445,7 @@ ion-header-bar, ion-nav-bar {
 
 #new-deliveries .item-icon-right .distance, #new-deliveries .item-icon-right .address, #shop-order .item-icon-right .distance, #shop-order .item-icon-right .address {
   color: #8C8C8C;
-  font-size: 14px; }
+  font-size: 12px; }
 
 .price-box.total {
   background-color: #69a7ff; }
@@ -457,6 +473,9 @@ ion-header-bar, ion-nav-bar {
     line-height: 47px;
     margin: 15px auto; }
 
+#cart-modal .has-subfooter {
+  bottom: 118px; }
+
 #cart-modal .row {
   padding: 0; }
 
@@ -469,7 +488,7 @@ ion-header-bar, ion-nav-bar {
     padding: 0px; }
 
 #delivery .address, #order .address {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   margin-top: 3px; }
   #delivery .address i, #order .address i {
@@ -481,6 +500,9 @@ ion-header-bar, ion-nav-bar {
 
 #delivery .list .title, #order .list .title {
   text-align: center; }
+
+#delivery .checked, #order .checked {
+  color: #FDCC5A; }
 
 .ion-ios-star {
   color: #FDCC5A; }
@@ -531,9 +553,11 @@ ion-header-bar, ion-nav-bar {
     font-weight: bold; }
   #finish-order-modal .slider, #finish-delivery-modal .slider {
     height: 100%; }
-    #finish-order-modal .slider .thanks > div, #finish-delivery-modal .slider .thanks > div {
-      position: absolute;
-      bottom: 50px; }
+    #finish-order-modal .slider .mascot, #finish-delivery-modal .slider .mascot {
+      text-align: center;
+      margin: 10px 0; }
+      #finish-order-modal .slider .mascot img, #finish-delivery-modal .slider .mascot img {
+        width: 80%; }
 
 #cart-modal .product {
   padding-right: 20px; }
@@ -636,8 +660,11 @@ ion-header-bar, ion-nav-bar {
 
 .loading-container {
   padding: 30px; }
-  .loading-container .loading span {
-    color: white; }
+  .loading-container .loading {
+    border-radius: 20px;
+    background-color: rgba(41, 65, 100, 0.7); }
+    .loading-container .loading span {
+      color: white; }
 
 .bar.bar-stable .title {
   color: #2f6ab5;
@@ -726,3 +753,6 @@ span {
       font-size: 1.5em; }
   .search input {
     font-weight: 500; }
+
+.popup-container .popup {
+  border-radius: 5px; }
