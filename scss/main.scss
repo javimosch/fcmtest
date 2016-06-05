@@ -485,6 +485,10 @@ ion-header-bar, ion-nav-bar {
   .ion-ios-calendar-outline, .ion-ios-location, .ion-ios-person {
     color: $positive-light;
   }
+
+  .response {
+    white-space: normal;
+  }
 }
 
 .notification {
@@ -688,6 +692,10 @@ ion-header-bar, ion-nav-bar {
       line-height: 47px;
       margin: 15px auto;
     }
+  }
+
+  .list:last-child {
+    margin-bottom: 20px;
   }
 
   .has-subfooter {

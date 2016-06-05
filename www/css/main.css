@@ -332,6 +332,8 @@ ion-header-bar, ion-nav-bar {
     color: #69a7ff; }
   #notifications .ion-ios-calendar-outline, #notifications .ion-ios-location, #notifications .ion-ios-person {
     color: #8EBAFF; }
+  #notifications .response {
+    white-space: normal; }
 
 .notification .title {
   white-space: normal;
@@ -472,6 +474,9 @@ ion-header-bar, ion-nav-bar {
     font-weight: bold;
     line-height: 47px;
     margin: 15px auto; }
+
+#cart-modal .list:last-child {
+  margin-bottom: 20px; }
 
 #cart-modal .has-subfooter {
   bottom: 118px; }
