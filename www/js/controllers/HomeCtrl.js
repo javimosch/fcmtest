@@ -119,7 +119,7 @@ angular.module('shopmycourse.controllers')
 
     var confirmPopup = $ionicPopup.confirm({
       title: 'Annuler cette disponibilité',
-      template: 'Attention, vous êtes toujours tenu de faire les livraisons que vous avez acceptées. Si un cas de force majeure se présente, merci de nous contacter.',
+      template: 'Attention, vous êtes tenu de faire les livraisons que vous avez acceptées. Si un cas de force majeure se présente, merci de nous contacter.',
       cancelText: 'Retour',
       okText: 'Annuler la disponibilité'
     });

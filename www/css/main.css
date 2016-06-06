@@ -184,7 +184,8 @@ ion-header-bar, ion-nav-bar {
   margin: 20px auto;
   font-weight: bold;
   border: none;
-  line-height: 47px; }
+  line-height: 47px;
+  font-size: 15px; }
   .button-block.icon:before, .button-block.icon-left:before, .button-block.icon-right:before, button.button-block.icon:before, button.button-block.icon-left:before, button.button-block.icon-right:before {
     line-height: 47px; }
   .button-block.button-stable, .button-block.button-stable:hover, button.button-block.button-stable, button.button-block.button-stable:hover {
