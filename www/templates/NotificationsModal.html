@@ -60,7 +60,7 @@
           </ion-item>
 
           <!-- order_reminder -->
-          <ion-item class="secondary" ng-hide="notification.mode === 'order_reminder'">
+          <ion-item class="secondary" ng-if="notification.mode === 'order_reminder'">
             <div class="mascot"><img src="img/notifs/commande_envoyee.jpg" alt="commande_envoyee"></div>
             <div class="shop">{{notification.meta.shop.name}}</div>
             <div class="schedule"><i class="icon-smc-clock"></i> {{notification.meta.schedule.schedule}}</div>
