@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('DeliveriesFinishCtrl', function($scope, $ionicLoading, $ionicSlideBoxDelegate, $ionicHistory, DeliveryAPI, $ionicPopup) {
+.controller('DeliveriesFinishCtrl', function($scope, $ionicLoading, $ionicSlideBoxDelegate, $ionicHistory ,$ionicPopup, DeliveryAPI, CurrentAvailability) {
 	$scope.ratingStar = 0;
 
   $scope.disableSwipe = function() {
@@ -21,6 +21,7 @@ angular.module('shopmycourse.controllers')
     });
     DeliveryAPI.finalize({'idDelivery': delivery.id, 'validation_code': validation_code, 'rating': $scope.ratingStar}, function() {
       $scope.nextSlide();
+			CurrentAvailability.clear();
 			$ionicHistory.clearHistory();
       $ionicLoading.hide();
     }, function (err) {
