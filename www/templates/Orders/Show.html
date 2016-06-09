@@ -60,7 +60,7 @@
 <script id="default-modal.html" type="text/ng-template">
   <ion-modal-view class="default-modal">
       <ion-content scroll="false" padding="true">
-          <span class="title">{{modalTitle}}</span>
+          <span class="title" data-ng-bind-html="modalTitle"></span>
           <p>{{modalMessage}}</p>
           <button class="button button-stable button-block" ng-click="modalClose()">Ok</button>
       </ion-content>

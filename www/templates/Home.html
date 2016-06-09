@@ -32,7 +32,7 @@
   <ion-modal-view class="default-modal">
       <ion-content scroll="false" padding="true">
           <div class="mascot" ng-if="modalImg"><img ng-src="{{modalImg}}" alt="availability"></div>
-          <span class="title">{{modalTitle}}</span>
+          <span class="title" data-ng-bind-html="modalTitle"></span>
           <p>{{modalMessage}}</p>
           <button class="button button-stable button-block" ng-click="modalClose()">Ok</button>
       </ion-content>
