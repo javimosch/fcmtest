@@ -88,7 +88,7 @@ angular.module('shopmycourse.controllers')
                        'idDelivery': $scope.order.id
                      }, function() {
                        OrderStore.pull(function(orders) {
-                         $scope.modalTitle = "Commande envoyée"
+                         $scope.modalTitle = "<div class=\"mascot\"><img src=\"img/notifs/commande_envoyee.jpg\" alt=\"commande_envoyee\"></div><span class=\"title\">Commande envoyée</span>"
                          $scope.modalMessage = "Votre livreur va recevoir votre liste de courses d'ici quelques minutes."
                          $scope.modalClose = function () {
                            $state.go('tabs.orders');
