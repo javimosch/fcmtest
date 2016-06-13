@@ -121,7 +121,7 @@ angular.module('shopmycourse.controllers')
       title: 'Annuler cette disponibilité',
       template: 'Attention, vous êtes tenu de faire les livraisons que vous avez acceptées. Si un cas de force majeure se présente, merci de nous contacter.',
       cancelText: 'Retour',
-      okText: 'Annuler la disponibilité'
+      okText: 'Annuler la dispo'
     });
 
     confirmPopup.then(function(res) {
