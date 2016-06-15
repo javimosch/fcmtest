@@ -80,7 +80,7 @@ angular.module('shopmycourse.controllers')
     if ($scope.user.wallet && $scope.user.wallet.credit_card_display) {
        var confirmPopup = $ionicPopup.confirm({
          title: 'Paiement',
-         template: 'Votre carte ' + $scope.user.wallet.credit_card_display + ' sera débité de ' + total + '€ après la livraison de votre commande. Vous pouvez modifier ce numéro de carte dans la partie Profil de l\'application.',
+         template: 'Votre carte ' + $scope.user.wallet.credit_card_display + ' sera débitée de ' + total + ' €. Vous pouvez modifier ce numéro de carte dans la partie Profil de l\'application.',
          cancelText: 'Retour',
          okText: 'OK'
        });
