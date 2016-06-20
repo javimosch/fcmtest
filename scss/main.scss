@@ -1087,3 +1087,7 @@ span {
 .popup-container .popup {
   border-radius: 5px;
 }
+
+.cart-colored > * {
+  color: $red !important;
+}
