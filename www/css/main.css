@@ -243,6 +243,8 @@ ion-header-bar, ion-nav-bar {
     color: #2f6ab5;
     display: inline-block;
     font-weight: bold; }
+  #signup .list {
+    margin-bottom: 0px;}
   #signin .cgu, #signup .cgu {
     width: 80%;
     margin: 0 10%;
