@@ -26,7 +26,7 @@
     "cordova-sms-plugin",
     {
       "variables": {
-        "URL_SCHEME": "shopmycourses"
+        "URL_SCHEME": "com.shopmycourses"
       },
       "locator": "https://github.com/EddyVerbruggen/LaunchMyApp-PhoneGap-Plugin.git",
       "id": "cordova-plugin-customurlscheme"
