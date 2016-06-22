@@ -243,8 +243,6 @@ ion-header-bar, ion-nav-bar {
     color: #2f6ab5;
     display: inline-block;
     font-weight: bold; }
-  #signup .list {
-    margin-bottom: 0px;}
   #signin .cgu, #signup .cgu {
     width: 80%;
     margin: 0 10%;
@@ -457,6 +455,11 @@ ion-header-bar, ion-nav-bar {
   .price-box.total span {
     color: #fff; }
 
+.price-box.shipping_total {
+  background-color: #69a7ff; }
+  .price-box.shipping_total span {
+    color: #fff; }
+
 .price-box.commission {
   background-color: #f8f8f8; }
   .price-box.commission span {
@@ -493,6 +496,8 @@ ion-header-bar, ion-nav-bar {
 #delivery #delivery-prices, #order #delivery-prices {
   text-align: center; }
   #delivery #delivery-prices.row, #order #delivery-prices.row {
+    padding: 0px; }
+  #delivery #delivery-prices .row, #order #delivery-prices .row {
     padding: 0px; }
 
 #delivery .address, #order .address {

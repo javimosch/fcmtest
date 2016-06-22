@@ -665,6 +665,14 @@ ion-header-bar, ion-nav-bar {
     }
   }
 
+  &.shipping_total {
+    background-color: $positive;
+
+    span {
+      color: $light;
+    }
+  }
+
   &.commission {
     background-color: $stable;
 
@@ -717,6 +725,9 @@ ion-header-bar, ion-nav-bar {
   #delivery-prices {
     text-align: center;
     &.row {
+      padding: 0px;
+    }
+    & .row {
       padding: 0px;
     }
   }
