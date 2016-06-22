@@ -43,12 +43,15 @@
                 <div class="error-message" ng-show="signup.phone.$error.pattern">
                   <span><i class="icon ion-close-circled"></i> {{validation.phone.message}}</span>
                 </div>
+                <div>
+                  <p>
+                    <p class="cgu"><input type="checkbox" name="cgu" ng-model="user.cgu" required="required" selected="false">&nbsp;Vous acceptez les <a ng-click="openCGU()" style="text-decoration: underline;">conditions générales d'utilisation</a> de Shopmycourses</p>
+                    <p class="cgu"><input type="checkbox" name="lemonway" ng-model="user.lemonway" required="required" selected="false">&nbsp;Vous acceptez les <a ng-click="openLemonWayCGU()" style="text-decoration: underline;">conditions générales d'utilisation</a> de Lemon Way, notre prestataire de service de paiement.</p>
+                  </p>
+                </div>
             </ion-list>
         </form>
         <a ng-click="signUp()" class="button button-stable button-block" ng-disabled="signup.$invalid">Inscription</a>
-        <div>
-            <p class="cgu">Vous acceptez les <a ng-click="openCGU()" style="text-decoration: underline;">conditions générales d'utilisation</a> de Shopmycourses</p>
-            <p class="cgu">Vous acceptez les <a ng-click="openLemonWayCGU()" style="text-decoration: underline;">conditions générales d'utilisation</a> de Lemon Way, notre prestataire de service de paiement.</p>
-        </div>
+
     </ion-content>
 </ion-view>
