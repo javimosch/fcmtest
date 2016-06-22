@@ -1,16 +1,17 @@
 angular.module('shopmycourse.controllers')
 
-.controller('ProfileShowCtrl', function($scope, $ionicLoading, $state, $ionicPopup, Authentication, CurrentUser, CurrentAddress, UserAPI) {
+.controller('ProfileShowCtrl', function($scope, $ionicLoading, $state, $ionicPopup, $ionicModal, Authentication, CurrentUser, CurrentAddress, UserAPI) {
 
   $scope.user = {};
   $ionicLoading.show({
     template: 'Nous récupérons votre profil...'
   });
+
   CurrentUser.get(function (user) {
       $scope.user = user;
       $scope.avatarBackground = CurrentUser.getAvatar();
       $ionicLoading.hide();
-  })
+  });
 
   $scope.togglePhone = function () {
     if (!$scope.user.share_phone) {
@@ -40,13 +41,25 @@ angular.module('shopmycourse.controllers')
         $scope.user = user;
       });
     }
-
   };
 
+  $ionicModal.fromTemplateUrl('templates/Privacy.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+  $scope.openPrivacyModal = function() {
+    $scope.modal.show();
+  };
+  $scope.closePrivacyModal = function() {
+    $scope.modal.hide();
+  };
 
   $scope.logout = function () {
     Authentication.logout(function() {
       $state.go('start');
     });
-  }
+  };
+
 })
