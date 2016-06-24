@@ -39,7 +39,7 @@
         </div>
         <div class="row">
           <div class="price-box commission col">
-            <span class="price">{{(delivery.commission - delivery.shipping_total) || 0 | number: 2}}€</span>
+            <span class="price">{{(delivery.commission || 0 | number: 2) - (delivery.shipping_total || 0 | number: 2)}}€</span>
             <span class="title">Commission Shopmycourses</span>
           </div>
         </div>
