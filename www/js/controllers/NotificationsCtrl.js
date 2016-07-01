@@ -59,7 +59,7 @@ angular.module('shopmycourse.controllers')
 
 	$scope.acceptDeliveryRequest = function(notification) {
 		var myPopup = $ionicPopup.confirm({
-			template: 'Vous êtes sur le point de d\'accepter la livraison, êtes-vous sûr ?',
+			template: 'Vous êtes sur le point d\'accepter la livraison, êtes-vous sûr ?',
 			title: 'Accepter la demande',
 			cancelText: 'retour'
 		});
