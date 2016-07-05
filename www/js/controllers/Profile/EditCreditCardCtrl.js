@@ -71,7 +71,7 @@ angular.module('shopmycourse.controllers')
             if ($state.current.name == 'tabs.orderpayment') {
               OrderStore.get({id: parseInt($stateParams.idOrder)}, function (err, order) {
                 $scope.order = order[0];
-                total = Math.round(($scope.order.total + $scope.order.commission + $scope.order.shipping_total) * 100) / 100
+                total = Math.round(($scope.order.total + $scope.order.commission) * 100) / 100
 
                 $ionicLoading.hide();
                  var confirmPopup = $ionicPopup.confirm({

@@ -75,7 +75,7 @@ angular.module('shopmycourse.controllers')
   }
 
   $scope.confirmDelivery = function() {
-    total = Math.round(($scope.order.total + $scope.order.shipping_total) * 100) / 100
+    total = Math.round(($scope.order.total + $scope.order.commission) * 100) / 100
 
     if ($scope.user.wallet && $scope.user.wallet.credit_card_display) {
        var confirmPopup = $ionicPopup.confirm({
