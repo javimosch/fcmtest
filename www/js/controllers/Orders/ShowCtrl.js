@@ -111,7 +111,15 @@ angular.module('shopmycourse.controllers')
                });
             })
           }, function(err) {
-            console.log(err);
+            var alertPopup = $ionicPopup.alert({
+              title: 'Erreur',
+              template: "Une erreur est survenue lors du paiement, vous avez peut-être dépassé l'heure limite. Si ce n'est pas le cas merci de nous contacter.",
+            });
+
+            alertPopup.then(function(res) {
+              console.log(err);
+              $state.go('tabs.orders')
+            })
             $ionicLoading.hide();
           })
         }
