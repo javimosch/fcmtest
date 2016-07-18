@@ -65,10 +65,10 @@
   font-size: 80%;
   margin-top: 7px; }
 
-#profile #profile-information i, #profile #profile-creditcard i, #profile #profile-address i, #profile #profile-privacy i, #profile #profile-logout i {
+#profile #profile-information i, #profile #profile-creditcard i, #profile #profile-address i, #profile #profile-privacy i, #profile #profile-cgu i, #profile #profile-logout i {
   color: #ef473a; }
 
-#profile #profile-information > div, #profile #profile-creditcard > div, #profile #profile-address > div, #profile #profile-privacy > div, #profile #profile-logout > div {
+#profile #profile-information > div, #profile #profile-creditcard > div, #profile #profile-address > div, #profile #profile-privacy > div, #profile #profile-cgu > div, #profile #profile-logout > div {
   font-size: 15px; }
 
 #profile #profile-information > div, #profile #profile-address > div {
@@ -286,7 +286,7 @@ ion-header-bar, ion-nav-bar {
   border: none;
   font-size: 100%; }
 
-#profile #profile-creditcard, #profile #profile-privacy, #profile #profile-logout {
+#profile #profile-creditcard, #profile #profile-privacy, #profile #profile-cgu, #profile #profile-logout {
   text-align: center;
   font-size: 120%; }
 
