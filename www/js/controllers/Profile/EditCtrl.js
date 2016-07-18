@@ -48,16 +48,16 @@ angular.module('shopmycourse.controllers')
     });
   };
 
-    getPictureFromCamera = function(type) {
-      Camera.getPicture(type, function(imageData) {
-          // Pass the base64 string to avatar.url for displaying in the app
-          $scope.avatarBackground = "data:image/jpeg;base64," + imageData;
-          $scope.$apply();
+  getPictureFromCamera = function(type) {
+    Camera.getPicture({ correctOrientation: true }).then(function(imageData) {
+      // Pass the base64 string to avatar.url for displaying in the app
+      $scope.avatarBackground = "data:image/jpeg;base64," + imageData;
+      $scope.$apply();
 
-          // Pass the base64 string to the param for rails saving
-          $scope.user.avatar = "data:image/jpeg;base64," + imageData;
-      });
-  }
+      // Pass the base64 string to the param for rails saving
+      $scope.user.avatar = "data:image/jpeg;base64," + imageData;
+    });
+  };
 
   $scope.changeAvatar = function() {
 
