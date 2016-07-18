@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('ProfileEditCtrl', function($scope, $ionicLoading, $state, $ionicHistory, $ionicViewSwitcher, $ionicPopup, Validation, CurrentUser, UserAPI, Camera, $ionicActionSheet) {
+.controller('ProfileEditCtrl', function($scope, $ionicLoading, $state, $ionicHistory, $ionicViewSwitcher, $ionicPopup, $jrCrop, Validation, CurrentUser, UserAPI, Camera, $ionicActionSheet) {
 
   $scope.validation = Validation;
 
@@ -49,13 +49,28 @@ angular.module('shopmycourse.controllers')
   };
 
   getPictureFromCamera = function(type) {
-    Camera.getPicture({ correctOrientation: true }).then(function(imageData) {
-      // Pass the base64 string to avatar.url for displaying in the app
-      $scope.avatarBackground = "data:image/jpeg;base64," + imageData;
-      $scope.$apply();
-
-      // Pass the base64 string to the param for rails saving
-      $scope.user.avatar = "data:image/jpeg;base64," + imageData;
+    Camera.getPicture(type, function(imageData) {
+      $jrCrop.crop({
+          url: 'data:image/jpeg;base64,' + imageData,
+          width: 200,
+          height: 200,
+          cancelText: 'Annuler',
+          chooseText: 'OK'
+      }).then(function(image) {
+        // Pass the base64 string to avatar.url for displaying in the app
+        $scope.avatarBackground = image.toDataURL();
+        // Pass the base64 string to the param for rails saving
+        $scope.user.avatar = image.toDataURL();
+        $scope.$apply();
+      }, function() {
+        console.log('jrCrop: User canceled or couldn\'t load image.');
+      });
+    }, function (error) {
+      console.log('Camera: ' + error);
+    }, {
+      correctOrientation: true,
+      targetWidth: 200,
+      targetHeight: 200
     });
   };
 
