@@ -98,7 +98,7 @@
     margin-top: 7px;
   }
 
-  #profile-information, #profile-creditcard, #profile-address, #profile-logout {
+  #profile-information, #profile-creditcard, #profile-address, #profile-privacy, #profile-cgu, #profile-logout {
     i {
       color: $assertive;
     }
@@ -270,6 +270,7 @@ ion-header-bar, ion-nav-bar {
   font-weight: bold;
   border: none;
   line-height: 47px;
+  font-size: 15px;
 
   &.icon, &.icon-left, &.icon-right {
     &:before {
@@ -409,7 +410,7 @@ ion-header-bar, ion-nav-bar {
     }
   }
 
-  #profile-creditcard, #profile-logout {
+  #profile-creditcard, #profile-privacy, #profile-cgu, #profile-logout {
     text-align: center;
     font-size: 120%;
   }
@@ -484,6 +485,10 @@ ion-header-bar, ion-nav-bar {
 
   .ion-ios-calendar-outline, .ion-ios-location, .ion-ios-person {
     color: $positive-light;
+  }
+
+  .response {
+    white-space: normal;
   }
 }
 
@@ -660,6 +665,14 @@ ion-header-bar, ion-nav-bar {
     }
   }
 
+  &.shipping_total {
+    background-color: $positive;
+
+    span {
+      color: $light;
+    }
+  }
+
   &.commission {
     background-color: $stable;
 
@@ -690,6 +703,10 @@ ion-header-bar, ion-nav-bar {
     }
   }
 
+  .list:last-child {
+    margin-bottom: 118px;
+  }
+
   .has-subfooter {
     bottom: 118px;
   }
@@ -703,11 +720,25 @@ ion-header-bar, ion-nav-bar {
   }
 }
 
+#cgu-modal, #privacy-modal {
+  .bar {
+    font-weight: bold;
+    text-align: center;
+    background-color: $positive;
+  }
+  .button-clear.button-clear {
+    color: $light;
+  }
+}
+
 #delivery, #order {
 
   #delivery-prices {
     text-align: center;
     &.row {
+      padding: 0px;
+    }
+    & .row {
       padding: 0px;
     }
   }
@@ -1077,4 +1108,8 @@ span {
 
 .popup-container .popup {
   border-radius: 5px;
+}
+
+.cart-colored > * {
+  color: $red !important;
 }

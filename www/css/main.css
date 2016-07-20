@@ -65,10 +65,10 @@
   font-size: 80%;
   margin-top: 7px; }
 
-#profile #profile-information i, #profile #profile-creditcard i, #profile #profile-address i, #profile #profile-logout i {
+#profile #profile-information i, #profile #profile-creditcard i, #profile #profile-address i, #profile #profile-privacy i, #profile #profile-cgu i, #profile #profile-logout i {
   color: #ef473a; }
 
-#profile #profile-information > div, #profile #profile-creditcard > div, #profile #profile-address > div, #profile #profile-logout > div {
+#profile #profile-information > div, #profile #profile-creditcard > div, #profile #profile-address > div, #profile #profile-privacy > div, #profile #profile-cgu > div, #profile #profile-logout > div {
   font-size: 15px; }
 
 #profile #profile-information > div, #profile #profile-address > div {
@@ -184,7 +184,8 @@ ion-header-bar, ion-nav-bar {
   margin: 20px auto;
   font-weight: bold;
   border: none;
-  line-height: 47px; }
+  line-height: 47px;
+  font-size: 15px; }
   .button-block.icon:before, .button-block.icon-left:before, .button-block.icon-right:before, button.button-block.icon:before, button.button-block.icon-left:before, button.button-block.icon-right:before {
     line-height: 47px; }
   .button-block.button-stable, .button-block.button-stable:hover, button.button-block.button-stable, button.button-block.button-stable:hover {
@@ -285,7 +286,7 @@ ion-header-bar, ion-nav-bar {
   border: none;
   font-size: 100%; }
 
-#profile #profile-creditcard, #profile #profile-logout {
+#profile #profile-creditcard, #profile #profile-privacy, #profile #profile-cgu, #profile #profile-logout {
   text-align: center;
   font-size: 120%; }
 
@@ -332,6 +333,8 @@ ion-header-bar, ion-nav-bar {
     color: #69a7ff; }
   #notifications .ion-ios-calendar-outline, #notifications .ion-ios-location, #notifications .ion-ios-person {
     color: #8EBAFF; }
+  #notifications .response {
+    white-space: normal; }
 
 .notification .title {
   white-space: normal;
@@ -452,6 +455,11 @@ ion-header-bar, ion-nav-bar {
   .price-box.total span {
     color: #fff; }
 
+.price-box.shipping_total {
+  background-color: #69a7ff; }
+  .price-box.shipping_total span {
+    color: #fff; }
+
 .price-box.commission {
   background-color: #f8f8f8; }
   .price-box.commission span {
@@ -473,6 +481,9 @@ ion-header-bar, ion-nav-bar {
     line-height: 47px;
     margin: 15px auto; }
 
+#cart-modal .list:last-child {
+  margin-bottom: 118px; }
+
 #cart-modal .has-subfooter {
   bottom: 118px; }
 
@@ -482,9 +493,19 @@ ion-header-bar, ion-nav-bar {
 #cart-modal span.quantity {
   color: #fff; }
 
+#cgu-modal .bar, #privacy-modal .bar {
+  font-weight: bold;
+  text-align: center;
+  background-color: #69a7ff; }
+
+#cgu-modal .button-clear.button-clear, #privacy-modal .button-clear.button-clear {
+  color: #fff; }
+
 #delivery #delivery-prices, #order #delivery-prices {
   text-align: center; }
   #delivery #delivery-prices.row, #order #delivery-prices.row {
+    padding: 0px; }
+  #delivery #delivery-prices .row, #order #delivery-prices .row {
     padding: 0px; }
 
 #delivery .address, #order .address {
@@ -756,3 +777,6 @@ span {
 
 .popup-container .popup {
   border-radius: 5px; }
+
+.cart-colored > * {
+  color: #EB504D !important; }

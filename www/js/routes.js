@@ -75,6 +75,7 @@ angular.module('shopmycourse.routes', [])
 
   .state('tabs.delivery', {
     url: '/delivery/:idDelivery',
+    cache: false,
     views: {
       'deliveries-tab': {
         templateUrl: 'templates/Deliveries/Show.html',

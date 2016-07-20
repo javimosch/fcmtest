@@ -26,14 +26,22 @@
           </div>
         </div>
       </div>
-      <div id="delivery-prices" class="row">
-        <div class="price-box total col">
-          <span class="price">{{delivery.total || 0 | number: 2}}€</span>
-          <span class="title">Prix total</span>
+      <div id="delivery-prices">
+        <div class="row">
+          <div class="price-box total col">
+            <span class="price">{{delivery.total || 0 | number: 2}}€</span>
+            <span class="title">Sous-total</span>
+          </div>
+          <div class="price-box shipping_total col">
+            <span class="price">{{delivery.shipping_total || 0 | number: 2}}€</span>
+            <span class="title">Commission livreur</span>
+          </div>
         </div>
-        <div class="price-box commission col">
-          <span class="price">{{delivery.shipping_total || 0 | number: 2}}€</span>
-          <span class="title">Commission</span>
+        <div class="row">
+          <div class="price-box commission col">
+            <span class="price">{{(delivery.commission.toFixed(2) || 0) - (delivery.shipping_total.toFixed(2) || 0) | number: 2}}€</span>
+            <span class="title">Commission Shopmycourses</span>
+          </div>
         </div>
       </div>
       <ion-list>

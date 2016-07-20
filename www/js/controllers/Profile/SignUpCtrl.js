@@ -49,4 +49,5 @@ angular.module('shopmycourse.controllers')
   $scope.closeCGU = function () {
     $scope.modal.hide();
   };
+
 })

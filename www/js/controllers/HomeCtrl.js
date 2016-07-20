@@ -117,35 +117,27 @@ angular.module('shopmycourse.controllers')
       return completed;
     }
 
-    if (hasCompletedDelivery()) {
-      $ionicPopup.alert({
-        title: 'Livraison en cours',
-        template: 'Vous avez une livraison en cours, vous ne pouvez pas annuler votre disponibilité maintenant'
-      });
-    }
-    else {
-      var confirmPopup = $ionicPopup.confirm({
-        title: 'Annuler cette disponibilité',
-        template: 'Voulez-vous vraiment annuler la disponibilité que vous avez déposée?',
-        cancelText: 'Non',
-        okText: 'Oui'
-      });
+    var confirmPopup = $ionicPopup.confirm({
+      title: 'Annuler cette disponibilité',
+      template: 'Attention, vous êtes tenu de faire les livraisons que vous avez acceptées. Si un cas de force majeure se présente, merci de nous contacter.',
+      cancelText: 'Retour',
+      okText: 'Annuler la dispo'
+    });
 
-      confirmPopup.then(function(res) {
-        if(!res) {
-          return;
-        }
-        $ionicLoading.show({
-          template: 'Nous annulons votre disponibilité...'
-        });
-        CurrentAvailability.cancel(function(err) {
-          if (!err) {
-            $scope.currentAvailability = [];
-          }
-          $ionicLoading.hide();
-        });
+    confirmPopup.then(function(res) {
+      if(!res) {
+        return;
+      }
+      $ionicLoading.show({
+        template: 'Nous annulons votre disponibilité...'
       });
-    }
+      CurrentAvailability.cancel(function(err) {
+        if (!err) {
+          $scope.currentAvailability = [];
+        }
+        $ionicLoading.hide();
+      });
+    });
 
   };
 })

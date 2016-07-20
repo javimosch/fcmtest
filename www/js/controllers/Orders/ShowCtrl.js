@@ -75,12 +75,14 @@ angular.module('shopmycourse.controllers')
   }
 
   $scope.confirmDelivery = function() {
-    total = Math.round(($scope.order.total + $scope.order.commission + $scope.order.shipping_total) * 100) / 100
+    total = Math.round(($scope.order.total + $scope.order.commission) * 100) / 100
 
     if ($scope.user.wallet && $scope.user.wallet.credit_card_display) {
        var confirmPopup = $ionicPopup.confirm({
          title: 'Paiement',
-         template: 'Votre carte ' + $scope.user.wallet.credit_card_display + ' sera débité de ' + total + '€ après la livraison de votre commande.'
+         template: 'Votre carte ' + $scope.user.wallet.credit_card_display + ' sera débitée de ' + total + ' €. Vous pouvez modifier ce numéro de carte dans la partie Paramètres de l\'application.',
+         cancelText: 'Retour',
+         okText: 'OK'
        });
 
        confirmPopup.then(function(res) {
@@ -92,7 +94,7 @@ angular.module('shopmycourse.controllers')
              'idDelivery': $scope.order.id
            }, function() {
              OrderStore.pull(function(orders) {
-               $scope.modalTitle = "Commande envoyée"
+               $scope.modalTitle = "<div class=\"mascot\"><img src=\"img/notifs/commande_envoyee.jpg\" alt=\"commande_envoyee\"></div><span class=\"title\">Commande envoyée</span>"
                $scope.modalMessage = "Votre livreur va recevoir votre liste de courses d'ici quelques minutes."
                $scope.modalClose = function () {
                  $state.go('tabs.orders');
@@ -109,7 +111,15 @@ angular.module('shopmycourse.controllers')
                });
             })
           }, function(err) {
-            console.log(err);
+            var alertPopup = $ionicPopup.alert({
+              title: 'Erreur',
+              template: "Une erreur est survenue lors du paiement, vous avez peut-être dépassé l'heure limite. Si ce n'est pas le cas merci de nous contacter.",
+            });
+
+            alertPopup.then(function(res) {
+              console.log(err);
+              $state.go('tabs.orders')
+            })
             $ionicLoading.hide();
           })
         }

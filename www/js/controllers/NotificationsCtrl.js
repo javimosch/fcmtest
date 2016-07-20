@@ -59,7 +59,7 @@ angular.module('shopmycourse.controllers')
 
 	$scope.acceptDeliveryRequest = function(notification) {
 		var myPopup = $ionicPopup.confirm({
-			template: 'Vous êtes sur le point de d\'accepter la livraison, êtes-vous sûr ?',
+			template: 'Vous êtes sur le point d\'accepter la livraison, êtes-vous sûr ?',
 			title: 'Accepter la demande',
 			cancelText: 'retour'
 		});
@@ -79,7 +79,7 @@ angular.module('shopmycourse.controllers')
 						$ionicLoading.hide();
 						var alertPopup = $ionicPopup.alert({
 							title: 'Acceptation confirmée',
-							template: 'Il ne vous reste plus qu\'à attendre la création de la liste par l\'acheteur'
+							template: 'Il ne vous reste plus qu\'à attendre la création de la liste par le demandeur'
 						});
 						alertPopup.then(function(res) {
 							if ($scope.notifications.length === 0) {

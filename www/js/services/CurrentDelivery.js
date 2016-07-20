@@ -49,6 +49,10 @@ angular.module('shopmycourse.services')
         },
         clear: function (next) {
           DataStorage.remove('current_delivery').then(next);
+          currentDelivery = {
+            schedule: {},
+            shop_id: null
+          };
         }
     };
 

@@ -71,12 +71,14 @@ angular.module('shopmycourse.controllers')
             if ($state.current.name == 'tabs.orderpayment') {
               OrderStore.get({id: parseInt($stateParams.idOrder)}, function (err, order) {
                 $scope.order = order[0];
-                total = Math.round(($scope.order.total + $scope.order.commission + $scope.order.shipping_total) * 100) / 100
+                total = Math.round(($scope.order.total + $scope.order.commission) * 100) / 100
 
                 $ionicLoading.hide();
                  var confirmPopup = $ionicPopup.confirm({
                    title: 'Paiement',
-                   template: 'Votre carte ' + $scope.user.wallet.credit_card_display + ' sera débité de ' + total + '€ après la livraison de votre commande.'
+                   template: 'Votre carte ' + $scope.user.wallet.credit_card_display + ' sera débitée de ' + total + ' €. Vous pouvez modifier ce numéro de carte dans la partie Paramètres de l\'application.',
+                   cancelText: 'Retour',
+                   okText: 'OK'
                  });
 
                  confirmPopup.then(function(res) {
@@ -88,7 +90,7 @@ angular.module('shopmycourse.controllers')
                        'idDelivery': $scope.order.id
                      }, function() {
                        OrderStore.pull(function(orders) {
-                         $scope.modalTitle = "Commande envoyée"
+                         $scope.modalTitle = "<div class=\"mascot\"><img src=\"img/notifs/commande_envoyee.jpg\" alt=\"commande_envoyee\"></div><span class=\"title\">Commande envoyée</span>"
                          $scope.modalMessage = "Votre livreur va recevoir votre liste de courses d'ici quelques minutes."
                          $scope.modalClose = function () {
                            $state.go('tabs.orders');
