@@ -32,7 +32,8 @@ angular.module('shopmycourse.controllers')
 		if (!$scope.ratingStar) {
 			var myPopup = $ionicPopup.confirm({
 				template: 'Vous n\'avez pas noté le livreur, êtes-vous sûr ?',
-				title: 'Ok',
+				title: 'Notation du livreur',
+        okText: 'OK',
 				cancelText: 'retour'
 			});
 
