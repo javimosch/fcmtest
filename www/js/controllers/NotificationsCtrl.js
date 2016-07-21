@@ -79,7 +79,7 @@ angular.module('shopmycourse.controllers')
 						$ionicLoading.hide();
 						var alertPopup = $ionicPopup.alert({
 							title: 'Acceptation confirmée',
-							template: 'Il ne vous reste plus qu\'à attendre la création de la liste par l\'acheteur'
+							template: 'Il ne vous reste plus qu\'à attendre la création de la liste par le demandeur'
 						});
 						alertPopup.then(function(res) {
 							if ($scope.notifications.length === 0) {

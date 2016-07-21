@@ -1,4 +1,4 @@
-<ion-view id="profile" title="Profil">
+<ion-view id="profile" title="Paramètres">
     <ion-nav-buttons side="right">
       <notifications></notifications>
       <!-- <button class="button button-clear logout" ng-click="logout()">
@@ -23,8 +23,11 @@
         <div class="item" id="profile-creditcard" ui-sref="tabs.editcreditcard">
             <div class="creditcard"><i class="icon-smc-card"></i> {{user.wallet.credit_card_display ? user.wallet.credit_card_display : 'Enregistrer ma carte'}} <i class="ion-chevron-right"></i></div>
         </div>
-        <div class="item" id="profile-privacy" ng-click="openPrivacyModal()">
+        <div class="item" id="profile-privacy" ng-click="openPrivacy()">
             <div class="privacy"><i class="ion-locked"></i> Charte de confidentialité</div>
+        </div>
+        <div class="item" id="profile-cgu" ng-click="openCGU()">
+            <div class="cgu"><i class="ion-compose"></i> Conditions générales d'utilisation</div>
         </div>
         <div class="item" id="profile-logout" ng-click="logout()">
             <div class="logout"><i class="ion-power"></i> Se déconnecter </i></div>

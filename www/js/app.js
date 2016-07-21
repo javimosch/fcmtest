@@ -2,6 +2,7 @@
 
 angular.module('shopmycourse', [
   'ionic',
+  'jrCrop',
   'toastr',
   'ngLodash',
   'ngCordova',

@@ -49,11 +49,24 @@ angular.module('shopmycourse.controllers')
   }).then(function(modal) {
     $scope.modal = modal;
   });
-  $scope.openPrivacyModal = function() {
+  $scope.openPrivacy = function() {
     $scope.modal.show();
   };
-  $scope.closePrivacyModal = function() {
+  $scope.closePrivacy = function() {
     $scope.modal.hide();
+  };
+
+  $ionicModal.fromTemplateUrl('templates/CGU.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modalCGU = modal;
+  });
+  $scope.openCGU = function () {
+    $scope.modalCGU.show();
+  };
+  $scope.closeCGU = function () {
+    $scope.modalCGU.hide();
   };
 
   $scope.logout = function () {
