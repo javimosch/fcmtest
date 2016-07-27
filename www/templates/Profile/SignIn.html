@@ -1,7 +1,19 @@
 <ion-view id="signin">
   <ion-content overflow-scroll="false" padding="false" scroll="true">
     <img src="img/logo.png" class="logo"></i>
+    <div class="row row-center">
+      <div class="col text-center">
+          <p><b>Connexion avec :</b></p>
+          <button class="button button-block button-positive button-facebook" ng-click="signInWithFacebook()">
+            Facebook
+          </button>
+          <button class="button button-block button-google" ng-click="signInWithGoogle()">
+            Google
+          </button>
+        </div>
+    </div>
     <form class="list" name="signin">
+      <p><b>Ou utilisez votre email :</b></p>
       <ion-list>
         <!-- Email -->
         <label class="item item-input item-floating-label">
@@ -21,7 +33,7 @@
         </div>
       </ion-list>
     </form>
-    <a ng-click="signIn()" class="button button-stable button-block" ng-disabled="signin.$invalid">Connexion</a>
+    <a ng-click="signInWithEmail()" class="button button-stable button-block" ng-disabled="signin.$invalid">Connexion</a>
     <a ng-click="forgotPassword()" class="forgot-pwd">Mot de passe oublié ?</a>
   </ion-content>
 </ion-view>

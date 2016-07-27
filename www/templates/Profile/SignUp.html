@@ -1,7 +1,19 @@
 <ion-view id="signup">
     <ion-content overflow-scroll="false" padding="false" scroll="true">
       <img src="img/logo.png" class="logo"></i>
+        <div class="row row-center">
+          <div class="col text-center">
+              <p><b>Inscription avec :</b></p>
+              <button class="button button-block button-positive button-facebook" ng-click="signUpWithFacebook()">
+                Facebook
+              </button>
+              <button class="button button-block button-google" ng-click="signUpWithGoogle()">
+                Google
+              </button>
+            </div>
+        </div>
         <form class="list" name="signup">
+            <p><b>Ou utilisez votre email :</b></p>
             <ion-list>
                 <!-- Prénom -->
                 <label class="item item-input item-floating-label">
@@ -51,7 +63,7 @@
                 </div>
             </ion-list>
         </form>
-        <a ng-click="signUp()" class="button button-stable button-block" ng-disabled="signup.$invalid">Inscription</a>
+        <a ng-click="signUpWithEmail()" class="button button-stable button-block" ng-disabled="signup.$invalid">Inscription</a>
 
     </ion-content>
 </ion-view>
