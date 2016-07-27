@@ -63,6 +63,7 @@ angular.module('shopmycourse.controllers')
 
   $scope.signUpWithEmail = function () {
     $scope.user.auth_method = 'email';
+    $scope.signUp();
   };
 
   $ionicModal.fromTemplateUrl('templates/CGU.html', {
