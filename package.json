@@ -31,7 +31,15 @@
       "locator": "https://github.com/EddyVerbruggen/LaunchMyApp-PhoneGap-Plugin.git",
       "id": "cordova-plugin-customurlscheme"
     },
-    "cordova-plugin-camera"
+    "cordova-plugin-camera",
+    {
+      "variables": {
+        "APP_ID": "297780367242758",
+        "APP_NAME": "Shopmycourses"
+      },
+      "locator": "cordova-plugin-facebook4",
+      "id": "cordova-plugin-facebook4"
+    }
   ],
   "cordovaPlatforms": [
     "ios"

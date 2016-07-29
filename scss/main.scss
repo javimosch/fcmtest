@@ -333,6 +333,22 @@ ion-header-bar, ion-nav-bar {
 #signin, #signup {
   background-color: $positive;
 
+    .row {
+        .button-google {
+            background: #d34836;
+            color: #fff;
+        }
+
+        .button-facebook {
+            background: #3b5998;
+            color: #fff;
+        }
+    }
+
+    p b {
+        color: #fff;
+    }
+
   .logo {
     width: 30%;
     color: rgb(136, 136, 136);

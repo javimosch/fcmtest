@@ -226,6 +226,14 @@ ion-header-bar, ion-nav-bar {
 
 #signin, #signup {
   background-color: #69a7ff; }
+  #signin .row .button-google, #signup .row .button-google {
+    background: #d34836;
+    color: #fff; }
+  #signin .row .button-facebook, #signup .row .button-facebook {
+    background: #3b5998;
+    color: #fff; }
+  #signin p b, #signup p b {
+    color: #fff; }
   #signin .logo, #signup .logo {
     width: 30%;
     color: #888888;

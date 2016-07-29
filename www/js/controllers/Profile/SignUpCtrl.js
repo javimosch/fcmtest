@@ -14,7 +14,7 @@ angular.module('shopmycourse.controllers')
     auth_method: ''
   };
 
-  $scope.signUp = function () {
+  $scope.signUp = function() {
     $ionicLoading.show({
       template: 'Nous créons votre compte...'
     });
@@ -28,6 +28,42 @@ angular.module('shopmycourse.controllers')
         console.log('SignUp error : ' + errorMessage);
       }
     });
+  };
+
+  $scope.signUpWithFacebook = function () {
+      facebookConnectPlugin.login(["email", "public_profile"], function(data) {
+          console.log('DATA', data);
+          $scope.user.auth_token = data.authResponse.accessToken;
+          $scope.user.auth_method = 'facebook';
+          $scope.signUp();
+      }, function(error) {
+          toastr.error('Une erreur est survenue lors de la connexion via Facebook', 'Connexion');
+          console.log('Facebook login errors : ', error);
+      });
+  };
+
+
+  $scope.signUpWithGoogle = function () {
+      window.plugins.googleplus.login(
+          {
+              'webClientId': '979481548722-mj63ev1utfe9v21l5pdiv4j0t1v7jhl2.apps.googleusercontent.com',
+              'offline': true
+          },
+          function (data) {
+              $scope.user.auth_token = data.serverAuthCode;
+              $scope.user.auth_method = 'google';
+              $scope.signUp();
+          },
+          function (error) {
+          toastr.error('Une erreur est survenue lors de l\'inscription via Google', 'Inscription');
+          console.log('Google signup errors : ', error);
+          }
+      );
+  };
+
+  $scope.signUpWithEmail = function () {
+    $scope.user.auth_method = 'email';
+    $scope.signUp();
   };
 
   $ionicModal.fromTemplateUrl('templates/CGU.html', {
