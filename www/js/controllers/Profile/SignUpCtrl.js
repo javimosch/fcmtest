@@ -1,8 +1,10 @@
 angular.module('shopmycourse.controllers')
 
-.controller('ProfileSignUpCtrl', function ($scope, $rootScope, $ionicModal, $ionicLoading, $state, toastr, Authentication, Validation, CurrentUser) {
+.controller('ProfileSignUpCtrl', function ($scope, $rootScope, $ionicModal, $ionicLoading, $ionicPopup, $state, toastr, Authentication, Validation, CurrentUser) {
 
   $scope.validation = Validation;
+
+  $scope.isSignup = true;
 
   $scope.user = {
     firstname: '',
@@ -31,34 +33,79 @@ angular.module('shopmycourse.controllers')
   };
 
   $scope.signUpWithFacebook = function () {
-      facebookConnectPlugin.login(["email", "public_profile"], function(data) {
-          console.log('DATA', data);
-          $scope.user.auth_token = data.authResponse.accessToken;
-          $scope.user.auth_method = 'facebook';
-          $scope.signUp();
-      }, function(error) {
-          toastr.error('Une erreur est survenue lors de la connexion via Facebook', 'Connexion');
-          console.log('Facebook login errors : ', error);
-      });
+    $ionicPopup.show({
+      templateUrl: 'templates/Profile/ExternalServicesPopup.html',
+      title: 'Inscription avec Facebook',
+      scope: $scope,
+      buttons: [
+        { text: 'Retour' },
+        {
+          text: 'OK',
+          type: 'button-positive',
+          onTap: function(e) {
+            if (!$scope.user.phone) {
+              e.preventDefault();
+              toastr.error('Votre numéro de téléphone comporte des erreurs');
+            } else {
+              return (true);
+            }
+          }
+        }
+      ]
+    }).then(function (res) {
+      if (res) {
+        facebookConnectPlugin.login(["email", "public_profile"], function(data) {
+            $scope.user.auth_token = data.authResponse.accessToken;
+            $scope.user.auth_method = 'facebook';
+            $scope.signUp();
+        }, function(error) {
+            toastr.error('Une erreur est survenue lors de l\'inscription via Facebook', 'Inscription');
+            console.log('Facebook signup errors : ', error);
+        });
+      }
+    });
   };
 
 
   $scope.signUpWithGoogle = function () {
-      window.plugins.googleplus.login(
-          {
+    $ionicPopup.show({
+      templateUrl: 'templates/Profile/ExternalServicesPopup.html',
+      title: 'Inscription avec Google',
+      scope: $scope,
+      buttons: [
+        { text: 'Retour' },
+        {
+          text: 'OK',
+          type: 'button-positive',
+          onTap: function(e) {
+            if (!$scope.user.phone) {
+              e.preventDefault();
+              toastr.error('Votre numéro de téléphone comporte des erreurs');
+            } else {
+              return (true);
+            }
+          }
+        }
+      ]
+    }).then(function (res) {
+      if (res) {
+        window.plugins.googleplus.login(
+            {
               'webClientId': '979481548722-mj63ev1utfe9v21l5pdiv4j0t1v7jhl2.apps.googleusercontent.com',
               'offline': true
-          },
-          function (data) {
+            },
+            function (data) {
               $scope.user.auth_token = data.serverAuthCode;
               $scope.user.auth_method = 'google';
               $scope.signUp();
-          },
-          function (error) {
-          toastr.error('Une erreur est survenue lors de l\'inscription via Google', 'Inscription');
-          console.log('Google signup errors : ', error);
-          }
-      );
+            },
+            function (error) {
+              toastr.error('Une erreur est survenue lors de l\'inscription via Google', 'Inscription');
+              console.log('Google signup errors : ', error);
+            }
+        );
+      }
+    });
   };
 
   $scope.signUpWithEmail = function () {
