@@ -96,6 +96,7 @@ angular.module('shopmycourse.controllers')
             },
             function (data) {
               $scope.user.auth_token = data.serverAuthCode;
+              $scope.user.refresh_token = data.refreshToken;
               $scope.user.auth_method = 'google';
               $scope.signUp();
             },
