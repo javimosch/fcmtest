@@ -38,7 +38,12 @@ angular.module('shopmycourse.controllers')
       title: 'Inscription avec Facebook',
       scope: $scope,
       buttons: [
-        { text: 'Retour' },
+        {
+          text: 'Retour',
+          onTap: function(e) {
+            return true;
+          }
+        },
         {
           text: 'OK',
           type: 'button-positive',
@@ -47,22 +52,21 @@ angular.module('shopmycourse.controllers')
               e.preventDefault();
               toastr.error('Votre numéro de téléphone comporte des erreurs');
             } else {
+
+              facebookConnectPlugin.login(["email", "public_profile"], function(data) {
+                $scope.user.auth_token = data.authResponse.accessToken;
+                $scope.user.auth_method = 'facebook';
+                $scope.signUp();
+              }, function(error) {
+                toastr.error('Une erreur est survenue lors de l\'inscription via Facebook', 'Inscription');
+                console.log('Facebook signup errors : ', error);
+              });
+
               return (true);
             }
           }
         }
       ]
-    }).then(function (res) {
-      if (res) {
-        facebookConnectPlugin.login(["email", "public_profile"], function(data) {
-            $scope.user.auth_token = data.authResponse.accessToken;
-            $scope.user.auth_method = 'facebook';
-            $scope.signUp();
-        }, function(error) {
-            toastr.error('Une erreur est survenue lors de l\'inscription via Facebook', 'Inscription');
-            console.log('Facebook signup errors : ', error);
-        });
-      }
     });
   };
 
@@ -73,7 +77,12 @@ angular.module('shopmycourse.controllers')
       title: 'Inscription avec Google',
       scope: $scope,
       buttons: [
-        { text: 'Retour' },
+        {
+          text: 'Retour',
+          onTap: function(e) {
+            return true;
+          }
+        },
         {
           text: 'OK',
           type: 'button-positive',
@@ -82,30 +91,28 @@ angular.module('shopmycourse.controllers')
               e.preventDefault();
               toastr.error('Votre numéro de téléphone comporte des erreurs');
             } else {
+
+              window.plugins.googleplus.login({
+                  'webClientId': '979481548722-mj63ev1utfe9v21l5pdiv4j0t1v7jhl2.apps.googleusercontent.com',
+                  'offline': true
+                },
+                function(data) {
+                  $scope.user.auth_token = data.serverAuthCode;
+                  $scope.user.refresh_token = data.refreshToken;
+                  $scope.user.auth_method = 'google';
+                  $scope.signUp();
+                },
+                function(error) {
+                  toastr.error('Une erreur est survenue lors de l\'inscription via Google', 'Inscription');
+                  console.log('Google signup errors : ', error);
+                }
+              );
+
               return (true);
             }
           }
         }
       ]
-    }).then(function (res) {
-      if (res) {
-        window.plugins.googleplus.login(
-            {
-              'webClientId': '979481548722-mj63ev1utfe9v21l5pdiv4j0t1v7jhl2.apps.googleusercontent.com',
-              'offline': true
-            },
-            function (data) {
-              $scope.user.auth_token = data.serverAuthCode;
-              $scope.user.refresh_token = data.refreshToken;
-              $scope.user.auth_method = 'google';
-              $scope.signUp();
-            },
-            function (error) {
-              toastr.error('Une erreur est survenue lors de l\'inscription via Google', 'Inscription');
-              console.log('Google signup errors : ', error);
-            }
-        );
-      }
     });
   };
 

@@ -37,13 +37,9 @@ angular.module('shopmycourse.controllers')
       templateUrl: 'templates/Profile/ExternalServicesPopup.html',
       title: 'Connexion avec Facebook',
       scope: $scope,
-      buttons: [
-        { text: 'Retour' },
-        {
-          text: 'OK',
-          type: 'button-positive'
-        }
-      ]
+      okText: 'OK',
+      okType: 'button-positive',
+      cancelText: 'Retour'
     }).then(function (res) {
       if (res) {
         facebookConnectPlugin.login(["email", "public_profile"], function(data) {
@@ -61,17 +57,13 @@ angular.module('shopmycourse.controllers')
 
 
   $scope.signInWithGoogle = function () {
-    $ionicPopup.show({
+    $ionicPopup.confirm({
       templateUrl: 'templates/Profile/ExternalServicesPopup.html',
       title: 'Connexion avec Google',
       scope: $scope,
-      buttons: [
-        { text: 'Retour' },
-        {
-          text: 'OK',
-          type: 'button-positive'
-        }
-      ]
+      okText: 'OK',
+      okType: 'button-positive',
+      cancelText: 'Retour'
     }).then(function (res) {
       if (res) {
         window.plugins.googleplus.login(
