@@ -8,7 +8,7 @@ angular.module('shopmycourse.controllers')
   var timer = null;
 
   $ionicLoading.show({
-    template: 'Nous récupérons votre commande...'
+    template: 'Chargement...'
   });
 
   OrderStore.get({id: parseInt($stateParams.idOrder)}, function (err, order) {
