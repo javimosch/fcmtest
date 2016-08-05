@@ -4,7 +4,7 @@ angular.module('shopmycourse.controllers')
 
   $scope.$on("$ionicView.beforeEnter", function(event, data){
      // handle event
-     console.log("State Params: ", data.stateParams);
+     // console.log("State Params: ", data.stateParams);
   });
 
   $ionicLoading.show({

@@ -3,6 +3,7 @@ angular.module('shopmycourse.controllers')
 .controller('ProfileShowCtrl', function($scope, $ionicLoading, $state, $ionicPopup, $ionicModal, Authentication, CurrentUser, CurrentAddress, UserAPI) {
 
   $scope.user = {};
+  $scope.walletValue = 0;
   $ionicLoading.show({
     template: 'Nous récupérons votre profil...'
   });
@@ -10,6 +11,9 @@ angular.module('shopmycourse.controllers')
   CurrentUser.get(function (user) {
       $scope.user = user;
       $scope.avatarBackground = CurrentUser.getAvatar();
+      UserAPI.getWallet({idUser: user.id}, function (wallet) {
+        $scope.walletValue = wallet.value;
+      });
       $ionicLoading.hide();
   });
 

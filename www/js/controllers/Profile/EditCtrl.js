@@ -14,7 +14,6 @@ angular.module('shopmycourse.controllers')
       $ionicLoading.hide();
   });
 
-
   $scope.togglePhone = function () {
     CurrentUser.get(function (user) {
       user.share_phone = $scope.user.share_phone;
