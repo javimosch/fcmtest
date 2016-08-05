@@ -1,6 +1,6 @@
 angular.module('shopmycourse.controllers')
 
-.controller('ProfileSignInCtrl', function($scope, $rootScope, $state, toastr, $ionicLoading, $ionicPopup, Authentication, Validation, CurrentUser, UserAPI) {
+.controller('ProfileSignInCtrl', function($scope, $rootScope, $state, toastr, $ionicLoading, $ionicPopup, $ionicModal, Authentication, Validation, CurrentUser, UserAPI) {
 
   $scope.validation = Validation;
 
@@ -37,52 +37,69 @@ angular.module('shopmycourse.controllers')
       templateUrl: 'templates/Profile/ExternalServicesPopup.html',
       title: 'Connexion avec Facebook',
       scope: $scope,
-      okText: 'OK',
-      okType: 'button-positive',
-      cancelText: 'Retour'
-    }).then(function (res) {
-      if (res) {
-        facebookConnectPlugin.login(["email", "public_profile"], function(data) {
-            console.log('DATA', data);
-            $scope.user.auth_token = data.authResponse.accessToken;
-            $scope.user.auth_method = 'facebook';
-            $scope.signIn();
-        }, function(error) {
-            toastr.error('Une erreur est survenue lors de la connexion via Facebook', 'Connexion');
-            console.log('Facebook login errors : ', error);
-        });
-      }
+      buttons: [
+        {
+          text: 'Retour',
+          onTap: function(e) {
+            return (true);
+          }
+        },
+        {
+          text: 'OK',
+          type: 'button-positive',
+          onTap: function(e) {
+            facebookConnectPlugin.login(["email", "public_profile"], function(data) {
+              $scope.user.auth_token = data.authResponse.accessToken;
+              $scope.user.auth_method = 'facebook';
+              $scope.signIn();
+            }, function(error) {
+              toastr.error('Une erreur est survenue lors de la connexion via Facebook', 'Connexion');
+              console.log('Facebook login errors : ', error);
+            });
+            return (true);
+          }
+        }
+      ]
     });
   };
 
 
   $scope.signInWithGoogle = function () {
-    $ionicPopup.confirm({
+    $ionicPopup.show({
       templateUrl: 'templates/Profile/ExternalServicesPopup.html',
       title: 'Connexion avec Google',
       scope: $scope,
-      okText: 'OK',
-      okType: 'button-positive',
-      cancelText: 'Retour'
-    }).then(function (res) {
-      if (res) {
-        window.plugins.googleplus.login(
-          {
-            'webClientId': '979481548722-mj63ev1utfe9v21l5pdiv4j0t1v7jhl2.apps.googleusercontent.com',
-            'offline': true
-          },
-          function (data) {
-            $scope.user.auth_token = data.serverAuthCode;
-            $scope.user.refresh_token = data.refreshToken;
-            $scope.user.auth_method = 'google';
-            $scope.signIn();
-          },
-          function (error) {
-            toastr.error('Une erreur est survenue lors de la connexion via Google', 'Connexion');
-            console.log('Google login errors : ', error);
+      buttons: [
+        {
+          text: 'Retour',
+          onTap: function(e) {
+            return (true);
           }
-        );
-      }
+        },
+        {
+          text: 'OK',
+          type: 'button-positive',
+          onTap: function(e) {
+            window.plugins.googleplus.login(
+              {
+                'webClientId': '979481548722-mj63ev1utfe9v21l5pdiv4j0t1v7jhl2.apps.googleusercontent.com',
+                'offline': true
+              },
+              function (data) {
+                $scope.user.auth_token = data.serverAuthCode;
+                $scope.user.refresh_token = data.refreshToken;
+                $scope.user.auth_method = 'google';
+                $scope.signIn();
+              },
+              function (error) {
+                toastr.error('Une erreur est survenue lors de la connexion via Google', 'Connexion');
+                console.log('Google login errors : ', error);
+              }
+            );
+            return (true);
+          }
+        }
+      ]
     });
   };
 
@@ -107,4 +124,25 @@ angular.module('shopmycourse.controllers')
       $ionicLoading.hide();
     });
   };
+
+  $ionicModal.fromTemplateUrl('templates/CGU.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.modal = modal;
+  });
+
+  $scope.openCGU = function () {
+    $scope.modal.show();
+  };
+
+  $scope.openLemonWayCGU = function() {
+    window.open('https://www.lemonway.fr/legal/conditions-generales-d-utilisation', '_system', 'location=yes');
+    return false;
+  };
+
+  $scope.closeCGU = function () {
+    $scope.modal.hide();
+  };
+
 })

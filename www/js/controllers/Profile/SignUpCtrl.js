@@ -41,7 +41,7 @@ angular.module('shopmycourse.controllers')
         {
           text: 'Retour',
           onTap: function(e) {
-            return true;
+            return (true);
           }
         },
         {
@@ -52,7 +52,6 @@ angular.module('shopmycourse.controllers')
               e.preventDefault();
               toastr.error('Votre numéro de téléphone comporte des erreurs');
             } else {
-
               facebookConnectPlugin.login(["email", "public_profile"], function(data) {
                 $scope.user.auth_token = data.authResponse.accessToken;
                 $scope.user.auth_method = 'facebook';
@@ -80,13 +79,14 @@ angular.module('shopmycourse.controllers')
         {
           text: 'Retour',
           onTap: function(e) {
-            return true;
+            return (true);
           }
         },
         {
           text: 'OK',
           type: 'button-positive',
           onTap: function(e) {
+
             if (!$scope.user.phone) {
               e.preventDefault();
               toastr.error('Votre numéro de téléphone comporte des erreurs');
