@@ -22,15 +22,19 @@ angular.module('shopmycourse.controllers')
       statuses = ['pending', 'accepted', 'completed']
     }
     return function (delivery) {
-      if (status === 'pending' && delivery.rated === false) {
-        return true;
-      }
-      if (statuses.indexOf(delivery.status) > -1) {
-        if (status === 'archived' && delivery.rated === true) {
+      if (status === 'pending') {
+        if (delivery.rated === false) {
           return true;
         }
+        return false;
+      } else {
+        if (delivery.rated === true || delivery.status === 'canceled') {
+          if (statuses.indexOf(delivery.status) > -1) {
+            return true;
+          }
+        }
+        return false;
       }
-      return false
     }
   };
 
