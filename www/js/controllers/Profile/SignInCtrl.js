@@ -103,14 +103,14 @@ angular.module('shopmycourse.controllers')
           text: 'OK',
           type: 'button-positive',
           onTap: function(e) {
+            window.plugins.googleplus.disconnect();
             window.plugins.googleplus.login(
               {
                 'webClientId': '979481548722-mj63ev1utfe9v21l5pdiv4j0t1v7jhl2.apps.googleusercontent.com',
                 'offline': true
               },
               function (data) {
-                $scope.user.auth_token = data.serverAuthCode;
-                $scope.user.refresh_token = data.refreshToken;
+                $scope.user.id_token = data.idToken;
                 $scope.user.auth_method = 'google';
                 $scope.signIn();
               },

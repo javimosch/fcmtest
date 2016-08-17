@@ -3,7 +3,7 @@ angular.module('shopmycourse.services')
 .service('Authentication', function (DataStorage, $state, $rootScope, UserAPI, toastr, CurrentUser) {
   return {
     login: function (user, next) {
-      UserAPI.login({email: user.email, password: user.password, auth_token: user.auth_token, auth_method: user.auth_method, refresh_token: user.refresh_token}, function (data) {
+      UserAPI.login({email: user.email, password: user.password, auth_token: user.auth_token, auth_method: user.auth_method, id_token: user.id_token}, function (data) {
         CurrentUser.set(data.user, function () {
           CurrentUser.setToken(data.token, function () {
             return next(true);

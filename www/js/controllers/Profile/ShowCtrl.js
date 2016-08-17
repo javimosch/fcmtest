@@ -105,6 +105,9 @@ angular.module('shopmycourse.controllers')
   */
   $scope.logout = function () {
     Authentication.logout(function() {
+      window.plugins.googleplus.disconnect(function (msg) {
+        console.log(msg);
+      });
       $state.go('start');
     });
   };
