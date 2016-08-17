@@ -1,7 +1,17 @@
 angular.module('shopmycourse.controllers')
 
+/**
+ * @name NotificationsCtrl
+ * @function Controleur
+ * @memberOf shopmycourse.controllers
+ * @description Gestion des notifications
+ */
+
 .controller('NotificationsCtrl', function($scope, $ionicPopup, $ionicLoading, toastr, $state, NotificationAPI, DeliveryAPI, CurrentUser, CurrentDelivery, lodash) {
 
+	/**
+	 * Chargement des notifications
+	*/
 	$scope.notifications = [];
 	CurrentUser.get(function (user) {
 		NotificationAPI.get({}, function (notifications) {
@@ -32,6 +42,9 @@ angular.module('shopmycourse.controllers')
 		});
 	});
 
+	/**
+	 * Suppression d'une notification dans la liste de notifications
+	*/
 	function removeNotification(id) {
 		var notifications = $scope.notifications;
 		$scope.notifications = [];
@@ -46,6 +59,10 @@ angular.module('shopmycourse.controllers')
 		}
 	}
 
+	/**
+	 * @name $scope.readNotification
+	 * @description Passage d'une notification à l'état "Lue"
+	*/
 	$scope.readNotification = function(notification, next) {
 		NotificationAPI.update({
 			idNotification: notification.id,
@@ -55,8 +72,12 @@ angular.module('shopmycourse.controllers')
 			if (next)
 				next();
 		});
-	}
+	};
 
+	/**
+	 * @name $scope.acceptDeliveryRequest
+	 * @description Acceptation d'une demande de livraison
+	*/
 	$scope.acceptDeliveryRequest = function(notification) {
 		var myPopup = $ionicPopup.confirm({
 			template: 'Vous êtes sur le point d\'accepter la livraison, êtes-vous sûr ?',
@@ -98,6 +119,10 @@ angular.module('shopmycourse.controllers')
 		});
 	};
 
+	/**
+	 * @name $scope.declineDeliveryRequest
+	 * @description Refus d'une demande de livraison
+	*/
 	$scope.declineDeliveryRequest = function(notification) {
 		var myPopup = $ionicPopup.confirm({
 			template: 'Vous êtes sur le point de décliner, êtes-vous sûr ?',
@@ -110,8 +135,12 @@ angular.module('shopmycourse.controllers')
 				$scope.readNotification(notification, null);
 			}
 		});
-	}
+	};
 
+	/**
+	 * @name $scope.cancelOrder
+	 * @description Annulation d'une demande de livraison
+	*/
 	$scope.cancelOrder = function(notification) {
 		var myPopup = $ionicPopup.confirm({
 			template: 'Vous êtes sur le point d\'annuler votre demande de livraison, êtes-vous sûr ?',
@@ -138,9 +167,12 @@ angular.module('shopmycourse.controllers')
 				});
 			}
 		});
-
 	};
 
+	/**
+	 * @name $scope.editCart
+	 * @description Lien vers la modification du panier
+	*/
 	$scope.editCart = function (notification) {
 		$ionicLoading.show({
 			template: 'Nous préparons votre panier...'
@@ -152,6 +184,10 @@ angular.module('shopmycourse.controllers')
 		});
 	};
 
+	/**
+	 * @name $scope.editCart
+	 * @description Lien vers une livraison
+	*/
 	$scope.goDelivery = function (notification) {
 			$scope.readNotification(notification, function () {
 			$scope.closeNotificationsModal();
@@ -160,4 +196,4 @@ angular.module('shopmycourse.controllers')
 		});
 	};
 
-})
+});

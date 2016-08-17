@@ -1,11 +1,23 @@
 angular.module('shopmycourse.controllers')
 
+/**
+ * @name ProfileSignUpCtrl
+ * @function Controleur
+ * @memberOf shopmycourse.controllers
+ * @description Page d'inscription
+ */
+
 .controller('ProfileSignUpCtrl', function ($scope, $rootScope, $ionicModal, $ionicLoading, $ionicPopup, $state, toastr, Authentication, Validation, CurrentUser) {
 
+  /**
+   * Initialisation de la validation du formulaire
+  */
   $scope.validation = Validation;
 
+  /**
+   * Initialisation du formulaire
+  */
   $scope.isSignup = true;
-
   $scope.user = {
     firstname: '',
     lastname: '',
@@ -16,6 +28,10 @@ angular.module('shopmycourse.controllers')
     auth_method: ''
   };
 
+  /**
+   * @name $scope.signUp
+   * @description Lancement de l'inscription
+  */
   $scope.signUp = function() {
     $ionicLoading.show({
       template: 'Nous créons votre compte...'
@@ -32,6 +48,10 @@ angular.module('shopmycourse.controllers')
     });
   };
 
+  /**
+   * @name $scope.signUpWithFacebook
+   * @description Inscription avec Facebook
+  */
   $scope.signUpWithFacebook = function () {
     $ionicPopup.show({
       templateUrl: 'templates/Profile/ExternalServicesPopup.html',
@@ -60,7 +80,6 @@ angular.module('shopmycourse.controllers')
                 toastr.error('Une erreur est survenue lors de l\'inscription via Facebook', 'Inscription');
                 console.log('Facebook signup errors : ', error);
               });
-
               return (true);
             }
           }
@@ -69,7 +88,10 @@ angular.module('shopmycourse.controllers')
     });
   };
 
-
+  /**
+   * @name $scope.signUpWithGoogle
+   * @description Inscription avec Google
+  */
   $scope.signUpWithGoogle = function () {
     $ionicPopup.show({
       templateUrl: 'templates/Profile/ExternalServicesPopup.html',
@@ -91,7 +113,6 @@ angular.module('shopmycourse.controllers')
               e.preventDefault();
               toastr.error('Votre numéro de téléphone comporte des erreurs');
             } else {
-
               window.plugins.googleplus.login({
                   'webClientId': '979481548722-mj63ev1utfe9v21l5pdiv4j0t1v7jhl2.apps.googleusercontent.com',
                   'offline': true
@@ -107,7 +128,6 @@ angular.module('shopmycourse.controllers')
                   console.log('Google signup errors : ', error);
                 }
               );
-
               return (true);
             }
           }
@@ -116,27 +136,31 @@ angular.module('shopmycourse.controllers')
     });
   };
 
+  /**
+   * @name $scope.signUpWithEmail
+   * @description Inscription classique avec email et mot de passe
+  */
   $scope.signUpWithEmail = function () {
     $scope.user.auth_method = 'email';
     $scope.signUp();
   };
 
+  /**
+   * Affichage des popups CGU et CGU Lemonway
+  */
   $ionicModal.fromTemplateUrl('templates/CGU.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function (modal) {
     $scope.modal = modal;
   });
-
   $scope.openCGU = function () {
     $scope.modal.show();
   };
-
   $scope.openLemonWayCGU = function() {
     window.open('https://www.lemonway.fr/legal/conditions-generales-d-utilisation', '_system', 'location=yes');
     return false;
   };
-
   $scope.closeCGU = function () {
     $scope.modal.hide();
   };

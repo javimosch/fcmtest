@@ -1,12 +1,29 @@
 angular.module('shopmycourse.controllers')
 
+/**
+ * @name ProfileEditCtrl
+ * @function Controleur
+ * @memberOf shopmycourse.controllers
+ * @description Édition du profil dans les paramètres
+ */
+
 .controller('ProfileEditCtrl', function($scope, $ionicLoading, $state, $ionicHistory, $ionicViewSwitcher, $ionicPopup, $jrCrop, Validation, CurrentUser, UserAPI, Camera, $ionicActionSheet) {
 
+  /**
+   * Initialisation de la validation du formulaire
+  */
   $scope.validation = Validation;
 
+  /**
+   * Affichage du message de chargement pour récupérer le profil
+  */
   $ionicLoading.show({
     template: 'Nous récupérons votre profil...'
   });
+
+  /**
+   * Chargement de l'utilisateur actuel
+  */
   $scope.user = {};
   CurrentUser.get(function (user) {
       $scope.user = user;
@@ -14,39 +31,10 @@ angular.module('shopmycourse.controllers')
       $ionicLoading.hide();
   });
 
-  $scope.togglePhone = function () {
-    CurrentUser.get(function (user) {
-      user.share_phone = $scope.user.share_phone;
-      if (user.share_phone) {
-        var confirmPopup = $ionicPopup.confirm({
-          title: 'Afficher son numéro de téléphone',
-          template: 'Êtes-vous sûr de vouloir afficher votre numéro de téléphone?'
-        });
-
-        confirmPopup.then(function (res) {
-          user.share_phone = res;
-          $ionicLoading.show({
-            template: 'Nous sauvegardons vos préférences...'
-          });
-          UserAPI.update(user, function (user) {
-            CurrentUser.set(user, function() {});
-            $scope.user.share_phone = user.share_phone;
-            $ionicLoading.hide();
-          });
-        });
-      } else {
-        $ionicLoading.show({
-          template: 'Nous sauvegardons vos préférences...'
-        });
-        UserAPI.update(user, function (user) {
-          CurrentUser.set(user, function() {});
-          $scope.user.share_phone = user.share_phone;
-          $ionicLoading.hide();
-        });
-      }
-    });
-  };
-
+  /**
+   * @name getPictureFromCamera
+   * @description Récupération d'une photo à partir de l'appareil photo / galerie
+  */
   getPictureFromCamera = function(type) {
     Camera.getPicture(type, function(imageData) {
       $jrCrop.crop({
@@ -73,26 +61,30 @@ angular.module('shopmycourse.controllers')
     });
   };
 
+  /**
+   * @name $scope.changeAvatar
+   * @description Sélection du mode pour modifier l'avatar
+  */
   $scope.changeAvatar = function() {
+    var photoSheet = $ionicActionSheet.show({
+      buttons: [
+        { text: 'Prendre une photo' },
+        { text: 'Accéder à la galerie' }
+      ],
+      titleText: 'Modifier votre avatar',
+      cancelText: 'Annuler',
+      cancel: function() {},
+      buttonClicked: function(index) {
+        getPictureFromCamera(index);
+        return true;
+      }
+    });
+  };
 
-      var photoSheet = $ionicActionSheet.show({
-          buttons: [
-              { text: 'Prendre une photo' },
-              { text: 'Accéder à la galerie' }
-          ],
-          titleText: 'Modifier votre avatar',
-          cancelText: 'Annuler',
-          cancel: function() {
-              // add cancel code..
-          },
-          buttonClicked: function(index) {
-              getPictureFromCamera(index);
-              return true;
-          }
-      });
-  }
-
-
+  /**
+   * @name $scope.endEdit
+   * @description Enregistrement du profil
+  */
   $scope.endEdit = function () {
     $ionicLoading.show({
       template: 'Nous sauvegardons votre profil...'
@@ -101,7 +93,6 @@ angular.module('shopmycourse.controllers')
       $ionicLoading.hide();
       if (user) {
         $scope.user = user;
-
         CurrentUser.set(user, function () {
           $ionicHistory.nextViewOptions({
             disableAnimate: false,
@@ -117,4 +108,5 @@ angular.module('shopmycourse.controllers')
       console.log(err);
     });
   };
+
 })
