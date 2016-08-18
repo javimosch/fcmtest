@@ -39,7 +39,7 @@ angular.module('shopmycourse.controllers')
   });
 
   /**
-   * Affichage de la popup de finalisation de la commande
+   * Affichage de la popup de finalisation de commande
   */
   $ionicModal.fromTemplateUrl('templates/Orders/Modals/Finish.html', {
       scope: $scope,

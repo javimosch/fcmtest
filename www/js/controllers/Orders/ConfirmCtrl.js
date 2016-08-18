@@ -4,14 +4,14 @@ angular.module('shopmycourse.controllers')
  * @name OrdersConfirmCtrl
  * @function Controleur
  * @memberOf shopmycourse.controllers
- * @description Finalisation de la commande
+ * @description Confirmation de la commande
 */
 
 .controller('OrdersConfirmCtrl', function($scope, $state, $ionicViewSwitcher, $ionicHistory) {
 
   /**
    * @name $scope.endOrder
-   * @description Enregistrement de la demande de livraison
+   * @description Confirmation de la commande
   */
   $scope.endOrder = function () {
     //$ionicViewSwitcher.nextDirection('back');

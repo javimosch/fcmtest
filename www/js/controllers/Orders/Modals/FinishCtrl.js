@@ -26,7 +26,7 @@ angular.module('shopmycourse.controllers')
   };
 
   /**
-   * @name $scope.finalize
+   * @name finalize
    * @description Finalisation de la commande
   */
 	function finalize(order) {
@@ -48,7 +48,7 @@ angular.module('shopmycourse.controllers')
 	};
 
   /**
-   * @name $scope.setRatingStar
+   * @name $scope.finalizeDelivery
    * @description Lancement de la finalisation de la commande avec vérification de l'avis
   */
   $scope.finalizeDelivery = function(order) {
