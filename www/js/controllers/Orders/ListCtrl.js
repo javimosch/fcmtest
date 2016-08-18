@@ -23,8 +23,8 @@ angular.module('shopmycourse.controllers')
     }
     return function (delivery) {
       if (status === 'pending') {
-        if (delivery.rated === false) {
-          return true;
+        if (delivery.rated === false && delivery.status != 'canceled') {
+            return true;
         }
         return false;
       } else {
