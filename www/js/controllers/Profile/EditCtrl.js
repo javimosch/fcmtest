@@ -5,7 +5,7 @@ angular.module('shopmycourse.controllers')
  * @function Controleur
  * @memberOf shopmycourse.controllers
  * @description Édition du profil dans les paramètres
- */
+*/
 
 .controller('ProfileEditCtrl', function($scope, $ionicLoading, $state, $ionicHistory, $ionicViewSwitcher, $ionicPopup, $jrCrop, Validation, CurrentUser, UserAPI, Camera, $ionicActionSheet) {
 
