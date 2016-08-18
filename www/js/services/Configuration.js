@@ -1,5 +1,12 @@
 angular.module('shopmycourse.services')
 
+/**
+ * @name Configuration
+ * @function Service
+ * @memberOf shopmycourse.services
+ * @description Configuration de l'application
+*/
+
 .factory('Configuration', function () {
   return {
     //apiEndpoint: 'http://localhost:3000/',
