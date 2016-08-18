@@ -23,6 +23,9 @@
         <div class="item" id="profile-creditcard" ui-sref="tabs.editcreditcard">
             <div class="creditcard"><i class="icon-smc-card"></i> {{user.wallet.credit_card_display ? user.wallet.credit_card_display : 'Enregistrer ma carte'}} <i class="ion-chevron-right"></i></div>
         </div>
+        <div class="item" id="profile-wallet">
+            <div class="wallet"><i class="ion-ios-cart"></i> Valeur du wallet : {{walletValue | number:2}} &euro;</div>
+        </div>
         <div class="item" id="profile-privacy" ng-click="openPrivacy()">
             <div class="privacy"><i class="ion-locked"></i> Charte de confidentialité</div>
         </div>

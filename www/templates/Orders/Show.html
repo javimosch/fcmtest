@@ -20,6 +20,7 @@
 
         </div>
         <div class="actions">
+          <button class="button button-positive button-block" ng-if="order.status === 'done' && !order.rated" ng-click="openFinishOrderModal()">Noter le livreur</button>
           <button class="button button-positive button-block" ng-if="order.status === 'completed'" ng-click="openFinishOrderModal()">Finaliser la commande</button>
           <button class="button button-positive button-block" ng-if="(order.status !== 'completed' || order.status == 'accepted') && order.status != 'done' && order.status != 'canceled'" ui-sref="tabs.ordercontent({idOrder: order.id})">Modifier le panier</button>
           <button class="button button-positive button-block" ng-if="order.status === 'accepted'" ng-click="confirmDelivery()">Confirmer la commande</button>
@@ -31,6 +32,7 @@
           </div>
         </div>
       </div>
+
       <div id="delivery-prices" class="row">
         <div class="price-box total col">
           <span class="price">{{order.total || 0 | number: 2}}€</span>

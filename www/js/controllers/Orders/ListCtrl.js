@@ -22,12 +22,22 @@ angular.module('shopmycourse.controllers')
       statuses = ['pending', 'accepted', 'completed']
     }
     return function (delivery) {
-      if (statuses.indexOf(delivery.status) > -1) {
-        return true;
+      if (status === 'pending') {
+        if (delivery.rated === false) {
+          return true;
+        }
+        return false;
+      } else {
+        if (delivery.rated === true || delivery.status === 'canceled') {
+          if (statuses.indexOf(delivery.status) > -1) {
+            return true;
+          }
+        }
+        return false;
       }
-      return false
     }
   };
+
 
   $scope.deliveryStatus = DeliveryStatus;
 })

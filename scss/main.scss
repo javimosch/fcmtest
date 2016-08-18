@@ -98,7 +98,7 @@
     margin-top: 7px;
   }
 
-  #profile-information, #profile-creditcard, #profile-address, #profile-privacy, #profile-cgu, #profile-logout {
+  #profile-information, #profile-creditcard, #profile-address, #profile-wallet, #profile-privacy, #profile-cgu, #profile-logout {
     i {
       color: $assertive;
     }
@@ -426,7 +426,7 @@ ion-header-bar, ion-nav-bar {
     }
   }
 
-  #profile-creditcard, #profile-privacy, #profile-cgu, #profile-logout {
+  #profile-creditcard, #profile-wallet, #profile-privacy, #profile-cgu, #profile-logout {
     text-align: center;
     font-size: 120%;
   }

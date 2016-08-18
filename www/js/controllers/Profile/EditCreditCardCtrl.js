@@ -1,40 +1,55 @@
 angular.module('shopmycourse.controllers')
 
+/**
+ * @name ProfileEditCreditCardCtrl
+ * @function Controleur
+ * @memberOf shopmycourse.controllers
+ * @description Édition de l'adresse dans les paramètres
+ */
+
 .controller('ProfileEditCreditCardCtrl', function($scope, $state, $ionicPopup, $stateParams, $ionicLoading, $ionicHistory, $ionicViewSwitcher, Validation, CardAPI, CurrentUser, OrderStore, DeliveryAPI, $ionicModal) {
-    $scope.validation = Validation;
-    $scope.card = {};
-    $scope.expirations = []
-    $scope.user = {};
 
-    $ionicLoading.show({
-      template: 'Nous récupérons votre profil...'
-    });
+  $scope.validation = Validation;
+  $scope.card = {};
+  $scope.expirations = []
+  $scope.user = {};
 
-    CurrentUser.get(function (user) {
-        $scope.user = user;
-        $ionicLoading.hide();
-    })
+  /**
+   * Affichage du message de chargement pour récupérer le profil
+  */
+  $ionicLoading.show({
+    template: 'Nous récupérons votre profil...'
+  });
 
-    var today = moment();
+  /**
+   * Chargement de l'utilisateur actuel
+  */
+  CurrentUser.get(function (user) {
+    $scope.user = user;
+    $ionicLoading.hide();
+  });
 
-    //iterate for i years of expiration
-    for (i = 0; i < 10; i++) {
-        var date = {
-            'year': today.year(),
-            'months': []
-        }
-
-
-        for (j = today.month(); j <= 12; j++) {
-            date.months.push(j < 10 ? "0" + j : j);
-        }
-
-        $scope.expirations.push(date);
-
-        today.month(1);
-        today.add(1, 'years');
+  /**
+   * Génération des dates pour les sélecteurs d'expiration
+  */
+  var today = moment();
+  for (i = 0; i < 10; i++) {
+    var date = {
+      'year': today.year(),
+      'months': []
     }
+    for (j = today.month(); j <= 12; j++) {
+      date.months.push(j < 10 ? "0" + j : j);
+    }
+    $scope.expirations.push(date);
+    today.month(1);
+    today.add(1, 'years');
+  };
 
+  /**
+   * @name $scope.formatCreditCard
+   * @description Formatage du numéro de carte
+  */
   $scope.formatCreditCard = function () {
     var value = $scope.card.number;
     var v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
@@ -49,6 +64,10 @@ angular.module('shopmycourse.controllers')
     }
   };
 
+  /**
+   * @name $scope.endEdit
+   * @description Enregistrement de la carte de crédit
+  */
   $scope.endEdit = function ($event) {
     $event.preventDefault();
     $ionicLoading.show({

@@ -1,20 +1,27 @@
 angular.module('shopmycourse.controllers')
 
+/**
+ * @name HomeCtrl
+ * @function Controleur
+ * @memberOf shopmycourse.controllers
+ * @description Page d'accueil pour les utilisateurs connectés
+*/
+
 .controller('HomeCtrl', function($scope, $state, $ionicLoading, $ionicModal, $ionicPopup, CurrentUser, CurrentAvailability, CurrentDelivery, DeliveryRequestAPI, moment, lodash) {
 
-  $scope.$on("$ionicView.beforeEnter", function(event, data){
-     // handle event
-     console.log("State Params: ", data.stateParams);
-  });
-
+  /**
+   * Affichage du message de chargement pour récupérer les dernières informations
+  */
   $ionicLoading.show({
     template: 'Nous recherchons les dernières informations...'
   });
 
+  /**
+   * Chargement des disponibilités
+  */
   $scope.currentAvailability = [];
   CurrentAvailability.load(function(currentAvailability) {
     $scope.currentAvailability = currentAvailability;
-    // Aggregate date
     var dates = [];
     for (var i = 0; i < currentAvailability.length; i++) {
       // Today
@@ -28,6 +35,9 @@ angular.module('shopmycourse.controllers')
     $ionicLoading.hide();
   });
 
+  /**
+   * Chargement des demandes de livraison
+  */
   $scope.currentDelivery = [];
   CurrentDelivery.get(function(currentDelivery) {
     $scope.currentDelivery = currentDelivery;
@@ -40,16 +50,23 @@ angular.module('shopmycourse.controllers')
         dates.push(moment(schedule).format('dddd') + ' entre ' + hours.replace(' - ', ' et '));
       }
     }
-
     $scope.deliveryDate = lodash.uniq(dates).join(', ');
     $ionicLoading.hide();
   });
 
+  /**
+   * @name $scope.scheduleOrder
+   * @description Méthode appelée avant d'accéder au choix des crénaux
+  */
   $scope.scheduleOrder = function () {
     CurrentDelivery.clear();
     $state.go('tabs.scheduleorder');
   };
 
+  /**
+   * @name $scope.cancelDeliveryRequest
+   * @description Annulation d'une demande de livraison
+  */
   $scope.cancelDeliveryRequest = function(delivery_request_id) {
     var myPopup = $ionicPopup.confirm({
       template: 'Vous êtes sur le point d\'annuler votre demande de livraison, êtes-vous sûr ?',
@@ -59,11 +76,9 @@ angular.module('shopmycourse.controllers')
 
     myPopup.then(function(res) {
       if (res) {
-
         $ionicLoading.show({
           template: 'Nous envoyons votre réponse...'
         });
-
         CurrentDelivery.clear();
         if (delivery_request_id) {
           DeliveryRequestAPI.cancel({ idDeliveryRequest: delivery_request_id },
@@ -75,36 +90,31 @@ angular.module('shopmycourse.controllers')
           });
         }
         $state.go($state.current, {}, {reload: true});
-
       }
     });
 
   };
 
+  /**
+   * Protection pour les utilisateurs non connectés
+  */
   if (!CurrentUser.isLogged()) {
     $state.go('start');
   }
 
-  // $ionicModal.fromTemplateUrl('templates/NotificationsModal.html', {
-  //     scope: $scope,
-  //     animation: 'slide-in-up'
-  // }).then(function (modal) {
-  //   $scope.notificationsModal = modal
-  // });
-  //
-  // $scope.openNotificationsModal = function () {
-  //   $scope.notificationsModal.show();
-  // };
-  //
-  // $scope.closeNotificationsModal = function () {
-  //   $scope.notificationsModal.hide();
-  // };
-
+  /**
+   * @name $scope.shopDelivery
+   * @description Méthode appelée avant d'accéder au choix des magasins
+  */
   $scope.shopDelivery = function () {
     CurrentAvailability.clear();
     $state.go('tabs.shopdelivery');
   };
 
+  /**
+   * @name $scope.cancelAvailability
+   * @description Annulation d'une disponibilité
+  */
   $scope.cancelAvailability = function() {
     function hasCompletedDelivery() {
       var completed = false;
@@ -138,6 +148,6 @@ angular.module('shopmycourse.controllers')
         $ionicLoading.hide();
       });
     });
-
   };
+
 })
