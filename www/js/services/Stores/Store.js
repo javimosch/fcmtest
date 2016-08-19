@@ -1,5 +1,12 @@
 angular.module('shopmycourse.services')
 
+/**
+ * @name Store
+ * @function Service
+ * @memberOf shopmycourse.services
+ * @description Stockage de diverses données au sein de l'application
+*/
+
 .service('Store', function ($injector, lodash) {
 
   var defaultOptions = {
@@ -83,4 +90,5 @@ angular.module('shopmycourse.services')
     };
 
   };
+
 });

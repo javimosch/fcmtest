@@ -1,6 +1,14 @@
 angular.module('shopmycourse.services')
 
+/**
+ * @name HTTPInterceptor
+ * @function Service
+ * @memberOf shopmycourse.services
+ * @description Intercepteur des requêtes HTTP
+*/
+
 .factory('HTTPInterceptor', function ($q, $injector, Configuration) {
+
   var token = 'Fetching...';
   // CurrentUser = $injector.get('CurrentUser');
   // CurrentUser.getToken(function (tokenFromStorage) {
@@ -8,9 +16,17 @@ angular.module('shopmycourse.services')
   // });
 
   return {
+    /**
+     * @name setToken
+     * @description Mise à jour du token d'authentification
+    */
     setToken: function (tokenFromStorage) {
       token = tokenFromStorage;
     },
+    /**
+     * @name request
+     * @description Ajout du token d'authentification et du content-type à la requête HTTP
+    */
     request: function (config) {
       if (config.headers.Authorization === 'Bearer') {
         config.headers.Authorization = 'Bearer ' + token;
@@ -18,15 +34,27 @@ angular.module('shopmycourse.services')
       config.headers.ContentType = 'application/json'
       return config;
     },
+    /**
+     * @name requestError
+     * @description Traitement de la réponse du serveur en cas de requête erronée
+    */
     requestError: function (rejection) {
       return $q.reject(rejection);
     },
+    /**
+     * @name response
+     * @description Traitement de la réponse du serveur
+    */
     response: function (response) {
       if (response && response.data && response.data.notice) {
         //$injector.get('toastr').success(Configuration.success[response.data.notice]);
       }
       return response;
     },
+    /**
+     * @name responseError
+     * @description Traitement de la réponse du serveur en cas d'erreur
+    */
     responseError: function (response) {
       if (response && response.data && response.data.notice) {
         if (Configuration.errors[response.data.notice]) {
