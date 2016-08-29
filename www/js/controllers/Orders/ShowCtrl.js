@@ -1,18 +1,34 @@
 angular.module('shopmycourse.controllers')
 
+/**
+ * @name OrdersShowCtrl
+ * @function Controleur
+ * @memberOf shopmycourse.controllers
+ * @description Affichage d'une commande
+*/
+
 .controller('OrdersShowCtrl', function($scope, $state, $ionicLoading, $ionicPopup, $rootScope, $stateParams, CurrentCart, CurrentDelivery, $ionicModal, OrderStore, $interval, $cordovaSms, DeliveryAPI, CurrentUser, $state, $ionicSlideBoxDelegate) {
 
   $scope.order = {};
   $scope.user = {};
 
+  /**
+   * Affichage du message de chargement de la commande
+  */
   $ionicLoading.show({
     template: 'Nous recherchons votre commande...'
   });
 
+  /**
+   * Chargement de l'utilisateur actuel
+  */
   CurrentUser.get(function(user) {
     $scope.user = user;
-  })
+  });
 
+  /**
+   * Chargement de la commande actuelle
+  */
   OrderStore.get({id: parseInt($stateParams.idOrder)}, function (err, order) {
     $scope.order = order[0];
     $scope.order.deliveryman.rating_average |= 0;
@@ -20,34 +36,42 @@ angular.module('shopmycourse.controllers')
     $scope.ratingStar = $scope.order.buyer_rating ? $scope.order.buyer_rating.rating : 0;
     CurrentCart.initFromLocalStorage($scope.order.id);
     $ionicLoading.hide();
-  })
+  });
 
+  /**
+   * Affichage de la popup de finalisation de commande
+  */
   $ionicModal.fromTemplateUrl('templates/Orders/Modals/Finish.html', {
       scope: $scope,
       animation: 'slide-in-up'
   }).then(function (modal) {
     $scope.finishOrderModal = modal
   });
-
-  $scope.goBack = function() {
-    $state.go('tabs.orders');
-  };
-
   $scope.openFinishOrderModal = function () {
     $scope.finishOrderModal.show();
   };
-
   $scope.closeFinishOrderModal = function () {
     $ionicSlideBoxDelegate.slide(0, 0);
     $scope.finishOrderModal.hide();
   };
-
   $scope.goFinishOrderModal = function () {
       $scope.finishOrderModal.hide();
       CurrentDelivery.clear();
       $state.go('tabs.home');
   };
 
+  /**
+   * @name $scope.goBack
+   * @description Retour à la liste des commandes
+  */
+  $scope.goBack = function() {
+    $state.go('tabs.orders');
+  };
+
+  /**
+   * @name $scope.sendSMS
+   * @description Contact du livreur par SMS
+  */
   $scope.sendSMS = function () {
     var number = $scope.order.deliveryman.phone;
     $cordovaSms.send(number, '', {
@@ -61,19 +85,10 @@ angular.module('shopmycourse.controllers')
     });
   };
 
-  $scope.deliveryStarted = function(schedule, date) {
-    if (!schedule || !date)
-      return;
-
-    var hours = schedule.replace('h', '').split('-');
-    var from_ = hours[0];
-    var now = moment()
-    var date = moment(date);
-
-    date.hours(from_);
-    return now.unix() > date.unix();
-  }
-
+  /**
+   * @name $scope.confirmDelivery
+   * @description Confirmation de la commande
+  */
   $scope.confirmDelivery = function() {
     total = Math.round(($scope.order.total + $scope.order.commission) * 100) / 100
 
@@ -129,5 +144,6 @@ angular.module('shopmycourse.controllers')
         idOrder: parseInt($stateParams.idOrder)
       })
     }
-  }
+  };
+
 })

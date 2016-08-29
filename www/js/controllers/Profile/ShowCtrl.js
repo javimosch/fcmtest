@@ -5,7 +5,7 @@ angular.module('shopmycourse.controllers')
  * @function Controleur
  * @memberOf shopmycourse.controllers
  * @description Page des paramètres
- */
+*/
 
 .controller('ProfileShowCtrl', function($scope, $ionicLoading, $state, $ionicPopup, $ionicModal, Authentication, CurrentUser, CurrentAddress, UserAPI) {
 

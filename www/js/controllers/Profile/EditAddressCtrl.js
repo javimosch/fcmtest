@@ -5,7 +5,7 @@ angular.module('shopmycourse.controllers')
  * @function Controleur
  * @memberOf shopmycourse.controllers
  * @description Édition de l'adresse dans les paramètres
- */
+*/
 
 .controller('ProfileEditAddressCtrl', function($scope, $rootScope, $state, Validation, CardAPI, CurrentAddress) {
 

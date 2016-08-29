@@ -5,11 +5,15 @@ angular.module('shopmycourse.controllers')
  * @function Controleur
  * @memberOf shopmycourse.controllers
  * @description Édition de l'adresse dans les paramètres
- */
+*/
 
 .controller('ProfileEditCreditCardCtrl', function($scope, $state, $ionicPopup, $stateParams, $ionicLoading, $ionicHistory, $ionicViewSwitcher, Validation, CardAPI, CurrentUser, OrderStore, DeliveryAPI, $ionicModal) {
 
+  /**
+   * Initialisation de la validation du formulaire
+  */
   $scope.validation = Validation;
+
   $scope.card = {};
   $scope.expirations = []
   $scope.user = {};

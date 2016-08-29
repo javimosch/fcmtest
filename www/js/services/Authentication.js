@@ -1,7 +1,18 @@
 angular.module('shopmycourse.services')
 
+/**
+ * @name Authentication
+ * @function Service
+ * @memberOf shopmycourse.services
+ * @description Gestion de l'authentification
+*/
+
 .service('Authentication', function (DataStorage, $state, $rootScope, UserAPI, toastr, CurrentUser) {
   return {
+    /**
+     * @name login
+     * @description Connexion d'un utilisateur
+    */
     login: function (user, next) {
       UserAPI.login({email: user.email, password: user.password, auth_token: user.auth_token, auth_method: user.auth_method, id_token: user.id_token}, function (data) {
         CurrentUser.set(data.user, function () {
@@ -13,6 +24,10 @@ angular.module('shopmycourse.services')
         next(false, "Problème d'authentification, vérifiez votre email et votre mot de passe.");
         });
     },
+    /**
+     * @name signup
+     * @description Inscription d'un utilisateur
+    */
     signup: function (user, next) {
       UserAPI.create(user, function (data) {
         CurrentUser.set(data.user, function () {
@@ -34,6 +49,10 @@ angular.module('shopmycourse.services')
         return next(false, "Une erreur inconnue est survenue lors de votre inscription");
       });
     },
+    /**
+     * @name logout
+     * @description Déconnexion d'un utilisateur
+    */
     logout: function (next) {
       CurrentUser.set(null, function () {
         DataStorage.clear().then(function () {

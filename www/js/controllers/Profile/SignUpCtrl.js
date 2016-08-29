@@ -5,7 +5,7 @@ angular.module('shopmycourse.controllers')
  * @function Controleur
  * @memberOf shopmycourse.controllers
  * @description Page d'inscription
- */
+*/
 
 .controller('ProfileSignUpCtrl', function ($scope, $rootScope, $ionicModal, $ionicLoading, $ionicPopup, $state, toastr, Authentication, Validation, CurrentUser) {
 

@@ -1,5 +1,12 @@
 angular.module('shopmycourse.services')
 
+/**
+ * @name DeliveryStatus
+ * @function Service
+ * @memberOf shopmycourse.services
+ * @description Affichage des icônes de commandes/livraisons
+*/
+
 .factory('DeliveryStatus', function () {
   return {
     pending: {

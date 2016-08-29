@@ -1,32 +1,46 @@
 angular.module('shopmycourse.controllers')
 
+/**
+ * @name OrdersShopCtrl
+ * @function Controleur
+ * @memberOf shopmycourse.controllers
+ * @description Sélection du magasin pour une demande de livraison
+*/
+
 .controller('OrdersShopCtrl', function($rootScope, $scope, toastr, $state, $ionicModal, $ionicLoading, CurrentDelivery, ShopAPI, DeliveryRequestAPI, DeliveryRequestAPI, $timeout, OrderStore) {
+
+  /**
+   * Initialisation de la recherche de magasins
+  */
   $scope.shops = [];
   $scope.minimumStar = 0;
   var timer = null;
-
   var posOptions = {
     timeout: 10000,
     enableHighAccuracy: true
   };
 
+  /**
+  * Affichage du premier chargement de la liste des magasins
+  */
   $ionicLoading.show({
     template: 'Nous recherchons les magasins correspondants...'
   });
 
   refreshShopList();
 
+  /**
+   * @name refreshShopList
+   * @description Rafraichissement de la liste des magasins
+  */
   function refreshShopList() {
     $ionicLoading.show({
       template: 'Nous recherchons les magasins correspondants...'
     });
-
     var currentDelivery = $rootScope.currentDelivery;
-
     if (timer) {
       $timeout.cancel(timer);
     }
-
     timer = $timeout(function getProduct() {
       ShopAPI.search({
         // lat: $scope.position.coords.latitude,
@@ -41,8 +55,12 @@ angular.module('shopmycourse.controllers')
         console.log(err);
       });
     }, 1300);
-  }
+  };
 
+  /**
+   * @name $scope.sendDeliveryRequest
+   * @description Enregistrement de la demmande de livraison
+  */
   $scope.sendDeliveryRequest = function(shop) {
     var currentDelivery = $rootScope.currentDelivery;
     currentDelivery.buyer_id = $rootScope.currentUser.id;
@@ -79,11 +97,19 @@ angular.module('shopmycourse.controllers')
     })
   };
 
+  /**
+   * @name $scope.setMinimumStar
+   * @description Mise à jour du filtre "Notation des livreurs" pour la recherche des magasins
+  */
   $scope.setMinimumStar = function(newValue) {
     $scope.minimumStar = newValue;
     refreshShopList();
   };
 
+  /**
+   * @name $scope.openMap
+   * @description Ouverture d'une carte avec la localisation du magasin
+  */
   $scope.openMap = function(shop) {
     var address = shop.address;
     var url = '';
@@ -96,4 +122,5 @@ angular.module('shopmycourse.controllers')
     }
     window.open(url, "_system", 'location=no');
   };
+
 })

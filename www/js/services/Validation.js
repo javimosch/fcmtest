@@ -1,5 +1,12 @@
 angular.module('shopmycourse.services')
 
+/**
+ * @name Validation
+ * @function Service
+ * @memberOf shopmycourse.services
+ * @description Validation des formulaires
+*/
+
 .factory('Validation', function ($window) {
   return {
     email: {

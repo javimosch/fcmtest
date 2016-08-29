@@ -5,7 +5,7 @@ angular.module('shopmycourse.controllers')
  * @function Controleur
  * @memberOf shopmycourse.controllers
  * @description Page de connexion
- */
+*/
 
 .controller('ProfileSignInCtrl', function($scope, $rootScope, $state, toastr, $ionicLoading, $ionicPopup, $ionicModal, Authentication, Validation, CurrentUser, UserAPI) {
 

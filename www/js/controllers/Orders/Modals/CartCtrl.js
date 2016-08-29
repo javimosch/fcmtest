@@ -1,14 +1,27 @@
 angular.module('shopmycourse.controllers')
 
+/**
+ * @name OrdersCartCtrl
+ * @function Controleur
+ * @memberOf shopmycourse.controllers
+ * @description Édition de la liste des courses
+*/
+
 .controller('OrdersCartCtrl', function($rootScope, $ionicPopup, $ionicLoading, $scope, $timeout, $state, $stateParams, OrderStore, $ionicModal, CurrentCart, lodash, $interval) {
 
+  /**
+   * Chargement du panier actuel
+  */
   $scope.order = {};
-
   OrderStore.get({id: parseInt($stateParams.idOrder)}, function (err, order) {
     $scope.order = order[0];
     CurrentCart.initFromOrder($scope.order);
   })
 
+  /**
+   * @name $scope.saveCart
+   * @description Enregistrement de la liste des courses
+  */
   $scope.saveCart = function() {
     $ionicLoading.show({
       template: 'Nous enregistrons votre panier...'

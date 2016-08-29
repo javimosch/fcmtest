@@ -1,5 +1,12 @@
 angular.module('shopmycourse.services')
 
+/**
+ * @name CurrentCart
+ * @function Service
+ * @memberOf shopmycourse.services
+ * @description Stockage du panier
+*/
+
 .service('CurrentCart', function ($rootScope, lodash, DataStorage) {
     var currentCart = {};
     /*
@@ -23,7 +30,15 @@ angular.module('shopmycourse.services')
     init();
 
     return {
+        /**
+         * @name init
+         * @description Initialisation du panier actuel
+        */
         init: init,
+        /**
+         * @name init
+         * @description Initialisation du panier pour une commande donnée
+        */
         initFromLocalStorage: function(orderId) {
           return DataStorage.get('current_cart_' + orderId).then(function (currentCartFromStorage) {
             currentCart = currentCartFromStorage || {};
@@ -32,6 +47,10 @@ angular.module('shopmycourse.services')
             console.log($rootScope.currentCartId)
           });
         },
+        /**
+         * @name initFromOrder
+         * @description Chargement d'une commande dans le panier
+        */
         initFromOrder: function (order) {
           currentCart = {};
           lodash.each(order.delivery_contents, function (p) {
@@ -49,6 +68,10 @@ angular.module('shopmycourse.services')
           $rootScope.currentCartId = order.id;
           return currentCart;
         },
+        /**
+         * @name addProduct
+         * @description Ajout d'un produit au panier
+        */
         addProduct: function (product) {
           var product_id = product.id;
           // Product already there
@@ -63,6 +86,10 @@ angular.module('shopmycourse.services')
           $rootScope.currentCart = currentCart;
           DataStorage.set('current_cart_' + $rootScope.currentCartId, currentCart);
         },
+        /**
+         * @name removeProduct
+         * @description Suppression d'un produit au panier
+        */
         removeProduct: function (product) {
           var product_id = product.id;
           // Product already there
@@ -75,6 +102,10 @@ angular.module('shopmycourse.services')
           $rootScope.currentCart = currentCart;
           DataStorage.set('current_cart_' + $rootScope.currentCartId, currentCart);
         },
+        /**
+         * @name quantity
+         * @description Retourne la quantité des produits présents dans le panier
+        */
         quantity: function () {
           console.log(currentCart)
           var q = 0;
@@ -83,6 +114,10 @@ angular.module('shopmycourse.services')
           });
           return q;
         },
+        /**
+         * @name total
+         * @description Retourne le prix total de produits présents dans le panier
+        */
         total: function () {
           var t = 0;
           lodash.map(currentCart, function (p) {
