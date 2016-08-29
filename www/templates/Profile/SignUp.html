@@ -16,15 +16,15 @@
             <p><b>Ou utilisez votre email :</b></p>
             <ion-list>
                 <!-- Prénom -->
-                <label class="item item-input item-floating-label">
+                <ion-item class="item item-input item-floating-label">
                     <span class="input-label">Prénom</span>
                     <input type="text" name="firstname" ng-model="user.firstname" placeholder="Saisissez votre prénom" ng-pattern="validation.name.pattern" required="required" autocomplete="off">
-                </label>
+                </ion-item>
                 <!-- Nom -->
-                <label class="item item-input item-floating-label">
+                <ion-item class="item item-input item-floating-label">
                     <span class="input-label">Nom</span>
                     <input type="text" name="lastname" ng-model="user.lastname" placeholder="Saisissez votre nom" ng-pattern="validation.name.pattern" required="required" autocomplete="off">
-                </label>
+                </ion-item>
                 <div class="error-message" ng-show="signup.lastname.$error.pattern">
                   <span><i class="icon ion-close-circled"></i> {{validation.name.message}}</span>
                 </div>
@@ -32,26 +32,26 @@
                   <span><i class="icon ion-close-circled"></i> {{validation.name.message}}</span>
                 </div>
                 <!-- Email -->
-                <label class="item item-input item-floating-label">
+                <ion-item class="item item-input item-floating-label">
                     <span class="input-label">Email</span>
                     <input type="email" name="email" ng-model="user.email" placeholder="Saisissez votre email" ng-pattern="validation.email.pattern" required="required" autocomplete="off">
-                </label>
+                </ion-item>
                 <div class="error-message" ng-show="signup.email.$error.pattern">
                   <span><i class="icon ion-close-circled"></i> {{validation.email.message}}</span>
                 </div>
                 <!-- Mot de passe -->
-                <label class="item item-input item-floating-label">
+                <ion-item class="item item-input item-floating-label">
                     <span class="input-label">Mot de passe</span>
                     <input type="password" name="password" ng-model="user.password" placeholder="Saisissez votre mot de passe" ng-pattern="validation.password.pattern" required="required" autocomplete="off">
-                </label>
+                </ion-item>
                 <div class="error-message" ng-show="signup.password.$error.pattern">
                   <span><i class="icon ion-close-circled"></i> {{validation.password.message}}</span>
                 </div>
                 <!-- N° de téléphone -->
-                <label class="item item-input item-floating-label">
+                <ion-item class="item item-input item-floating-label">
                     <span class="input-label">N° de mobile</span>
                     <input type="tel" name="phone" ng-model="user.phone" placeholder="Saisissez votre n° de portable" ng-pattern="validation.phone.pattern" required="required" autocomplete="off">
-                </label>
+                </ion-item>
                 <div class="error-message" ng-show="signup.phone.$error.pattern">
                   <span><i class="icon ion-close-circled"></i> {{validation.phone.message}}</span>
                 </div>

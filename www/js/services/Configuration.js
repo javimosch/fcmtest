@@ -3,7 +3,8 @@ angular.module('shopmycourse.services')
 .factory('Configuration', function () {
   return {
     //apiEndpoint: 'http://localhost:3000/',
-    apiEndpoint: 'http://shopmycourses.herokuapp.com/',
+    //apiEndpoint: 'http://shopmycourses.herokuapp.com/',
+    apiEndpoint: 'http://shopmycourses-prod.herokuapp.com/',
     errors: {
       SCHEDULE_ALREADY_EXIST: 'Vous avez déjà déposé une disponibilité',
       VALIDATION_CODE_ERROR: 'Votre code de validation est incorrect',
