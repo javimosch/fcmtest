@@ -132,6 +132,25 @@
   }
 }
 
+.phone-signup {
+  font-weight: bold;
+
+  &::-webkit-input-placeholder {
+    color: $positive-dark;
+  }
+  &:-moz-placeholder {
+     color: $positive-dark;
+     opacity: 1;
+  }
+  &::-moz-placeholder {
+     color: $positive-dark;
+     opacity: 1;
+  }
+  &:-ms-input-placeholder {
+     color: $positive-dark;
+  }
+}
+
 .default-form {
 
   form {

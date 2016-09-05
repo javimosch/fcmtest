@@ -85,6 +85,19 @@
   #profile .item:first-child {
     border-top: none; }
 
+.phone-signup {
+  font-weight: bold; }
+  .phone-signup::-webkit-input-placeholder {
+    color: #2f6ab5; }
+  .phone-signup:-moz-placeholder {
+    color: #2f6ab5;
+    opacity: 1; }
+  .phone-signup::-moz-placeholder {
+    color: #2f6ab5;
+    opacity: 1; }
+  .phone-signup:-ms-input-placeholder {
+    color: #2f6ab5; }
+
 .default-form form {
   padding: 0 20px; }
 
