@@ -20,7 +20,7 @@
         <button class="button button-stable button-block icon-right ion-chevron-right" ng-if="deliveryDate.length <= 0 || !currentDelivery.shop_name" ng-click="scheduleOrder()">Se faire livrer</button>
         <span ng-if="(deliveryDate.length > 0 && currentDelivery.shop_name)">
           <p>
-            Vous avez demandé une livraison {{deliveryDate}} à
+            Vous avez demandé une livraison {{deliveryDate}} correspondant à
             <span class="shop">{{currentDelivery.shop_name}}</span>
           </p>
         </span>
