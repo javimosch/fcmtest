@@ -45,6 +45,15 @@ angular.module('shopmycourse', [
   });
 })
 
+
+
+.run(function(DeliveryRequestAPI,Browser,$localForage) {
+  window.DeliveryRequestAPI = DeliveryRequestAPI;
+  window.Browser = Browser
+  window.$localForage = $localForage
+})
+
+
 .config(['$localForageProvider', function($localForageProvider){
     $localForageProvider.config({
       driver      : 'localStorageWrapper',
