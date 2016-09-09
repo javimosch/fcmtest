@@ -5,13 +5,13 @@ angular.module('shopmycourse.controllers')
  * @function Controleur
  * @memberOf shopmycourse.controllers
  * @description Sélection du magasin pour une ou plusieurs propositions de livraison
-*/
+ */
 
 .controller('DeliveriesShopCtrl', function($scope, $state, $ionicLoading, $ionicPopup, $cordovaGeolocation, toastr, ShopAPI, CurrentAvailability, $timeout) {
 
   /**
    * Initialisation de la recherche de magasins
-  */
+   */
   $scope.shops = [];
   $scope.address = "";
   var timer = null;
@@ -22,7 +22,7 @@ angular.module('shopmycourse.controllers')
 
   /**
    * Affichage du premier chargement de la liste des magasins
-  */
+   */
   $ionicLoading.show({
     template: 'Nous recherchons les magasins à proximité...'
   });
@@ -30,7 +30,7 @@ angular.module('shopmycourse.controllers')
   /**
    * @name refreshShopList
    * @description Rafraichissement de la liste des magasins
-  */
+   */
   function refreshShopList() {
     $ionicLoading.show({
       template: 'Nous recherchons les magasins correspondants...'
@@ -53,28 +53,54 @@ angular.module('shopmycourse.controllers')
     }, 1300);
   };
 
-  /**
-   * Récupération des coordonnées GPS du téléphone
-  */
-  $cordovaGeolocation
-  .getCurrentPosition(posOptions)
-  .then(function (position) {
+  function onCurrentPosition(position) {
+    console.log('position', position);
     $scope.position = position;
     refreshShopList();
-  }, function(err) {
-    $ionicPopup.alert({
-     title: 'Attention !',
-     template: "Nous n'arrivons pas à vous géolocaliser. Vous pouvez soit activer le GPS, soit renseigner une adresse manuellement"
+
+  }
+
+
+  /**
+   * Récupération des coordonnées GPS du téléphone
+   */
+  $cordovaGeolocation
+    .getCurrentPosition(posOptions)
+    .then(onCurrentPosition, function(err) {
+
+      if (!window.plugins && window.navigator && window.navigator.geolocation) {
+        console.log('browser geo get position');
+        return window.navigator.geolocation.getCurrentPosition(onCurrentPosition, function(error) {
+          switch (error.code) {
+            case error.PERMISSION_DENIED:
+              console.log( "User denied the request for Geolocation.")
+              break;
+            case error.POSITION_UNAVAILABLE:
+              console.log("Location information is unavailable.")
+              break;
+            case error.TIMEOUT:
+              console.log("The request to get user location timed out.")
+              break;
+            case error.UNKNOWN_ERROR:
+              console.log("An unknown error occurred.")
+              break;
+          }
+        });
+      }
+
+      $ionicPopup.alert({
+        title: 'Attention !',
+        template: "Nous n'arrivons pas à vous géolocaliser. Vous pouvez soit activer le GPS, soit renseigner une adresse manuellement"
+      });
+      $ionicLoading.hide();
     });
-    $ionicLoading.hide();
-  });
 
   /**
    * @name $scope.setShop
    * @description Enregistrement du magasin sélectionné
-  */
-  $scope.setShop = function (shop) {
-    CurrentAvailability.setShop(shop, function () {
+   */
+  $scope.setShop = function(shop) {
+    CurrentAvailability.setShop(shop, function() {
       $state.go('tabs.scheduledelivery');
     });
   };
@@ -82,16 +108,18 @@ angular.module('shopmycourse.controllers')
   /**
    * @name $scope.openMap
    * @description Ouverture d'une carte avec la localisation du magasin
-  */
-  $scope.openMap = function (shop) {
+   */
+  $scope.openMap = function(shop) {
     var address = shop.address;
-    var url='';
+    var url = '';
     if (ionic.Platform.isIOS()) {
-    	url = "http://maps.apple.com/maps?q=" + encodeURIComponent(address);
-    } else if (ionic.Platform.isAndroid()) {
-    	url = "geo:?q=" + encodeURIComponent(address);
-    } else {
-    	url = "http://maps.google.com?q=" + encodeURIComponent(address);
+      url = "http://maps.apple.com/maps?q=" + encodeURIComponent(address);
+    }
+    else if (ionic.Platform.isAndroid()) {
+      url = "geo:?q=" + encodeURIComponent(address);
+    }
+    else {
+      url = "http://maps.google.com?q=" + encodeURIComponent(address);
     }
     window.open(url, "_system", 'location=no');
   };
@@ -99,7 +127,7 @@ angular.module('shopmycourse.controllers')
   /**
    * @name $scope.search
    * @description Lancement de la recherche de magasin
-  */
+   */
   $scope.search = function(query) {
     $scope.position = undefined
     $scope.address = query;
