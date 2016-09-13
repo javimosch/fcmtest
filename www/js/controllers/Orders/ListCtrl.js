@@ -7,7 +7,7 @@ angular.module('shopmycourse.controllers')
  * @description Liste des commandes
 */
 
-.controller('OrdersListCtrl', function($scope, $ionicLoading, OrderStore, DeliveryStatus) {
+.controller('OrdersListCtrl', function($scope, $ionicLoading, OrderStore, DeliveryStatus,lodash) {
 
   $scope.orders = [];
   $scope.status = 'pending';
@@ -41,7 +41,8 @@ angular.module('shopmycourse.controllers')
     }
     return function (delivery) {
       if (status === 'pending') {
-        if (delivery.rated === false && delivery.status != 'canceled') {
+        //if (delivery.rated === false && delivery.status != 'canceled') {
+        if (lodash.includes(statuses, delivery.status)) {
             return true;
         }
         return false;
