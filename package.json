@@ -3,7 +3,7 @@
   "version": "1.1.1",
   "description": "An Ionic project",
   "scripts": {
-    "deploy": "FTP_UPLOAD_FOLDER=deploy echo copying apk; cp ./platforms/android/build/outputs/apk/android-debug.apk; echo calling deploy.js; ./deploy/test.apk; node deploy.js;"
+    "deploy": "FTP_UPLOAD_FOLDER=deploy echo copying apk; cp ./platforms/android/build/outputs/apk/android-debug.apk ./deploy/test.apk; echo calling deploy.js; ./deploy/test.apk; node deploy.js;"
   },
   "dependencies": {
     "cordova-plugin-camera": "^2.2.0",
