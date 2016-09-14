@@ -80,4 +80,8 @@
   <plugin name="cordova-plugin-googleplus" spec="https://github.com/EddyVerbruggen/cordova-plugin-googleplus">
     <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.979481548722-0eb5la0dn86anucanfm2d1tkbssr0o93"/>
   </plugin>
+  <chcp>
+  <config-file url="https://cordova-playground-javoche.c9users.io/chcp.json" />
+  <local-development enabled="true" />
+</chcp>
 </widget>
