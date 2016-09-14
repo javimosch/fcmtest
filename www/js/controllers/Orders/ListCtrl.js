@@ -35,24 +35,17 @@ angular.module('shopmycourse.controllers')
    * @description Filtrage des commandes par status En cours / Archivé
   */
   $scope.byStatus = function (status) {
-    var statuses = ['done', 'canceled'];
-    if (status === 'pending') {
-      statuses = ['pending', 'accepted', 'completed']
-    }
     return function (delivery) {
       if (status === 'pending') {
-        //if (delivery.rated === false && delivery.status != 'canceled') {
-        if (lodash.includes(statuses, delivery.status)) {
-            return true;
+        if (['pending', 'accepted', 'completed'].indexOf(delivery.status) > -1 || (delivery.status == 'done' && delivery.rated == false)) {
+          return (true);
         }
-        return false;
+        return (false);
       } else {
-        if (delivery.rated === true || delivery.status === 'canceled') {
-          if (statuses.indexOf(delivery.status) > -1) {
-            return true;
-          }
+        if (['canceled'].indexOf(delivery.status) > -1 || (delivery.status == 'done' && delivery.rated == true)) {
+          return (true);
         }
-        return false;
+        return (false);
       }
     }
   };
