@@ -6,6 +6,7 @@ angular.module('shopmycourse', [
   'toastr',
   'ngLodash',
   'ngCordova',
+  'ngCordovaOauth',
   'angularMoment',
   'LocalForageModule',
   'shopmycourse.filters',
