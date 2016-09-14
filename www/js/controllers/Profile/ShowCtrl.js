@@ -114,6 +114,8 @@ angular.module('shopmycourse.controllers')
           console.log(msg);
         });
       }
+      
+      alert('logout')
 
       $state.go('start');
     });

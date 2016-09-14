@@ -3,6 +3,7 @@
   "version": "1.1.1",
   "description": "An Ionic project",
   "scripts": {
+    "log":"git log --oneline | head",
     "deploy": "FTP_UPLOAD_FOLDER=deploy echo copying apk; cp ./platforms/android/build/outputs/apk/android-debug.apk ./deploy/test.apk; echo calling deploy.js; ./deploy/test.apk; node deploy.js;"
   },
   "dependencies": {
