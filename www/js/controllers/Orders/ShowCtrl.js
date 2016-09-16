@@ -38,7 +38,7 @@ angular.module('shopmycourse.controllers')
    */
   var idDeliveryRequestParam = $stateParams.idDeliveryRequest;
   var idOrderParam = $stateParams.idOrder;
-  if (CurrentOrder.exists()) {
+  if (CurrentOrder.exists(idOrderParam,idDeliveryRequestParam)) {
     if(CurrentOrder.isPending()){
       CurrentOrder.fetchProductsFromDeliveryRequest(function(err,order){
         if(err){
@@ -77,6 +77,9 @@ angular.module('shopmycourse.controllers')
    *  Event handler for order received (from cache or database)
    */
   function onOrderReceived(order) {
+    
+    
+    
     $scope.order = order;
     if (CurrentOrder.isPending()) {
       $scope.avatarBackground = CurrentUser.avatarFromUserAvatar('');

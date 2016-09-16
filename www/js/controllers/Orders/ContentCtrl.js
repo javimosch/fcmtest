@@ -19,7 +19,7 @@ angular.module('shopmycourse.controllers')
   var idOrderParam = $stateParams.idOrder;
   $scope.order = CurrentOrder.get();
 
-  if (CurrentOrder.exists()) {
+  if (CurrentOrder.exists(idOrderParam,idDeliveryRequestParam)) {
     //if the order exists the user came from show view. We must load the cart
     moveProductsToCurrentCart($scope.order);
   }
