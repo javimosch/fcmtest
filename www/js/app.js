@@ -74,11 +74,8 @@ angular.module('shopmycourse', [
 
 
 .run(function(ConfigAPI, Configuration) {
-  ConfigAPI.fetch({}, function(res) {
-    if (res && res.SERVER_URL) {
-      Configuration.setEndpoint(res.SERVER_URL);
-      console.log('setEndpoint', res.SERVER_URL); //Configuration
-    }
+  ConfigAPI.fetch({}, function(config) {
+    Configuration.init(config);
   });
 })
 

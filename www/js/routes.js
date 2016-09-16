@@ -1,6 +1,10 @@
 angular.module('shopmycourse.routes', [])
 
 .config(function($stateProvider, $urlRouterProvider) {
+  
+  var resolveConfiguration = function(Configuration){
+    return Configuration.promise;
+  }
 
   $stateProvider
 
@@ -16,7 +20,8 @@ angular.module('shopmycourse.routes', [])
       currentDelivery: function (CurrentDelivery) {
         var promise = CurrentDelivery.init(function() {});
         return promise;
-      }
+      },
+      apiEndpoint: resolveConfiguration
     }
   })
 
@@ -222,20 +227,27 @@ angular.module('shopmycourse.routes', [])
       CurrentUserLoading: function (CurrentUser) {
         var promise = CurrentUser.init(function() {});
         return promise;
-      }
+      },
+      apiEndpoint: resolveConfiguration
     }
   })
 
   .state('signin', {
     url: '/profile/signin',
     templateUrl: 'templates/Profile/SignIn.html',
-    controller: 'ProfileSignInCtrl'
+    controller: 'ProfileSignInCtrl',
+    resolve:{
+      apiEndpoint: resolveConfiguration
+    }
   })
 
   .state('signup', {
     url: '/profile/signup',
     templateUrl: 'templates/Profile/SignUp.html',
-    controller: 'ProfileSignUpCtrl'
+    controller: 'ProfileSignUpCtrl',
+    resolve:{
+      apiEndpoint: resolveConfiguration
+    }
   })
 
   .state('tabs.scheduleorder', {

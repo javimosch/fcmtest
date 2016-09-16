@@ -6,7 +6,7 @@ var app = express();
 
 //writing config
 var config = {
-    SERVER_URL : process.env.SERVER_URL || 'http://shopmycourses.herokuapp.com/'
+    API_ENDPOINT : process.env.API_ENDPOINT || 'http://shopmycourses.herokuapp.com/'
 };
 fs.writeFileSync(path.join(process.cwd(),'www','config.json'), JSON.stringify(config), 'utf8');
 

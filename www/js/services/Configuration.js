@@ -7,10 +7,22 @@ angular.module('shopmycourse.services')
  * @description Configuration de l'application
  */
 
-.service('Configuration', function() {
+.service('Configuration', function($q, lodash) { //ConfigAPI
+  var isReady = false;
+  
+  var deferred = $q.defer()
+  
   var config = {
-    setEndpoint: function(url) {
-      this.apiEndpoint = url;
+    promise: deferred.promise,
+    ready: function(){
+      return deferred.promise;
+    },
+    init: function(externalConfig) {
+        if(externalConfig.API_ENDPOINT){
+          config.apiEndpoint = externalConfig.API_ENDPOINT;
+          console.log('apiEndpoint',config.apiEndpoint);
+        }
+        deferred .resolve(true);
     },
     //apiEndpoint: 'http://localhost:3000/',
     //apiEndpoint: 'http://shopmycourses.herokuapp.com/',
@@ -31,5 +43,8 @@ angular.module('shopmycourse.services')
       RATING_DONE: 'Votre avis a bien été pris en compte'
     }
   };
+
+
+  window._Configuration = config;
   return config;
 });
