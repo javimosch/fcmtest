@@ -1,0 +1,9 @@
+before_script:
+  - gem install dpl
+dev:
+  type: deploy
+  script:
+  - dpl --provider=heroku --app=smc-dev-mobile --api-key=$HEROKU_API_KEY
+  only:
+  - staging
+  
