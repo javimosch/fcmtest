@@ -26,7 +26,7 @@ angular.module('shopmycourse.services')
     deliveryRequestStore._customAction('saveProducts', attributes, next);
   };
 
-  orderStore.pullProductsOfPendingOrder = function(attributes, next) {
+  orderStore.fetchProducts = function(attributes, next) {
     deliveryRequestStore._customAction('fetchProducts', {
       idDeliveryRequest: attributes.delivery_request.id
     }, next);
