@@ -13,6 +13,9 @@ angular.module('shopmycourse.services')
     {
         // Création d'une demande de livraison
         'create': { method: 'POST', url: Configuration.apiEndpoint + 'delivery_requests', headers: { 'Authorization': 'Bearer' }, cache: false },
+        'saveProducts':{ method: 'POST', url: Configuration.apiEndpoint + 'delivery_requests/saveProducts/:idDeliveryRequest', headers: { 'Authorization': 'Bearer' }, cache: false },
+        
+        'fetchProducts':{ method: 'POST', url: Configuration.apiEndpoint + 'delivery_requests/fetchProducts/:idDeliveryRequest', headers: { 'Authorization': 'Bearer' }, cache: false,isArray:true },
         // Annulation d'une demande de livraison correspondant à :idDeliveryRequest
         'cancel': { method: 'POST', url: Configuration.apiEndpoint + 'delivery_requests/:idDeliveryRequest/cancel', headers: { 'Authorization': 'Bearer' }, cache: false }
     });
