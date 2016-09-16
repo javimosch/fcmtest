@@ -72,6 +72,13 @@ angular.module('shopmycourse.services')
       }
       else {
         _order.delivery_contents = delivery_contents;
+        
+        var total = 0;
+        _order.delivery_contents.forEach(function(c){
+          total+= c.unit_price * c.quantity;
+        })
+        _order.total = total;
+        
         return callback(_err, _order);
       }
     });
