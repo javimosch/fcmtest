@@ -54,9 +54,14 @@ angular.module('shopmycourse.controllers')
       if (err) {
         onSaveError(err);
       }
-      OrderStore.pull(function(orders) {
-        onSave();
-      });
+
+      if (res) {
+        CurrentOrder.merge(res);
+      }
+
+      //OrderStore.pull(function(orders) {
+      onSave();
+      //});
     }
 
 
