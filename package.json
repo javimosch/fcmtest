@@ -3,12 +3,13 @@
   "version": "1.1.1",
   "description": "An Ionic project",
   "scripts": {
-    "log":"git log --oneline | head",
+    "log": "git log --oneline | head",
     "deploy": "FTP_UPLOAD_FOLDER=deploy echo copying apk; cp ./platforms/android/build/outputs/apk/android-debug.apk ./deploy/test.apk; echo calling deploy.js; ./deploy/test.apk; node deploy.js;"
   },
   "dependencies": {
     "cordova-plugin-camera": "^2.2.0",
     "dotenv": "^2.0.0",
+    "express": "^4.14.0",
     "ftp-deploy": "^1.1.0",
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",
