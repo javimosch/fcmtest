@@ -1,23 +1,23 @@
 angular.module('shopmycourse.routes', [])
 
 .config(function($stateProvider, $urlRouterProvider) {
-  
-  var resolveConfiguration = function(Configuration){
+
+  var resolveConfiguration = function(Configuration) {
     return Configuration.promise;
   }
 
   $stateProvider
 
-  .state('tabs', {
+    .state('tabs', {
     url: '/tabs',
     templateUrl: 'templates/TabBar.html',
     abstract: true,
     resolve: {
-      currentUser: function (CurrentUser) {
+      currentUser: function(CurrentUser) {
         var promise = CurrentUser.init(function() {});
         return promise;
       },
-      currentDelivery: function (CurrentDelivery) {
+      currentDelivery: function(CurrentDelivery) {
         var promise = CurrentDelivery.init(function() {});
         return promise;
       },
@@ -31,8 +31,14 @@ angular.module('shopmycourse.routes', [])
     views: {
       'home-tab': {
         templateUrl: 'templates/Home.html',
-        controller: 'HomeCtrl'
+        controller: 'HomeCtrl',
+        resolve: {
+          apiEndpoint: resolveConfiguration
+        }
       }
+    },
+    resolve: {
+      apiEndpoint: resolveConfiguration
     }
   })
 
@@ -42,7 +48,10 @@ angular.module('shopmycourse.routes', [])
     views: {
       'deliveries-tab': {
         templateUrl: 'templates/Deliveries/List.html',
-        controller: 'DeliveriesListCtrl'
+        controller: 'DeliveriesListCtrl',
+        resolve: {
+          apiEndpoint: resolveConfiguration
+        }
       }
     }
   })
@@ -110,7 +119,7 @@ angular.module('shopmycourse.routes', [])
       }
     }
   })
-  
+
   .state('tabs.order_pending', {
     url: '/order/pending/:idDeliveryRequest',
     cache: false,
@@ -154,13 +163,13 @@ angular.module('shopmycourse.routes', [])
       }
     },
     resolve: {
-      currentCart: function (CurrentCart) {
+      currentCart: function(CurrentCart) {
         var promise = CurrentCart.init();
         return promise;
       }
     }
   })
-  
+
   .state('tabs.requestcontent', {
     url: '/order/pending/:idRequest/content',
     cache: false,
@@ -171,7 +180,7 @@ angular.module('shopmycourse.routes', [])
       }
     },
     resolve: {
-      currentCart: function (CurrentCart) {
+      currentCart: function(CurrentCart) {
         var promise = CurrentCart.init();
         return promise;
       }
@@ -224,7 +233,7 @@ angular.module('shopmycourse.routes', [])
     templateUrl: 'templates/Start.html',
     controller: 'StartCtrl',
     resolve: {
-      CurrentUserLoading: function (CurrentUser) {
+      CurrentUserLoading: function(CurrentUser) {
         var promise = CurrentUser.init(function() {});
         return promise;
       },
@@ -236,7 +245,7 @@ angular.module('shopmycourse.routes', [])
     url: '/profile/signin',
     templateUrl: 'templates/Profile/SignIn.html',
     controller: 'ProfileSignInCtrl',
-    resolve:{
+    resolve: {
       apiEndpoint: resolveConfiguration
     }
   })
@@ -245,7 +254,7 @@ angular.module('shopmycourse.routes', [])
     url: '/profile/signup',
     templateUrl: 'templates/Profile/SignUp.html',
     controller: 'ProfileSignUpCtrl',
-    resolve:{
+    resolve: {
       apiEndpoint: resolveConfiguration
     }
   })
@@ -292,6 +301,6 @@ angular.module('shopmycourse.routes', [])
     }
   })
 
-$urlRouterProvider.otherwise('/start')
+  $urlRouterProvider.otherwise('/start')
 
 });
