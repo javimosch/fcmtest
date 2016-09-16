@@ -29,20 +29,20 @@ angular.module('shopmycourse', [
     }
     document.addEventListener('resume', function() {
       $ionicModal.fromTemplateUrl('templates/NotificationsModal.html', {
-          scope: $rootScope,
-          animation: 'slide-in-up'
-      }).then(function (modal) {
+        scope: $rootScope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
         $rootScope.notificationsModal = modal
       });
-      $rootScope.openNotificationsModal = function () {
+      $rootScope.openNotificationsModal = function() {
         $rootScope.notificationsModal.show();
       };
-      $rootScope.closeNotificationsModal = function () {
+      $rootScope.closeNotificationsModal = function() {
         $rootScope.notificationsModal.hide();
       };
       $rootScope.notifications = [];
-      NotificationAPI.get({}, function (notifications) {
-        $rootScope.notifications = window._.map(notifications, function (n) {
+      NotificationAPI.get({}, function(notifications) {
+        $rootScope.notifications = window._.map(notifications, function(n) {
           n.meta = JSON.parse(n.meta);
           switch (n.mode) {
             case 'delivery_request':
@@ -64,12 +64,22 @@ angular.module('shopmycourse', [
         if (notifications.length > 0) {
           $rootScope.openNotificationsModal();
         }
-      }, function (err) {
+      }, function(err) {
         console.error('Notifications error : ', err);
       });
     }, false);
   });
 })
+
+
+
+.run(function(ConfigAPI, Configuration) {
+  ConfigAPI.fetch({}, function(res) {
+    Configuration.setEndpoint(res.SERVER_URL);
+    console.log('setEndpoint', res.SERVER_URL); //Configuration
+  });
+})
+
 
 .config(function($httpProvider) {
   $httpProvider.interceptors.push('HTTPInterceptor');
@@ -113,8 +123,3 @@ angular.module('shopmycourse', [
     }
   };
 });
-
-
-
-
-

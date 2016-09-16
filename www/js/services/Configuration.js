@@ -8,9 +8,17 @@ angular.module('shopmycourse.services')
 */
 
 .factory('Configuration', function () {
+  
+  
+  
   return {
+    setEndpoint:function(url){
+        this.apiEndpoint = url;
+    },
     //apiEndpoint: 'http://localhost:3000/',
-    apiEndpoint: 'http://shopmycourses.herokuapp.com/',
+    //apiEndpoint: 'http://shopmycourses.herokuapp.com/',
+    apiEndpoint:'https://ruby-shop-mc-clear-skies-1944-javoche.c9users.io/',
+    //apiEndpoint: 'https://smc-dev-server.herokuapp.com/admin/',
     //apiEndpoint: 'http://shopmycourses-prod.herokuapp.com/',
     errors: {
       SCHEDULE_ALREADY_EXIST: 'Vous avez déjà déposé une disponibilité',
