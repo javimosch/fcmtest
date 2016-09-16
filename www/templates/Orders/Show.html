@@ -22,10 +22,18 @@
         <div class="actions">
           <button class="button button-positive button-block" ng-if="order.status === 'done' && !order.rated" ng-click="openFinishOrderModal()">Noter le livreur</button>
           <button class="button button-positive button-block" ng-if="order.status === 'completed'" ng-click="openFinishOrderModal()">Finaliser la commande</button>
-          <button class="button button-positive button-block" ng-if="(order.status !== 'completed' || order.status == 'accepted') && order.status != 'done' && order.status != 'canceled'" ui-sref="tabs.ordercontent({idOrder: order.id})">Modifier le panier</button>
+          
+          <button ng-show="!isPending()" class="button button-positive button-block" ng-if="(order.status !== 'completed' || order.status == 'accepted') && order.status != 'done' && order.status != 'canceled'" 
+          ui-sref="tabs.ordercontent({idOrder: order.id})">Modifier le panier</button>
+          
+          <button ng-show="isPending()" class="button button-positive button-block" ng-if="(order.status !== 'completed' || order.status == 'accepted') && order.status != 'done' && order.status != 'canceled'" 
+          ui-sref="tabs.requestcontent({idRequest: order.delivery_request.id})">Modifier le panier</button>
+          
+          
+          
           <button class="button button-positive button-block" ng-if="order.status === 'accepted'" ng-click="confirmDelivery()">Confirmer la commande</button>
           <button class="button button-stable bordered button-block" ng-if="order.deliveryman.share_phone && order.status === 'completed'" ng-click="sendSMS()">Contacter par SMS</button>
-          <div ng-if="!order.deliveryman.share_phone">
+          <div ng-if="!isPending() && !order.deliveryman.share_phone">
             <p>
               Le livreur ne souhaite pas être contacté.
             </p>
@@ -47,12 +55,16 @@
           <div class="item item-divider item-divider-default">
             Liste des produits
           </div>
-          <ion-item class="item product" ng-repeat="delivery_content in order.delivery_contents">
+          
+          
+          <ion-item  class="item product" ng-repeat="delivery_content in order.delivery_contents">
               <img ng-src="{{delivery_content.product.image_url}}" alt="{{delivery_content.product.name}}">
               <div class="name">{{delivery_content.product.name}}</div>
               <div class="detail">{{delivery_content.product.detail}}</div>
               <div class="price">{{delivery_content.unit_price*delivery_content.quantity | number: 2 || 0 }}€ ({{delivery_content.quantity}})</div>
           </ion-item>
+          
+          
           <div ng-if="order.delivery_contents.length == 0" style="text-align: center;">Vous n'avez pas encore rempli votre panier</div>
       </ion-list>
     </ion-content>
