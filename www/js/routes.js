@@ -105,6 +105,17 @@ angular.module('shopmycourse.routes', [])
       }
     }
   })
+  
+  .state('tabs.order_pending', {
+    url: '/order/pending/:idDeliveryRequest',
+    cache: false,
+    views: {
+      'orders-tab': {
+        templateUrl: 'templates/Orders/Show.html',
+        controller: 'OrdersShowCtrl'
+      }
+    }
+  })
 
   .state('tabs.orderpayment', {
     url: '/order/:idOrder/payment',
@@ -130,6 +141,23 @@ angular.module('shopmycourse.routes', [])
 
   .state('tabs.ordercontent', {
     url: '/order/:idOrder/content',
+    cache: false,
+    views: {
+      'orders-tab': {
+        templateUrl: 'templates/Orders/Content.html',
+        controller: 'OrdersContentCtrl'
+      }
+    },
+    resolve: {
+      currentCart: function (CurrentCart) {
+        var promise = CurrentCart.init();
+        return promise;
+      }
+    }
+  })
+  
+  .state('tabs.requestcontent', {
+    url: '/order/pending/:idRequest/content',
     cache: false,
     views: {
       'orders-tab': {
