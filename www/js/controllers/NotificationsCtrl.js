@@ -13,7 +13,7 @@ angular.module('shopmycourse.controllers')
 	 * Chargement des notifications
 	*/
 	$scope.notifications = [];
-	CurrentUser.get(function (user) {
+	if (CurrentUser.isLogged()) {
 		NotificationAPI.get({}, function (notifications) {
 			$scope.notifications = lodash.map(notifications, function (n) {
 				n.meta = JSON.parse(n.meta);
@@ -40,7 +40,8 @@ angular.module('shopmycourse.controllers')
 		}, function (err) {
 			console.error('Notifications error : ', err);
 		});
-	});
+	}
+
 
 	/**
 	 * Suppression d'une notification dans la liste de notifications
