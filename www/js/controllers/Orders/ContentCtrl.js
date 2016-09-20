@@ -107,16 +107,15 @@ angular.module('shopmycourse.controllers')
    * @description Retour sur la page de la commande
    */
   $scope.goBack = function() {
-
-    $stateHistory.goBack({
-      onFailure: function() {
-        $state.go('tabs.orders');
-      }
-    });
-
-    //$state.go('tabs.order', {
-    //  idOrder: $stateParams.idOrder
-    //});
+    if(CurrentOrder.isPending()){
+      $state.go('tabs.order_pending', {
+        idRequest: $stateParams.idRequest
+      });
+    }else{
+      $state.go('tabs.order', {
+        idOrder: $stateParams.idOrder
+      });
+    }
   };
 
   /**
