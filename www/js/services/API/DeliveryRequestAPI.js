@@ -40,6 +40,15 @@ angular.module('shopmycourse.services')
                 cache: false,
                 isArray: true
             },
+            'calculateCommission': {
+                method: 'POST',
+                url: Configuration.apiEndpoint + 'delivery_requests/calculateCommission/',
+                headers: {
+                    'Authorization': 'Bearer'
+                },
+                cache: false,
+                isArray: false
+            },
             // Annulation d'une demande de livraison correspondant à :idDeliveryRequest
             'cancel': {
                 method: 'POST',
