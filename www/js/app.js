@@ -78,7 +78,10 @@ angular.module('shopmycourse', [
 
 .run(function(ConfigAPI, Configuration) {
   ConfigAPI.fetch({}, function(config) {
+    config = JSON.parse(angular.toJson(config));
     Configuration.init(config);
+  },function(err){
+    console.log(err)
   });
 })
 
