@@ -7,7 +7,7 @@ angular.module('shopmycourse.controllers')
  * @description Page d'inscription
  */
 
-.controller('ProfileSignUpCtrl', function($scope, $cordovaOauth, $rootScope, $ionicModal, $ionicLoading, $ionicPopup, $state, toastr, Authentication, Validation, CurrentUser) {
+.controller('ProfileSignUpCtrl', function($scope, $cordovaOauth, $rootScope, $ionicModal, $ionicLoading, $ionicPopup, $state, toastr, Authentication, Validation, CurrentUser,Configuration) {
 
   /**
    * Initialisation de la validation du formulaire
@@ -137,7 +137,7 @@ angular.module('shopmycourse.controllers')
             if (window.plugins && window.plugins.googleplus) {
               window.plugins.googleplus.disconnect();
               window.plugins.googleplus.login({
-                  'webClientId': '979481548722-mj63ev1utfe9v21l5pdiv4j0t1v7jhl2.apps.googleusercontent.com',
+                  'webClientId': Configuration.googleApiKey,
                   'offline': true
                 },
                 function(data) {

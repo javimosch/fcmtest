@@ -7,7 +7,7 @@ angular.module('shopmycourse.controllers')
  * @description Page de connexion
  */
 
-.controller('ProfileSignInCtrl', function($scope, $cordovaOauth, $rootScope, $state, toastr, $ionicLoading, $ionicPopup, $ionicModal, Authentication, Validation, CurrentUser, UserAPI) {
+.controller('ProfileSignInCtrl', function($scope, $cordovaOauth, $rootScope, $state, toastr, $ionicLoading, $ionicPopup, $ionicModal, Authentication, Validation, CurrentUser, UserAPI,Configuration) {
 
   /**
    * Initialisation de la validation du formulaire
@@ -122,7 +122,7 @@ angular.module('shopmycourse.controllers')
           if (window.plugins && window.plugins.googleplus) {
             window.plugins.googleplus.disconnect();
             window.plugins.googleplus.login({
-                'webClientId': '979481548722-mj63ev1utfe9v21l5pdiv4j0t1v7jhl2.apps.googleusercontent.com',
+                'webClientId': Configuration.googleWebClientId,
                 'offline': true
               },
               function(data) {
