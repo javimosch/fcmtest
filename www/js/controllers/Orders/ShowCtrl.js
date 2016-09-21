@@ -38,19 +38,9 @@ angular.module('shopmycourse.controllers')
    */
   var idDeliveryRequestParam = $stateParams.idDeliveryRequest;
   var idOrderParam = $stateParams.idOrder;
-  if (CurrentOrder.exists(idOrderParam,idDeliveryRequestParam)) {
-    if(CurrentOrder.isPending()){
-      CurrentOrder.fetchProductsFromDeliveryRequest(function(err,order){
-        if(err){
-            console.log(err);
-        }
-        $scope.order = order;
-        onOrderReceived($scope.order);  
-      })
-    }else{
-      $scope.order = CurrentOrder.get();
-      onOrderReceived($scope.order);  
-    }
+  if (CurrentOrder.exists(idOrderParam, idDeliveryRequestParam)) {
+     $scope.order = CurrentOrder.get();
+      onOrderReceived($scope.order);
   }
   else {
     /**
@@ -77,9 +67,9 @@ angular.module('shopmycourse.controllers')
    *  Event handler for order received (from cache or database)
    */
   function onOrderReceived(order) {
-    
-    
-    
+
+
+
     $scope.order = order;
     if (CurrentOrder.isPending()) {
       $scope.avatarBackground = CurrentUser.avatarFromUserAvatar('');

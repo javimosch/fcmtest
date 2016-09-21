@@ -49,19 +49,16 @@ angular.module('shopmycourse.controllers')
       order.delivery_contents = delivery_contents;
       OrderStore.update(order, handleUpdateCallback);
     }
+    
+  
 
     function handleUpdateCallback(err, res) {
       if (err) {
         onSaveError(err);
       }
-
-      if (res) {
-        CurrentOrder.merge(res);
-      }
-
-      //OrderStore.pull(function(orders) {
-      onSave();
-      //});
+      CurrentOrder.update(function(){
+        onSave();
+      });
     }
 
 

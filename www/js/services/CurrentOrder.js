@@ -4,26 +4,35 @@ angular.module('shopmycourse.services')
   var self = {};
   var _order = null;
 
-
-  function resolveFetch(err, order, callback) {
-    if (err) {
-      return callback(err, order);
-    }
-
-    /*
-     * Set the CurrentOrder order.
-     */
-    self.set(order);
-    /**
-     * Insert delivery_contents into the order by deliveryRequest association (only if pending)
-     */
-    if (order.status == 'pending') {
-      self.fetchProducts(callback);
-    }
-    else {
-      return callback(err, order);
-    }
+  function fetchProducts(callback) {
+    if (!self.exists()) return callback && callback('CurrentOrder: Object has not been initialized', null);
+    OrderStore.fetchProducts(_order, function(_err, delivery_contents) {
+      if (_err) {
+        console.log(_err);
+        return callback && callback(_err, delivery_contents);
+      }
+      else {
+        return callback && callback(_err, delivery_contents);
+      }
+    });
   }
+
+  function calculateCommission(total, callback) {
+    OrderStore.calculateCommission({
+      total: total
+    }, function(err, response) {
+      if (err) return console.warn('calculateCommission', err);
+      callback(response.commission);
+    })
+  }
+
+  function calculateTotal(delivery_contents) { /*subtotal*/
+    var total = 0;
+    delivery_contents.forEach(function(c) {
+      total += c.unit_price * c.quantity;
+    })
+    return total;
+  };
 
 
   self.fetch = function(params, callback) {
@@ -39,8 +48,9 @@ angular.module('shopmycourse.services')
         if (typeof err, res.length != 'undefined') {
           res = res[0];
         }
-
-        return resolveFetch(err, res, callback)
+        self.set(res);
+        self.update();
+        callback && callback(err, res);
       }, callback);
     }
     else {
@@ -54,11 +64,11 @@ angular.module('shopmycourse.services')
               order = _order;
             }
           });
-
           if (order) {
-            return resolveFetch(null, order, callback);
+            self.set(order);
+            self.update();
+            callback && callback(err, order);
           }
-
         }, callback);
       }
 
@@ -66,26 +76,7 @@ angular.module('shopmycourse.services')
 
   };
 
-  self.fetchProducts = function(callback) {
-    if (!self.exists()) return callback && callback('CurrentOrder: Object has not been initialized', null);
-    OrderStore.fetchProducts(_order, function(_err, delivery_contents) {
-      if (_err) {
-        console.log(_err);
-        return callback && callback(_err, _order);
-      }
-      else {
-        _order.delivery_contents = delivery_contents;
 
-        var total = 0;
-        _order.delivery_contents.forEach(function(c) {
-          total += c.unit_price * c.quantity;
-        })
-        _order.total = total;
-
-        return callback && callback(_err, _order);
-      }
-    });
-  }
 
   self.id = function() {
     return _order && parseInt(_order.id);
@@ -113,26 +104,34 @@ angular.module('shopmycourse.services')
       return _order && _order.id && _order.delivery_request.id == optionalDeliveryRequestId;
     }
   }
-  
-  self.updateProductsAsync = function(){
-    self.fetchProducts();
+
+
+  /*fetch products (with images), total and commission*/
+  self.update = function(callback) {
+    fetchProducts(function(err, delivery_contents) {
+      if (err) return console.log('WARN', err);
+      var total = calculateTotal(delivery_contents);
+      calculateCommission(total, function(commission) {
+        _order.delivery_contents = delivery_contents;
+        _order.total = total;
+        _order.commission = commission;
+        if (callback) callback(_order);
+      });
+    });
   }
-  /*unused*/
-  self.setProducts = function(delivery_contents) {
-    _order.delivery_contents = delivery_contents;
-  };
-  
-  self.merge = function(source) {
-    lodash.merge(_order, [source]);
-    self.set(_order);
-    self.updateProductsAsync();
-  }
+
+
+
   self.set = function(__order) {
-    console.log('CurrentOrder set', __order);
     _order = __order;
+    console.log('CurrentOrder set', __order);
   };
   self.get = function() {
+    
+    self.update();
+    
     return _order;
   };
+  window.CurrentOrder = self;
   return self;
 });

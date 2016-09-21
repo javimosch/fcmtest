@@ -31,6 +31,12 @@ angular.module('shopmycourse.services')
       idDeliveryRequest: attributes.delivery_request.id
     }, next);
   };
+  
+  orderStore.calculateCommission = function(attributes, next) {
+    deliveryRequestStore._customAction('calculateCommission', {
+      total: attributes.total
+    }, next);
+  };
 
   return (orderStore);
 
