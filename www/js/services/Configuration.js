@@ -18,13 +18,14 @@ angular.module('shopmycourse.services')
       return deferred.promise;
     },
     init: function(externalConfig) {
+      
         if(externalConfig.API_ENDPOINT){
           config.apiEndpoint = externalConfig.API_ENDPOINT;
           console.log('apiEndpoint',config.apiEndpoint);
         }
         if(externalConfig.GOOGLE_API_KEY){
-          config.googleApiKey = externalConfig.GOOGLE_API_KEY;
-          console.log('googleApiKey',config.googleApiKey);
+          config.googleWebClientId = externalConfig.GOOGLE_API_KEY;
+          console.log('googleWebClientId',config.googleWebClientId);
         }
         deferred .resolve(true);
     },
@@ -33,7 +34,7 @@ angular.module('shopmycourse.services')
     //apiEndpoint: 'http://shopmycourses-prod.herokuapp.com/',
     //apiEndpoint: 'https://ruby-shop-mc-clear-skies-1944-javoche.c9users.io/',
     apiEndpoint: 'http://shopmycourses.herokuapp.com/',
-    googleApiKey: '979481548722-mj63ev1utfe9v21l5pdiv4j0t1v7jhl2.apps.googleusercontent.com',
+    googleWebClientId: '626641878895-g9cr85f6k0pkmduabpmnago4imn486sh.apps.googleusercontent.com',
     errors: {
       SCHEDULE_ALREADY_EXIST: 'Vous avez déjà déposé une disponibilité',
       VALIDATION_CODE_ERROR: 'Votre code de validation est incorrect',

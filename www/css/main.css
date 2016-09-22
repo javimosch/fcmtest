@@ -1,6 +1,10 @@
 * {
   color: #8C8C8C; }
 
+html{
+  touch-action: manipulation;
+}
+
 #start {
   background-color: #69a7ff; }
   #start .buttons-block {

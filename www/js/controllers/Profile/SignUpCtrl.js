@@ -7,7 +7,7 @@ angular.module('shopmycourse.controllers')
  * @description Page d'inscription
  */
 
-.controller('ProfileSignUpCtrl', function($scope, $cordovaOauth, $rootScope, $ionicModal, $ionicLoading, $ionicPopup, $state, toastr, Authentication, Validation, CurrentUser,Configuration) {
+.controller('ProfileSignUpCtrl', function($scope, $cordovaOauth, $rootScope, $ionicModal, $ionicLoading, $ionicPopup, $state, toastr, Authentication, Validation, CurrentUser, Configuration) {
 
   /**
    * Initialisation de la validation du formulaire
@@ -40,7 +40,12 @@ angular.module('shopmycourse.controllers')
       $ionicLoading.hide();
       if (correct) {
         console.log('SignUp : Logged');
-        $state.go('tabs.home');
+        
+        setTimeout(function(){
+          $state.go('tabs.home');  
+        },2000);
+        
+        
       }
       else {
         toastr.warning(errorMessage, 'Authentification');
@@ -54,10 +59,6 @@ angular.module('shopmycourse.controllers')
    * @description Inscription avec Facebook
    */
   $scope.signUpWithFacebook = function() {
-
-
-    return;
-
     $ionicPopup.show({
       templateUrl: 'templates/Profile/ExternalServicesPopup.html',
       title: 'Inscription avec Facebook',
@@ -77,24 +78,15 @@ angular.module('shopmycourse.controllers')
           }
           else {
 
-            if (window.facebookConnectPlugin) {
-              window.facebookConnectPlugin.login(["email", "public_profile"], function(data) {
-                $scope.user.auth_token = data.authResponse.accessToken;
-                $scope.user.auth_method = 'facebook';
-                $scope.signUp();
-              }, function(error) {
-                onError('Facebook', error);
-              });
-            }
-            else {
-              $cordovaOauth.facebook(document.head.querySelector('meta[data-facebook-app-id]').content, ["email"]).then(function(result) {
-                $scope.user.auth_token = result.access_token;
-                $scope.user.auth_method = 'facebook';
-                $scope.signUp();
-              }, function(error) {
-                onError('Facebook', error);
-              });
-            }
+
+            window.facebookConnectPlugin.login(["email", "public_profile"], function(data) {
+              $scope.user.auth_token = data.authResponse.accessToken;
+              $scope.user.auth_method = 'facebook';
+              $scope.signUp();
+            }, function(error) {
+              onError('Facebook', error);
+            });
+
 
 
             return (true);
@@ -134,31 +126,22 @@ angular.module('shopmycourse.controllers')
           }
           else {
 
-            if (window.plugins && window.plugins.googleplus) {
-              window.plugins.googleplus.disconnect();
-              window.plugins.googleplus.login({
-                  'webClientId': Configuration.googleApiKey,
-                  'offline': true
-                },
-                function(data) {
-                  $scope.user.id_token = data.idToken;
-                  $scope.user.auth_method = 'google';
-                  $scope.signUp();
-                },
-                function(error) {
-                  onError('Google', error);
-                }
-              );
-            }
-            else {
-              $cordovaOauth.google(document.head.querySelector('meta[data-google-app-id]').content, ["email"]).then(function(result) {
-                $scope.user.auth_token = result.access_token;
+
+            window.plugins.googleplus.disconnect();
+            window.plugins.googleplus.login({
+                'webClientId': Configuration.googleWebClientId,
+                'offline': true
+              },
+              function(data) {
+                $scope.user.id_token = data.idToken;
                 $scope.user.auth_method = 'google';
                 $scope.signUp();
-              }, function(error) {
+              },
+              function(error) {
                 onError('Google', error);
-              });
-            }
+              }
+            );
+
 
 
 

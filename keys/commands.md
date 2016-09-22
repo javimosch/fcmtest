@@ -94,3 +94,9 @@ GOOGLE (GETABIKER)(DEBUG)
 com.googleusercontent.apps.626641878895-p9bhb40str3ce904c4e7dekvu9d6hd0b
 626641878895-p9bhb40str3ce904c4e7dekvu9d6hd0b.apps.googleusercontent.com
 
+
+
+
+HASH FOR FACEBOOK
+
+keytool -exportcert -alias rodrigo-apps-debug -keystore keys/smc-debug.keystore | openssl sha1 -binary | openssl base64

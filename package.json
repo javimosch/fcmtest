@@ -3,6 +3,8 @@
   "version": "1.1.1",
   "description": "An Ionic project",
   "scripts": {
+    "login": "phonegap remote login",
+    "build": "phonegap remote build android",
     "log": "git log --oneline | head",
     "deploy": "FTP_UPLOAD_FOLDER=deploy echo copying apk; cp ./platforms/android/build/outputs/apk/android-debug.apk ./deploy/test.apk; echo calling deploy.js; ./deploy/test.apk; node deploy.js;"
   },
