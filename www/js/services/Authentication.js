@@ -56,7 +56,7 @@ angular.module('shopmycourse.services')
     logout: function (next) {
       CurrentUser.set(null, function () {
         DataStorage.clear().then(function () {
-          return next();
+          return next && next();
         });
       });
     }

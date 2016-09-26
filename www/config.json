@@ -1,1 +1,4 @@
-{"API_ENDPOINT":"https://smc-dev-server.herokuapp.com/","GOOGLE_API_KEY":"626641878895-g9cr85f6k0pkmduabpmnago4imn486sh.apps.googleusercontent.com"}
+{
+    "API_ENDPOINT": "https://smc-dev-server.herokuapp.com/",
+    "GOOGLE_API_KEY": "626641878895-g9cr85f6k0pkmduabpmnago4imn486sh.apps.googleusercontent.com"
+}
