@@ -67,7 +67,36 @@ angular.module('shopmycourse.directives', [])
                 }
             }
 
+            function getAddressComponent(address_components, component, type) {
+                var element = null;
+                address_components.forEach(function(address_component) {
+                    console.log(address_component);
+                    if (address_component.types[0] == component) {
+                        element = (type == 'short') ? address_component.short_name : address_component.long_name;
+                    }
+                });
+                return element;
+            }
 
+            function getZip(data) {
+                return getAddressComponent(data, 'postal_code', 'long');
+            }
+
+            function getCity(data) {
+                return getAddressComponent(data, 'locality', 'long') || getAddressComponent(data, 'administrative_area_level_2', 'long');
+            }
+
+            function getDepartment(data) {
+                return getAddressComponent(data, 'administrative_area_level_2', 'long');
+            }
+
+            function getRegion(data) {
+                return getAddressComponent(data, 'administrative_area_level_1', 'long');
+            }
+
+            function getCountry(data) {
+                return getAddressComponent(data, 'country', 'long');
+            }
 
             function tryLink() {
 
@@ -91,59 +120,34 @@ angular.module('shopmycourse.directives', [])
                         }
                     }
 
+
+
                     function onResult(event, result) {
                         scope.model[scope.field] = result.formatted_address;
                         scope.change && scope.change(result.formatted_address);
-                        var data = result.address_components.map(v => (v.long_name));
+                        var data = result.address_components
                         var number, street, city, department, region, country, postCode;
-                        if (data.length == 4) {
-                            number = '';
-                            street = data[0];
-                            city = data[1];
-                            department = data[1];
-                            region = '';
-                            country = data[2];
-                            postCode = data[3];
-                        }
-                        if (data.length == 5) {
-                            number = '';
-                            street = data[0];
-                            city = data[0];
-                            department = data[1];
-                            region = data[2];
-                            country = data[3];
-                            postCode = data[4];
-                        }
-                        if (data.length === 6) {
-                            number = '';
-                            street = data[0];
-                            city = data[1]
-                            department = data[2];
-                            region = data[3];
-                            country = data[4];
-                            postCode = data[5];
-                        }
-                        if (data.length === 7) {
-                            number = data[0];
-                            street = data[1];
-                            city = data[2]
-                            department = data[3];
-                            region = data[4];
-                            country = data[5];
-                            postCode = data[6];
-                        }
+
+                        number      = getAddressComponent(data, 'street_number', 'long');
+                        street      = getAddressComponent(data, 'route', 'long');
+                        city        = getCity(data);
+                        department  = getDepartment(data);
+                        region      = getRegion(data);
+                        country     = getCountry(data);
+                        postCode    = getZip(data);
+
 
                         //$log.info('Address (directive): data',data,postCode,scope);
-                        //$log.info('Address (directive): data',result);
+                        //$log.info('Address (directive): data', result);
 
-                        if (scope.number) setVal(scope.model, scope.number, number);
-                        if (scope.street) setVal(scope.model, scope.street, street);
-                        if (scope.city) setVal(scope.model, scope.city, city);
-                        if (scope.department) setVal(scope.model, scope.department, department);
-                        if (scope.region) setVal(scope.model, scope.region, region);
+                        if (scope.number)       setVal(scope.model, scope.number, number);
+                        if (scope.street)       setVal(scope.model, scope.street, street);
+                        if (scope.city)         setVal(scope.model, scope.city, city);
+                        if (scope.department)   setVal(scope.model, scope.department, department);
+                        if (scope.region)       setVal(scope.model, scope.region, region);
                         if (scope.country) {
                             fetchCountry(result.formatted_address, function(d) {
-                                setVal(scope.model, scope.country, d.name);
+                                                setVal(scope.model, scope.country, d.name);
                             });
                             //setVal(scope.model, scope.country, country);
                         }
@@ -191,8 +195,8 @@ angular.module('shopmycourse.directives', [])
                     else {
                         $log.warn('Address (Directive): attrs.name attrs.context required for action binding.');
                     }
-                    
-                    
+
+
                 });
             }
 

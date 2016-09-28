@@ -93,7 +93,10 @@ angular.module('shopmycourse.controllers')
       $scope.modalMessage = "Votre demande de livraison a été enregistrée. Vous serez notifié dés qu'un livreur correspondra à vos critères."
       $scope.modalImg = "img/notifs/doigts-en-v.png";
       $scope.modalClose = function() {
-        $state.go('tabs.home');
+        //$state.go('tabs.home');
+        $state.go('tabs.requestcontent',{
+          idRequest:data.id
+        });
         $scope.modal.hide();
       }
 
