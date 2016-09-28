@@ -27,6 +27,7 @@
   <link href="css/main.css" rel="stylesheet">
 
   <!-- Lib:JS -->
+  <script src="lib/jquery.js"></script>
   <script src="lib/ionic/js/ionic.bundle.js"></script>
   <script src="lib/ionic/js/angular/angular-resource.js"></script>
   <script src="lib/angular-toastr/dist/angular-toastr.js"></script>
@@ -42,6 +43,7 @@
   <script src="lib/angular-locale/angular-locale_fr-fr.js"></script>
   <script src="lib/ngCordova/dist/ng-cordova.js"></script>
   <script type="text/javascript" src="lib/ng-cordova-oauth/ng-cordova-oauth.min.js"></script>
+  <script src="lib/jquery.geocomplete.js"></script>
   <script src="cordova.js"></script>
 
   <!-- Application -->
@@ -102,6 +104,7 @@
   <script src="js/services/Authentication.js"></script>
   <script src="js/services/Validation.js"></script>
   <script src="js/services/Camera.js"></script>
+  <script src="js/services/DomRefresher.js"></script>
   <!-- Services::Stores -->
   <script src="js/services/Stores/Store.js"></script>
   <script src="js/services/Stores/DeliveryStore.js"></script>
@@ -121,11 +124,13 @@
   <!-- Directives -->
   <script src="js/directives.js"></script>
   <script src="js/directives/Notifications.js"></script>
+  <script src="js/directives/Address.js"></script>
 
   <!-- Only required for Tab projects w/ pages in multiple tabs
     <script src="lib/ionicuirouter/ionicUIRouter.js"></script>
     -->
 
+  <script async src="https://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 
 </head>
 

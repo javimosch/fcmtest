@@ -7,7 +7,13 @@
             <!-- Adresse -->
             <ion-item class="item item-input item-stacked-label">
                 <span class="input-label">Adresse</span>
-                <input type="text" name="address" ng-model="address.address" placeholder="Saisissez votre addresse" ng-pattern="validation.address.pattern" required="required">
+                <input type="text" name="address" 
+                address
+                model="address" 
+                field="address"
+                post-code="zip"
+                city="city"
+                placeholder="Saisissez votre addresse" ng-pattern="validation.address.pattern" required="required">
             </ion-item>
             <div class="error-message" ng-show="addressForm.address.$error.pattern">
               <span><i class="icon ion-close-circled"></i> {{validation.address.message}}</span>

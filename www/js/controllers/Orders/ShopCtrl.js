@@ -5,13 +5,13 @@ angular.module('shopmycourse.controllers')
  * @function Controleur
  * @memberOf shopmycourse.controllers
  * @description Sélection du magasin pour une demande de livraison
-*/
+ */
 
-.controller('OrdersShopCtrl', function($rootScope, $scope, toastr, $state, $ionicModal, $ionicLoading, CurrentDelivery, ShopAPI, DeliveryRequestAPI, DeliveryRequestAPI, $timeout, OrderStore) {
+.controller('OrdersShopCtrl', function($rootScope, $scope, toastr, $state, $ionicModal, $ionicLoading, CurrentDelivery, ShopAPI, DeliveryRequestAPI, DeliveryRequestAPI, $timeout, OrderStore, $log) {
 
   /**
    * Initialisation de la recherche de magasins
-  */
+   */
   $scope.shops = [];
   $scope.minimumStar = 0;
   var timer = null;
@@ -21,18 +21,31 @@ angular.module('shopmycourse.controllers')
   };
 
   /**
-  * Affichage du premier chargement de la liste des magasins
-  */
+   * Affichage du premier chargement de la liste des magasins
+   */
   $ionicLoading.show({
     template: 'Nous recherchons les magasins correspondants...'
   });
 
   refreshShopList();
 
+  function buildAddress(currentDelivery) {
+    $log.debug('ShopCtrl: Building address from', currentDelivery.address_attributes);
+    var data = currentDelivery.address_attributes;
+    if (data.address.indexOf(data.zip) != -1) {
+      if (data.address.indexOf(data.city) != -1) {
+        $log.debug('ShopCtrl: Building address result ', data.address);
+        return data.address;
+      }
+    }
+    $log.debug('ShopCtrl: Building address result ', data.address + ' ' + data.zip + ' ' + data.city);
+    return data.address + ' ' + data.zip + ' ' + data.city;
+  }
+
   /**
    * @name refreshShopList
    * @description Rafraichissement de la liste des magasins
-  */
+   */
   function refreshShopList() {
     $ionicLoading.show({
       template: 'Nous recherchons les magasins correspondants...'
@@ -45,7 +58,7 @@ angular.module('shopmycourse.controllers')
       ShopAPI.search({
         // lat: $scope.position.coords.latitude,
         // lon: $scope.position.coords.longitude,
-        address: currentDelivery.address_attributes.address + ' ' + currentDelivery.address_attributes.zip + ' ' + currentDelivery.address_attributes.city,
+        address: buildAddress(currentDelivery),
         stars: $scope.minimumStar,
         schedule: $rootScope.currentDelivery.schedule
       }, function(shops) {
@@ -60,26 +73,26 @@ angular.module('shopmycourse.controllers')
   /**
    * @name $scope.sendDeliveryRequest
    * @description Enregistrement de la demmande de livraison
-  */
+   */
   $scope.sendDeliveryRequest = function(shop) {
     var currentDelivery = $rootScope.currentDelivery;
     currentDelivery.buyer_id = $rootScope.currentUser.id;
     currentDelivery.shop_id = shop.id;
-    CurrentDelivery.setShop(shop, function () {});
+    CurrentDelivery.setShop(shop, function() {});
 
     $ionicLoading.show({
       template: 'Nous créons votre demande...'
     });
 
     DeliveryRequestAPI.create(currentDelivery, function(data) {
-      CurrentDelivery.setDeliveryRequestID(data.id, function () {});
+      CurrentDelivery.setDeliveryRequestID(data.id, function() {});
       $ionicLoading.hide();
       OrderStore.pull();
 
       $scope.modalTitle = "Bravo !"
       $scope.modalMessage = "Votre demande de livraison a été enregistrée. Vous serez notifié dés qu'un livreur correspondra à vos critères."
       $scope.modalImg = "img/notifs/doigts-en-v.png";
-      $scope.modalClose = function () {
+      $scope.modalClose = function() {
         $state.go('tabs.home');
         $scope.modal.hide();
       }
@@ -100,24 +113,30 @@ angular.module('shopmycourse.controllers')
   /**
    * @name $scope.setMinimumStar
    * @description Mise à jour du filtre "Notation des livreurs" pour la recherche des magasins
-  */
+   */
   $scope.setMinimumStar = function(newValue) {
     $scope.minimumStar = newValue;
     refreshShopList();
   };
+  
+  $scope.goBack = function(){
+    $state.go('tabs.addressorder');
+  }
 
   /**
    * @name $scope.openMap
    * @description Ouverture d'une carte avec la localisation du magasin
-  */
+   */
   $scope.openMap = function(shop) {
     var address = shop.address;
     var url = '';
     if (ionic.Platform.isIOS()) {
       url = "http://maps.apple.com/maps?q=" + encodeURIComponent(address);
-    } else if (ionic.Platform.isAndroid()) {
+    }
+    else if (ionic.Platform.isAndroid()) {
       url = "geo:?q=" + encodeURIComponent(address);
-    } else {
+    }
+    else {
       url = "http://maps.google.com?q=" + encodeURIComponent(address);
     }
     window.open(url, "_system", 'location=no');

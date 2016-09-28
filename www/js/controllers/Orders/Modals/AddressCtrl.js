@@ -9,6 +9,8 @@ angular.module('shopmycourse.controllers')
 
 .controller('OrdersAddressCtrl', function($scope, Validation, $state, CurrentDelivery, CurrentAddress, CurrentUser) {
 
+
+window.s = $scope;
   /**
    * Initialisation de la validation du formulaire
   */
