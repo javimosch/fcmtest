@@ -155,7 +155,7 @@ angular.module('shopmycourse.directives', [])
                             //$log.debug('Address (directive): set postcode',postCode);
                             setVal(scope.model, scope.postCode, postCode);
                         }
-                        window._address = Object.assign(result, scope);
+                        
                         DomRefresher();
 
                     }
@@ -163,8 +163,8 @@ angular.module('shopmycourse.directives', [])
                     function setVal(obj, propertyPath, val) {
                         var split = propertyPath.split('.');
                         var lastIndex = split.length - 1;
-                        split.forEach((chunk, index) => {
-                            var isLast = lastIndex == index;
+                        split.forEach(function(chunk, index) {
+                            var isLast = (lastIndex == index);
                             if (isLast) return false;
                             obj = obj[chunk] || null;
                             if (!obj) return false;
