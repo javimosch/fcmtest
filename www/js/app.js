@@ -27,7 +27,8 @@ angular.module('shopmycourse', [
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-    document.addEventListener('resume', function() {
+
+    function fetchNotifications() {
       $ionicModal.fromTemplateUrl('templates/NotificationsModal.html', {
         scope: $rootScope,
         animation: 'slide-in-up'
@@ -70,7 +71,15 @@ angular.module('shopmycourse', [
           console.error('Notifications error : ', err);
         });
       }
+    }
+
+    document.addEventListener('resume', function() {
+      fetchNotifications();
     }, false);
+    
+    $.browser_isDevice = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()));
+    if(!$.browser_isDevice) fetchNotifications();
+    
   });
 })
 
@@ -80,7 +89,7 @@ angular.module('shopmycourse', [
   ConfigAPI.fetch({}, function(config) {
     config = JSON.parse(angular.toJson(config));
     Configuration.init(config);
-  },function(err){
+  }, function(err) {
     console.log(err)
   });
 })
