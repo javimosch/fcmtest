@@ -42,10 +42,15 @@ angular.module('shopmycourse.services')
       OrderStore.get({
         id: parseInt(params.id)
       }, function(err, res) {
+
+        if (err) {
+          console.log('WARN CurrentOrder (fetch delivery): ' + err);
+        }
+
         /*
          * OrderStore pull may bring an array ?
          */
-        if (typeof err, res.length != 'undefined') {
+        if (typeof res.length != 'undefined') {
           res = res[0];
         }
         self.set(res);
@@ -58,6 +63,13 @@ angular.module('shopmycourse.services')
       if (params.idDeliveryRequest) {
         var order = null;
         OrderStore.pull(function(err, orders) {
+
+          if (err) {
+            console.log('WARN CurrentOrder (fetch request): ' + err);
+          }
+          
+          console.log('CurrentOrder (fetch request): rta ',err,orders);
+
           if (!orders || err) return callback(err, null);
           orders.forEach(function(_order) {
             if (_order.delivery_request.id == parseInt(params.idDeliveryRequest)) {
@@ -68,6 +80,9 @@ angular.module('shopmycourse.services')
             self.set(order);
             self.update();
             callback && callback(err, order);
+          }else{
+            console.log('WARN CurrentOrder (fetch request): request not found..');
+            callback('DeliveryRequest not found.');
           }
         }, callback);
       }
@@ -127,9 +142,9 @@ angular.module('shopmycourse.services')
     console.log('CurrentOrder set', __order);
   };
   self.get = function() {
-    
+
     self.update();
-    
+
     return _order;
   };
   window.CurrentOrder = self;
