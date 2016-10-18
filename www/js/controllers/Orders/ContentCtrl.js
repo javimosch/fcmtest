@@ -30,11 +30,19 @@ angular.module('shopmycourse.controllers')
     $ionicLoading.show({
       template: 'Chargement ...'
     });
+    
+    console.log('ContentCtrl (order fetching)');
 
     CurrentOrder.fetch({
       id: idOrderParam,
       idDeliveryRequest: idDeliveryRequestParam
     }, function(err, _order) {
+      
+      if(err){
+        console.log('ERR ContentCtrl: '+err);
+        return $state.go('tabs.home');
+      }
+      
       $scope.order = _order
       moveProductsToCurrentCart(_order);
       $ionicLoading.hide();
