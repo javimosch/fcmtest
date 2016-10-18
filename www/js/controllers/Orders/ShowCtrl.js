@@ -68,7 +68,7 @@ angular.module('shopmycourse.controllers')
    */
   function onOrderReceived(order) {
 
-
+  console.log('onOrderReceived',order)
 
     $scope.order = order;
     if (CurrentOrder.isPending()) {

@@ -21,7 +21,7 @@
             <!-- Code postal -->
             <ion-item class="item item-input item-stacked-label">
                 <span class="input-label">Code postal</span>
-                <input type="text" name="zip" ng-model="address.zip" placeholder="Saisissez votre code postal" ng-pattern="validation.zipcode.pattern" required="required">
+                <input ng-disabled="true" type="text" name="zip" ng-value="address.zip" ng-pattern="validation.zipcode.pattern" required="required"> <!-- placeholder="Saisissez votre code postal" -->
             </ion-item>
             <div class="error-message" ng-show="addressForm.zip.$error.pattern">
               <span><i class="icon ion-close-circled"></i> {{validation.zip.message}}</span>
@@ -29,7 +29,7 @@
             <!-- Ville -->
             <ion-item class="item item-input item-stacked-label">
                 <span class="input-label">Ville</span>
-                <input type="text" name="city" ng-model="address.city" placeholder="Saisissez votre ville" ng-pattern="validation.city.pattern" required="required">
+                <input ng-disabled="true" type="text" name="city" ng-value="address.city"  ng-pattern="validation.city.pattern" required="required"> <!-- placeholder="Saisissez votre ville" -->
             </ion-item>
             <div class="error-message" ng-show="addressForm.city.$error.pattern">
               <span><i class="icon ion-close-circled"></i> {{validation.city.message}}</span>

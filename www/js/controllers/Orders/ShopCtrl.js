@@ -32,6 +32,8 @@ angular.module('shopmycourse.controllers')
   function buildAddress(currentDelivery) {
     $log.debug('ShopCtrl: Building address from', currentDelivery.address_attributes);
     var data = currentDelivery.address_attributes;
+    return data.address;
+    /*
     if (data.address.indexOf(data.zip) != -1) {
       if (data.address.indexOf(data.city) != -1) {
         $log.debug('ShopCtrl: Building address result ', data.address);
@@ -40,6 +42,7 @@ angular.module('shopmycourse.controllers')
     }
     $log.debug('ShopCtrl: Building address result ', data.address + ' ' + data.zip + ' ' + data.city);
     return data.address + ' ' + data.zip + ' ' + data.city;
+    */
   }
 
   /**
