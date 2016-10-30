@@ -70,7 +70,7 @@ angular.module('shopmycourse.directives', [])
             function getAddressComponent(address_components, component, type) {
                 var element = null;
                 address_components.forEach(function(address_component) {
-                    console.log(address_component);
+                    //console.log(address_component);
                     if (address_component.types[0] == component) {
                         element = (type == 'short') ? address_component.short_name : address_component.long_name;
                     }
