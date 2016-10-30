@@ -7,15 +7,19 @@ angular.module('shopmycourse.services')
  * @description Stockage de diverses données au sein de l'application
  */
 
-.service('Store', function($injector, lodash, Configuration) {
+.service('Store', function($injector, lodash, Configuration, $q, $log) {
 
   var defaultOptions = {
     pullRouteName: 'get',
     pullIfNotFound: true
   };
 
-  return function(collectionName, options) {
+  var self = function(collectionName, options) {
     var collectionAPI = $injector.get(collectionName + 'API');
+  
+    window.apis = window.apis || {};
+    window.apis[collectionName] = collectionAPI;
+  
     var options = lodash.defaults(options, defaultOptions);
 
     var _cache = {
@@ -108,5 +112,35 @@ angular.module('shopmycourse.services')
     };
 
   };
+
+  
+  //$log.debug('DEBUG: defining store create');
+  
+  var stores = {};
+  
+  self.create = function(name, options) {
+    var store = self(name, options);
+    stores[name]= {};
+    var fn =  function(actionName, payload) {
+      
+      stores[name][actionName+'_'+ window.moment().format('HH[_]MM[_]SS')] = {
+        payload:payload,call: function(){
+          fn(actionName,payload);
+        }
+      };
+      
+      var deferred = $q.defer();
+      store._customAction(actionName, payload, function(err, res) {
+        deferred.resolve(err ||  res);
+      });
+      return deferred.promise;
+    };
+    return fn;
+  };
+  
+  window.stores = stores;
+
+  
+  return self;
 
 });
