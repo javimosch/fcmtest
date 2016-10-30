@@ -7,7 +7,7 @@ angular.module('shopmycourse.services')
  * @description Notification's actions.
  */
 
-.factory('Notifications', function($rootScope, $ionicModal, NotificationAPI, lodash, $log, $q, CurrentDelivery,Promise) {
+.factory('Notifications', function($rootScope, $ionicModal, NotificationAPI, lodash, $log, $q, CurrentDelivery,Promise,$ionicPopup) {
     var self = {
         _notifications:[]
     };
@@ -89,6 +89,30 @@ angular.module('shopmycourse.services')
         });
         return deferred.promise;
     };
+    
+    self.openConfirmDeliveryRequestPopup = function(yesHandler){
+        var myPopup = $ionicPopup.confirm({
+			template: 'Vous êtes sur le point d\'accepter la livraison, êtes-vous sûr ?',
+			title: 'Accepter la demande',
+			cancelText: 'retour'
+		});
+		myPopup.then(function(res) {
+			if (res) {
+			    yesHandler();
+			}
+		});
+    };
+    
+    self.markAsRead = function(notification,next){
+        NotificationAPI.update({
+			idNotification: notification.id,
+			read: true
+		}, function() {
+			if (next)
+				next();
+		});
+    };
+    
     self.showIfAny = function() {
         //$log.debug('DEBUG: notifications showIfAny');
         self.awake.then(function() {

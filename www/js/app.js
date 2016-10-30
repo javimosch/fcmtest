@@ -1,5 +1,8 @@
-// Ionic Shop My Course App
-
+/*global $*/
+/*global cordova*/
+/*global StatusBar*/
+/*global angular*/
+/*global navigator*/
 angular.module('shopmycourse', [
   'ionic',
   'jrCrop',
@@ -16,7 +19,7 @@ angular.module('shopmycourse', [
   'shopmycourse.directives'
 ])
 
-.run(function($ionicPlatform, $rootScope, $ionicModal, NotificationAPI, CurrentDelivery, CurrentUser) {
+.run(function($ionicPlatform, $rootScope, $ionicModal, NotificationAPI, CurrentDelivery, CurrentUser, $log, Notifications) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -28,58 +31,28 @@ angular.module('shopmycourse', [
       StatusBar.styleDefault();
     }
 
-    function fetchNotifications() {
-      $ionicModal.fromTemplateUrl('templates/NotificationsModal.html', {
-        scope: $rootScope,
-        animation: 'slide-in-up'
-      }).then(function(modal) {
-        $rootScope.notificationsModal = modal
-      });
-      $rootScope.openNotificationsModal = function() {
-        $rootScope.notificationsModal.show();
-      };
-      $rootScope.closeNotificationsModal = function() {
-        $rootScope.notificationsModal.hide();
-      };
+    window.r = $rootScope;
 
+    CurrentUser.awake.then(function() {
       if (CurrentUser.isLogged()) {
-        $rootScope.notifications = [];
-        NotificationAPI.get({}, function(notifications) {
-          $rootScope.notifications = window._.map(notifications, function(n) {
-            n.meta = JSON.parse(n.meta);
-            switch (n.mode) {
-              case 'delivery_request':
-                n.meta.buyer.rating_average = n.meta.buyer.rating_average || 0;
-                break;
-              case 'accepted_delivery':
-                CurrentDelivery.clear();
-                n.meta.deliveryman.rating_average = n.meta.deliveryman.rating_average || 0;
-                break;
-              case 'order_reminder':
-                n.meta.deliveryman.rating_average = n.meta.deliveryman.rating_average || 0;
-                break;
-              case 'cart_filled':
-                n.meta.buyer.rating_average = n.meta.buyer.rating_average || 0;
-                break;
-            }
-            return n;
-          });
-          if (notifications.length > 0) {
-            $rootScope.openNotificationsModal();
-          }
-        }, function(err) {
-          console.error('Notifications error : ', err);
-        });
+        $log.debug('DEBUG: app logged');
+        $.browser_isDevice = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()));
+        if (!$.browser_isDevice) {
+          $log.debug('DEBUG: app is a browser');
+          Notifications.showIfAny();
+        }
+        else {
+          $log.debug('DEBUG: app is a device');
+          document.addEventListener('resume', function() {
+            Notifications.showIfAny();
+          }, false);
+        }
       }
-    }
+      else {
+        $log.debug('DEBUG: app not logged');
+      }
+    });
 
-    document.addEventListener('resume', function() {
-      fetchNotifications();
-    }, false);
-    
-    $.browser_isDevice = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()));
-    if(!$.browser_isDevice) fetchNotifications();
-    
   });
 })
 
