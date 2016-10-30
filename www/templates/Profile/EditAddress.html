@@ -8,7 +8,7 @@
 
         <ion-item class="item item-input item-stacked-label">
           <span class="input-label">Adresse</span>
-          <input type="text" name="address" placeholder="" ng-model="currentAddress.address" ng-model-options="{ allowInvalid: true }" ng-pattern="validation.address.pattern">
+          <input type="text" name="address" placeholder="" address model="data" field="address" postCode="zip" city="city">
         </ion-item>
         <div class="error-message" ng-show="addressForm.address.$error.pattern">
           <span><i class="icon ion-close-circled"></i> {{validation.address.message}}</span>
@@ -16,7 +16,7 @@
 
         <ion-item class="item item-input item-stacked-label">
           <span class="input-label">Code Postal</span>
-          <input type="text" name="zip" placeholder="" ng-model="currentAddress.zip" ng-model-options="{ allowInvalid: true }" ng-pattern="validation.zipcode.pattern">
+          <input type="text" name="zip" placeholder="" ng-value="data.zip" ng-disabled="true">
         </ion-item>
         <div class="error-message" ng-show="addressForm.zip.$error.pattern">
           <span><i class="icon ion-close-circled"></i> {{validation.zipcode.message}}</span>
@@ -24,7 +24,7 @@
 
         <ion-item class="item item-input item-stacked-label">
           <span class="input-label">Ville</span>
-          <input type="text" name="city" placeholder="" ng-model="currentAddress.city" ng-model-options="{ allowInvalid: true }" ng-pattern="validation.city.pattern">
+          <input type="text" name="city" placeholder="" ng-value="data.city" ng-disabled="true">
         </ion-item>
         <div class="error-message" ng-show="addressForm.city.$error.pattern">
           <span><i class="icon ion-close-circled"></i> {{validation.city.message}}</span>
