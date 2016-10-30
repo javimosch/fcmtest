@@ -17,17 +17,22 @@ angular.module('shopmycourse.controllers')
   $scope.data = {
     address: '',
     zip: '',
-    city: ''
+    city: '',
+    additional_address:''
   };
+  window.s = $scope;
   
   DomRefresher(function(){
     var _data = CurrentAddress.get();
     $scope.data.address = _data.address;
+    $scope.data.additional_address = _data.additional_address;
+    $scope.data.zip = _data.zip;
+    $scope.data.city = _data.city;
   });
 
   $scope.endEdit = function($event) {
     $event.preventDefault();
-    CurrentAddress.set($scope.currentAddress);
+    CurrentAddress.set($scope.data);
     $state.go('tabs.profile');
   };
 

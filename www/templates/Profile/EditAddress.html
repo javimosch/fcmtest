@@ -8,7 +8,7 @@
 
         <ion-item class="item item-input item-stacked-label">
           <span class="input-label">Adresse</span>
-          <input type="text" name="address" placeholder="" address model="data" field="address" postCode="zip" city="city">
+          <input type="text" name="address" placeholder="" address model="data" field="address" post-code="zip" city="city">
         </ion-item>
         <div class="error-message" ng-show="addressForm.address.$error.pattern">
           <span><i class="icon ion-close-circled"></i> {{validation.address.message}}</span>
@@ -32,7 +32,7 @@
 
         <ion-item class="item item-input item-stacked-label">
           <span class="input-label">Complément d'adresse</span>
-          <input type="text" name="additional_address" placeholder="" ng-model="currentAddress.additional_address" ng-model-options="{ allowInvalid: true }" ng-pattern="validation.address.pattern">
+          <input type="text" name="additional_address" placeholder="" ng-model="data.additional_address" ng-model-options="{ allowInvalid: true }" ng-pattern="validation.address.pattern">
         </ion-item>
         <div class="error-message" ng-show="addressForm.address.$error.pattern">
           <span><i class="icon ion-close-circled"></i> {{validation.address.message}}</span>
