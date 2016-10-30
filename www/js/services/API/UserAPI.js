@@ -7,7 +7,7 @@ angular.module('shopmycourse.services')
  * @description Gestion de l'utilisateur avec le serveur
  */
 
-.service('UserAPI', function(API, Configuration, $q, lodash) {
+.service('UserAPI', function(API, Configuration, $q, lodash,Promise, $log) {
     var self = {};
     Configuration.ready().then(function() {
         var resource = API(Configuration.apiEndpoint + 'users', {
@@ -46,9 +46,17 @@ angular.module('shopmycourse.services')
                 method: 'POST',
                 url: Configuration.apiEndpoint + 'users/password',
                 cache: false
+            },
+             // user id parameters: email, id (optional)
+            'exists': {
+                method: 'POST',
+                url: Configuration.apiEndpoint + 'users/exists',
+                cache: false
             }
         });
         lodash.extend(self, resource);
+        Promise('user_api_awake').resolve(self);
     });
+    self.awake = Promise('user_api_awake');
     return self;
 });

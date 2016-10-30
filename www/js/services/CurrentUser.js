@@ -7,7 +7,7 @@ angular.module('shopmycourse.services')
  * @description Stockage de l'utilisateur actuel
  */
 
-.service('CurrentUser', function($rootScope, DataStorage, UserAPI, HTTPInterceptor, $log,Promise) {
+.service('CurrentUser', function($rootScope, DataStorage, UserAPI, HTTPInterceptor, $log, Promise, Store) {
   var currentUser = {};
 
   function avatarFromUserAvatar(avatar) {
@@ -22,6 +22,9 @@ angular.module('shopmycourse.services')
     }
   }
 
+  //$log.debug('DEBUG: creating user store');
+  var UserStore = Store.create('User');
+
   var self = {
     awake: Promise('current_user_awake'),
     /**
@@ -35,10 +38,30 @@ angular.module('shopmycourse.services')
         var isLogged = (Object.keys(currentUser).length > 0);
         $rootScope.currentUser = currentUser;
         Promise('current_user_awake').resolve(currentUser);
-        return DataStorage.get('token').then(function(tokenFromStorage) {
+
+
+
+
+        DataStorage.get('token').then(function(tokenFromStorage) {
           next();
           HTTPInterceptor.setToken(tokenFromStorage);
+
+          if (isLogged) {
+            //$log.debug('DEBUG: user store exists');
+            //double check (user id)
+            /*
+            UserStore('exists', {
+              email: currentUser.email,
+              id: currentUser.id
+            }).then(function(err, res) {
+              $log.info('EXISTS', err, res);
+            });*/
+          }
+
         });
+
+
+
       });
     },
     /**
