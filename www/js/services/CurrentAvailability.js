@@ -7,7 +7,7 @@ angular.module('shopmycourse.services')
  * @description Stockage des disponibilités actuelles
  */
 
-.service('CurrentAvailability', function($rootScope, AvailabilityAPI, DataStorage,Configuration) {
+.service('CurrentAvailability', function($rootScope, AvailabilityAPI, DataStorage, Configuration, Promise) {
 
   var currentAvailability = {
     schedules: [],
@@ -15,24 +15,29 @@ angular.module('shopmycourse.services')
     deliveryman_id: $rootScope.currentUser.id
   };
 
-  return {
+
+  function awake(next) {
+    Configuration.ready().then(function() {
+      AvailabilityAPI.get({}, function(currentAvailabilityFromServer) {
+        currentAvailability = currentAvailabilityFromServer || {};
+        $rootScope.currentAvailability = currentAvailability;
+        DataStorage.set('current_availability', currentAvailabilityFromServer);
+        next && next(currentAvailability);
+        Promise('availability_awake').resolve(currentAvailability);
+      });
+    });
+  }
+  
+  awake();
+
+
+  var self = {
+    awake: Promise('availability_awake'),
     /**
      * @name load
      * @description Récupération des disponibilités présentes sur le serveur
      */
-    load: function(next) {
-
-      Configuration.ready().then(function() {
-
-        return AvailabilityAPI.get({}, function(currentAvailabilityFromServer) {
-          currentAvailability = currentAvailabilityFromServer || {};
-          $rootScope.currentAvailability = currentAvailability;
-          DataStorage.set('current_availability', currentAvailabilityFromServer);
-          return next(currentAvailability);
-        });
-
-      });
-    },
+    load: function(){},
     /**
      * @name get
      * @description Récupération des disponibilités présentes dans la mémoire du téléphone
@@ -106,5 +111,7 @@ angular.module('shopmycourse.services')
       }, next)
     }
   };
+  window.CurrentAvailability = self;
+  return self;
 
 });
