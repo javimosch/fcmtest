@@ -37,6 +37,11 @@ angular.module('shopmycourse.services')
       total: attributes.total
     }, next);
   };
+  orderStore.calculateShippingTotal = function(attributes, next) {
+    deliveryRequestStore._customAction('calculateShippingTotal', {
+      total: attributes.total
+    }, next);
+  };
 
   return (orderStore);
 

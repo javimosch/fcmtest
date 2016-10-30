@@ -17,14 +17,25 @@ angular.module('shopmycourse.services')
     });
   }
 
-  function calculateCommission(total, callback) {
+  function calculatePricing(total, callback) {
     OrderStore.calculateCommission({
       total: total
-    }, function(err, response) {
+    }, function(err, res) {
       if (err) return console.warn('calculateCommission', err);
-      callback(response.commission);
+      var commission = res.commission;
+      OrderStore.calculateShippingTotal({
+        total: total
+      }, function(err, r) {
+        if (err) return console.warn('calculateShippingTotal', err);
+        callback({
+          shipping_total: r.shipping_total,
+          commission: commission
+        });
+      })
     })
   }
+
+
 
   function calculateTotal(delivery_contents) { /*subtotal*/
     var total = 0;
@@ -67,8 +78,8 @@ angular.module('shopmycourse.services')
           if (err) {
             console.log('WARN CurrentOrder (fetch request): ' + err);
           }
-          
-          console.log('CurrentOrder (fetch request): rta ',err,orders);
+
+          console.log('CurrentOrder (fetch request): rta ', err, orders);
 
           if (!orders || err) return callback(err, null);
           orders.forEach(function(_order) {
@@ -80,7 +91,8 @@ angular.module('shopmycourse.services')
             self.set(order);
             self.update();
             callback && callback(err, order);
-          }else{
+          }
+          else {
             console.log('WARN CurrentOrder (fetch request): request not found..');
             callback('DeliveryRequest not found.');
           }
@@ -126,10 +138,11 @@ angular.module('shopmycourse.services')
     fetchProducts(function(err, delivery_contents) {
       if (err) return console.log('WARN', err);
       var total = calculateTotal(delivery_contents);
-      calculateCommission(total, function(commission) {
+      calculatePricing(total, function(pricing) {
         _order.delivery_contents = delivery_contents;
         _order.total = total;
-        _order.commission = commission;
+        _order.commission = pricing.commission;
+        _order.shipping_total = pricing.shipping_total;
         if (callback) callback(_order);
       });
     });
