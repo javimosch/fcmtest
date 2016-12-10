@@ -49,6 +49,15 @@ angular.module('shopmycourse.services')
                 cache: false,
                 isArray: false
             },
+            'calculateShippingTotal': {
+                method: 'POST',
+                url: Configuration.apiEndpoint + 'delivery_requests/calculate_shipping_total/',
+                headers: {
+                    'Authorization': 'Bearer'
+                },
+                cache: false,
+                isArray: false
+            },
             // Annulation d'une demande de livraison correspondant à :idDeliveryRequest
             'cancel': {
                 method: 'POST',
